@@ -1,0 +1,36 @@
+.section_01{
+    display: flex;
+}
+input[type=text]{
+    background-color: #3b3b3b85;
+    border-radius: 10px;
+}
+input[type=text]:focus{
+    outline: 2px solid rgb(1, 61, 16);
+    background-color: white;
+}
+.input-field-2{
+    position: absolute;
+    right: 0;
+}
+.input_field{
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top:1rem;
+}
+select{
+    background-color: #3b3b3b85;
+    color: #7F7F7F;
+    border-radius: 5px;
+    width: 32%;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-right: .5rem;
+}
+select:focus{
+    outline: 2px solid rgb(1, 61, 16);
+    background-color: white;
+    color: black;
+}

@@ -1,0 +1,7 @@
+.btn-section{
+    display: flex;
+}
+.btn-style{
+    position: absolute;
+    right: 2rem;
+}

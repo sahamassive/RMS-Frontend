@@ -1,0 +1,25 @@
+.res{
+    color: red;
+    background-color:#0D0D0D;
+    font-style: italic;
+    font-family: 'Monotype Corsiva'; 
+  }
+  .logo{
+    width: 3em;
+    margin-top: 10px;
+    display: block;
+    margin-bottom: 1rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .company_name{
+    font-size:1.3em;
+    color:yellow;
+    font-family:'Gill Sans';
+    text-align: center;
+    margin-top: 5.3rem;
+  }

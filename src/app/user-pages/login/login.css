@@ -1,0 +1,60 @@
+.res {
+    color: red;
+    font-style: italic;
+    font-size: 1.3em;
+    font-family: 'Monotype Corsiva';
+    background-color: white;
+}
+
+.logo {
+    width: 5em;
+    position: absolute;
+    top: 4rem;
+}
+
+.company_name {
+    font-size: 1.3em;
+    color: rgb(179, 179, 14);
+    font-family: 'Gill Sans';
+    text-align: center;
+    margin-top: 6rem;
+    font-weight: bold;
+}
+
+.background {
+    background-color: white;
+}
+
+input[type=text],
+input[type=password] {
+    background-color: #ffffff85;
+    color: black;
+    border-radius: 7px;
+    margin-top: .5rem;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    outline: 2px solid rgb(1, 61, 16);
+    background-color: rgb(216, 205, 169);
+}
+
+.right-pic {
+    width: 50%;
+}
+
+.section-04 {
+    display: flex;
+}
+
+.space {
+    margin-top: 1rem;
+    border: 1px solid b;
+}
+
+.forget {
+    color: red;
+    font-style: italic;
+    font-family: Georgia;
+    float: right;
+}
