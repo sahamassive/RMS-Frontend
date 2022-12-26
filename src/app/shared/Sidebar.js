@@ -59,9 +59,13 @@ class Sidebar extends Component {
                 path: '/catalogue',
                 state: 'superAdminCatalogueOpen'
             },
+            {
+                path: '/waste',
+                state: 'wasteOpen'
+        },
         {
-            path: '/waste',
-            state: 'wasteOpen'
+            path: '/booking',
+            state: 'bookingOpen'
         },
     ];
 
@@ -219,7 +223,24 @@ class Sidebar extends Component {
                </ul>
              </div>
            </Collapse>
-         </li>
+           </li>
+                <li className={ this.isPathActive('/booking') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+                <div className={ this.state.bookingOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('bookingOpen') } data-toggle="collapse">
+                  <span className="menu-icon">
+                    <i className="mdi mdi-contacts"></i>
+                  </span>
+                  <span className="menu-title"><Trans>Booking/Reservation</Trans></span>
+                  <i className="menu-arrow"></i>
+                </div>
+                <Collapse in={ this.state.bookingOpen }>
+                  <div>
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item"> <Link className={ this.isPathActive('/booking') ? 'nav-link active' : 'nav-link' } to="/booking"><Trans>Booking</Trans></Link></li>
+                      <li className="nav-item"> <Link className={ this.isPathActive('/booking/new-booking') ? 'nav-link active' : 'nav-link' } to="/booking/new-booking"><Trans>New Booking</Trans></Link></li>
+                    </ul>
+                  </div>
+                </Collapse>
+              </li>
       </ul>
   </nav>
     );

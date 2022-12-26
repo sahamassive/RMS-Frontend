@@ -28,7 +28,7 @@ select{
     border-radius: 5px;
     box-sizing: border-box;
     margin-right: .5rem;
-}
+}  
 select:focus{
     outline: 2px solid rgb(1, 61, 16);
     background-color: white;
