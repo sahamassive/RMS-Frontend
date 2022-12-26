@@ -23,6 +23,7 @@
 
 .background {
     background-color: white;
+    padding: 9rem 0;
 }
 
 input[type=text],
@@ -57,4 +58,8 @@ input[type=password]:focus {
     font-style: italic;
     font-family: Georgia;
     float: right;
+}
+.border-style{
+    border: 1px solid black;
+    border-radius: 8px;
 }
