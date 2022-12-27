@@ -26,8 +26,11 @@ const QuickOrder = lazy(() => import('../app/user-pages/pos/quickOrder.js'));
 const Waste= lazy(() => import('../app/user-pages/waste/waste.js'));
 const NewWaste = lazy(() => import('../app/user-pages/waste/insert.js'));
 
-const Booking = lazy(() => import('../app/user-pages/booking/booking.js'));
-const NewBooking = lazy(() => import('../app/user-pages/booking/createBooking.js'));
+const Booking = lazy(() => import('../app/user-pages/booking/createBooking.js'));
+const CreateBooking = lazy(() => import('../app/user-pages/booking/createBooking.js'));
+
+const Restaurant = lazy(() => import('../app/user-pages/restaurant/restaurant.js'));
+const NewRestaurant = lazy(() => import('../app/user-pages/restaurant/newRestaurant.js'));
 
 
 const RegisterEmployee = lazy(() => import('../app/user-pages/registration/EmployeeRegistration.js'));
@@ -74,7 +77,10 @@ class AppRoutes extends Component {
           <Route path="/waste/new-waste" component={NewWaste} />
 
           <Route path="/booking" component={ Booking } />
-          <Route path="/booking/new-booking" component={ NewBooking } />
+          <Route path="/booking/new-booking" component={ CreateBooking } />
+          
+          <Route path="/restaurant" component={ Restaurant } />
+          <Route path="/restaurant/new-restaurant" component={ NewRestaurant } />
           
           <Route path="/super-admin/employee/registration" component={ RegisterEmployee  } />
 
