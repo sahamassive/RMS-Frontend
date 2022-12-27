@@ -35,17 +35,17 @@ function QuickOrder() {
                             </table>
                         </div>
                         <div className="input_field section-01">
-                            <select>
+                            <select className="select2">
                                 <option value="">Select order type</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
-                            <select>
+                            <select className="select2">
                                 <option value="">Select waiter</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
-                            <select>
+                            <select className="select2">
                                 <option value="">Select table</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>

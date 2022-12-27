@@ -1,16 +1,15 @@
-import React, { Component, useEffect, useState } from "react";
-import './style.css';
+import React from "react";
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import './style.css';
 
-function CreateFood() {
+function NewRestaurant() {
     return (
         <div>
             <Form>
-                <h2> Create new Food Item</h2>
+                <h2> Create new restaurant</h2>
                 <div className='two_part'>
                     <div className="col-sm-3 background">
-                        <lavel className="label-style">Food Image</lavel>
+                        <lavel className="label-style">Restaurant logo</lavel>
                         <div className="col-sm-6">
                             <Form.Group controlId="formFileMultiple" className="mb-3">
                                 <Form.Control type="file" multiple />
@@ -21,27 +20,21 @@ function CreateFood() {
         
                         <div>
                             <div className="input_field two_part">
-                                <Form.Control type="text" placeholder="Food name"></Form.Control>
-                                <Form.Control type="text" placeholder="Description"></Form.Control>
+                                <Form.Control type="text" placeholder="Restaurant name"></Form.Control>
                             </div>
                             <div className="input_field two_part">
-                                <Form.Control type="text" placeholder="Speciality"></Form.Control>
-                                <Form.Control type="number" placeholder="Price"></Form.Control>
+                                <Form.Control type="text" placeholder="Contact no."></Form.Control>
+                                <Form.Control type="email" placeholder="E-mail"></Form.Control>
                             </div>
                             <div className="input_field two_part">
         
                                 <select>
-                                    <option value="">Select Section</option>
+                                    <option value="">Select your city</option>
                                     <option value="chef">Chef</option>
                                 </select>
         
                                 <select>
-                                    <option value="">Select Category</option>
-                                    <option value="chef">Chef</option>
-                                </select>
-        
-                                <select>
-                                    <option value="">Select Brand</option>
+                                    <option value="">Select your area</option>
                                     <option value="chef">Chef</option>
                                 </select>
                             </div>
@@ -73,5 +66,4 @@ function CreateFood() {
     </div>
     );
 }
-
-export default CreateFood;
+export default NewRestaurant;

@@ -62,11 +62,15 @@ class Sidebar extends Component {
             {
                 path: '/waste',
                 state: 'wasteOpen'
-        },
-        {
-            path: '/booking',
-            state: 'bookingOpen'
-        },
+            },
+            {
+                path: '/booking',
+                state: 'bookingOpen'
+            },
+            {
+                path: '/restaurant',
+                state: 'restaurantOpen'
+            },
     ];
 
       dropdownPaths.forEach((obj => {
@@ -98,7 +102,40 @@ class Sidebar extends Component {
                   <Trans>Dashboard</Trans>
               </span>
               </Link>
-          </li>
+            </li>
+
+            <li className={ this.isPathActive('/restaurant') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+            <div className={ this.state.restaurantOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ ()=>
+                this.toggleMenuState('restaurantOpen') } data-toggle="collapse">
+                <span className="menu-icon">
+                    <i className="mdi mdi-laptop"></i>
+                </span>
+                <span className="menu-title">
+                    <Trans>Restaurant <br></br>Management</Trans>
+                </span>
+                <i className="menu-arrow"></i>
+            </div>
+            <Collapse in={ this.state.restaurantOpen }>
+                <div>
+                    <ul className="nav flex-column sub-menu">
+                        <li className="nav-item">
+                            <Link className={ this.isPathActive('/restaurant') ? 'nav-link active'
+                                : 'nav-link' } to="/restaurant">
+                            <Trans>All restaurant</Trans>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className={ this.isPathActive('/restaurant/new-restaurant') ? 'nav-link active' : 'nav-link' }
+                                to="/restaurant/new-restaurant">
+                            <Trans>New restaurant</Trans>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </Collapse>
+        </li>
+
+
           <li className={ this.isPathActive('/super-admin') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
               <div className={ this.state.superAdminOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ ()=>
                   this.toggleMenuState('superAdminOpen') } data-toggle="collapse">
