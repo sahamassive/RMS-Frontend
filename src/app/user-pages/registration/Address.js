@@ -10,7 +10,11 @@ function Address() {
             <div className="input_field">
                 <Form.Control name="address2" type="textarea" placeholder="Address line 2" />
             </div>
-            <div className="input_field">
+            <div className="input_field two_part">
+            <select>
+            <option>Country</option>
+            <option value="chef">Chef</option>
+            </select>
                 <select>
                     <option selected>City</option>
                     <option value="chef">Chef</option>
@@ -23,7 +27,9 @@ function Address() {
                 </select>
                 <Form.Control type="number" placeholder="Zip Code" />
             </div>
-            <p className='btn-style2'><button className='btn btn-secondary'>Previous</button> <button className='btn btn-info'>Next</button></p>
+            <p className='btn-style2'>
+                <button className='btn btn-secondary'>Previous</button> <button className='btn btn-info'>Next</button>
+            </p>
         </div>
     );
 }

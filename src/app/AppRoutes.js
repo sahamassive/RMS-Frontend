@@ -23,23 +23,18 @@ const CreateFood = lazy(() => import('../app/user-pages/catelogue/createFood.js'
 
 const QuickOrder = lazy(() => import('../app/user-pages/pos/quickOrder.js'));
 
-const Waste= lazy(() => import('../app/user-pages/waste/waste.js'));
+const Waste= lazy(() => import('../app/user-pages/waste/insert.js'));
 const NewWaste = lazy(() => import('../app/user-pages/waste/insert.js'));
 
-const Booking = lazy(() => import('../app/user-pages/booking/createBooking.js'));
+const Booking = lazy(() => import('../app/user-pages/booking/createBooking'));
 const CreateBooking = lazy(() => import('../app/user-pages/booking/createBooking.js'));
 
-const Restaurant = lazy(() => import('../app/user-pages/restaurant/restaurant.js'));
+const Restaurant = lazy(() => import('../app/user-pages/restaurant/newRestaurant.js'));
 const NewRestaurant = lazy(() => import('../app/user-pages/restaurant/newRestaurant.js'));
 
 
 const RegisterEmployee = lazy(() => import('../app/user-pages/registration/EmployeeRegistration.js'));
 
-const BasicTable = lazy(() => import('./tables/BasicTable'));
-
-const Mdi = lazy(() => import('./icons/Mdi'));
-
-const ChartJs = lazy(() => import('./charts/ChartJs'));
 
 const Error404 = lazy(() => import('./error-pages/Error404'));
 const Error500 = lazy(() => import('./error-pages/Error500'));

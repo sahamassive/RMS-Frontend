@@ -6,6 +6,7 @@ import Others from './Others';
 import Password from './Password';
 import { Link } from 'react-router-dom';
 
+
 function EmployeeRegistration() { 
     const [accountDetails, setAccountDetails] = useState(true);
     const [address, setAddress] = useState(false);
@@ -44,15 +45,15 @@ function EmployeeRegistration() {
             <form>
                 <div className='two_part'>
                     <div className="col-sm-3 background">
-                        <p className="text_style space"><span className="text_style"><i className="bi bi-folder2-open"></i>Account Setting</span><br></br>Personal Information</p>
-                        <Link onClick={AccountDetails2}><p className="btn_style_active icon2"><i className="bi bi-person-fill"></i>Account Details</p></Link>
-                        <Link onClick={Address2}><p className="btn_style_inactive icon2"><i className="fa-brands fa-sellcast icon"></i>Address</p></Link>
-                        <Link onClick={Password2}><p className="btn_style_inactive icon2"><i class="bi bi-lock-fill"></i>Password</p></Link>
-                        <Link onClick={Others2}><p className="btn_style_inactive icon2"><i className="fa-solid fa-users icon"></i>Others</p></Link>
+                        <p className="text_style space"><span className="text_style"><i className="bi bi-folder2-open icon-space"></i>Account Setting</span><br></br>Personal Information</p>
+                        <Link onClick={AccountDetails2}><p className={ accountDetails ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-person-fill icon-space"></i>Account Details</p></Link>
+                        <Link onClick={Address2}><p className={ address ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-geo-alt-fill icon-space"></i>Address</p></Link>
+                        <Link onClick={Password2}><p className={ password ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-lock-fill icon-space"></i>Password</p></Link>
+                        <Link onClick={Others2}><p className={ others ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-motherboard-fill icon-space"></i>Others</p></Link>
                     </div>           
                     <div className="col-sm-9 background">
                         <div className="col-sm-6">
-                            <h4 className='space'><i className='bi bi-info-square-fill'></i>Personal Information</h4>
+                            <h4 className='space left-space'><i className='bi bi-info-square-fill icon-space'></i>Personal Information</h4>
                         </div>
                         <div>
                             {accountDetails ? <AccountDetails /> : null}

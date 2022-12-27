@@ -24,7 +24,6 @@ function QuickOrder() {
                                 <h4 className="card-title">Quick Order:</h4>
                             </div>
                             <div className="col-md-5 inner-addon right-addon">
-                                <i className="bi bi-search"></i>
                                 <Form.Control type="text" placeholder="Search"></Form.Control>
                             </div>
                         </div>

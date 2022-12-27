@@ -13,7 +13,7 @@ RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
 RewriteRule ^ - [L]
 
 # If the requested resource doesn't exist, use index.html
-RewriteRule ^ /demo/corona-react-free/template/demo_1/preview/index.html
+RewriteRule ^ /
 </IfModule>
 
 # END WordPress

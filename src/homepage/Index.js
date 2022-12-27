@@ -18,26 +18,31 @@ function Index() {
         <header id="header" className="fixed-top d-flex align-items-cente">
             <div className="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
                 <div className='dis'>
-                    <h3 className="logo me-auto me-lg-0"><a href="index.html"><img src={
-                                require('./assets/img/logo/logo.png') } alt=""></img>
-                        </a>
-                    </h3>
-                    <div><span className='res'> Restaurent</span>
-                        <span className='company_name'>FOOD</span> </div>
-                </div>
-                <nav id="navbar" className="navbar order-last order-lg-0">
-                    <ul>
-                        <li><a className="nav-link scrollto active" href="#hero">Home</a></li>
-                        <li><a className="nav-link scrollto" href="#about">About</a></li>
-                        <li><a className="nav-link scrollto" href="#menu">Menu</a></li>
-                        <li><a className="nav-link scrollto" href="#specials">Specials</a></li>
-                        <li><a className="nav-link scrollto" href="#events">Events</a></li>
-                        <li><a className="nav-link scrollto" href="#chefs">Chefs</a></li>
-                        <li><a className="nav-link scrollto" href="#gallery">Gallery</a></li>
-                        <li><a className="nav-link scrollto" href="#contact">Contact</a></li>
-                    </ul>
-                    <i className="bi bi-list mobile-nav-toggle"></i>
-                </nav>
+                    <div>
+                        <h3 className="logo me-auto me-lg-0">
+                            <a href="index.html">
+                                <img src={require('./assets/img/logo/logo.png') } alt=""></img>
+                            </a>
+                        </h3>
+                    </div>
+                    <div>
+                        <span className='res'> Restaurent</span>
+                        <span className='company_name'>FOOD</span>
+                    </div>
+                    </div>
+                    <div className='logo'><nav id='navbar' className='navbar order-last order-lg-0'>
+                        <ul>
+                            <li><a className='nav-link scrollto active' href='#hero'>Home</a></li>
+                            <li><a className='nav-link scrollto' href='#about'>About</a></li>
+                            <li><a className='nav-link scrollto' href='#menu'>Menu</a></li>
+                            <li><a className='nav-link scrollto' href='#specials'>Specials</a></li>
+                            <li><a className='nav-link scrollto' href='#events'>Events</a></li>
+                            <li><a className='nav-link scrollto' href='#chefs'>Chefs</a></li>
+                            <li><a className='nav-link scrollto' href='#gallery'>Gallery</a></li>
+                            <li><a className='nav-link scrollto' href='#contact'>Contact</a></li>
+                        </ul>
+                        <i className='bi bi-list mobile-nav-toggle'></i>
+                    </nav></div>
                 <a href="#book-a-table" className="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
     
             </div>
@@ -46,7 +51,7 @@ function Index() {
         <section id="hero" className="d-flex align-items-center">
             <div className="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
                 <div className="row">
-                    <div className="col-lg-8">
+                    <div className="col-lg-8 writing-style">
                         <h1>Welcome to <span>Restaurant</span></h1>
                         <h2>Delivering great food for more than 18 years!</h2>
     
