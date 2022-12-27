@@ -2,7 +2,6 @@ import profile from '../../../assets/images/profile/profile.jpg';
 import Form from 'react-bootstrap/Form';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './EmployeeRegistration';
 
 function AccountDetails() {
     return (
@@ -36,7 +35,7 @@ function AccountDetails() {
                 <option value="female">Female</option>
             </select>
                 
-            <Form.Control name="birth" id="birth" type="date" onfocus="(this.type='date')" placeholder="Date Of birth"/>   
+            <Form.Control name="birth" id="birth" type="date" placeholder="Date Of birth"/>   
             </div> 
             <div className="input_field">                               
                 <select>
@@ -48,7 +47,7 @@ function AccountDetails() {
                     <option value="cleaner">Cleaner</option>
                 </select>                              
             </div> 
-                <p className='btn-style2'> <Link className='btn btn-info'>Next</Link></p>
+                <p className='btn-style2'> <a onClick=" " className='btn btn-info'>Next</a></p>
         </div>
     );
 };

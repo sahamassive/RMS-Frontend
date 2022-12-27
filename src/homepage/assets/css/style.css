@@ -164,20 +164,15 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid #37332a;
 }
 #header .logo {
-  font-size: 28px;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-weight: 300;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  position: absolute;
+  left: 7rem;
 }
 #header .logo a {
   color: #fff;
 }
 #header .logo img {
   max-height: 40px;
+  
 }
 
 /*--------------------------------------------------------------
@@ -214,6 +209,7 @@ h1, h2, h3, h4, h5, h6 {
 */
 .navbar {
   padding: 0;
+  background-color: transparent;
 }
 .navbar ul {
   margin: 0;
@@ -1505,7 +1501,7 @@ section {
 }
 .res{
   color: red;
-  background-color:#0D0D0D;
+  background-color:transparent;
   font-style: italic;
   font-family: 'Monotype Corsiva'; 
   font-size: 1.5rem;
@@ -1528,7 +1524,8 @@ color:white
 }
 .map-style{
   border:0; 
-  width: 83%; 
+  width: 90%; 
+  padding-left: 10%;
   height: 350px;
 }
 .image-size{

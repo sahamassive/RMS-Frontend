@@ -17,7 +17,8 @@ function NewRestaurant() {
                         </div>
                     </div>
                     <div className="col-sm-9 background">
-        
+    
+                        <h2 className="header-style"> Enter All restaurant Information:</h2>
                         <div>
                             <div className="input_field two_part">
                                 <Form.Control type="text" placeholder="Restaurant name"></Form.Control>
@@ -58,8 +59,10 @@ function NewRestaurant() {
                                 <Form.Control className="area"  as="textarea" placeholder="Meta keyword" rows={3} ></Form.Control>
                                 </Form.Group>
                             </div>
-                                <a className="btn btn-success top-space"><i className="bi bi-save-fill"></i>Insert</a>
-                        </div>
+                            <div className="input_field">
+                                <a className="btn btn-warning top-space"><i className="bi bi-save-fill"></i>Insert</a> <br></br><br></br>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </Form>

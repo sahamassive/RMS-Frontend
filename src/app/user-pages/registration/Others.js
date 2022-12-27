@@ -10,7 +10,7 @@ function Others() {
             <div className="input_field">
                 <Form.Control name="joining" type="date" placeholder="Date Of joining" />
             </div>
-            <p className='btn-style2'><button type="submit" className="btn btn-success"><i className="bi bi-save-fill"></i>Insert</button></p>
+            <p className='btn-style2'><button type="submit" className="btn btn-warning"><i className="bi bi-save-fill"></i>Insert</button></p>
         </div>
     );
 }

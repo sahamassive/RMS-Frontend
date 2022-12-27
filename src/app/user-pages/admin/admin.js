@@ -30,7 +30,7 @@ function Admin() {
                 </div>
             </div>
         </div>
-        );
-    }
+    );
+}
 
 export default Admin;

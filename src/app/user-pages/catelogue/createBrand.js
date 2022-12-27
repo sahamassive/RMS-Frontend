@@ -13,14 +13,14 @@ function CreateBrand() {
                             <a className="btn-style btn btn-info" href="/catalogue/brand"><i className="bi bi-list-columns-reverse"></i> All Brand</a>
                         </div>
                         <label className="label-style">Brand name</label>
-                        <Form.Control className="col-sm-6" type="text" placeholder="Brand name"></Form.Control>
+                        <Form.Control className="" type="text" placeholder="Brand name"></Form.Control>
                         <lavel className="label-style">Brand LOGO</lavel>
                         <div className="col-sm-6 section-03 ">
                             <Form.Group controlId="formFileMultiple" className="mb-3 search_box2">
                                 <Form.Control type="file" multiple />
                             </Form.Group>
                         </div>
-                        <a className="btn btn-success top-space"><i className="bi bi-save-fill"></i>Insert</a>
+                        <a className="btn btn-success top-space"><i className="bi bi-save-fill"></i>Insert</a><br></br>
                     </div>
                 </div>
             </div>

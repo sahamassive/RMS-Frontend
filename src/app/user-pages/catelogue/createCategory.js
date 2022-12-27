@@ -15,34 +15,94 @@ function CreateCategory() {
         alert(response.data.msg);
       });
   };
-  return (
-    <div>
-      <div className="col-lg-12 grid-margin stretch-card">
-        <div className="card">
-          <div className="card-body">
-            <div className="btn-section">
-              <h4 className="card-title">Create New Category</h4>
-              <a className="btn-style btn btn-info" href="/catalogue/category">
-                <i className="bi bi-list-columns-reverse"></i>All category
-              </a>
-            </div>
-            <label className="label-style">Category name</label>
-            <Form.Control
-              className="col-sm-6"
-              type="text"
-              placeholder="Category name"
-              onChange={(event) => {
-                setName(event.target.value);
-                console.log(name);
-              }}
-            ></Form.Control>
-            <a className="btn btn-success top-space" onClick={insert}>
+    return (
+        <div>
+        <div className="col-lg-12 grid-margin stretch-card">
+            <div className="card">
+                <div className="card-body">
+                    <div className="btn-section">
+                        <h4 className="card-title">Create New Category</h4>
+                        <a className="btn-style btn btn-info" href="/catalogue/category"><i
+                                className="bi bi-list-columns-reverse"></i>All category</a>
+                    </div>
+                    <div className="col-sm-12 background">
+                        <div>
+    
+                            <div className="input_field two_part">
+                                <select className="select2">
+                                    <option value="">Select Section</option>
+                                    <option value="chef">Chef</option>
+                                    <option value="chef">Chef</option>
+                                    <option value="chef">Chef</option>
+                                </select>
+                                <select className="select2">
+                                    <option value="">Select category</option>
+                                    <option value="chef">Chef</option>
+                                    <option value="chef">Chef</option>
+                                    <option value="chef">Chef</option>
+                                </select>
+                            </div>
+                            <div className="input_field two_part">
+                                <Form.Control type="text" placeholder="Category name"></Form.Control>
+                                <Form.Control type="number" placeholder="Discount ( % )"></Form.Control>
+                            </div>
+                            <div className="input_field two_part">
+                                <select className="select2">
+                                    <option value="">Select Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Not active</option>
+                                </select>
+                                <Form.Control type="text" placeholder="url"></Form.Control>
+                            </div>
+    
+                            <div className="input_field">
+                                <Form.Group>
+                                    <Form.Label>Description</Form.Label>
+                                    <Form.Control className="area" as="textarea" placeholder="Description" rows={4} />
+                                </Form.Group>
+                            </div>
+    
+                            <div className="input_field">
+                                <Form.Group>
+                                    <Form.Label>Meta Title</Form.Label>
+                                    <Form.Control className="area" as="textarea" placeholder="Meat title" rows={2} />
+                                </Form.Group>
+                            </div>
+    
+                            <div className="input_field">
+                                <Form.Group>
+                                    <Form.Label>Meta description</Form.Label>
+                                    <Form.Control className="area" as="textarea" placeholder="Meta description" rows={6}>
+                                    </Form.Control>
+                                </Form.Group>
+                            </div>
+    
+                            <div className="input_field">
+                                <Form.Group>
+                                    <Form.Label>Meta keyword</Form.Label>
+                                    <Form.Control className="area" as="textarea" placeholder="Meta keyword" rows={3}>
+                                    </Form.Control>
+                                </Form.Group>
+                            </div>
+    
+                            <div className="input_field">
+                                <lavel className="">Category image</lavel>
+                                <div className="section-03">
+                                    <Form.Group controlId="formFileMultiple" className="mb-3 search_box2">
+                                        <Form.Control type="file" multiple />
+                                    </Form.Group>
+                                </div>
+                            </div>
+                            <a className="btn btn-success top-space" onClick={insert}>
               <i className="bi bi-save-fill"></i>Insert
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+            </a> <br></br>
+                            <br></br> <br></br>
+                        </div>
+                    </div>
+    
+                </div>
+
+
+  
 }
 export default CreateCategory;

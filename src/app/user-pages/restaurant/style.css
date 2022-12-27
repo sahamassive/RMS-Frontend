@@ -45,3 +45,7 @@ select:focus{
     outline: 2px solid rgb(1, 61, 16);
     background-color: white;
 }
+.header-style{
+    padding-top: 1rem;
+    padding-left: 1.5rem;
+}

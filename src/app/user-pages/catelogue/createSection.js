@@ -5,6 +5,7 @@ import axios from "axios";
 const baseUrl = "http://127.0.0.1:8000";
 
 function CreateSection() {
+
   const [name, setName] = useState();
   const insert = () => {
     axios
@@ -25,6 +26,7 @@ function CreateSection() {
               <a className="btn-style btn btn-info" href="/catalogue/section">
                 <i class="bi bi-card-list"></i>All Section
               </a>
+
             </div>
             <label className="label-style">Section name</label>
             <Form.Control

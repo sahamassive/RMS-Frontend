@@ -28,6 +28,7 @@
 .text_style {
     color: white;
     text-align: center;
+    font-size: 1em;
 }
 
 .icon2 {
@@ -117,4 +118,11 @@ select:focus {
 .label-style {
     font-size: .8em;
     margin-bottom: -.1em;
+}
+
+.icon-space{
+    padding-right: .5rem;
+}
+.left-space{
+    padding-left: 1rem;
 }

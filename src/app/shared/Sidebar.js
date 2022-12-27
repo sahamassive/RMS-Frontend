@@ -104,7 +104,7 @@ class Sidebar extends Component {
               </Link>
             </li>
 
-            <li className={ this.isPathActive('/restaurant') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+        <li className={ this.isPathActive('/restaurant') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
             <div className={ this.state.restaurantOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ ()=>
                 this.toggleMenuState('restaurantOpen') } data-toggle="collapse">
                 <span className="menu-icon">
@@ -134,8 +134,6 @@ class Sidebar extends Component {
                 </div>
             </Collapse>
         </li>
-
-
           <li className={ this.isPathActive('/super-admin') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
               <div className={ this.state.superAdminOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ ()=>
                   this.toggleMenuState('superAdminOpen') } data-toggle="collapse">
