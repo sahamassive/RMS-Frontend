@@ -1,8 +1,20 @@
 import React, { Component, useEffect, useState } from "react";
-import './style.css';
-import Form from 'react-bootstrap/Form';
+import "./style.css";
+import Form from "react-bootstrap/Form";
+import axios from "axios";
+const baseUrl = "http://127.0.0.1:8000";
 
 function CreateCategory() {
+  const [name, setName] = useState();
+  const insert = () => {
+    axios
+      .post(`${baseUrl}/api/category-insert`, {
+        category_name: name,
+      })
+      .then((response) => {
+        alert(response.data.msg);
+      });
+  };
     return (
         <div>
         <div className="col-lg-12 grid-margin stretch-card">
@@ -81,15 +93,16 @@ function CreateCategory() {
                                     </Form.Group>
                                 </div>
                             </div>
-                            <a className="btn btn-warning top-space"><i className="bi bi-save-fill"></i>Insert</a> <br></br>
+                            <a className="btn btn-success top-space" onClick={insert}>
+              <i className="bi bi-save-fill"></i>Insert
+            </a> <br></br>
                             <br></br> <br></br>
                         </div>
                     </div>
     
                 </div>
-            </div>
-        </div>
-    </div>
-    );
+
+
+  
 }
 export default CreateCategory;
