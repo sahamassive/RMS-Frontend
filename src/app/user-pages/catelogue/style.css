@@ -1,111 +1,173 @@
 .background {
-    background-color: #0D0D0D;
-    border-radius: 8px;
-    padding: 1px;
-    text-align: left;
-    margin-top: 10px;
-    min-height: 15vh;
+
+  background-color: #0D0D0D;
+  border-radius: 8px;
+  padding: 1px;
+  text-align: left;
+  margin-top: 10px;
+  min-height: 15vh;
 }
-.btn-section{
-    display: flex;
+
+.btn-section {
+  display: flex;
 }
+
 @media (max-width: 700px) {
-    .btn-section{
-        display: block;
-    }
-}
-.btn-style{
-    position: absolute;
-    right: 2rem;
-}
-input[type=text],input[type=number]{
-    background-color: #3b3b3b85;
-    border-radius: 5px;
-    width: 100%;
-}
-input[type=text]:focus, input[type=number]:focus, area:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
+  .btn-section {
+    display: block;
+  }
 }
 
-.area{
-    background-color: #3b3b3b85;
-    border-radius: 5px;
+.btn-style {
+  position: absolute;
+  right: 2rem;
 }
 
-.area:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-}
-select{
-    background-color: #3b3b3b85;
-    border-radius: 5px;
-    border:none;
-    height:2.3rem;
-    color:white;
-    width: 100%;
-}
-select:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-    color: black;
+input[type=text],
+input[type=number] {
+  background-color: #3b3b3b85;
+  border-radius: 5px;
+  width: 100%;
 }
 
-.select2{
-    background-color: #3b3b3b85;
-    border-radius: 5px;
-    border:none;
-    height:2.3rem;
-    color:white;
-    width: 100%;
+input[type=text]:focus,
+input[type=number]:focus,
+area:focus {
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+
+  background-color: #0d0d0d;
+  border-radius: 8px;
+  padding: 1px;
+  text-align: left;
+  margin-top: 10px;
+  min-height: 15vh;
 }
-.select2:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-    color: black;
+
+.btn-section {
+  display: flex;
 }
-.top-space{
-    margin-top: 1rem;
-    margin-left: 2rem;
+
+.btn-style {
+  position: absolute;
+  right: 2rem;
 }
-.section-03{
-    border-radius: 5px;
-    padding: 0;
-    background-color: #3b3b3b85;
-    height:2.3rem;
+
+input[type="text"],
+input[type="number"] {
+  background-color: #3b3b3b85;
+  border-radius: 5px;
+  width: 50%;
 }
-.label-style{
-    font-size: .8em;
-    margin-bottom: -.1em;
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+area:focus {
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+
 }
+
+.area {
+  background-color: #3b3b3b85;
+  border-radius: 5px;
+}
+
+
+.area:focus {
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+}
+
+select {
+  background-color: #3b3b3b85;
+  border-radius: 5px;
+  border: none;
+  height: 2.3rem;
+  color: white;
+  width: 100%;
+}
+
+select:focus {
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+  color: black;
+
+
+}
+
+
+.select2 {
+  background-color: #3b3b3b85;
+  border-radius: 5px;
+  border: none;
+  height: 2.3rem;
+  color: white;
+  width: 100%;
+}
+
+.select2:focus {
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+  color: black;
+}
+
+.top-space {
+
+  margin-top: 1rem;
+  margin-left: 2rem;
+
+}
+
+.section-03 {
+  border-radius: 5px;
+  padding: 0;
+  background-color: #3b3b3b85;
+  height: 2.3rem;
+}
+
+.label-style {
+  font-size: 0.8em;
+  margin-bottom: -0.1em;
+}
+
 .input_field {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-}
-@media (max-width: 700px){
-    .input_field {
-        margin-left: .2rem;
-        margin-right: .2rem;
-        margin-top: .5rem;
-    }
-}
-.two_part {
-    display: flex;
-    gap: .4rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 1rem;
 }
 
 @media (max-width: 700px) {
-    .two_part {
-        display: block;
-    }
-    
+  .input_field {
+    margin-left: .2rem;
+    margin-right: .2rem;
+    margin-top: .5rem;
+  }
 }
-.level-style{
-    font-size: .9em;
-    font-family: "Times New Roman";
-    margin-bottom: -6px;
+
+.two_part {
+  display: flex;
+  gap: 0.4rem;
 }
-.wid{
-    width: 100%;
+
+.label-style {
+  padding-left: 1rem;
+}
+
+
+@media (max-width: 700px) {
+  .two_part {
+    display: block;
+  }
+
+}
+
+.level-style {
+  font-size: .9em;
+  font-family: "Times New Roman";
+  margin-bottom: -6px;
+}
+
+.wid {
+  width: 100%;
 }
