@@ -1,6 +1,6 @@
 .background {
     background-color: #0D0D0D;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 1px;
     text-align: left;
     margin-top: 10px;
@@ -11,9 +11,21 @@
     margin-right: 2rem;
     margin-top: 1rem;
 }
+@media (max-width: 700px) {
+    .input_field {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 1rem;
+    }
+}
 .two_part {
     display: flex;
     gap: .4rem;
+}
+@media (max-width: 700px) {
+    .two_part {
+        display: block;
+    }
 }
 input[type=text],input[type=email]{
     background-color: #3b3b3b85;
@@ -29,7 +41,8 @@ select{
     border:none;
     height:2.3rem;
     color:white;
-    width: 50%;
+    width: 100%;
+
 }
 select:focus{
     outline: 2px solid rgb(1, 61, 16);
@@ -48,4 +61,17 @@ select:focus{
 .header-style{
     padding-top: 1rem;
     padding-left: 1.5rem;
+}
+.level-style{
+    font-size: .9em;
+    font-family: "Times New Roman";
+    margin-bottom: -6px;
+}
+.wid{
+    width:100%;
+}
+.top-space{
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }

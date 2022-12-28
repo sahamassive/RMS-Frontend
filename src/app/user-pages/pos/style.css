@@ -1,9 +1,19 @@
 .section_01{
     display: flex;
 }
+@media only screen and (max-width: 650px) {
+    .section_01{
+        display: block;
+    }
+    .input_field{
+        margin-left: .5rem;
+        margin-right: .5rem;
+        margin-top:1rem;
+    }
+}
 input[type=text]{
     background-color: #3b3b3b85;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 input[type=text]:focus{
     outline: 2px solid rgb(1, 61, 16);
@@ -21,14 +31,23 @@ input[type=text]:focus{
 .select2{
     background-color: #3b3b3b85;
     color: #7F7F7F;
-    border-radius: 5px;
+    margin-top: .5rem;
     width: 31%;
     padding: 7px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
     margin-right: .5rem;
-}  
+}
+@media only screen and (max-width: 650px){
+    .select2{
+        background-color: #3b3b3b85;
+        color: #7F7F7F;
+        margin-top: .5rem;
+        width: 100%;
+        padding: 7px;
+        border-radius: 5px;
+        margin-right: .5rem;
+    }  
+}
 .select2:focus{
     outline: 2px solid rgb(1, 61, 16);
     background-color: white;

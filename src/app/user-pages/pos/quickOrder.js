@@ -52,7 +52,7 @@ function QuickOrder() {
                         </div>
                         <div>
                             <br></br>
-                            <table className="table table-hover table-bordered">
+                            <table className="table table-responsive-sm table-hover table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Item</th>

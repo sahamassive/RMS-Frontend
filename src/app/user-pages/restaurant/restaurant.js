@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import DataTable  from "react-data-table-component";
 
 function Restaurant() {
     const [allData, setAllData] = useState([]);
     useEffect(() => {
-        const url = "https://jsonplaceholder.typicode.com/todos";
+        const url = "";
         fetch(url)
             .then((response) => response.json())
             .then((response) => {

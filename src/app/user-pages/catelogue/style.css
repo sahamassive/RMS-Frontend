@@ -9,6 +9,11 @@
 .btn-section{
     display: flex;
 }
+@media (max-width: 700px) {
+    .btn-section{
+        display: block;
+    }
+}
 .btn-style{
     position: absolute;
     right: 2rem;
@@ -16,7 +21,7 @@
 input[type=text],input[type=number]{
     background-color: #3b3b3b85;
     border-radius: 5px;
-    width: 50%;
+    width: 100%;
 }
 input[type=text]:focus, input[type=number]:focus, area:focus{
     outline: 2px solid rgb(1, 61, 16);
@@ -38,7 +43,7 @@ select{
     border:none;
     height:2.3rem;
     color:white;
-    width: 33.3%;
+    width: 100%;
 }
 select:focus{
     outline: 2px solid rgb(1, 61, 16);
@@ -52,7 +57,7 @@ select:focus{
     border:none;
     height:2.3rem;
     color:white;
-    width: 50%;
+    width: 100%;
 }
 .select2:focus{
     outline: 2px solid rgb(1, 61, 16);
@@ -60,9 +65,8 @@ select:focus{
     color: black;
 }
 .top-space{
-    margin-top: .5rem;
-    position: absolute;
-    right: 4rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
 }
 .section-03{
     border-radius: 5px;
@@ -79,10 +83,29 @@ select:focus{
     margin-right: 2rem;
     margin-top: 1rem;
 }
+@media (max-width: 700px){
+    .input_field {
+        margin-left: .2rem;
+        margin-right: .2rem;
+        margin-top: .5rem;
+    }
+}
 .two_part {
     display: flex;
     gap: .4rem;
 }
-.label-style{
-    padding-left: 1rem;
+
+@media (max-width: 700px) {
+    .two_part {
+        display: block;
+    }
+    
+}
+.level-style{
+    font-size: .9em;
+    font-family: "Times New Roman";
+    margin-bottom: -6px;
+}
+.wid{
+    width: 100%;
 }
