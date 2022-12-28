@@ -23,10 +23,10 @@ const CreateFood = lazy(() => import('../app/user-pages/catelogue/createFood.js'
 
 const QuickOrder = lazy(() => import('../app/user-pages/pos/quickOrder.js'));
 
-const Waste= lazy(() => import('../app/user-pages/waste/insert.js'));
 const NewWaste = lazy(() => import('../app/user-pages/waste/insert.js'));
+const Waste= lazy(() => import('../app/user-pages/waste/insert.js'));
 
-const Booking = lazy(() => import('../app/user-pages/booking/createBooking'));
+const Booking = lazy(() => import('../app/user-pages/booking/createBooking.js'));
 const CreateBooking = lazy(() => import('../app/user-pages/booking/createBooking.js'));
 
 const Restaurant = lazy(() => import('../app/user-pages/restaurant/newRestaurant.js'));

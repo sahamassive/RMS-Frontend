@@ -15,12 +15,12 @@ function CreateBrand() {
                         <label className="label-style">Brand name</label>
                         <Form.Control className="" type="text" placeholder="Brand name"></Form.Control>
                         <lavel className="label-style">Brand LOGO</lavel>
-                        <div className="col-sm-6 section-03 ">
+                        <div className=" section-03 ">
                             <Form.Group controlId="formFileMultiple" className="mb-3 search_box2">
                                 <Form.Control type="file" multiple />
                             </Form.Group>
                         </div>
-                        <a className="btn btn-success top-space"><i className="bi bi-save-fill"></i>Insert</a><br></br>
+                        <a className="btn btn-warning top-space"><i className="bi bi-save-fill"></i>Insert</a><br></br>
                     </div>
                 </div>
             </div>
