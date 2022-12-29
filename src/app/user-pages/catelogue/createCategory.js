@@ -47,7 +47,6 @@ function CreateCategory() {
                                             <option value="chef">Chef</option>
                                         </select>
                                     </div>
-        
                                 </div>
                                 <div className="input_field two_part">
                                     <div className="wid">
@@ -114,14 +113,11 @@ function CreateCategory() {
                                         </Form.Group>
                                     </div>
                                 </div>
-                              
                             </div>
-
-                            <a className="btn btn-success top-space" onClick={insert}>
-              <i className="bi bi-save-fill"></i>Insert
+                            <a className="btn btn-success top-space2" onClick={insert}>
+                <i className="bi bi-save-fill"></i>Insert
             </a> <br></br>
                             <br></br> <br></br>
-
                         </div>
                     </div>
                 </div>
