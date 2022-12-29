@@ -190,12 +190,14 @@ function CreateCategory() {
                     <img src={image} width="80px" height="50px" />
                   </div>
                 </div>
-                <a className="btn btn-success top-space" onClick={insert}>
-                  <i className="bi bi-save-fill"></i>Insert
-                </a>
-                <br></br>
-                <br></br> <br></br>
-              </div>
+              
+
+              <a className="btn btn-success top-space2" onClick={insert}>
+                <i className="bi bi-save-fill"></i>Insert
+              </a>{" "}
+              <br></br>
+              <br></br> <br></br>
+
             </div>
           </div>
         </div>
