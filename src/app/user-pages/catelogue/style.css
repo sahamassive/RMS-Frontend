@@ -166,3 +166,6 @@ select:focus {
   right: 2rem;
   margin-top: 1rem;
 }
+.table-style{
+  width: 100%;
+}
