@@ -153,7 +153,7 @@ function CreateCategory() {
                   </div>
                 </div>
               </div>
-              <a className="btn btn-success top-space" onClick={insert}>
+              <a className="btn btn-success top-space2" onClick={insert}>
                 <i className="bi bi-save-fill"></i>Insert
               </a>{" "}
               <br></br>

@@ -15,6 +15,15 @@
     padding-bottom: .5rem;
     padding-left: 2rem;
 }
+@media only screen and (max-width: 900px){
+    .btn_style_active {
+        background-color: #203864;
+        border-radius: 8px;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        padding-left: 1rem;
+    }
+}
 
 .btn_style_inactive {
     background-color: #333F50;
@@ -25,26 +34,13 @@
     padding-left: 2rem;
 }
 
-@media only screen and (max-width: 900px){
-    .btn_style_active {
-        background-color: #203864;
-        border-radius: 8px;
-        padding-top: .5rem;
-        padding-bottom: .5rem;
-        text-align: center;
-    }
-    
+@media only screen and (max-width: 900px){ 
     .btn_style_inactive {
         background-color: #333F50;
         border-radius: 8px;
         padding-top: .5rem;
         padding-bottom: .5rem;
-        text-align: center;
-    }
-    .icon2 {
-        color: white;
-        padding-left: .2rem;
-        font-family: 'Times New Roman';
+        padding-left: 1rem;
     }
 }
 
@@ -57,6 +53,13 @@
 .icon2 {
     color: white;
     font-family: 'Times New Roman';
+}
+@media only screen and (max-width: 900px){
+    .icon2 {
+        color: white;
+        padding-left: 1rem;
+        font-family: 'Times New Roman';
+    }
 }
 
 .profile2 {
@@ -88,21 +91,17 @@
         margin-right: 1rem;
         margin-top: 1rem;
     }
-    .search_box2 {
-        display: block;
-        margin-left: 1rem;
-    }
-    .icon2 {
-        color: white;
-        padding-left: .2rem;
-        font-family: 'Times New Roman';
-    }
 }
 
 .search_box2 {
     margin-left: 3rem;
     position: absolute;
     top: 7rem;
+}
+@media only screen and (max-width: 600px) {
+    .search_box2 {
+        margin-left: 8rem;
+    }
 }
 
 input[type=text],
@@ -131,7 +130,6 @@ select {
     border-radius: 5px;
     width: 100%;
     padding: 7px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
