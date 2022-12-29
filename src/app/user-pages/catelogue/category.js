@@ -1,17 +1,25 @@
 import React, { Component, useEffect, useState } from "react";
-import DataTable  from "react-data-table-component";
+import DataTable from "react-data-table-component";
+import $ from "jquery";
+import 'datatables.net'
 import './style.css';
 
 function Category() {
     const [allData, setAllData] = useState([]);
     useEffect(() => {
-        const url = "https://jsonplaceholder.typicode.com/todos";
+        const url = "http://localhost:8000/api/categories";
         fetch(url)
         .then((response) => response.json())
             .then((response) => {
                 setAllData(response.data);
         })
-    },[]);
+    }, []);
+
+    $.DataTable = require('datatables.net');
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+    
     return(
         <div>
             <div className="col-lg-12 grid-margin stretch-card">
@@ -22,9 +30,124 @@ function Category() {
                             <a className="btn-style btn btn-info" href="/catalogue/create-category"><i
                                     className="bi bi-plus"></i>New Category</a>
                         </div>
-                        <div className="table-responsive">
-                            <DataTable />
-                        </div>
+                        <table id="example" className="table table-striped table-style">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Name</th>
+                            <th>Name</th>
+                            <th>Name</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dfghrt</td>
+                                    <td>dfghrt</td>
+                                    <td>dfghrt</td>
+                                    <td>dfghrt</td>
+                                    <td>dfghrt</td>
+                                </tr>
+                                <tr>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                </tr>
+                                <tr>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                </tr>
+                                <tr>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                                </tr>
+                                <tr>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                                </tr>
+                                <tr>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                                </tr>
+                                <tr>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                                <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            </tr>
+                            <tr>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                            <td>dfghrt</td>
+                        </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
