@@ -55,7 +55,7 @@ $theme-colors: (
 ////////// COLOR SYSTEM //////////
 
 ////////// COLOR VARIABLES //////////
-$content-bg: #000000;
+$content-bg: #525252;
 $footer-bg: $content-bg;
 $footer-color: color(dark);
 $border-color: #2c2e33;
@@ -100,7 +100,7 @@ $body-color: #ffffff;
 
 ////////// CONTENT WRAPPER //////////
 
-$content-padding: 1.875rem 1.75rem;
+$content-padding: 1.875rem .5rem;
 
 ////////// CONTENT WRAPPER //////////
 
@@ -109,17 +109,17 @@ $sidebar-width-lg: 260px;
 $sidebar-width-mini: 185px;
 $sidebar-width-icon: 70px;
 
-$sidebar-bg: #0D0D0D;
+$sidebar-bg: #000000;
 $sidebar-menu-color: $text-muted;
 $sidebar-menu-active-bg: #A04000;
 $sidebar-menu-active-color: color(white);
-$sidebar-menu-hover-bg: #010203;
+$sidebar-menu-hover-bg: #241003;
 $sidebar-menu-hover-color: color(white);
 $sidebar-submenu-color: $sidebar-menu-color;
 $sidebar-submenu-hover-bg: initial;
 $sidebar-submenu-hover-color: yellow;
 
-$sidebar-menu-icon-color: #bba8bff5;
+$sidebar-menu-icon-color: #fffffff5;
 $sidebar-menu-arrow-color: rgba($text-muted, 0.36);
 
 $sidebar-menu-font-size: 0.9375rem;
@@ -149,8 +149,8 @@ $icon-only-menu-bg: darken($sidebar-bg, 5%);
 ///////// NAVBAR ////////
 
 $navbar-height: 70px;
-$navbar-bg: #191c24;
-$navbar-menu-color: #ffffff;
+$navbar-bg: #404040;
+$navbar-menu-color: #404040;
 $navbar-font-size: .9375rem;
 $navbar-icon-font-size: 1.125rem;
 $navbar-box-shadow: 20px 19px 34px -15px rgba(0,0,0,0.5);
@@ -158,8 +158,8 @@ $navbar-box-shadow: 20px 19px 34px -15px rgba(0,0,0,0.5);
 ///////// NAVBAR ////////
 
 ///////// CARD ////////
-$card-bg: #191c24;
-$card-description-color: #bfbfbf;
+$card-bg: #404040;
+$card-description-color: #ffffff;
 $card-title-color: #ffffff;
 ///////// CARD ////////
 

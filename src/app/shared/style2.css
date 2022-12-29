@@ -1,6 +1,6 @@
 .res{
     color: red;
-    background-color:#0D0D0D;
+    background-color:transparent;
     font-style: italic;
     font-family: 'Monotype Corsiva'; 
   }
@@ -20,6 +20,5 @@
     font-size:1.3em;
     color:yellow;
     font-family:'Gill Sans';
-    text-align: center;
     margin-top: 5.3rem;
   }
