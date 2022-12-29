@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 function CreateFood() {
     return (
         <div>
+        <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
         <Form>
             <h2> Create new Food Item</h2>
             <div className='two_part'>
@@ -91,7 +94,10 @@ function CreateFood() {
                         <br></br><br></br><br></br>
                 </div>
             </div>
-        </Form>
+                        </Form>
+                        </div>
+                </div>
+                </div>
     </div>
     );
 }

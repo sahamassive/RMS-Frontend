@@ -20,11 +20,11 @@
     -webkit-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
     -moz-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
     -ms-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
-    background: #0D0D0D;
+    background: #000000;
     width: $sidebar-width-lg;
     height: $navbar-height;
     border-radius: 8px;
-    margin-left: 1rem;
+    margin-left: .5rem;
     margin-top: .7rem;
     @media (max-width: 991px) {
       width: 55px;

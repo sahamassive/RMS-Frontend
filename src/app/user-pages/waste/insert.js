@@ -5,11 +5,11 @@ import './style.css';
 function Insert() {
     return (
         <div>
+        <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+            <div className="card-body">
             <h3>Add new wastage:</h3>
             <form>
-                <div className="col-lg-12 grid-margin stretch-card">
-                    <div className="card">
-                        <div className="card-body">
                             <div className="btn-section">
                                 <h4 className="card-title">Create New wastage</h4>
                                 <a className="btn-style btn btn-info" href="/waste"><i class="bi bi-card-list"></i> All
@@ -51,10 +51,11 @@ function Insert() {
                                 <a className="btn btn-warning top-space"><i className="bi bi-save-fill"></i>Insert</a><br></br><br></br>
                                 <br></br>
                             </div>
+
+                        </form>
+                        </div>
                         </div>
                     </div>
-                </div>
-            </form>
         </div>
     );
 }

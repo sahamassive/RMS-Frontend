@@ -67,3 +67,7 @@ input[type=password]:focus {
     border: 1px solid black;
     border-radius: 8px;
 }
+::placeholder, ::option{
+    font-style: italic;
+    color: #7F7F7F;
+}

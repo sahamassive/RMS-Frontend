@@ -5,6 +5,9 @@ import './style.css';
 function NewRestaurant() {
     return (
         <div>
+        <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
             <Form>
                 <h2> Create new restaurant</h2>
                 <div className='two_part'>
@@ -76,7 +79,10 @@ function NewRestaurant() {
                         </div>
                     </div>
                 </div>
-            </Form>
+                        </Form>
+                        </div>
+                        </div>
+                    </div>
         </div>
     );
 }
