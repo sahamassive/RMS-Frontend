@@ -19,6 +19,7 @@ function QuickOrder() {
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
+                        <div className="background">
                         <div className="section_01">
                             <div className="col-md-7">
                                 <h4 className="card-title">Quick Order:</h4>
@@ -76,7 +77,8 @@ function QuickOrder() {
                             </table>
                         </div>
                     </div>
-                </div>
+                    </div>
+                    </div>
             </div>
         </div>
     );
