@@ -1,6 +1,6 @@
 .background {
-  background-color: #0D0D0D;
-  border-radius: 8px;
+  background-color: #222222;
+  border-radius: 15px;
   padding: 1px;
   text-align: left;
   margin-top: 10px;
@@ -24,7 +24,7 @@
 
 input[type=text],
 input[type=number] {
-  background-color: #3b3b3b85;
+  background-color: #00000085;
   border-radius: 5px;
   width: 100%;
 }
@@ -50,7 +50,7 @@ area:focus {
 
 input[type="text"],
 input[type="number"] {
-  background-color: #3b3b3b85;
+  background-color: #00000085;
   border-radius: 5px;
   width: 100%;
 }
@@ -64,7 +64,7 @@ area:focus {
 }
 
 .area {
-  background-color: #3b3b3b85;
+  background-color: #00000085;
   border-radius: 5px;
 }
 
@@ -75,12 +75,13 @@ area:focus {
 }
 
 select {
-  background-color: #3b3b3b85;
+  background-color: #00000085;
   border-radius: 5px;
   border: none;
   height: 2.3rem;
   color: white;
   width: 100%;
+  border: .1px solid rgb(68, 67, 67);
 }
 
 select:focus {
@@ -91,12 +92,13 @@ select:focus {
 
 }
 .select2 {
-  background-color: #3b3b3b85;
+  background-color: #00000085;
   border-radius: 5px;
   border: none;
   height: 2.3rem;
   color: white;
   width: 100%;
+  border: .1px solid rgb(68, 67, 67);
 }
 
 .select2:focus {

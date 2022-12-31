@@ -1,6 +1,6 @@
 .background {
-    background-color: #0D0D0D;
-    border-radius: 5px;
+    background-color: #141414;
+    border-radius: 15px;
     padding: 1px;
     text-align: left;
     margin-top: 10px;
@@ -28,7 +28,7 @@
     }
 }
 input[type=text],input[type=email]{
-    background-color: #3b3b3b85;
+    background-color: #00000085;
     border-radius: 5px;
 }
 input[type=text]:focus, input[type=email]:focus{
@@ -36,12 +36,13 @@ input[type=text]:focus, input[type=email]:focus{
     background-color: white;
 }
 select{
-    background-color: #3b3b3b85;
+    background-color: #00000085;
     border-radius: 5px;
     border:none;
     height:2.3rem;
     color:white;
     width: 100%;
+    border: .1px solid rgb(68, 67, 67);
 
 }
 select:focus{
@@ -50,7 +51,7 @@ select:focus{
     color: black;
 }
 .area{
-    background-color: #3b3b3b85;
+    background-color: #00000085;
     border-radius: 5px;
 }
 

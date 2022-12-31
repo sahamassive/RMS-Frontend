@@ -42,6 +42,10 @@ function EmployeeRegistration() {
     }
     return (
         <div>
+        <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+                    <div className="card-body">
+                        <h2> New Employee Registration:</h2>
             <form>
                 <div className='two_part'>
                     <div className="col-sm-3 background">
@@ -63,7 +67,10 @@ function EmployeeRegistration() {
                         </div>
                     </div>      
                 </div>
-            </form> 
+                        </form> 
+                        </div>
+                        </div>      
+                    </div>
         </div>
     );
 }

@@ -12,7 +12,7 @@
     }
 }
 input[type=text]{
-    background-color: #3b3b3b85;
+    background-color: #00000085;
     border-radius: 5px;
 }
 input[type=text]:focus{
@@ -29,21 +29,23 @@ input[type=text]:focus{
     margin-top:1rem;
 }
 .select2{
-    background-color: #3b3b3b85;
+    background-color: #00000085;
     color: #7F7F7F;
     margin-top: .5rem;
     width: 31%;
     padding: 7px;
-    border-radius: 5px;
+    border-radius: 15px;
+    border: .1px solid rgb(68, 67, 67);
     margin-right: .5rem;
 }
 @media only screen and (max-width: 650px){
     .select2{
-        background-color: #3b3b3b85;
+        background-color: #00000085;
         color: #7F7F7F;
         margin-top: .5rem;
         width: 100%;
         padding: 7px;
+        border: .1px solid rgb(68, 67, 67);
         border-radius: 5px;
         margin-right: .5rem;
     }  

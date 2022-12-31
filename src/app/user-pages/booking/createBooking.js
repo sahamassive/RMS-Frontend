@@ -19,8 +19,15 @@ function CreateBooking() {
     }
     return (
         <div>
-        <h2>New Booking</h2>
-        <form>
+        <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+                    <div className="card-body">
+                    <div className="btn-section">
+                    <h4 className="card-title">Create New booking</h4>
+                    <a className="btn-style btn btn-info" href="/booking"><i class="bi bi-card-list"></i> All
+                        Booking</a>
+                </div>
+            <form>
             <div className='two_part'>
                 <div className="col-sm-3 background">
                     <p className="text_style space"><span className="text_style space"><i
@@ -45,7 +52,10 @@ function CreateBooking() {
                     </div>
                 </div>
             </div>
-        </form>
+                        </form>
+                        </div>
+                        </div>
+                    </div>
     </div>
     );
 }

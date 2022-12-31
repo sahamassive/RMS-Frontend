@@ -5,7 +5,6 @@ import './style.css';
 function Insert() {
     return (
         <div>
-            <h3>Add new wastage:</h3>
             <form>
                 <div className="col-lg-12 grid-margin stretch-card">
                     <div className="card">

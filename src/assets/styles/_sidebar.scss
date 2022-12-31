@@ -3,11 +3,11 @@
 .sidebar {
   min-height: calc(100vh - #{$navbar-height});
   background: $sidebar-bg;
-  border-radius:8px;
+  border-radius:25px;
   font-weight: normal;
   padding: 0;
-  margin-left:.5rem;
-  margin-top: 1rem;
+  margin-left:.7rem;
+  margin-top: .8rem;
   width: $sidebar-width-lg;
   z-index: 11;
   transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
@@ -20,11 +20,11 @@
     -webkit-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
     -moz-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
     -ms-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
-    background: #0D0D0D;
-    width: $sidebar-width-lg;
+    background: #000000;
+    width: 18.9%;
     height: $navbar-height;
-    border-radius: 8px;
-    margin-left: 1rem;
+    border-radius: 25px;
+    margin-left: .7rem;
     margin-top: .7rem;
     @media (max-width: 991px) {
       width: 55px;

@@ -5,8 +5,11 @@ import './style.css';
 function NewRestaurant() {
     return (
         <div>
+        <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+            <div className="card-body">
+            <h3>Register new restaurant:</h3>
             <Form>
-                <h2> Create new restaurant</h2>
                 <div className='two_part'>
                     <div className="col-sm-3 background">
                         <lavel className="label-style">Restaurant logo</lavel>
@@ -76,7 +79,10 @@ function NewRestaurant() {
                         </div>
                     </div>
                 </div>
-            </Form>
+                        </Form>
+                        </div>
+                        </div>
+                    </div>
         </div>
     );
 }
