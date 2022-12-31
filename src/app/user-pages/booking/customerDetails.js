@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 
 function CustomerDetails() {
     return (
-        <div className="background">
+        <div>
         <div className="input_field two_part">
             <div className="wid">
                 <Form.Label className="level-style">First name</Form.Label>

@@ -89,7 +89,8 @@ class Sidebar extends Component {
       <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
           <img className="logo" src={ require('../../assets/images/logo.png') } alt=""></img>
           <p className="company_name">
-              <span className="res">Restaurant</span> FOOD</p>
+                <span className="res">Restaurant</span> FOOD
+            </p>
       </div>
       <ul className="nav">
           <li className="nav-item nav-category">

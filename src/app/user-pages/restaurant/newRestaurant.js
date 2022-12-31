@@ -9,6 +9,9 @@ function NewRestaurant() {
         <div className="card">
             <div className="card-body">
             <h3>Register new restaurant:</h3>
+
+          <div className="card-body">
+
             <Form>
                 <div className='two_part'>
                     <div className="col-sm-3 background">

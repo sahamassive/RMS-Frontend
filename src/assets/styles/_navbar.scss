@@ -3,8 +3,8 @@
   background: #000000;
   border-radius: 15px;
   margin-top: .7rem;
-  margin-left: 1.5rem;
-  margin-right: 1rem;
+  margin-left: 1.55rem;
+  margin-right: 1.1rem;
   left: $sidebar-width-lg;
   transition:left $action-transition-duration $action-transition-timing-function;
   -webkit-transition:left $action-transition-duration $action-transition-timing-function;
@@ -164,7 +164,7 @@
       align-items: center;
       .nav-item {
         .nav-link {
-          color: inherit;
+          color: #ffffff;
           font-size: $navbar-font-size;
           margin-left: 1rem;
           margin-right: 1rem;
@@ -186,7 +186,7 @@
               margin-left: 1rem;
             }
             i {
-              color: #a7afb7;
+              color: #ffffff;
             }
           }
           &.create-new-button {
@@ -328,7 +328,7 @@
       input {
         background: $card-bg;
         padding: 13px 20px 11px 20px;
-        border: 1px solid #2c2e33;
+        border: 1px solid #262626;
         &::placeholder {
           color: $text-muted;
           font-size: $input-placeholder-font-size;
