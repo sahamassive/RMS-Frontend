@@ -49,7 +49,7 @@ function BookingDetails() {
                 </div>
             </div>
         
-            <div className="input_field">
+            <div className="section-22">
                 <QuickOrder />
             </div>
         </div>

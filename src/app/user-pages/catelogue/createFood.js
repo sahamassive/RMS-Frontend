@@ -10,7 +10,6 @@ function CreateFood() {
         <div className="card">
           <div className="card-body">
         <Form>
-            <h2> Create new Food Item</h2>
             <div className='two_part'>
                 <div className="col-sm-3 background">
                     <lavel className="label-style">Food Image</lavel>
