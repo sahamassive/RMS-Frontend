@@ -74,7 +74,8 @@ function EmployeeRegistration() {
                         </div>
                         </div>      
                     </div>
-        </div>
+            </div>
+            </div>
     );
 }
 
