@@ -39,17 +39,8 @@ area:focus {
   text-align: left;
 }
 
-.btn-section {
-  display: flex;
-}
-
-.btn-style {
-  position: absolute;
-  right: 2rem;
-}
-
 input[type="text"],
-input[type="number"] {
+input[type="number"]{
   background-color: #00000085;
   border-radius: 5px;
   width: 100%;
@@ -115,7 +106,7 @@ select:focus {
 .section-03 {
   border-radius: 5px;
   padding: 0;
-  background-color: #3b3b3b85;
+  background-color: #00000085;
   height: 2.3rem;
 }
 
@@ -169,4 +160,21 @@ select:focus {
 }
 .table-style{
   width: 100%;
+}
+.paginate_button{
+  color: white;
+  border: 1px solid white;
+  padding: .5rem;
+  border-radius: 5px;
+  margin-right: .3rem;
+}
+input[type="search"]{
+  background-color: #1a1919;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+input[type="search"]:focus{
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
 }

@@ -42,40 +42,57 @@ function EmployeeRegistration() {
     }
     return (
         <div>
-        <div className="col-lg-12 grid-margin stretch-card">
-        <div className="card">
+            <div className="col-lg-12 grid-margin stretch-card">
+                <div className="card">
                     <div className="card-body">
                         <h2> New Employee Registration:</h2>
-
-            <div className="card-body">
-
-            <form>
-                <div className='two_part'>
-                    <div className="col-sm-3 background">
-                        <p className="text_style space"><span className="text_style"><i className="bi bi-folder2-open icon-space"></i>Account Setting</span><br></br>Personal Information</p>
-                        <Link onClick={AccountDetails2}><p className={ accountDetails ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-person-fill icon-space"></i>Account Details</p></Link>
-                        <Link onClick={Address2}><p className={ address ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-geo-alt-fill icon-space"></i>Address</p></Link>
-                        <Link onClick={Password2}><p className={ password ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-lock-fill icon-space"></i>Password</p></Link>
-                        <Link onClick={Others2}><p className={ others ?  "btn_style_active icon2" : "btn_style_inactive icon2" }><i className="bi bi-motherboard-fill icon-space"></i>Others</p></Link>
-                    </div>           
-                    <div className="col-sm-9 background">
-                        <div className="col-sm-6">
-                            <h4 className='space left-space'><i className='bi bi-info-square-fill icon-space'></i>Personal Information</h4>
+                        <div className="card-body">
+                            <form>
+                                <div className='two_part'>
+                                    <div className="col-sm-3 background">
+                                        <p className="text_style space"><span className="text_style"><i
+                                                    className="bi bi-folder2-open icon-space"></i>Account
+                                                Setting</span><br></br>Personal Information</p>
+                                        <Link onClick={AccountDetails2}>
+                                        <p className={ accountDetails ? "btn_style_active icon2" : "btn_style_inactive icon2" }>
+                                            <i className="bi bi-person-fill icon-space"></i>Account Details</p>
+                                        </Link>
+                                        <Link onClick={Address2}>
+                                        <p className={ address ? "btn_style_active icon2" : "btn_style_inactive icon2" }><i
+                                                className="bi bi-geo-alt-fill icon-space"></i>Address</p>
+                                        </Link>
+                                        <Link onClick={Password2}>
+                                        <p className={ password ? "btn_style_active icon2" : "btn_style_inactive icon2" }><i
+                                                className="bi bi-lock-fill icon-space"></i>Password</p>
+                                        </Link>
+                                        <Link onClick={Others2}>
+                                        <p className={ others ? "btn_style_active icon2" : "btn_style_inactive icon2" }><i
+                                                className="bi bi-motherboard-fill icon-space"></i>Others</p>
+                                        </Link>
+                                    </div>
+                                    <div className="col-sm-9 background">
+                                        <div className="col-sm-6">
+                                            <h4 className='space left-space'><i
+                                                    className='bi bi-info-square-fill icon-space'></i>Personal Information</h4>
+                                        </div>
+                                        <div>
+                                            {accountDetails ?
+                                            <AccountDetails /> : null}
+                                            {address ?
+                                            <Address /> : null}
+                                            {password ?
+                                            <Password /> : null}
+                                            {others?
+                                            <Others /> : null}
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div>
-                            {accountDetails ? <AccountDetails /> : null}
-                            {address ? <Address /> : null}
-                            {password ? <Password /> : null}
-                            {others? <Others /> : null}
-                        </div>
-                    </div>      
-                </div>
-                        </form> 
-                        </div>
-                        </div>      
                     </div>
+                </div>
             </div>
-            </div>
+        </div>
     );
 }
 
