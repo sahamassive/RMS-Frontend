@@ -7,6 +7,7 @@ import axios, { all } from "axios";
 const baseUrl = "http://127.0.0.1:8000";
 
 function Food() {
+
   const [allData, setAllData] = useState("");
   useEffect(() => {
     getData();
@@ -71,6 +72,7 @@ function Food() {
                   </tbody>
                 </table>
               ) : null}
+
             </div>
           </div>
         </div>

@@ -1,27 +1,14 @@
-.background {
-    background-color: #595959;
-    border-radius: 8px;
-    padding: 2rem;
-    text-align: left;
-    margin-top: 10px;
-    min-height: 15vh;
-}
-
 .section_01{
     display: flex;
+    gap: .4rem;
 }
-@media only screen and (max-width: 650px) {
+@media (max-width: 800px){
     .section_01{
         display: block;
     }
-    .input_field{
-        margin-left: .5rem;
-        margin-right: .5rem;
-        margin-top:1rem;
-    }
 }
 input[type=text]{
-    background-color: #262626;
+    background-color: #00000085;
     border-radius: 5px;
 }
 input[type=text]:focus{
@@ -32,33 +19,103 @@ input[type=text]:focus{
     position: absolute;
     right: 0;
 }
-.input_field{
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top:.2rem;
-}
-.select2{
-    background-color: #262626;
+.select3{
+    background-color: #00000085;
     color: #7F7F7F;
     margin-top: .5rem;
-    width: 31%;
+    width: 100%;
     padding: 7px;
     border-radius: 5px;
+    border: .1px solid rgb(68, 67, 67);
     margin-right: .5rem;
 }
 @media only screen and (max-width: 650px){
-    .select2{
-        background-color: #262626;
+    .select3{
+        background-color: #00000085;
         color: #7F7F7F;
         margin-top: .5rem;
         width: 100%;
         padding: 7px;
+        border: .1px solid rgb(68, 67, 67);
         border-radius: 5px;
-        margin-right: .5rem;
+        margin-right: .4rem;
     }  
 }
-.select2:focus{
+.select3:focus{
     outline: 2px solid rgb(1, 61, 16);
     background-color: white;
     color: black;
+}
+.icon-plus{
+    background-color: green;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 5px;
+    margin-right: .3rem;
+}
+.icon-minus{
+    background-color: red;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 5px;
+    margin-left: .35rem;
+}
+.menu-style{
+    background-color: white;
+    color:black;
+    border-radius: 5px;
+    padding-left: 1rem;
+    padding-bottom: .3rem;
+    padding-top: .3rem;
+}
+.section-border{
+    border: .1px solid rgb(68, 67, 67);
+    border-radius: 8PX;
+    margin-top: 5PX;
+    padding-top: 10PX;
+}
+.food-image{
+    width:5.85rem;
+    border-radius: 8PX;
+    border: .1px solid rgb(68, 67, 67);
+}
+.img-level{
+    text-align: center;
+    border-radius: 8PX;
+    margin-top: 5px;
+    border: .1px solid rgb(68, 67, 67);
+}
+.level-style{
+    font-size: .9em;
+    font-family: "Times New Roman";
+    margin-bottom: -9px;
+}
+.top-space{
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.top-section{
+    background-color: black;
+    margin-top: .7rem;
+    margin-left: 1rem;
+    margin-bottom: .3rem;
+    margin-right: 1rem;
+    border-radius: 15px;
+    padding-left: 1rem;
+    padding-bottom: 1.1rem;
+}
+.icon-delete{
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: .3rem;
+}
+.table-style{
+    width:100%;
+}
+.btn-se{
+    position: absolute;
+    right: .8rem;
 }

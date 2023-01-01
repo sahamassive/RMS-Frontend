@@ -20,7 +20,7 @@ function AllAdmin() {
                         <div className="btn-section">
                             <h4 className="card-title">All Admin</h4>
                             <a className="btn-style btn btn-info" href="/super-admin/employee/registration"><i
-                                    className="bi bi-plus"></i> New Registration</a>
+                                    className="bi bi-plus-square"></i> New Registration</a>
                         </div>
                         <div className="table-responsive">
                             <DataTable />

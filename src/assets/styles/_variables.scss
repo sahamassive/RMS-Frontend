@@ -100,7 +100,7 @@ $body-color: #ffffff;
 
 ////////// CONTENT WRAPPER //////////
 
-$content-padding: 1.875rem .5rem;
+$content-padding: 1.2rem .2rem;
 
 ////////// CONTENT WRAPPER //////////
 
@@ -113,7 +113,7 @@ $sidebar-bg: #000000;
 $sidebar-menu-color: $text-muted;
 $sidebar-menu-active-bg: #A04000;
 $sidebar-menu-active-color: color(white);
-$sidebar-menu-hover-bg: #241003;
+$sidebar-menu-hover-bg: #b8632b;
 $sidebar-menu-hover-color: color(white);
 $sidebar-submenu-color: $sidebar-menu-color;
 $sidebar-submenu-hover-bg: initial;
@@ -149,8 +149,8 @@ $icon-only-menu-bg: darken($sidebar-bg, 5%);
 ///////// NAVBAR ////////
 
 $navbar-height: 70px;
-$navbar-bg: #404040;
-$navbar-menu-color: #404040;
+$navbar-bg: #000000;
+$navbar-menu-color: #ffffff;
 $navbar-font-size: .9375rem;
 $navbar-icon-font-size: 1.125rem;
 $navbar-box-shadow: 20px 19px 34px -15px rgba(0,0,0,0.5);
@@ -158,8 +158,8 @@ $navbar-box-shadow: 20px 19px 34px -15px rgba(0,0,0,0.5);
 ///////// NAVBAR ////////
 
 ///////// CARD ////////
-$card-bg: #404040;
-$card-description-color: #ffffff;
+$card-bg: #000000;
+$card-description-color: #bfbfbf;
 $card-title-color: #ffffff;
 ///////// CARD ////////
 
@@ -211,7 +211,7 @@ $popover-header-bg: $popover-bg;
 
 /////////  FORMS /////////
 
-$input-bg: #2A3038;
+$input-bg: #000000;
 $input-border-radius: 2px;
 $input-border-color: $border-color;
 $input-placeholder-color: lighten($input-bg, 15%);
@@ -276,7 +276,7 @@ $border-property: 1px solid $border-color;
 $card-spacing-y: 2.5rem;
 $card-padding-y: 1.75rem;
 $card-padding-x: 1.5625rem;
-$card-border-radius: 0.25rem;
+$card-border-radius: 15px;
 $card-description-color: #76838f;
 $grid-gutter-width: 1.5rem;
 $action-transition-duration: 0.25s;

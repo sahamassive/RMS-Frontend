@@ -1,7 +1,6 @@
 import React from "react";
 import { Label } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
-import QuickOrder  from "../pos/quickOrder";
 
 function BookingDetails() {
     return (
@@ -49,8 +48,7 @@ function BookingDetails() {
                 </div>
             </div>
         
-            <div className="input_field">
-                <QuickOrder />
+            <div className="section-22">
             </div>
         </div>
     );

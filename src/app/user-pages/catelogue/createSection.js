@@ -28,9 +28,10 @@ function CreateSection() {
               </a>
 
             </div>
+            <div className="input-field">
             <label className="label-style">Section name</label>
             <Form.Control
-              className="col-sm-6"
+              className=""
               type="text"
               placeholder="Section name"
               onChange={(event) => {
@@ -38,7 +39,8 @@ function CreateSection() {
                 console.log(name);
               }}
             ></Form.Control>
-            <button className="btn btn-success top-space" onClick={insert}>
+            </div><br></br>
+            <button className="btn btn-success" onClick={insert}>
               <i className="bi bi-save-fill"></i>Insert
             </button>
           </div>

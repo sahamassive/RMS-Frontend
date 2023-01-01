@@ -7,6 +7,7 @@ import axios, { all } from "axios";
 const baseUrl = "http://127.0.0.1:8000";
 
 function Brand() {
+
   const [allData, setAllData] = useState("");
   useEffect(() => {
     getData();
@@ -94,6 +95,7 @@ function Brand() {
                   </tbody>
                 </table>
               ) : null}
+
             </div>
           </div>
         </div>
