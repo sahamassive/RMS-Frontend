@@ -1,6 +1,4 @@
-
 import React, { Component, useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
 import $ from "jquery";
 import "datatables.net";
 import "./style.css";
@@ -19,7 +17,7 @@ function Category() {
 
   $.DataTable = require("datatables.net");
   $(document).ready(function () {
-    $("#example").DataTable();
+    $("#category").DataTable();
   });
 
   return (
@@ -33,12 +31,12 @@ function Category() {
                 className="btn-style btn btn-info"
                 href="/catalogue/create-category"
               >
-                <i className="bi bi-plus"></i>New Category
+                <i className="bi bi-plus-square"></i>New Category
               </a>
             </div>
-            <div className="table-responsive">
+            <div className="table-responsive table-style">
               {allData ? (
-                <table id="example" className="table table-striped table-style">
+                <table id="category" className="table table-striped table-style">
                   <thead>
                     <tr>
                       <th>Category Name</th>

@@ -19,7 +19,7 @@ function Food() {
                     <div className="card-body">
                         <div className="btn-section">
                             <h4 className="card-title">All Food</h4>
-                            <a className="btn-style btn btn-info" href="/catalogue/create-food"><i className="bi bi-plus"></i>New Food</a>
+                            <a className="btn-style btn btn-info" href="/catalogue/create-food"><i className="bi bi-plus-square"></i>New Food</a>
                         </div>
                         <div className="table-responsive">
                             <DataTable />

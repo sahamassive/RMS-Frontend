@@ -29,7 +29,7 @@ function Section() {
                 className="btn-style btn btn-info"
                 href="/catalogue/create-section"
               >
-                <i className="bi bi-plus"></i>New Section
+                <i className="bi bi-plus-square"></i>New Section
               </a>
             </div>
             <div className="table-responsive">

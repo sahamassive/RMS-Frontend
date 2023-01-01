@@ -19,7 +19,7 @@ function Brand() {
                     <div className="card-body">
                         <div className="btn-section">
                             <h4 className="card-title">All Brand</h4>
-                            <a className="btn-style btn btn-info" href="/catalogue/create-brand"><i className="bi bi-plus"></i>New Brand</a>
+                            <a className="btn-style btn btn-info" href="/catalogue/create-brand"><i className="bi bi-plus-square"></i>New Brand</a>
                         </div>
                         <div className="table-responsive">
                             <DataTable />
