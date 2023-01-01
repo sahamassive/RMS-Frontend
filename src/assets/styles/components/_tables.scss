@@ -2,14 +2,14 @@
 
 .table {
   margin-bottom: 0;
-  color: $text-muted; 
+  color: $text-muted;
   thead {
     th {
       border-top: 0;
       border-bottom-width: 1px;
       font-family: $type1;
       font-weight: $font-weight-medium;
-      i{
+      i {
         margin-left: 0.325rem;
       }
     }
@@ -23,9 +23,11 @@
       margin-bottom: 0;
     }
   }
-  &.table-borderless{
+  &.table-borderless {
     border: none;
-    tr,td,th{
+    tr,
+    td,
+    th {
       border: none;
     }
   }

@@ -178,10 +178,10 @@ function CreateCategory() {
                         <br></br> <br></br>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
   );
 }
 export default CreateCategory;
