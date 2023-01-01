@@ -1,4 +1,3 @@
-
 import React, { Component, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import $ from "jquery";
@@ -44,6 +43,7 @@ function Category() {
                       <th>Category Name</th>
                       <th>Description</th>
                       <th>Discount</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -52,6 +52,14 @@ function Category() {
                         <td>{data.category_name}</td>
                         <td>{data.description}</td>
                         <td>{data.category_discount}</td>
+                        <td>
+                          <a
+                            className="btn btn-danger"
+                            href={`/catalogue/edit-section/${data.id}`}
+                          >
+                            <i className="bi bi-pencil-square"></i>Edit
+                          </a>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

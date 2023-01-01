@@ -183,27 +183,24 @@ function CreateCategory() {
                         type="file"
                         name="file"
                         onChange={(e) =>
-                          setImage(URL.revokeObjectURL(e.target.files[0]))
+                          setImage(URL.createObjectURL(e.target.files[0]))
                         }
                       />
                     </Form.Group>
                     <img src={image} width="80px" height="50px" />
                   </div>
                 </div>
-              
-
-              <a className="btn btn-success top-space2" onClick={insert}>
-                <i className="bi bi-save-fill"></i>Insert
-              </a>{" "}
-              <br></br>
-              <br></br> <br></br>
-
+                <a className="btn btn-success top-space2" onClick={insert}>
+                  <i className="bi bi-save-fill"></i>Insert
+                </a>
+                <br></br>
+                <br></br> <br></br>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-</div>
   );
 }
 export default CreateCategory;

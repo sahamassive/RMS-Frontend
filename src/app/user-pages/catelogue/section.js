@@ -9,10 +9,21 @@ const baseUrl = "http://127.0.0.1:8000";
 function Section() {
   const [allData, setAllData] = useState("");
   useEffect(() => {
+    getData();
+  }, []);
+  const getData = () => {
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setAllData(response.data);
     });
-  }, []);
+  };
+
+  const statusChange = (id) => {
+    axios.get(`${baseUrl}/api/section-status/${id}`).then((response) => {
+      alert(response.data.msg);
+      getData();
+    });
+  };
+
   $.DataTable = require("datatables.net");
   $(document).ready(function () {
     $("#example").DataTable();
@@ -37,9 +48,10 @@ function Section() {
                 <table id="example" className="table table-striped table-style">
                   <thead>
                     <tr>
-                      <th>Category Name</th>
+                      <th>Section Name</th>
                       <th>Description</th>
-                      <th>Discount</th>
+                      <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -47,7 +59,36 @@ function Section() {
                       <tr>
                         <td>{data.name}</td>
                         <td>{data.description}</td>
-                        <td>{data.status}</td>
+                        <td>
+                          {data.status == 0 ? (
+                            <button
+                              className="btn btn-primary"
+                              onClick={() => {
+                                statusChange(data.id);
+                              }}
+                            >
+                              Deactive
+                            </button>
+                          ) : (
+                            <button
+                              className="btn btn-warning"
+                              onClick={() => {
+                                statusChange(data.id);
+                              }}
+                            >
+                              Active
+                            </button>
+                          )}
+                        </td>
+
+                        <td>
+                          <a
+                            className="btn btn-danger"
+                            href={`/catalogue/edit-section/${data.id}`}
+                          >
+                            <i className="bi bi-pencil-square"></i>Edit
+                          </a>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
