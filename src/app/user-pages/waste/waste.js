@@ -20,7 +20,7 @@ function Waste() {
                     <div className="card-body">
                         <div className="btn-section">
                             <h4 className="card-title">All wastage</h4>
-                            <a className="btn-style btn btn-info" href="/waste/new-waste"><i className="bi bi-plus"></i>New wasteage</a>
+                            <a className="btn-style btn btn-info" href="/waste/new-waste"><i className="bi bi-plus-square"></i>New wasteage</a>
                         </div>
                         <div className="table-responsive">
                             <DataTable />

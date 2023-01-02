@@ -3,7 +3,7 @@ import "./style.css";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import axios, { all } from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+const baseUrl = "https://346d-103-153-66-241.in.ngrok.io";
 
 function CreateFood() {
   const [section, setSection] = useState();

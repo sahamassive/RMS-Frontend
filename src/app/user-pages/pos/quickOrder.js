@@ -18,7 +18,7 @@ function QuickOrder() {
     return (
         <div>
             <div className="top-section">
-                    <div className="section_01">
+                <div className="section_01">
                     <a href="/dashboard" className="btn btn-primary top-space"><i className="bi bi-house-door-fill"></i></a>
                     <a href="" className="btn btn-info top-space"><i className="bi bi-view-list"></i>All Order</a>
                     <a href="" className="btn btn-danger top-space"><i className="bi bi-plus-square"></i>New Order</a>

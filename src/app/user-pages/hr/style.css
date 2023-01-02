@@ -1,0 +1,111 @@
+.background {
+    background-color: #222222;
+    border-radius: 15px;
+    padding: 1px;
+    text-align: left;
+    margin-top: 10px;
+    min-height: 15vh;
+}
+.input_field {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
+.btn-section{
+    display: flex;
+}
+.btn-style {
+    position: absolute;
+    right: 2rem;
+}
+.gap{
+    margin-right: .3rem;
+}
+.paginate_button{
+    color: white;
+    border: 1px solid white;
+    padding: .5rem;
+    border-radius: 5px;
+    margin-right: .3rem;
+}
+.table-style{
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+input[type="search"]{
+    background-color: #1a1919;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    margin-right: 1rem;
+  }
+  input[type="search"]:focus{
+    outline: 2px solid rgb(1, 61, 16);
+    background-color: white;
+  }
+  ::placeholder{
+    font-style: italic;
+  }
+  input[type="text"],
+  input[type="date"],
+input[type="number"]{
+  background-color: #00000085;
+  border-radius: 5px;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+area:focus {
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+
+}
+
+.area {
+  background-color: #00000085;
+  border-radius: 5px;
+}
+
+
+.area:focus {
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+}
+.label-style {
+    font-size: 0.8em;
+    margin-bottom: -0.1em;
+  }
+  .top-space2 {
+    position: absolute;
+    right: 2rem;
+    margin-top: 1rem;
+  }
+
+  .level-style{
+    font-size: .9em;
+    font-family: "Times New Roman";
+    margin-bottom: -6px;
+}
+select{
+    background-color: #00000085;
+    border-radius: 5px;
+    border:none;
+    height:2.3rem;
+    color:white;
+    width: 100%;
+    border: .1px solid rgb(68, 67, 67);
+}
+select:focus{
+    outline: 2px solid rgb(1, 61, 16);
+    background-color: white;
+    color: black;
+}
+.two_part {
+    display: flex;
+    gap: .4rem;
+}
+.wid{
+    width: 100%;
+}

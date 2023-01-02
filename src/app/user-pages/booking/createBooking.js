@@ -24,7 +24,7 @@ function CreateBooking() {
                 <div className="card-body">
                     <div className="btn-section">
                         <h4 className="card-title">Create New booking</h4>
-                        <a className="btn-style btn btn-info" href="/booking"><i class="bi bi-card-list"></i> All
+                        <a className="btn-style btn btn-info" href="/booking/all"><i class="bi bi-card-list"></i> All
                             Booking</a>
                     </div>
                     <form>

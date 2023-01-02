@@ -29,7 +29,7 @@ function CreateSection() {
 
             </div>
             <div className="input-field">
-            <label className="label-style">Section name</label>
+            <Form.Label className="label-style">Section name</Form.Label>
             <Form.Control
               className=""
               type="text"
