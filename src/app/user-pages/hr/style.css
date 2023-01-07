@@ -27,6 +27,7 @@
     padding: .5rem;
     border-radius: 5px;
     margin-right: .3rem;
+    cursor: pointer;
 }
 .table-style{
     width: 100%;
@@ -62,13 +63,10 @@ area:focus {
   background-color: white;
 
 }
-
 .area {
   background-color: #00000085;
   border-radius: 5px;
 }
-
-
 .area:focus {
   outline: 2px solid rgb(1, 61, 16);
   background-color: white;

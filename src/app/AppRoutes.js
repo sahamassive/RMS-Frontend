@@ -44,6 +44,8 @@ const CreateFood = lazy(() =>
 
 const QuickOrder = lazy(() => import("../app/user-pages/pos/quickOrder.js"));
 
+const CustomerOrder = lazy(() => import("../app/user-pages/order/customerOrder.js"));
+
 const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
 
@@ -119,6 +121,8 @@ class AppRoutes extends Component {
           <Route path="/hr/new-holiday" component={NewHoliday} />
           <Route path="/hr/leave" component={EmployeeLeave} />
           <Route path="/hr/new-leave" component={NewEmployeeLeave} />
+
+          <Route path="/customer-order" component={CustomerOrder} />
 
           <Route
             path="/super-admin/employee/registration"
