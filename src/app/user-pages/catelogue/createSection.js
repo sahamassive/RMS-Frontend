@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import "./style.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
 
 function CreateSection() {
-
   const [name, setName] = useState();
   const insert = () => {
     axios
@@ -26,20 +25,20 @@ function CreateSection() {
               <a className="btn-style btn btn-info" href="/catalogue/section">
                 <i class="bi bi-card-list"></i>All Section
               </a>
-
             </div>
             <div className="input-field">
-            <Form.Label className="label-style">Section name</Form.Label>
-            <Form.Control
-              className=""
-              type="text"
-              placeholder="Section name"
-              onChange={(event) => {
-                setName(event.target.value);
-                console.log(name);
-              }}
-            ></Form.Control>
-            </div><br></br>
+              <label className="label-style">Section name</label>
+              <Form.Control
+                className=""
+                type="text"
+                placeholder="Section name"
+                onChange={(event) => {
+                  setName(event.target.value);
+                  console.log(name);
+                }}
+              ></Form.Control>
+            </div>
+            <br></br>
             <button className="btn btn-success" onClick={insert}>
               <i className="bi bi-save-fill"></i>Insert
             </button>

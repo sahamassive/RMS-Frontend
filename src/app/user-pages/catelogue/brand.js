@@ -4,10 +4,9 @@ import "datatables.net";
 import "./style.css";
 import axios, { all } from "axios";
 
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
 
 function Brand() {
-
   const [allData, setAllData] = useState("");
   useEffect(() => {
     getData();
@@ -50,7 +49,7 @@ function Brand() {
                   <thead>
                     <tr>
                       <th>Brand Name</th>
-
+                      <th>logo</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -60,6 +59,13 @@ function Brand() {
                       <tr>
                         <td>{data.name}</td>
 
+                        <td>
+                          <img
+                            src={`${baseUrl}/${data.logo}`}
+                            width="80px"
+                            height="50px"
+                          />
+                        </td>
                         <td>
                           {data.status == 0 ? (
                             <button
@@ -95,7 +101,6 @@ function Brand() {
                   </tbody>
                 </table>
               ) : null}
-
             </div>
           </div>
         </div>

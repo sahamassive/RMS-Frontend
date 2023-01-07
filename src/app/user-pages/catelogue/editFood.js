@@ -1,14 +1,13 @@
 import React, { Component, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import "./style.css";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import axios, { all } from "axios";
-
 import { baseUrl } from "../constant/global";
 
-
-
-function CreateFood() {
+function EditFood() {
   const [section, setSection] = useState();
   const [brand, setBrand] = useState();
   const [category, setCategory] = useState();
@@ -24,7 +23,28 @@ function CreateFood() {
   const [metaKeyword, setMetaKeyword] = useState();
   const [preview, setPrview] = useState();
   const [image, setImage] = useState();
+  const [secid, setSecid] = useState();
+  const params = useParams();
 
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/api/food-edit/${params.id}`)
+
+      .then((res) => {
+        setFoodName(res.data.name);
+        setDescription(res.data.description);
+        setPrice(res.data.price);
+        setSpeciality(res.data.speciality);
+        setMetaTag(res.data.meta_title);
+        setMetaKeyword(res.data.meta_keywords);
+        setMetDes(res.data.meta_description);
+        setImage(res.data.image);
+        setSecid(res.data.section_id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [params.id]);
   useEffect(() => {
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setSection(response.data);
@@ -90,7 +110,13 @@ function CreateFood() {
                         multiple
                       />
                     </Form.Group>
-                    <img src={preview} width="150px" height="350px" />
+                    <img
+                      src={
+                        preview ? preview : `${baseUrl}/foods/small/${image}`
+                      }
+                      width="150px"
+                      height="350px"
+                    />
                   </div>
                 </div>
                 <div className="col-sm-9 background">
@@ -102,7 +128,7 @@ function CreateFood() {
                         </Form.Label>
                         <Form.Control
                           type="text"
-                          placeholder="Food name"
+                          value={fooName}
                           onChange={(event) => {
                             setFoodName(event.target.value);
                           }}
@@ -114,8 +140,7 @@ function CreateFood() {
                         </Form.Label>
                         <Form.Control
                           as="textarea"
-                          placeholder="Description"
-                          className="area"
+                          value={description}
                           rows={3}
                           onChange={(event) => {
                             setDescription(event.target.value);
@@ -130,7 +155,7 @@ function CreateFood() {
                         </Form.Label>
                         <Form.Control
                           type="text"
-                          placeholder="Speciality"
+                          value={speciality}
                           onChange={(event) => {
                             setSpeciality(event.target.value);
                           }}
@@ -140,7 +165,7 @@ function CreateFood() {
                         <Form.Label className="level-style">Price</Form.Label>
                         <Form.Control
                           type="number"
-                          placeholder="Price"
+                          value={price}
                           onChange={(event) => {
                             setPrice(event.target.value);
                           }}
@@ -159,7 +184,7 @@ function CreateFood() {
                           setSectionId(event.target.value);
                         }}
                       >
-                        <option value="">Select Section</option>
+                        <option value={secid}>Select Section</option>
                         {section
                           ? section.map((data) => (
                               <option value={data.id}>{data.name}</option>
@@ -214,7 +239,7 @@ function CreateFood() {
                       <Form.Control
                         className="area"
                         as="textarea"
-                        placeholder="Meat tag"
+                        value={metaTag}
                         rows={3}
                         onChange={(event) => {
                           setMetaTag(event.target.value);
@@ -231,7 +256,7 @@ function CreateFood() {
                       <Form.Control
                         className="area"
                         as="textarea"
-                        placeholder="Meta description"
+                        value={metaDes}
                         rows={6}
                         onChange={(event) => {
                           setMetDes(event.target.value);
@@ -248,7 +273,7 @@ function CreateFood() {
                       <Form.Control
                         className="area"
                         as="textarea"
-                        placeholder="Meta keyword"
+                        value={metaKeyword}
                         rows={3}
                         onChange={(event) => {
                           setMetaKeyword(event.target.value);
@@ -273,4 +298,4 @@ function CreateFood() {
   );
 }
 
-export default CreateFood;
+export default EditFood;
