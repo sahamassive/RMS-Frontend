@@ -22,7 +22,7 @@ function Index() {
                         <div><span className='res'> Restaurent</span>
                             <span className='company_name'>FOOD</span> </div>
                     </div>
-                    <nav id="navbar" className="navbar order-last order-lg-0 nav-menu2">
+                    <nav id="navbar" className="navbar order-last order-lg-0 nav-menu2 cart-icon">
                         <ul>
                             <li><a className="nav-link scrollto active" href="#hero">Home</a></li>
                             <li><a className="nav-link scrollto" href="#about">About</a></li>
@@ -32,6 +32,8 @@ function Index() {
                             <li><a className="nav-link scrollto" href="#chefs">Chefs</a></li>
                             <li><a className="nav-link scrollto" href="#gallery">Gallery</a></li>
                             <li><a className="nav-link scrollto" href="#contact">Contact</a></li>
+                            <li><a className="nav-link scrollto" href="/login">Login</a></li>
+                            <li><a className="nav-link scrollto" href="/customer-order"><i className="bi bi-cart4"></i></a></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>
                     </nav>
@@ -145,6 +147,7 @@ function Index() {
                                 <div className="menu-ingredients">
                                     All ingredients name.
                                 </div>
+                                <button className='btn btn-outline-warning cart-style'><i className="bi bi-cart4"></i>Add to Cart</button>
                             </div>
                             <div className="col-lg-6 menu-item filter-specialty">
                                 <img src={require('./assets/img/menu/bread-barrel.jpg') } className="menu-img" alt=""></img>

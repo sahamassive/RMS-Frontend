@@ -75,14 +75,16 @@ input[type=text]:focus{
     padding-top: 10PX;
 }
 .food-image{
-    width:5.85rem;
+    width:7.5rem;
     border-radius: 8PX;
     border: .1px solid rgb(68, 67, 67);
+    padding-left: 2px;
 }
 .img-level{
     text-align: center;
     border-radius: 8PX;
     margin-top: 5px;
+    width:7.5rem;
     border: .1px solid rgb(68, 67, 67);
 }
 .level-style{
@@ -118,4 +120,64 @@ input[type=text]:focus{
 .btn-se{
     position: absolute;
     right: .8rem;
+}
+space3{
+    margin-left: .2rem;
+}
+ul{
+    padding: 5px 0 5px 30px;
+}
+ul li{
+    list-style: none;
+    font-weight: bold;
+    margin: 5px;
+    position: relative;
+    max-height: 35px;
+    text-transform: capitalize;
+}
+ul:first-child li{
+    max-height: 150px;
+}
+ul li:hover{
+    background: white;
+}
+ul:first-child li:hover{
+    background: none;
+}
+ul li button{
+    text-decoration: none;
+    color: white;
+}
+ul li a i{
+    position: absolute;
+    right: .5rem;
+    color: rgb(0, 0, 0);
+}
+ul li a{
+    color: rgb(0, 0, 0);
+    padding-left: 1rem;
+}
+.li-style{
+    background-color: white;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+}
+ul li>ul{
+    padding: 1px;
+    margin: 0 0 0 20px;
+}
+ul li>ul li{
+    height: 25px;
+    line-height: 20px;
+    font-size: 15px;
+    padding: 1px 1px 1px 20px;
+    font-weight: normal;
+    border-left: 1px solid white;
+    margin: 5px;
+    color: wheat;
+    cursor: pointer;
+}
+ul li>ul li button,
+ul li:target>ul li button{
+    background: transparent;
 }

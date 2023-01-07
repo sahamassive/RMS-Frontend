@@ -359,6 +359,7 @@
           &.active {
             color: $sidebar-menu-active-color;
             background: transparent;
+            border-left: 1px solid white;
           }
           &:hover {
             color: $sidebar-submenu-hover-color;

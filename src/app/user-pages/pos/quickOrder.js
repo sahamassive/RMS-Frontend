@@ -44,84 +44,35 @@ function QuickOrder() {
                         <div className="col-md-12 section_01">
                             <div className="col-md-2 section-border">                          
                                 <ul className="list-unstyled components mb-5">
-                                    <li>
-                                        <Link onClick="">
-                                            <p className="menu-style">All</p>
-                                        </Link>
+                                    <li id="all">
+                                    <div className="li-style"><a href="#all">
+                                            <span>All</span>
+                                            <i className="bi bi-arrow-right"></i>
+                                        </a></div>
                                     </li>
-                                    <li>
-                                            <a href="#">
-                                                <span>Breakfast</span>
-                                                <i className="bi bi-arrow-right"></i>
-                                            </a>
+                                    <li id="breakfast">
+                                        <div className="li-style"><a href="#breakfast">
+                                            <span>Breakfast</span>
+                                            <i className="bi bi-arrow-right"></i>
+                                        </a></div>
                                         <ul>
-                                            <li><a className="" href="#">Option 1</a></li>
-                                            <li><a className="" href="#">Option 2</a></li>
-                                            <li><a className="" href="#">Option 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                            <a href="#">
-                                                <span>Lunch</span>
-                                                <i className="bi bi-arrow-right"></i>
-                                            </a>
-                                        <ul>
-                                            <li><a className="" href="#">Option 1</a></li>
-                                            <li><a className="" href="#">Option 2</a></li>
-                                            <li><a className="" href="#">Option 3</a></li>
+                                            <li><button className="" href="#">Option 1</button></li>
+                                            <li><button className="" href="#">Option 2</button></li>
+                                            <li><button className="" href="#">Option 3</button></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-md-5 section-border">
-                                <table className="table table-responsive table-bordered table-style">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                            <td>
-                                                <img className="food-image" src={
-                                                    require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
-                                                <p className="img-level">Cake <br></br> <span>$5</span></p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img className="food-image" src={
+                                                require("../../../homepage/assets/img/menu/cake.jpg")} alt="cake"></img>
+                                            <p className="img-level">Cake <br></br> <span>$5</span></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="col-md-5 section-border">
                                 <div className="input_field">
@@ -186,12 +137,9 @@ function QuickOrder() {
                                     </table>
                                     <div className="section_01 btn-se">
                                         <a className="btn btn-primary top-space"><i className="bi bi-calculator"></i></a>
-                                        <a className="btn btn-danger top-space"><i
-                                                className="bi bi-x-octagon-fill"></i>Cancel</a>
-                                        <a className="btn btn-warning top-space"><i className="bi bi-cart-x-fill"></i>Empty
-                                            Cart</a>
-                                        <a className="btn btn-success top-space"><i
-                                                className="bi bi-check-square-fill"></i>Confirm Order</a>
+                                        <a className="btn btn-danger top-space"><i className="bi bi-x-octagon-fill"></i>Cancel</a>
+                                        <a className="btn btn-warning top-space"><i className="bi bi-cart-x-fill"></i>Empty Cart</a>
+                                        <a className="btn btn-success top-space"><i className="bi bi-check-square-fill"></i>Confirm Order</a>
                                     </div>
                                 </div>
                             </div>

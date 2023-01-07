@@ -93,6 +93,7 @@ function CreateFood() {
                         <Form.Control
                           as="textarea"
                           placeholder="Description"
+                          className="area"
                           rows={3}
                           onChange={(event) => {
                             setDescription(event.target.value);
