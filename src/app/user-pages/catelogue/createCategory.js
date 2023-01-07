@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import "./style.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
 
 function CreateCategory() {
   const [sectionId, setSectionId] = useState();

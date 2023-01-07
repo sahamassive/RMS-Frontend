@@ -4,7 +4,7 @@ import axios, { all } from "axios";
 import "./style.css";
 import $ from "jquery";
 import "datatables.net";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
 
 function Section() {
   const [allData, setAllData] = useState("");

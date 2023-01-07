@@ -4,10 +4,9 @@ import "./style.css";
 import $ from "jquery";
 import "datatables.net";
 import axios, { all } from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
 
 function Food() {
-
   const [allData, setAllData] = useState("");
   useEffect(() => {
     getData();
@@ -42,9 +41,11 @@ function Food() {
                   <thead>
                     <tr>
                       <th>item Name</th>
+                      <th>Image</th>
                       <th>Description</th>
                       <th>Section</th>
                       <th>Category</th>
+
                       <th>Brand</th>
 
                       <th>Action</th>
@@ -54,6 +55,13 @@ function Food() {
                     {allData.map((data) => (
                       <tr>
                         <td>{data.name}</td>
+                        <td>
+                          <img
+                            src={`${baseUrl}/foods/small/${data.image}`}
+                            width="80px"
+                            height="50px"
+                          />
+                        </td>
                         <td>{data.description}</td>
                         <td>{data.section_name}</td>
                         <td>{data.category_name}</td>
@@ -62,7 +70,7 @@ function Food() {
                         <td>
                           <a
                             className="btn btn-danger"
-                            href={`/catalogue/edit-section/${data.id}`}
+                            href={`/catalogue/edit-food/${data.id}`}
                           >
                             <i className="bi bi-pencil-square"></i>Edit
                           </a>
@@ -72,7 +80,6 @@ function Food() {
                   </tbody>
                 </table>
               ) : null}
-
             </div>
           </div>
         </div>

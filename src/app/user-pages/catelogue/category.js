@@ -3,7 +3,7 @@ import $ from "jquery";
 import "datatables.net";
 import "./style.css";
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
 
 function Category() {
   const [allData, setAllData] = useState("");
@@ -36,7 +36,10 @@ function Category() {
             </div>
             <div className="table-responsive table-style">
               {allData ? (
-                <table id="category" className="table table-striped table-style">
+                <table
+                  id="category"
+                  className="table table-striped table-style"
+                >
                   <thead>
                     <tr>
                       <th>Category Name</th>

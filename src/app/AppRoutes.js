@@ -34,7 +34,7 @@ const editSection = lazy(() =>
 const CreateFood = lazy(() =>
   import("../app/user-pages/catelogue/createFood.js")
 );
-
+const EditFood = lazy(() => import("../app/user-pages/catelogue/editFood.js"));
 const QuickOrder = lazy(() => import("../app/user-pages/pos/quickOrder.js"));
 
 const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
@@ -90,6 +90,7 @@ class AppRoutes extends Component {
 
           <Route path="/catalogue/food" component={Food} />
           <Route path="/catalogue/create-food" component={CreateFood} />
+          <Route path="/catalogue/edit-food/:id" component={EditFood} />
 
           <Route path="/pos/quick-order" component={QuickOrder} />
 

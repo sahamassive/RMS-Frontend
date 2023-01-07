@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./style.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
 
 function EditSection() {
   const params = useParams();
