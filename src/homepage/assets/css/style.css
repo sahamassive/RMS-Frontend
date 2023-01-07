@@ -1534,3 +1534,13 @@ color:white
 .nav-menu2{
   margin-left: -26rem;
 }
+.cart-style{
+  border-radius: 15px;
+  font-size: .8em;
+  margin-left: 1rem;
+  margin-top: .2rem;
+}
+.cart-icon{
+  margin-top: -.1rem;
+  padding-right: 1rem;
+}

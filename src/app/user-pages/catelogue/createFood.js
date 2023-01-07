@@ -3,7 +3,10 @@ import "./style.css";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import axios, { all } from "axios";
+
 import { baseUrl } from "../constant/global";
+
+
 
 function CreateFood() {
   const [section, setSection] = useState();
@@ -112,6 +115,7 @@ function CreateFood() {
                         <Form.Control
                           as="textarea"
                           placeholder="Description"
+                          className="area"
                           rows={3}
                           onChange={(event) => {
                             setDescription(event.target.value);

@@ -78,3 +78,11 @@ select:focus{
     font-family: "Times New Roman";
     margin-bottom: -6px;
 }
+.background {
+    background-color: #222222;
+    border-radius: 15px;
+    padding: 1px;
+    text-align: left;
+    margin-top: 10px;
+    min-height: 15vh;
+  }

@@ -8,7 +8,10 @@ function NewRestaurant() {
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
-                        <h3>Register new restaurant:</h3>
+                    <div className="btn-section">
+                        <h4 className="card-title">All Restaurant</h4>
+                        <a className="btn-style btn btn-info" href="/restaurant/all"><i class="bi bi-card-list"></i> All Restaurant</a>
+                    </div>
                         <div className="card-body">
                             <Form>
                                 <div className='two_part'>
