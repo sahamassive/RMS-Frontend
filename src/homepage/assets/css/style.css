@@ -1,4 +1,3 @@
-
 body {
   font-family: "Open Sans", sans-serif;
   background: #0c0b09;
@@ -15,7 +14,12 @@ a:hover {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Playfair Display", serif;
 }
 
@@ -172,7 +176,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 #header .logo img {
   max-height: 40px;
-  
 }
 
 /*--------------------------------------------------------------
@@ -221,7 +224,8 @@ h1, h2, h3, h4, h5, h6 {
 .navbar li {
   position: relative;
 }
-.navbar a, .navbar a:focus {
+.navbar a,
+.navbar a:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -231,12 +235,16 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
   font-size: 14px;
 }
-.navbar a i, .navbar a:focus i {
+.navbar a i,
+.navbar a:focus i {
   font-size: 12px;
   line-height: 0;
   margin-left: 5px;
 }
-.navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover > a {
   color: #d9ba85;
 }
 .navbar .dropdown ul {
@@ -264,7 +272,9 @@ h1, h2, h3, h4, h5, h6 {
 .navbar .dropdown ul a i {
   font-size: 12px;
 }
-.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+.navbar .dropdown ul a:hover,
+.navbar .dropdown ul .active:hover,
+.navbar .dropdown ul li:hover > a {
   color: #cda45e;
 }
 .navbar .dropdown:hover > ul {
@@ -342,15 +352,19 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: auto;
   transition: 0.3s;
 }
-.navbar-mobile a, .navbar-mobile a:focus {
+.navbar-mobile a,
+.navbar-mobile a:focus {
   padding: 10px 20px;
   font-size: 15px;
   color: #1a1814;
 }
-.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
+.navbar-mobile a:hover,
+.navbar-mobile .active,
+.navbar-mobile li:hover > a {
   color: #cda45e;
 }
-.navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
+.navbar-mobile .getstarted,
+.navbar-mobile .getstarted:focus {
   margin: 15px;
 }
 .navbar-mobile .dropdown ul {
@@ -373,7 +387,9 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-mobile .dropdown ul a i {
   font-size: 12px;
 }
-.navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
+.navbar-mobile .dropdown ul a:hover,
+.navbar-mobile .dropdown ul .active:hover,
+.navbar-mobile .dropdown ul li:hover > a {
   color: #cda45e;
 }
 .navbar-mobile .dropdown > .dropdown-active {
@@ -427,7 +443,8 @@ h1, h2, h3, h4, h5, h6 {
 #hero .btns {
   margin-top: 30px;
 }
-#hero .btn-menu, #hero .btn-book {
+#hero .btn-menu,
+#hero .btn-book {
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.5px;
@@ -440,7 +457,8 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   border: 2px solid #cda45e;
 }
-#hero .btn-menu:hover, #hero .btn-book:hover {
+#hero .btn-menu:hover,
+#hero .btn-book:hover {
   background: #cda45e;
   color: #fff;
 }
@@ -773,7 +791,9 @@ section {
   padding: 30px 30px 70px 30px;
   box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.18);
 }
-.why-us .box:hover span, .why-us .box:hover h4, .why-us .box:hover p {
+.why-us .box:hover span,
+.why-us .box:hover h4,
+.why-us .box:hover p {
   color: #fff;
 }
 
@@ -800,7 +820,8 @@ section {
   border-radius: 50px;
   font-family: "Playfair Display", serif;
 }
-.menu #menu-flters li:hover, .menu #menu-flters li.filter-active {
+.menu #menu-flters li:hover,
+.menu #menu-flters li.filter-active {
   color: #cda45e;
 }
 .menu #menu-flters li:last-child {
@@ -823,7 +844,9 @@ section {
   position: relative;
 }
 .menu .menu-content::after {
-  content: "......................................................................" "...................................................................." "....................................................................";
+  content: "......................................................................"
+    "...................................................................."
+    "....................................................................";
   position: absolute;
   left: 20px;
   right: 0;
@@ -1043,7 +1066,8 @@ section {
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
-.book-a-table .php-email-form input, .book-a-table .php-email-form textarea {
+.book-a-table .php-email-form input,
+.book-a-table .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
@@ -1051,13 +1075,16 @@ section {
   border-color: #625b4b;
   color: white;
 }
-.book-a-table .php-email-form input::-moz-placeholder, .book-a-table .php-email-form textarea::-moz-placeholder {
+.book-a-table .php-email-form input::-moz-placeholder,
+.book-a-table .php-email-form textarea::-moz-placeholder {
   color: #a49b89;
 }
-.book-a-table .php-email-form input::placeholder, .book-a-table .php-email-form textarea::placeholder {
+.book-a-table .php-email-form input::placeholder,
+.book-a-table .php-email-form textarea::placeholder {
   color: #a49b89;
 }
-.book-a-table .php-email-form input:focus, .book-a-table .php-email-form textarea:focus {
+.book-a-table .php-email-form input:focus,
+.book-a-table .php-email-form textarea:focus {
   border-color: #cda45e;
 }
 .book-a-table .php-email-form input {
@@ -1066,7 +1093,7 @@ section {
 .book-a-table .php-email-form textarea {
   padding: 10px 12px;
 }
-.book-a-table .php-email-form button[type=submit] {
+.book-a-table .php-email-form button[type="submit"] {
   background: #cda45e;
   border: 0;
   padding: 10px 35px;
@@ -1074,14 +1101,15 @@ section {
   transition: 0.4s;
   border-radius: 50px;
 }
-.book-a-table .php-email-form button[type=submit]:hover {
+.book-a-table .php-email-form button[type="submit"]:hover {
   background: #d3af71;
 }
 
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
-.testimonials .testimonials-carousel, .testimonials .testimonials-slider {
+.testimonials .testimonials-carousel,
+.testimonials .testimonials-slider {
   overflow: hidden;
 }
 .testimonials .testimonial-item {
@@ -1107,7 +1135,8 @@ section {
   color: rgba(255, 255, 255, 0.6);
   margin: 0 0 0 45px;
 }
-.testimonials .testimonial-item .quote-icon-left, .testimonials .testimonial-item .quote-icon-right {
+.testimonials .testimonial-item .quote-icon-left,
+.testimonials .testimonial-item .quote-icon-right {
   color: #d3af71;
   font-size: 26px;
 }
@@ -1222,7 +1251,12 @@ section {
   margin: 0 2px;
 }
 .chefs .member:hover .member-info {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 20%, rgba(0, 212, 255, 0) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.8) 20%,
+    rgba(0, 212, 255, 0) 100%
+  );
   opacity: 1;
   transition: 0.4s;
 }
@@ -1266,7 +1300,9 @@ section {
   font-size: 14px;
   color: #bab3a6;
 }
-.contact .info .open-hours, .contact .info .email, .contact .info .phone {
+.contact .info .open-hours,
+.contact .info .email,
+.contact .info .phone {
   margin-top: 40px;
 }
 .contact .php-email-form {
@@ -1315,7 +1351,8 @@ section {
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
-.contact .php-email-form input, .contact .php-email-form textarea {
+.contact .php-email-form input,
+.contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
@@ -1323,13 +1360,16 @@ section {
   border-color: #625b4b;
   color: white;
 }
-.contact .php-email-form input::-moz-placeholder, .contact .php-email-form textarea::-moz-placeholder {
+.contact .php-email-form input::-moz-placeholder,
+.contact .php-email-form textarea::-moz-placeholder {
   color: #a49b89;
 }
-.contact .php-email-form input::placeholder, .contact .php-email-form textarea::placeholder {
+.contact .php-email-form input::placeholder,
+.contact .php-email-form textarea::placeholder {
   color: #a49b89;
 }
-.contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
+.contact .php-email-form input:focus,
+.contact .php-email-form textarea:focus {
   border-color: #cda45e;
 }
 .contact .php-email-form input {
@@ -1338,7 +1378,7 @@ section {
 .contact .php-email-form textarea {
   padding: 10px 12px;
 }
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type="submit"] {
   background: #cda45e;
   border: 0;
   padding: 10px 35px;
@@ -1346,7 +1386,7 @@ section {
   transition: 0.4s;
   border-radius: 50px;
 }
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type="submit"]:hover {
   background: #d3af71;
 }
 @-webkit-keyframes animate-loading {
@@ -1465,14 +1505,14 @@ section {
   border-radius: 50px;
   border: 1px solid #454035;
 }
-#footer .footer-top .footer-newsletter form input[type=email] {
+#footer .footer-top .footer-newsletter form input[type="email"] {
   border: 0;
   padding: 4px;
   width: calc(100% - 110px);
   background: #28251f;
   color: white;
 }
-#footer .footer-top .footer-newsletter form input[type=submit] {
+#footer .footer-top .footer-newsletter form input[type="submit"] {
   position: absolute;
   top: -1px;
   right: -1px;
@@ -1486,7 +1526,7 @@ section {
   transition: 0.3s;
   border-radius: 50px;
 }
-#footer .footer-top .footer-newsletter form input[type=submit]:hover {
+#footer .footer-top .footer-newsletter form input[type="submit"]:hover {
   background: #d3af71;
 }
 #footer .copyright {
@@ -1499,48 +1539,51 @@ section {
   font-size: 13px;
   color: #fff;
 }
-.res{
+.res {
   color: red;
-  background-color:transparent;
+  background-color: transparent;
   font-style: italic;
-  font-family: 'Monotype Corsiva'; 
+  font-family: "Monotype Corsiva";
   font-size: 1.5rem;
 }
-.company_name{
-  font-size:1.3em;
-  color:yellow;
-  font-family:'Gill Sans';
+.company_name {
+  font-size: 1.3em;
+  color: yellow;
+  font-family: "Gill Sans";
   text-align: center;
   font-size: 1.5rem;
 }
-.dis{
+.dis {
   display: flex;
 }
-*{
-color:white
+* {
+  color: white;
 }
-.writing-style{
+.writing-style {
   text-align: left;
 }
-.map-style{
-  border:0; 
-  width: 90%; 
+.map-style {
+  border: 0;
+  width: 90%;
   padding-left: 10%;
   height: 350px;
 }
-.image-size{
+.image-size {
   height: 15rem;
 }
-.nav-menu2{
+.nav-menu2 {
   margin-left: -26rem;
 }
-.cart-style{
+.cart-style {
   border-radius: 15px;
-  font-size: .8em;
+  font-size: 0.8em;
   margin-left: 1rem;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
 }
-.cart-icon{
-  margin-top: -.1rem;
+.cart-icon {
+  margin-top: -0.1rem;
   padding-right: 1rem;
+}
+.space-category {
+  padding-left: 5px;
 }

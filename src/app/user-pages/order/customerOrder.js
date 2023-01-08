@@ -1,137 +1,252 @@
 import React, { Component, useEffect, useState } from "react";
-import Form from 'react-bootstrap/Form';
-import './style.css';
+import { useLocation } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 
-function CustomerOrder() {
-    const [allData, setAllData] = useState([]);
-    useEffect(() => {
-        const url = "";
-        fetch(url)
-            .then((response) => response.json())
-            .then((response) => {
-                console.log(response)
-                setAllData(response.data)
-        })
-    }, []);
-    return (
-        <div>
-            <div className="top-section">
-                <h1>Your Cart</h1>
-                <h3>Check Out Now and Enjoy Your Food</h3>
-            </div>
-            <div className="col-lg-12 grid-margin stretch-card">
-                <div className="card">
-                    <div className="card-body">
-                        <div className="section_01">
-                            <div className="">
-                                <h4 className="card-title">Your Cart Items:</h4>
-                            </div>
-                            <div>
-                                <a href="/" className="btn btn-outline-success right-side2"><i className="bi bi-house-door-fill"></i>Back To Home</a>
-                            </div>
-                        </div>
-                        <div className="col-md-12">
-                            <div className="col-md-12 section-border">
-                                <div className="table-style table-responsive">
-                                    <table className="table table-hover table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Item</th>
-                                                <th>Product Title</th>
-                                                <th>Unit Price</th>
-                                                <th>Quantity</th>
-                                                <th>Total Price</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><img className="img-style" src={require('../../../assets/images/product_images_2/thumb_image12.jpg')}></img></td>
-                                                <td>Dinner Rice package</td>
-                                                <td>$120</td>
-                                                <td>
-                                                    <button className="icon-plus"><i className="bi bi-plus"></i></button>
-                                                    1
-                                                    <button className="icon-minus"><i className="bi bi-dash"></i></button>
-                                                </td>
-                                                <td>$120</td>
-                                                <td><button className="icon-delete"><i className="bi bi-x-circle"></i></button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-12 section_01">
-                            <div className="col-md-4 block_01">
-                                <h4>Shipping Method:</h4>
-                                <input type="radio" value="home-delivery" name="shipping-method" /> Home Delivery<br></br>
-                                <input type="radio" value="Female" name="shipping-method" /> Pickup
-                                <br></br>
-                                <div className="section_01 section-border">
-                                    <div className="badge">
-                                        <Form.Label>Order Date:</Form.Label><br></br>
-                                        <Form.Label>
-                                            { new Date().toLocaleString("en-US", { day: '2-digit' }) }-
-                                            { new Date().toLocaleString("en-US", { month: "long" }) }-
-                                            { new Date().getFullYear() }
-                                        </Form.Label>
-                                    </div>
-                                    <div className="right-side badge">
-                                        <Form.Label>Order Time:</Form.Label><br></br>
-                                        <Form.Label>
-                                            { new Date().toLocaleTimeString("en-US") }
-                                        </Form.Label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-4 block_01">
-                                <h4>Coupon Code</h4>
-                                <p>Enter your coupon code if you have one.</p>
-                                <div className="input_field">
-                                    <div className="wid">
-                                        <Form.Label className="level-style"> Enter your coupon code </Form.Label>
-                                        <Form.Control name="coupon" type="text" placeholder="Enter your coupon code" />
-                                    </div>
-                                </div>
-                                <button className="btn btn-warning btn-se"><i className="bi bi-back"></i>Apply Coupon</button>
-                            </div>
-                            <div className="col-md-4 block_01">
-                                <h4>Cart Totals</h4>
-                                <div className="table-style table-responsive">
-                                    <table className="table table-bordered table-hover">
-                                        <tbody>
-                                            <tr>
-                                                <td>Subtotal</td>
-                                                <td>695</td>
-                                            </tr>
-                                            <tr>
-                                                <td>VAT(n%)</td>
-                                                <td>104.25</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Discount</td>
-                                                <td>0</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Service Charge</td>
-                                                <td>0.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Grand Total</td>
-                                                <td>799.25</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <button className="btn btn-warning btn-se"><i className="bi bi-credit-card"></i>Proceed to Checkout</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+import "./style.css";
+import { baseUrl } from "../constant/global";
+
+function CustomerOrder({}) {
+  const [allData, setAllData] = useState([]);
+  const { state } = useLocation();
+  const [orderDetails, setOrderDetails] = useState(state);
+  const [quantity, setQuantity] = useState(1);
+  const [total, setTotal] = useState();
+
+  useEffect(() => {
+    const url = "";
+    fetch(url)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        setAllData(response.data);
+      });
+  }, []);
+  useEffect(() => {
+    calTotal();
+  }, [quantity, orderDetails]);
+  const calTotal = () => {
+    // console.log(orderDetails);
+
+    let sum = 0;
+
+    orderDetails.forEach((element) => {
+      sum = sum + parseInt(element[0].food_price * parseInt(element[0].qty));
+    });
+    setTotal(sum);
+  };
+
+  const removeItem = (id) => {
+    setOrderDetails((current) =>
+      current.filter((data) => data[0].food_id !== id)
     );
+  };
+
+  const increaseQty = (id) => {
+    // setQuantity(quantity + 1);
+    setQuantity(quantity + 1);
+    const upqty = orderDetails.map((data) => {
+      if (id === data[0].food_id) {
+        // Increment the clicked counte
+
+        return (data[0].qty += 1);
+      } else {
+        // The rest haven't changed
+        return data;
+      }
+    });
+  };
+  const descreaseQty = (id) => {
+    setQuantity(quantity - 1);
+
+    const upqty = orderDetails.map((data) => {
+      if (id === data[0].food_id) {
+        // Increment the clicked counter
+        if (data[0].qty > 1) {
+          return (data[0].qty -= 1);
+        } else {
+          alert("Quantity Cannot be 0");
+        }
+      } else {
+        // The rest haven't changed
+        return data;
+      }
+    });
+  };
+  return (
+    <div>
+      <div className="top-section">
+        <h1>Your Cart</h1>
+        <h3>Check Out Now and Enjoy Your Food</h3>
+      </div>
+      <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
+            <div className="section_01">
+              <div className="">
+                <h4 className="card-title">Your Cart Items:</h4>
+              </div>
+              <div>
+                <a href="/" className="btn btn-outline-success right-side2">
+                  <i className="bi bi-house-door-fill"></i>Back To Home
+                </a>
+              </div>
+            </div>
+            <div className="col-md-12">
+              <div className="col-md-12 section-border">
+                <div className="table-style table-responsive">
+                  <table className="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Product Title</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Sub Total</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orderDetails
+                        ? orderDetails.map((data) => (
+                            <tr>
+                              <td>
+                                <img
+                                  className="img-style"
+                                  src={`${baseUrl}/foods/medium/${data[0].image}`}
+                                ></img>
+                              </td>
+                              <td>{data[0].food_name}</td>
+
+                              <td>{data[0].food_price}</td>
+                              <td>
+                                <button
+                                  className="icon-plus"
+                                  onClick={() => {
+                                    increaseQty(data[0].food_id);
+                                  }}
+                                >
+                                  <i className="bi bi-plus"></i>
+                                </button>
+                                {data[0].qty}
+                                <button
+                                  className="icon-minus"
+                                  onClick={() => {
+                                    descreaseQty(data[0].food_id);
+                                  }}
+                                >
+                                  <i className="bi bi-dash"></i>
+                                </button>
+                              </td>
+
+                              <td>{data[0].food_price * data[0].qty} </td>
+
+                              <td>
+                                <button
+                                  className="icon-delete"
+                                  onClick={() => {
+                                    removeItem(data[0].food_id);
+                                  }}
+                                >
+                                  <i className="bi bi-x-circle"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          ))
+                        : null}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-12 section_01">
+              <div className="col-md-4 block_01">
+                <h4>Shipping Method:</h4>
+                <input
+                  type="radio"
+                  value="home-delivery"
+                  name="shipping-method"
+                />
+                Home Delivery<br></br>
+                <input type="radio" value="Female" name="shipping-method" />
+                Pickup
+                <br></br>
+                <div className="section_01 section-border">
+                  <div className="badge">
+                    <Form.Label>Order Date:</Form.Label>
+                    <br></br>
+                    <Form.Label>
+                      {new Date().toLocaleString("en-US", { day: "2-digit" })}-
+                      {new Date().toLocaleString("en-US", { month: "long" })}-
+                      {new Date().getFullYear()}
+                    </Form.Label>
+                  </div>
+                  <div className="right-side badge">
+                    <Form.Label>Order Time:</Form.Label>
+                    <br></br>
+                    <Form.Label>
+                      {new Date().toLocaleTimeString("en-US")}
+                    </Form.Label>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4 block_01">
+                <h4>Coupon Code</h4>
+                <p>Enter your coupon code if you have one.</p>
+                <div className="input_field">
+                  <div className="wid">
+                    <Form.Label className="level-style">
+                      {" "}
+                      Enter your coupon code{" "}
+                    </Form.Label>
+                    <Form.Control
+                      name="coupon"
+                      type="text"
+                      placeholder="Enter your coupon code"
+                    />
+                  </div>
+                </div>
+                <button className="btn btn-warning btn-se">
+                  <i className="bi bi-back"></i>Apply Coupon
+                </button>
+              </div>
+              <div className="col-md-4 block_01">
+                <h4>Cart Totals</h4>
+                <div className="table-style table-responsive">
+                  <table className="table table-bordered table-hover">
+                    <tbody>
+                      <tr>
+                        <td>Total</td>
+                        <td>{total ? total : null}</td>
+                      </tr>
+                      <tr>
+                        <td>VAT(n%)</td>
+                        <td>104.25</td>
+                      </tr>
+                      <tr>
+                        <td>Discount</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Service Charge</td>
+                        <td>0.00</td>
+                      </tr>
+                      <tr>
+                        <td>Grand Total</td>
+                        <td>799.25</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button className="btn btn-warning btn-se">
+                  <i className="bi bi-credit-card"></i>Proceed to Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default CustomerOrder;
