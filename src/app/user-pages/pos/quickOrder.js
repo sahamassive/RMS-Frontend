@@ -1,10 +1,11 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "./style.css";
 import axios from "axios";
 import { baseUrl } from "../constant/global";
-import { Button } from "bootstrap";
+import { ReactCalculator } from "simple-react-calculator";
+import Modal from '@mui/material/Modal';
 
 function QuickOrder() {
   const [section, setSection] = useState("");
@@ -13,6 +14,9 @@ function QuickOrder() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const filterBySearch = (event) => {
     // Access input value
@@ -187,11 +191,9 @@ function QuickOrder() {
                     </Link>
                   </li>
 
-                  <div>
                     <li>
                       {category
                         ? category.map((data) => (
-                            <div>
                               <ul>
                                 <li>
                                   <Link
@@ -203,38 +205,37 @@ function QuickOrder() {
                                   </Link>
                                 </li>
                               </ul>
-                            </div>
                           ))
                         : null}
-                    </li>
-                  </div>
+                  </li>
                 </ul>
               </div>
 
               <div className="col-md-5 section-border">
-                <div class="container">
-                  <div class="row">
+                <div className="container">
+                  <div className="row">
                     {food
                       ? food.map((data) => (
-                          <div class="col">
+                          <div className="col">
                             <img
                               className="food-image"
                               src={`${baseUrl}/foods/small/${data.image}`}
                               alt={data.name}
                             ></img>
 
-                            <p className="img-level">
-                              {data.name} <br></br> <span>{data.price}</span>
+                            <p className="img-level cart-height">
+                              {data.name} <br></br>$ <span>{data.price}</span>
                             </p>
                             <button
-                              className="img-level"
+                              className="btn btn-outline-warning btn-cart"
                               onClick={() => {
                                 addTocart(data.id);
                               }}
                             >
                               <i className="bi bi-cart-x-fill"></i> Add To Cart
-                            </button>
+                          </button>
                           </div>
+                          
                         ))
                       : null}
                   </div>
@@ -305,17 +306,16 @@ function QuickOrder() {
                     </select>
                   </div>
                 </div>
-                <div>
+                <div className="table-responsive">
                   <br></br>
-                  <table className="table table-responsive  table-hover table-bordered">
+                  <table className="table table-hover table-bordered">
                     <thead>
                       <tr>
-                        <th>Item</th>
-
-                        <th>Price</th>
+                        <th className="table-header-item">Item</th>
+                        <th className="action">Price</th>
                         <th>Quantity</th>
-                        <th>Sub Total</th>
-                        <th>Action</th>
+                        <th className="action">Sub Total</th>
+                        <th className="action">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -323,34 +323,34 @@ function QuickOrder() {
                         ? orderDetails.map((data) => (
                             <tr>
                               <td>{data[0].food_name}</td>
-                              <td>{data[0].food_price}</td>
+                              <td className="level-quantity">{data[0].food_price}</td>
                               <td>
-                                <button
+                                <button className="icon-plus"
                                   onClick={() => {
                                     increaseQty(data[0].food_id);
                                   }}
                                 >
-                                  <i className="bi bi-plus icon-plus"></i>
+                                  <i className="bi bi-plus"></i>
                                 </button>
-                                {data[0].qty}
-                                <button
+                                <span className="level-quantity">{data[0].qty}</span>
+                                <button className="icon-minus"
                                   onClick={() => {
                                     descreaseQty(data[0].food_id);
                                   }}
                                 >
-                                  <i className="bi bi-dash icon-minus"></i>
+                                  <i className="bi bi-dash"></i>
                                 </button>
                               </td>
-                              <td>{data[0].food_price * data[0].qty} </td>
+                              <td className="level-quantity">{data[0].food_price * data[0].qty} </td>
 
                               <td>
                                 <button
-                                  className="btn btn-danger"
+                                  className="icon-delete"
                                   onClick={() => {
                                     removeItem(data[0].food_id);
                                   }}
                                 >
-                                  <i className="bi bi-x-circle icon-delete"></i>
+                                  <i className="bi bi-x-circle"></i>
                                 </button>
                               </td>
                             </tr>
@@ -358,11 +358,38 @@ function QuickOrder() {
                         : null}
                     </tbody>
                   </table>
-                  {total ? total : null}
+
+                  <div className="table-style table-responsive">
+                    <table className="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{total ? total : null}</td>
+                            </tr>
+                            <tr>
+                                <td>VAT(n%)</td>
+                            <td>{ total ?  (total * (10 / 100)).toFixed(2) : null }</td>
+                            </tr>
+                            <tr>
+                                <td>Discount</td>
+                                <td> 0.00 </td>
+                            </tr>
+                            <tr>
+                                <td>Service Charge</td>
+                            <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Grand Total</td>
+                                <td>{total ? total : null}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                   <div className="section_01 btn-se">
-                    <a className="btn btn-primary top-space">
+                    <button className="btn btn-primary top-space" onClick={handleOpen}>
                       <i className="bi bi-calculator"></i>
-                    </a>
+                    </button>
                     <button
                       onClick={() => {
                         cancleOrder();
@@ -376,6 +403,16 @@ function QuickOrder() {
                       <i className="bi bi-check-square-fill"></i>Confirm Order
                     </a>
                   </div>
+                  <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                    <div className="calculator">
+                      <ReactCalculator/>
+                  </div>
+                </Modal>
                 </div>
               </div>
             </div>

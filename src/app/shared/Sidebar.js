@@ -293,11 +293,11 @@ class Sidebar extends Component {
                         <Collapse in={this.state.hrOpen}>
                             <div>
                                 <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <Link className={this.isPathActive('/hr/add-employee') ? 'nav-link active' : 'nav-link'} to="/hr/add-employee"><Trans>Add Employee</Trans></Link></li>
+                                    {/*<li className="nav-item"> <Link className={this.isPathActive('/hr/add-employee') ? 'nav-link active' : 'nav-link'} to="/hr/add-employee"><Trans>Add Employee</Trans></Link></li>*/}
                                     <li className="nav-item"> <Link className={this.isPathActive('/hr/all-employee') ? 'nav-link active' : 'nav-link'} to="/hr/all-employee"><Trans>All Employee</Trans></Link></li>
                                     <li className="nav-item"> <Link className={this.isPathActive('/hr/attendence') ? 'nav-link active' : 'nav-link'} to="/hr/attendence"><Trans>Attendence</Trans></Link></li>
                                     <li className="nav-item"> <Link className={this.isPathActive('/hr/department') ? 'nav-link active' : 'nav-link'} to="/hr/department"><Trans>Department</Trans></Link></li>
-                                    <li className="nav-item"> <Link className={this.isPathActive('/hr/new-department') ? 'nav-link active' : 'nav-link'} to="/hr/new-department"><Trans>New Department</Trans></Link></li>
+                                    {/*<li className="nav-item"> <Link className={this.isPathActive('/hr/new-department') ? 'nav-link active' : 'nav-link'} to="/hr/new-department"><Trans>New Department</Trans></Link></li>*/}
                                     <li className="nav-item"> <Link className={this.isPathActive('/hr/leave') ? 'nav-link active' : 'nav-link'} to="/hr/leave"><Trans>Employee Leave</Trans></Link></li>
                                     <li className="nav-item"> <Link className={this.isPathActive('/hr/holidays') ? 'nav-link active' : 'nav-link'} to="/hr/holidays"><Trans>Holidays</Trans></Link></li>
                                 </ul>

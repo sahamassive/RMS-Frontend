@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './EmployeeRegistration.css';
-import AccountDetails from'./AccountDetails';
+import AccountDetails from './AccountDetails';
+import Form from 'react-bootstrap/Form';
 import Address from './Address';
 import Others from './Others';
 import Password from './Password';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 function EmployeeRegistration() { 
@@ -12,6 +13,7 @@ function EmployeeRegistration() {
     const [address, setAddress] = useState(false);
     const [password, setPassword] = useState(false);
     const [others, setOthers] = useState(false);
+    const { state } = useLocation();
     
     const AccountDetails2 = () => {
         setAccountDetails(true);
@@ -40,6 +42,38 @@ function EmployeeRegistration() {
         setPassword(false);
         setAccountDetails(false);
     }
+    const insert = async (e) => {
+        e.preventDefault();
+        console.log(state.fname);
+        console.log(state.lname);
+
+        const formData = new FormData();
+        // formData.append("image", image);
+        // formData.append("first_name", fname);
+        // formData.append("last_name", lname);
+        // formData.append("email", email);
+        // formData.append("phone", phone);
+        // formData.append("NID", nid);
+        // formData.append("gender", gender);
+        // formData.append("dob", dob);
+        // formData.append("type", type);
+        // formData.append("address1", address1);
+        // formData.append("address2", address2);
+        // formData.append("country", country);
+        // formData.append("city", city);
+        // formData.append("state", state);
+        // formData.append("zipCode", zipCode);
+        // formData.append("password", password);
+        // formData.append("salary", salary);
+        // formData.append("joining", joining);
+
+        // await axios
+        //     .post(`${baseUrl}/api/food-insert`, formData)
+        //     .then((response) => {
+        //         alert(response.data.msg);
+        //         console.log(response);
+        //     });
+    };
     return (
         <div>
             <div className="col-lg-12 grid-margin stretch-card">
@@ -47,7 +81,7 @@ function EmployeeRegistration() {
                     <div className="card-body">
                         <h2> New Employee Registration:</h2>
                         <div className="card-body">
-                            <form>
+                            <Form method='post'>
                                 <div className='two_part'>
                                     <div className="col-sm-3 background">
                                         <p className="text_style space"><span className="text_style"><i
@@ -83,11 +117,14 @@ function EmployeeRegistration() {
                                             {password ?
                                             <Password /> : null}
                                             {others?
-                                            <Others /> : null}
+                                                <Others /> : null}
+                                            {others?
+                                                <p className='btn-style2'><button type="submit"  onClick={insert} className="btn btn-warning"><i
+                                                className="bi bi-save-fill"></i>Insert</button></p> : null}
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </Form>
                         </div>
                     </div>
                 </div>
