@@ -13,19 +13,31 @@ const AllAdmin = lazy(() => import("../app/user-pages/admin/all.js"));
 
 const AllEmployee = lazy(() => import("../app/user-pages/hr/allEmployee.js"));
 const Attendence = lazy(() => import("../app/user-pages/hr/attendence.js"));
-const Department = lazy(() => import("../app/user-pages/hr/department/department.js"));
-const NewDepartment = lazy(() => import("../app/user-pages/hr/department/newDepartment.js"));
-const EmployeeLeave = lazy(() => import("../app/user-pages/hr/holiday/employeeLeave.js"));
-const NewEmployeeLeave = lazy(() => import("../app/user-pages/hr/holiday/newEmployeeLeave.js"));
+const Department = lazy(() =>
+  import("../app/user-pages/hr/department/department.js")
+);
+const NewDepartment = lazy(() =>
+  import("../app/user-pages/hr/department/newDepartment.js")
+);
+const EmployeeLeave = lazy(() =>
+  import("../app/user-pages/hr/holiday/employeeLeave.js")
+);
+const NewEmployeeLeave = lazy(() =>
+  import("../app/user-pages/hr/holiday/newEmployeeLeave.js")
+);
 const Holidays = lazy(() => import("../app/user-pages/hr/holiday/holiday.js"));
-const NewHoliday = lazy(() => import("../app/user-pages/hr/holiday/newHoliday.js"));
+const NewHoliday = lazy(() =>
+  import("../app/user-pages/hr/holiday/newHoliday.js")
+);
 
 const Brand = lazy(() => import("../app/user-pages/catelogue/brand.js"));
 const Category = lazy(() => import("../app/user-pages/catelogue/category.js"));
 const Section = lazy(() => import("../app/user-pages/catelogue/section.js"));
 const Food = lazy(() => import("../app/user-pages/catelogue/food.js"));
 
-const CreateBrand = lazy(() => import("../app/user-pages/catelogue/createBrand.js"));
+const CreateBrand = lazy(() =>
+  import("../app/user-pages/catelogue/createBrand.js")
+);
 const EditBrand = lazy(() =>
   import("../app/user-pages/catelogue/editBrand.js")
 );
@@ -44,14 +56,14 @@ const CreateFood = lazy(() =>
 const EditFood = lazy(() => import("../app/user-pages/catelogue/editFood.js"));
 const QuickOrder = lazy(() => import("../app/user-pages/pos/quickOrder.js"));
 
-const CustomerOrder = lazy(() => import("../app/user-pages/order/customerOrder.js"));
+const CustomerOrder = lazy(() =>
+  import("../app/user-pages/order/customerOrder.js")
+);
 
 const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
 
-const Booking = lazy(() =>
-  import("../app/user-pages/booking/booking.js")
-);
+const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
 const CreateBooking = lazy(() =>
   import("../app/user-pages/booking/createBooking.js")
 );
@@ -111,7 +123,6 @@ class AppRoutes extends Component {
 
           <Route path="/restaurant/all" component={Restaurant} />
           <Route path="/restaurant/new-restaurant" component={NewRestaurant} />
-          
 
           <Route path="/hr/add-employee" component={RegisterEmployee} />
           <Route path="/hr/all-employee" component={AllEmployee} />
