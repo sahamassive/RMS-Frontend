@@ -49,16 +49,16 @@ input[type=text]:focus{
 .icon-plus{
     background-color: green;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.2em;
     border-radius: 5px;
-    margin-right: .3rem;
+    border: none;
 }
 .icon-minus{
     background-color: red;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    border: none;
     border-radius: 5px;
-    margin-left: .35rem;
 }
 .menu-style{
     background-color: white;
@@ -82,7 +82,7 @@ input[type=text]:focus{
 }
 .img-level{
     text-align: center;
-    border-radius: 8PX;
+    border-radius: 15PX;
     margin-top: 5px;
     width:7.5rem;
     border: .1px solid rgb(68, 67, 67);
@@ -111,21 +111,54 @@ input[type=text]:focus{
     background-color: red;
     color: white;
     font-size: 1rem;
+    font-weight: bold;
+    border: none;
     border-radius: 5px;
     padding: .3rem;
 }
 .table-style{
-    width:100%;
+    width:50%;
+    margin-left: 50%;
 }
 .btn-se{
     position: absolute;
     right: .8rem;
 }
-space3{
+.space3{
     margin-left: .2rem;
 }
+.cart-height{
+    height: 5rem;
+}
+.btn-cart{
+    border-radius: 10px;
+    width:7.5rem;
+    font-size: .8em;
+    margin-top: -1.5rem;
+}
+.action{
+    width:.2rem;
+}
+.table-header-item{
+    width:10.1rem;
+}
+.level-quantity{
+    font-size: 1em;
+    padding:3px;
+}
+.css-h2okw{
+    height: 55vh !important;
+    width: 35vh !important;
+    position: absolute;
+    left:59%;
+    top: 42%;
+}
+.css-hayew9{
+    font-size: 2em !important;
+}
+
 ul{
-    padding: 5px 0 5px 30px;
+    padding: 0px 0 0px 30px;
 }
 ul li{
     list-style: none;
@@ -154,7 +187,7 @@ ul li a i{
     color: rgb(0, 0, 0);
 }
 ul li a{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding-left: 1rem;
 }
 .li-style{
@@ -164,13 +197,13 @@ ul li a{
 }
 ul li>ul{
     padding: 1px;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 1rem;
 }
 ul li>ul li{
     height: 25px;
     line-height: 20px;
     font-size: 15px;
-    padding: 1px 1px 1px 20px;
+    padding: 1px 1px 1px 0px;
     font-weight: normal;
     border-left: 1px solid white;
     margin: 5px;
