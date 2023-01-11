@@ -1,3 +1,6 @@
-const baseUrl = "https://5178-103-153-66-241.in.ngrok.io";
+
+const baseUrl = "http://127.0.0.1:8000";
+
+
 
 export { baseUrl };
