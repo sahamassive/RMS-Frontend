@@ -40,7 +40,7 @@ function Brand() {
                 className="btn-style btn btn-info"
                 href="/catalogue/create-brand"
               >
-                <i className="bi bi-plus"></i>New Brand
+                <i className="bi bi-plus-square"></i>New Brand
               </a>
             </div>
             <div className="table-responsive">
@@ -101,6 +101,7 @@ function Brand() {
                   </tbody>
                 </table>
               ) : null}
+              <br></br>
             </div>
           </div>
         </div>
