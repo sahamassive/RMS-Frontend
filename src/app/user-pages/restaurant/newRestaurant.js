@@ -18,19 +18,20 @@ function NewRestaurant() {
 
     const insert = async (e) => {
         e.preventDefault();
+        //validate
+
+
         const formData = new FormData();
     
-        formData.append("restaurantName", restaurantName);
-        formData.append("phoneNumber", phoneNumber);
+        formData.append("restaurant_name", restaurantName);
+        formData.append("phone", phoneNumber);
         formData.append("email", email);
         formData.append("city", city);
         formData.append("area", area);
-        formData.append("metaTag", metaTag);
-        formData.append("metaDescription", metaDescription);
-        formData.append("metaKeywords", metaKeywords);
+        formData.append("meta_tag", metaTag);
+        formData.append("meta_description", metaDescription);
+        formData.append("meta_keyword", metaKeywords);
         formData.append("image", image);
-
-        console.log(formData);
 
         await axios
             .post(`${baseUrl}/api/restaurant-insert`, formData)
@@ -76,6 +77,7 @@ function NewRestaurant() {
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Restaurant name"
+                                                    
                                                     onChange={(event) => {
                                                         setRestaurantName(event.target.value);
                                                     }}

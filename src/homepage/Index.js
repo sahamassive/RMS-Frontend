@@ -375,10 +375,7 @@ function Index() {
                 <ul className="nav nav-tabs flex-column">
                   <li className="nav-item">
                     <a
-                      className="nav-link active show"
-                      data-bs-toggle="tab"
-                      href="#tab-1"
-                    >
+                      className="nav-link active show" data-bs-toggle="tab" href="#tab-1">
                       Cheese Burger
                     </a>
                   </li>
