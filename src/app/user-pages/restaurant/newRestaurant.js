@@ -1,8 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import './style.css';
+import axios, { all } from "axios";
+import { baseUrl } from "../constant/global";
 
 function NewRestaurant() {
+    const [restaurantName, setRestaurantName] = useState();
+    const [phoneNumber, setPhoneNumber] = useState();
+    const [email, setEmail] = useState();
+    const [city, setCity] = useState();
+    const [area, setArea] = useState();
+    const [metaTag, setMetaTag] = useState();
+    const [metaDescription, setMetaDescription] = useState();
+    const [metaKeywords, setMetaKeywords] = useState();
+    const [image, setImage] = useState();
+    const [preview, setPrview] = useState();
+
+    const insert = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+    
+        formData.append("restaurantName", restaurantName);
+        formData.append("phoneNumber", phoneNumber);
+        formData.append("email", email);
+        formData.append("city", city);
+        formData.append("area", area);
+        formData.append("metaTag", metaTag);
+        formData.append("metaDescription", metaDescription);
+        formData.append("metaKeywords", metaKeywords);
+        formData.append("image", image);
+
+        console.log(formData);
+
+        await axios
+            .post(`${baseUrl}/api/restaurant-insert`, formData)
+            .then((response) => {
+                alert(response.data.msg);
+                console.log(response);
+        });
+    };
+    const changeHandler = (event) => {
+        setImage(event.target.files[0]);
+        setPrview(URL.createObjectURL(event.target.files[0]));
+    };
     return (
         <div>
             <div className="col-lg-12 grid-margin stretch-card">
@@ -16,11 +56,16 @@ function NewRestaurant() {
                             <Form>
                                 <div className='two_part'>
                                     <div className="col-sm-3 background">
-                                        <lavel className="label-style">Restaurant logo</lavel>
+                                        <label className="logo-label-style">Restaurant logo</label>
                                         <div className="col-sm-6">
                                             <Form.Group controlId="formFileMultiple" className="mb-3">
-                                                <Form.Control type="file" multiple />
+                                                <Form.Control
+                                                    type="file"
+                                                    multiple
+                                                    onChange={changeHandler}
+                                                />
                                             </Form.Group>
+                                            <img src={preview} width="212rem"/>
                                         </div>
                                     </div>
                                     <div className="col-sm-9 background">
@@ -28,29 +73,55 @@ function NewRestaurant() {
                                         <div>
                                             <div className="input_field">
                                                 <Form.Label className="level-style">Restaurant name</Form.Label>
-                                                <Form.Control type="text" placeholder="Restaurant name"></Form.Control>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Restaurant name"
+                                                    onChange={(event) => {
+                                                        setRestaurantName(event.target.value);
+                                                    }}
+                                                ></Form.Control>
                                             </div>
                                             <div className="input_field two_part">
                                                 <div className="wid">
                                                     <Form.Label className="level-style">Contact no.</Form.Label>
-                                                    <Form.Control type="text" placeholder="Contact no."></Form.Control>
+                                                    <Form.Control
+                                                        type="text"
+                                                        placeholder="Contact no."
+                                                        onChange={(event) => {
+                                                            setPhoneNumber(event.target.value);
+                                                        }}
+                                                    ></Form.Control>
                                                 </div>
                                                 <div className="wid">
                                                     <Form.Label className="level-style">E-mail</Form.Label>
-                                                    <Form.Control type="email" placeholder="E-mail"></Form.Control>
+                                                    <Form.Control
+                                                        type="email"
+                                                        placeholder="E-mail"
+                                                        onChange={(event) => {
+                                                            setEmail(event.target.value);
+                                                        }}
+                                                    ></Form.Control>
                                                 </div>
                                             </div>
                                             <div className="input_field two_part">
                                                 <div className="wid">
                                                     <Form.Label className="level-style">Select your city</Form.Label>
-                                                    <select>
+                                                    <select
+                                                    onChange={(event) => {
+                                                        setCity(event.target.value);
+                                                    }}
+                                                    >
                                                         <option value="">Select here</option>
                                                         <option value="chef">Chef</option>
                                                     </select>
                                                 </div>
                                                 <div className="wid">
                                                     <Form.Label className="level-style">Select your area</Form.Label>
-                                                    <select>
+                                                    <select
+                                                    onChange={(event) => {
+                                                        setArea(event.target.value);
+                                                    }}
+                                                    >
                                                         <option value="">Select here</option>
                                                         <option value="chef">Chef</option>
                                                     </select>
@@ -59,14 +130,26 @@ function NewRestaurant() {
                                             <div className="input_field">
                                                 <Form.Group>
                                                     <Form.Label className="level-style">Meta Tag</Form.Label>
-                                                    <Form.Control className="area" as="textarea" placeholder="Meat tag"
+                                                    <Form.Control
+                                                        className="area"
+                                                        as="textarea"
+                                                        placeholder="Meat tag"
+                                                        onChange={(event) => {
+                                                            setMetaTag(event.target.value);
+                                                        }}
                                                         rows={3} />
                                                 </Form.Group>
                                             </div>
                                             <div className="input_field">
                                                 <Form.Group>
                                                     <Form.Label className="level-style">Meta description</Form.Label>
-                                                    <Form.Control className="area" as="textarea" placeholder="Meta description"
+                                                    <Form.Control
+                                                        className="area"
+                                                        as="textarea"
+                                                        placeholder="Meta description"
+                                                        onChange={(event) => {
+                                                            setMetaDescription(event.target.value);
+                                                        }}
                                                         rows={6}>
                                                     </Form.Control>
                                                 </Form.Group>
@@ -74,14 +157,20 @@ function NewRestaurant() {
                                             <div className="input_field">
                                                 <Form.Group>
                                                     <Form.Label className="level-style">Meta keyword</Form.Label>
-                                                    <Form.Control className="area" as="textarea" placeholder="Meta keyword"
+                                                    <Form.Control
+                                                        className="area"
+                                                        as="textarea"
+                                                        placeholder="Meta keyword"
+                                                        onChange={(event) => {
+                                                            setMetaKeywords(event.target.value);
+                                                        }}
                                                         rows={3}>
                                                     </Form.Control>
                                                 </Form.Group>
                                             </div>
                                             <div className="input_field">
-                                                <a className="btn btn-warning top-space"><i
-                                                        className="bi bi-save-fill"></i>Insert</a>
+                                                <button onClick={insert} className="btn btn-warning top-space"><i
+                                                        className="bi bi-save-fill"></i>Insert</button>
                                                 <br></br><br></br>
                                             </div>
                                         </div>

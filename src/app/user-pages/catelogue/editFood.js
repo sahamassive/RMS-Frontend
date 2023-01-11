@@ -45,6 +45,7 @@ function EditFood() {
         console.log(err);
       });
   }, [params.id]);
+  
   useEffect(() => {
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setSection(response.data);
@@ -98,7 +99,7 @@ function EditFood() {
         <div className="col-lg-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
-              <h2> Create new Food Item</h2>
+              <h2>Edit Food Item</h2>
               <div className="two_part">
                 <div className="col-sm-3 background">
                   <lavel className="label-style">Food Image</lavel>
@@ -115,7 +116,6 @@ function EditFood() {
                         preview ? preview : `${baseUrl}/foods/small/${image}`
                       }
                       width="150px"
-                      height="350px"
                     />
                   </div>
                 </div>
@@ -138,7 +138,7 @@ function EditFood() {
                         <Form.Label className="level-style">
                           Description
                         </Form.Label>
-                        <Form.Control
+                        <Form.Control className="area"
                           as="textarea"
                           value={description}
                           rows={3}

@@ -81,7 +81,7 @@ function CreateFood() {
               <h2> Create new Food Item</h2>
               <div className="two_part">
                 <div className="col-sm-3 background">
-                  <lavel className="label-style">Food Image</lavel>
+                  <label className="logo-label-style">Food Image</label>
                   <div className="col-sm-6">
                     <Form.Group controlId="formFileMultiple" className="mb-3">
                       <Form.Control
@@ -90,7 +90,7 @@ function CreateFood() {
                         multiple
                       />
                     </Form.Group>
-                    <img src={preview} width="150px" height="350px" />
+                    <img src={preview} width="225rem"/>
                   </div>
                 </div>
                 <div className="col-sm-9 background">
@@ -259,7 +259,6 @@ function CreateFood() {
                   <a className="btn btn-warning top-space" onClick={insert}>
                     <i className="bi bi-save-fill"></i>Insert
                   </a>
-
                   <br></br>
                   <br></br>
                   <br></br>

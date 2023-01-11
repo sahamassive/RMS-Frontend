@@ -2,15 +2,33 @@ import React, { Component, useEffect, useState, createContext } from "react";
 import "../homepage/assets/css/style.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import { baseUrl } from "../app/user-pages/constant/global";
+import Modal from '@mui/material/Modal';
 import CustomerOrder from "../app/user-pages/order/customerOrder";
 
 function Index() {
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
+  const [singlefood,setSingleFood] = useState("");
   const [orderDetails, setOrderDetails] = useState([]);
   const order = [];
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (id) => {
+    axios
+      .get(`${baseUrl}/api/food-edit/${id}`)
+
+      .then((res) => {
+        setSingleFood(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setOpen(true);
+    console.log(singlefood.name)
+    
+  }
+ 
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getCategory();
@@ -57,10 +75,10 @@ function Index() {
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
             <i className="bi bi-phone d-flex align-items-center">
-              <span>+1 5589 55488 55</span>
+              <span>+88 01323 148188</span>
             </i>
             <i className="bi bi-clock d-flex align-items-center ms-4">
-              <span> Mon-Sat: 11AM - 23PM</span>
+              <span> Sat-Fri: 10AM - 11PM</span>
             </i>
           </div>
         </div>
@@ -137,7 +155,7 @@ function Index() {
                   }}
                 >
                   <i className="bi bi-cart4"></i>
-                  {orderDetails.length}
+                  <span className="cart-number">{orderDetails.length}</span>
                 </Link>
               </li>
             </ul>
@@ -159,7 +177,7 @@ function Index() {
         >
           <div className="row">
             <div className="col-lg-8 writing-style">
-              <h1>
+              <h1 className="writing-style">
                 Welcome to <span>Restaurant</span>
               </h1>
               <h2>Delivering great food for more than 18 years!</h2>
@@ -294,23 +312,23 @@ function Index() {
                 <ul id="menu-flters">
                   <Link
                     data-filter="*"
-                    className="filter-active"
+                    className="filter-active space-category btn btn-outline-light"
                     onClick={getFood}
                   >
                     All
                   </Link>
                   {category
                     ? category.map((data) => (
-                        <Link
-                          onClick={() => {
-                            foodByCategory(data.id);
-                          }}
-                          data-filter=".filter-starters"
-                          className="space-category"
-                        >
-                          {data.category_name}
-                        </Link>
-                      ))
+                      <Link
+                        onClick={() => {
+                          foodByCategory(data.id);
+                        }}
+                        data-filter=".filter-starters"
+                        className="space-category btn btn-outline-light"
+                      >
+                        {data.category_name}
+                      </Link>
+                    ))
                     : null}
                 </ul>
               </div>
@@ -318,27 +336,30 @@ function Index() {
             <div className="row" data-aos="fade-up" data-aos-delay="200">
               {food
                 ? food.map((data) => (
-                    <div className="col-lg-4 menu-item">
-                      <img
-                        src={`${baseUrl}/foods/small/${data.image}`}
-                        className="menu-img"
-                        alt=""
-                      ></img>
-                      <div className="menu-content">
-                        <a href="#">{data.name}</a>
-                        <span>$ {data.price}</span>
-                      </div>
-                      <div className="menu-ingredients">{data.description}</div>
-                      <button
-                        className="btn btn-outline-warning cart-style"
-                        onClick={() => {
-                          addTocart(data.id);
-                        }}
-                      >
-                        <i className="bi bi-cart4"></i>Add to Cart
-                      </button>
+                  <div className="col-lg-4 menu-item">
+                    <img
+                      src={`${baseUrl}/foods/small/${data.image}`}
+                      className="menu-img"
+                      alt=""
+                    ></img>
+                    <div className="menu-content">
+                      <a href="#">{data.name}</a>
+                      <span>$ {data.price}</span>
                     </div>
-                  ))
+                    <div className="menu-ingredients">{data.description}</div>
+                    <button
+                      className="btn btn-outline-warning cart-style"
+                      onClick={() => {
+                        addTocart(data.id);
+                      }}
+                    >
+                      <i className="bi bi-cart4"></i>Add to Cart
+                    </button>
+                    <button onClick={() => {
+                      handleOpen(data.id);
+                    }} className="btn btn-outline-warning details-style"><i className="bi bi-info-square"></i>Details</button>
+                  </div>
+                ))
                 : null}
             </div>
           </div>
@@ -812,12 +833,12 @@ function Index() {
                       <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                     </p>
                     <img
-                      src={require("./assets/img/testimonials/testimonials-1.jpg")}
+                      src="https://www.mirpurclubltd.com/wp-content/uploads/2022/03/0B-5-768x682.jpg"
                       className="testimonial-img"
                       alt=""
                     ></img>
-                    <h3>Saul Goodman</h3>
-                    <h4>Ceo &amp; Founder</h4>
+                    <h4>SM Mahabub Alam</h4>
+                    <h4>Founding President, <br></br>Entrepreneurs and Professionals Mirpur Club Ltd.</h4>
                   </div>
                 </div>
                 <div className="swiper-slide">
@@ -1145,7 +1166,7 @@ function Index() {
           <div data-aos="fade-up">
             <iframe
               className="map-style"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+              src="https://maps.google.com/maps?q=Mirpur%20club,&t=&z=13&ie=UTF8&iwloc=&output=embed"
               frameBorder="0"
               allowFullScreen
             ></iframe>
@@ -1352,6 +1373,40 @@ function Index() {
           </div>
         </div>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="food-details">
+          <div className="dis">
+            <div>
+              <img src={`${baseUrl}/foods/medium/${singlefood.image}`} width="70%"></img>
+            </div>
+            <div className="sec_01">
+              <div className="close-btn">
+                <a onClick={handleClose}><i className="bi bi-x-square"></i></a>
+              </div>
+              <h1 className="fo-name">{singlefood.name}</h1>
+              <p className="price">$ {singlefood.price}</p>
+              <p>Description: {singlefood.description}</p>
+              <p>sepciality: {singlefood.sepciality}</p>
+              <p>discount: {singlefood.discount}</p>
+              <button
+                className="btn btn-outline-warning cart-style"
+                onClick={() => {
+                  addTocart(singlefood.id);
+                }}
+              >
+                <i className="bi bi-cart4"></i>Add to Cart
+              </button>
+              <button className="btn btn-outline-warning details-style" onClick={handleClose}>Close</button>
+              <br></br>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

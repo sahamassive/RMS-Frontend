@@ -29,6 +29,14 @@ function NewHoliday() {
                                 <div className="wid">
                                     <Form.Label className="level-style">End Date</Form.Label>
                                     <Form.Control type="date" placeholder="Price"></Form.Control>
+                                    </div>
+                                    <div className="wid">
+                                    <Form.Label className="level-style">Select holiday type</Form.Label>
+                                    <select className="search_box2">
+                                        <option value="">Select from here</option>
+                                        <option value="chef">Govt. Holiday</option>
+                                        <option value="chef">Company Holiday</option>
+                                    </select>
                                 </div>
                             </div>
                             <div className="input_field">
