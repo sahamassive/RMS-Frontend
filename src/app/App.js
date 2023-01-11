@@ -68,7 +68,6 @@ class App extends Component {
       }
     }
   }
-
 }
 
 export default withTranslation()(withRouter(App));

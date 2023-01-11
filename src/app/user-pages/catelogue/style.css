@@ -38,7 +38,17 @@ area:focus {
   padding: 1px;
   text-align: left;
 }
-
+input[type=file]{
+  background-color: #00000085;
+  border-radius: 5px;
+  width: 14rem;
+}
+.logo-label-style{
+  font-size: .9em;
+  font-family: "Times New Roman";
+  margin-left: 1rem;
+  padding-top: 1rem;
+}
 input[type="text"],
 input[type="number"]{
   background-color: #00000085;

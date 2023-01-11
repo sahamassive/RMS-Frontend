@@ -32,7 +32,7 @@ function Food() {
                 className="btn-style btn btn-info"
                 href="/catalogue/create-food"
               >
-                <i className="bi bi-plus"></i>New Food
+                <i className="bi bi-plus-square"></i>New Food
               </a>
             </div>
             <div className="table-responsive">

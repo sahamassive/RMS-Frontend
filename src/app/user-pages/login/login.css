@@ -11,6 +11,20 @@
     position: absolute;
     top: 4rem;
 }
+@media (max-width: 800px){
+    .logo {
+        width: 3em;
+        position: absolute;
+        top: 4.5rem;
+    }
+}
+@media (max-width: 700px){
+    .logo {
+        width: 5em;
+        position: absolute;
+        top: -2rem;
+    }
+}
 
 .company_name {
     font-size: 1.3em;
@@ -23,7 +37,7 @@
 
 .background {
     background-color: white;
-    padding: 7rem 0;
+    padding-top: 7rem;
 }
 
 input[type=text],
@@ -36,22 +50,43 @@ input[type=password] {
 
 input[type=text]:focus,
 input[type=password]:focus {
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: rgb(216, 205, 169);
+    outline: 2px solid rgb(141, 113, 22);
+    background-color: rgb(255, 255, 255);
 }
 
 .right-pic {
-    width: 60%;
-    padding-top: 6%;
+    width: 100%;
+}
+@media (max-width: 850px){
+    .right-pic {
+        width: 100%;
+        padding-top: 8rem;
+    }
+}
+@media (max-width: 950px){
+    .right-pic {
+        width: 100%;
+        padding-top: 4rem;
+    }
+}
+@media (max-width: 700px){
+    .right-pic {
+        display: none;
+    }
 }
 
 .section-04 {
     display: flex;
 }
 
+@media (max-width: 700px){
+    .section-04 {
+        display: block;
+    }
+}
+
 .space {
     margin-top: 1rem;
-    border: 1px solid b;
 }
 
 .forget {
@@ -60,14 +95,7 @@ input[type=password]:focus {
     font-family: Georgia;
     float: right;
 }
-.border-style{
-    margin-left: 20%;
-    margin-right: 20%;
-    padding-bottom: 2rem;
-    border: 1px solid black;
-    border-radius: 8px;
-}
-::placeholder, ::option{
+::placeholder{
     font-style: italic;
-    color: #7F7F7F;
+    color: #000000;
 }

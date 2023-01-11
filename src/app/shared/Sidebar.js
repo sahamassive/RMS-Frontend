@@ -212,7 +212,7 @@ class Sidebar extends Component {
                                 <i className="mdi mdi-table-large"></i>
                             </span>
                             <span className="menu-title">
-                                <Trans>Catelogue <br /> Management</Trans>
+                                <Trans>Catalogue <br /> Management</Trans>
                             </span>
                             <i className="menu-arrow"></i>
                         </div>

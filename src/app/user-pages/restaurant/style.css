@@ -27,7 +27,14 @@
         display: block;
     }
 }
-input[type=text],input[type=email]{
+
+input[type=file]{
+    background-color: #00000085;
+    border-radius: 5px;
+    width: 13.5rem;
+}
+input[type=text],
+input[type=email]{
     background-color: #00000085;
     border-radius: 5px;
 }
@@ -67,6 +74,12 @@ select:focus{
     font-size: .9em;
     font-family: "Times New Roman";
     margin-bottom: -6px;
+}
+.logo-label-style{
+    font-size: .9em;
+    font-family: "Times New Roman";
+    margin-left: 1rem;
+    margin-top: 1rem;
 }
 .wid{
     width:100%;
