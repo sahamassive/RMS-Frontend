@@ -14,7 +14,7 @@ import { baseUrl } from "../constant/global";
 function EmployeeRegistration() {
   const [accountDetails, setAccountDetails] = useState(true);
   const [address, setAddress] = useState(false);
-  const [passwordview, setPasswordView] = useState(false);
+  const [passwordView, setPasswordView] = useState(false);
   const [others, setOthers] = useState(false);
 
   const [image, setImage] = useState();
@@ -109,10 +109,12 @@ function EmployeeRegistration() {
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
-            <h2> New Employee Registration:</h2>
-            <div className="card-body">
+              <div className="btn-section">
+                <h4 className="card-title">New Employee Registration:</h4>
+                <a className="btn-style btn btn-info" href="/hr/all-employee"><i class="bi bi-card-list"></i>All Employee</a>
+              </div>
               <div className="two_part">
-                <div className="col-sm-3 background">
+              <div className="col-sm-3 background">
                   <p className="text_style space">
                     <span className="text_style">
                       <i className="bi bi-folder2-open icon-space"></i>Account
@@ -146,7 +148,7 @@ function EmployeeRegistration() {
                   <Link onClick={Password2}>
                     <p
                       className={
-                        password
+                        passwordView
                           ? "btn_style_active icon2"
                           : "btn_style_inactive icon2"
                       }
@@ -166,7 +168,8 @@ function EmployeeRegistration() {
                       Others
                     </p>
                   </Link>
-                </div>
+              </div>
+              <div className="col-sm-9">
                 <Form onSubmit={insert}>
                   {accountDetails ? (
                     <div className="background">
@@ -309,7 +312,7 @@ function EmployeeRegistration() {
                         </div>
                       </div>
                       <p className="btn-style2">
-                        <a className="btn btn-info">Next</a>
+                        <Link onClick={ AddressView } className="btn btn-info">Next</Link>
                       </p>
                     </div>
                   ) : null}
@@ -431,12 +434,12 @@ function EmployeeRegistration() {
                         </div>
                       </div>
                       <p className="btn-style2">
-                        <button className="btn btn-secondary">Previous</button>{" "}
-                        <button className="btn btn-info">Next</button>
+                        <button onClick={ AccountDetails2 } className="btn btn-secondary">Previous</button>{" "}
+                        <button onClick={ Password2 } className="btn btn-info">Next</button>
                       </p>
                     </div>
                   ) : null}
-                  {passwordview ? (
+                  {passwordView ? (
                     <div className="background">
                       <div className="input_field">
                         <div className="wid">
@@ -469,8 +472,8 @@ function EmployeeRegistration() {
                         </div>
                       </div>
                       <p className="btn-style2">
-                        <button className="btn btn-secondary">Previous</button>{" "}
-                        <button className="btn btn-info">Next</button>
+                        <button onClick={ AddressView } className="btn btn-secondary">Previous</button>{" "}
+                        <button onClick={ Others2 } className="btn btn-info">Next</button>
                       </p>
                     </div>
                   ) : null}
@@ -505,17 +508,20 @@ function EmployeeRegistration() {
                             }}
                           />
                         </div>
-                        <button className="btn btn-warning top-space">
-                          <i className="bi bi-save-fill"></i>Insert
-                        </button>
+                        <p className="btn-style3">
+                        <button onClick={ Password2 } className="btn btn-secondary">Previous</button>{" "}
+                        <button className="btn btn-warning"><i className="bi bi-save-fill"></i>Insert</button>
+                      </p>
+                        <br></br><br></br>
                       </div>
                     </div>
                   ) : null}
                 </Form>
               </div>
+              </div>
             </div>
           </div>
-        </div>
+
       </div>
     </div>
   );

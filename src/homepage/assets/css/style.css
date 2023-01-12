@@ -1628,3 +1628,29 @@ section {
   background-color: none !important;
   cursor: pointer !important;
 }
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus
+{
+  background-color: white;
+  color: black;
+}
+.area{
+  color:white;
+}
+.area:focus
+{
+  background-color: white;
+  color: black;
+}
+.phone-style{
+  background-color: #0C0B09;
+  height:2.6rem;
+  padding-left: 7px;
+  padding-top: .1rem;
+}
+select:focus{
+  background-color: rgb(0, 0, 0) !important;
+}
