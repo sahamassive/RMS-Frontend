@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import axios from "axios";
 import { baseUrl } from "../constant/global";
+import Swal from "sweetalert2";
 import { ReactCalculator } from "simple-react-calculator";
-import Modal from '@mui/material/Modal';
+import Modal from "@mui/material/Modal";
 
 function QuickOrder() {
   const [section, setSection] = useState("");
@@ -75,7 +76,12 @@ function QuickOrder() {
   };
   const addTocart = (id) => {
     if (orderDetails.find((data) => data[0].food_id == id)) {
-      alert("alredy exists");
+      Swal.fire({
+        title: "Already Added",
+
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
     } else {
       const newItem = food.find((val) => {
         if (id === val.id) {
@@ -119,7 +125,12 @@ function QuickOrder() {
         if (data[0].qty > 1) {
           return (data[0].qty -= 1);
         } else {
-          alert("Quantity Cannot be 0");
+          Swal.fire({
+            title: "Quantity Can not be 0",
+
+            icon: "error",
+            confirmButtonText: "OK",
+          });
         }
       } else {
         // The rest haven't changed
@@ -191,22 +202,22 @@ function QuickOrder() {
                     </Link>
                   </li>
 
-                    <li>
-                      {category
-                        ? category.map((data) => (
-                              <ul>
-                                <li>
-                                  <Link
-                                    onClick={() => {
-                                      foodByCategory(data.id);
-                                    }}
-                                  >
-                                    {data.category_name}
-                                  </Link>
-                                </li>
-                              </ul>
-                          ))
-                        : null}
+                  <li>
+                    {category
+                      ? category.map((data) => (
+                          <ul>
+                            <li>
+                              <Link
+                                onClick={() => {
+                                  foodByCategory(data.id);
+                                }}
+                              >
+                                {data.category_name}
+                              </Link>
+                            </li>
+                          </ul>
+                        ))
+                      : null}
                   </li>
                 </ul>
               </div>
@@ -233,9 +244,8 @@ function QuickOrder() {
                               }}
                             >
                               <i className="bi bi-cart-x-fill"></i> Add To Cart
-                          </button>
+                            </button>
                           </div>
-                          
                         ))
                       : null}
                   </div>
@@ -323,17 +333,23 @@ function QuickOrder() {
                         ? orderDetails.map((data) => (
                             <tr>
                               <td>{data[0].food_name}</td>
-                              <td className="level-quantity">{data[0].food_price}</td>
+                              <td className="level-quantity">
+                                {data[0].food_price}
+                              </td>
                               <td>
-                                <button className="icon-plus"
+                                <button
+                                  className="icon-plus"
                                   onClick={() => {
                                     increaseQty(data[0].food_id);
                                   }}
                                 >
                                   <i className="bi bi-plus"></i>
                                 </button>
-                                <span className="level-quantity">{data[0].qty}</span>
-                                <button className="icon-minus"
+                                <span className="level-quantity">
+                                  {data[0].qty}
+                                </span>
+                                <button
+                                  className="icon-minus"
                                   onClick={() => {
                                     descreaseQty(data[0].food_id);
                                   }}
@@ -341,7 +357,9 @@ function QuickOrder() {
                                   <i className="bi bi-dash"></i>
                                 </button>
                               </td>
-                              <td className="level-quantity">{data[0].food_price * data[0].qty} </td>
+                              <td className="level-quantity">
+                                {data[0].food_price * data[0].qty}{" "}
+                              </td>
 
                               <td>
                                 <button
@@ -361,33 +379,38 @@ function QuickOrder() {
 
                   <div className="table-style table-responsive">
                     <table className="table table-bordered table-hover">
-                        <tbody>
-                            <tr>
-                                <td>Total</td>
-                                <td>{total ? total : null}</td>
-                            </tr>
-                            <tr>
-                                <td>VAT(n%)</td>
-                            <td>{ total ?  (total * (10 / 100)).toFixed(2) : null }</td>
-                            </tr>
-                            <tr>
-                                <td>Discount</td>
-                                <td> 0.00 </td>
-                            </tr>
-                            <tr>
-                                <td>Service Charge</td>
-                            <td>0.00</td>
-                            </tr>
-                            <tr>
-                                <td>Grand Total</td>
-                                <td>{total ? total : null}</td>
-                            </tr>
-                        </tbody>
+                      <tbody>
+                        <tr>
+                          <td>Total</td>
+                          <td>{total ? total : null}</td>
+                        </tr>
+                        <tr>
+                          <td>VAT(n%)</td>
+                          <td>
+                            {total ? (total * (10 / 100)).toFixed(2) : null}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Discount</td>
+                          <td> 0.00 </td>
+                        </tr>
+                        <tr>
+                          <td>Service Charge</td>
+                          <td>0.00</td>
+                        </tr>
+                        <tr>
+                          <td>Grand Total</td>
+                          <td>{total ? total : null}</td>
+                        </tr>
+                      </tbody>
                     </table>
-                </div>
+                  </div>
 
                   <div className="section_01 btn-se">
-                    <button className="btn btn-primary top-space" onClick={handleOpen}>
+                    <button
+                      className="btn btn-primary top-space"
+                      onClick={handleOpen}
+                    >
                       <i className="bi bi-calculator"></i>
                     </button>
                     <button
@@ -404,15 +427,15 @@ function QuickOrder() {
                     </a>
                   </div>
                   <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
                     <div className="calculator">
-                      <ReactCalculator/>
-                  </div>
-                </Modal>
+                      <ReactCalculator />
+                    </div>
+                  </Modal>
                 </div>
               </div>
             </div>
