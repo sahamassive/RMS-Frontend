@@ -2,6 +2,8 @@ import React, { Component, useEffect, useState } from "react";
 import "./style.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import Swal from "sweetalert2";
+
 import { baseUrl } from "../constant/global";
 function CreateBrand() {
   const [name, setName] = useState();
@@ -22,8 +24,12 @@ function CreateBrand() {
     await axios
       .post(`${baseUrl}/api/brand-insert`, formData)
       .then((response) => {
-        alert(response.data.msg);
-        console.log(response);
+        Swal.fire({
+          title: response.data.msg,
+
+          icon: "success",
+          confirmButtonText: "OK",
+        });
       });
   };
   return (

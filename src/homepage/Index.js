@@ -3,13 +3,14 @@ import "../homepage/assets/css/style.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../app/user-pages/constant/global";
-import Modal from '@mui/material/Modal';
-import CustomerOrder from "../app/user-pages/order/customerOrder";
+import Modal from "@mui/material/Modal";
+import Swal from "sweetalert2";
 
 function Index() {
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
-  const [singlefood,setSingleFood] = useState("");
+  const [spfood, setSpFood] = useState("");
+  const [singlefood, setSingleFood] = useState("");
   const [orderDetails, setOrderDetails] = useState([]);
   const order = [];
   const [open, setOpen] = React.useState(false);
@@ -18,21 +19,21 @@ function Index() {
       .get(`${baseUrl}/api/food-edit/${id}`)
 
       .then((res) => {
-        setSingleFood(res.data)
+        setSingleFood(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
     setOpen(true);
-    console.log(singlefood.name)
-    
-  }
- 
+    console.log(singlefood.name);
+  };
+
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getCategory();
     getFood();
+    getspFood();
   }, []);
   const getFood = () => {
     axios.get(`${baseUrl}/api/quick-foods`).then((response) => {
@@ -49,10 +50,19 @@ function Index() {
       setFood(response.data);
     });
   };
-
+  const getspFood = () => {
+    axios.get(`${baseUrl}/api/sp-foods`).then((response) => {
+      setSpFood(response.data);
+    });
+  };
   const addTocart = (id) => {
     if (orderDetails.find((data) => data[0].food_id == id)) {
-      alert("alredy exists");
+      Swal.fire({
+        title: "Already Added",
+
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
     } else {
       const newItem = food.find((val) => {
         if (id === val.id) {
@@ -319,16 +329,16 @@ function Index() {
                   </Link>
                   {category
                     ? category.map((data) => (
-                      <Link
-                        onClick={() => {
-                          foodByCategory(data.id);
-                        }}
-                        data-filter=".filter-starters"
-                        className="space-category btn btn-outline-light"
-                      >
-                        {data.category_name}
-                      </Link>
-                    ))
+                        <Link
+                          onClick={() => {
+                            foodByCategory(data.id);
+                          }}
+                          data-filter=".filter-starters"
+                          className="space-category btn btn-outline-light"
+                        >
+                          {data.category_name}
+                        </Link>
+                      ))
                     : null}
                 </ul>
               </div>
@@ -336,30 +346,35 @@ function Index() {
             <div className="row" data-aos="fade-up" data-aos-delay="200">
               {food
                 ? food.map((data) => (
-                  <div className="col-lg-4 menu-item">
-                    <img
-                      src={`${baseUrl}/foods/small/${data.image}`}
-                      className="menu-img"
-                      alt=""
-                    ></img>
-                    <div className="menu-content">
-                      <a href="#">{data.name}</a>
-                      <span>$ {data.price}</span>
+                    <div className="col-lg-4 menu-item">
+                      <img
+                        src={`${baseUrl}/foods/small/${data.image}`}
+                        className="menu-img"
+                        alt=""
+                      ></img>
+                      <div className="menu-content">
+                        <a href="#">{data.name}</a>
+                        <span>$ {data.price}</span>
+                      </div>
+                      <div className="menu-ingredients">{data.description}</div>
+                      <button
+                        className="btn btn-outline-warning cart-style"
+                        onClick={() => {
+                          addTocart(data.id);
+                        }}
+                      >
+                        <i className="bi bi-cart4"></i>Add to Cart
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleOpen(data.id);
+                        }}
+                        className="btn btn-outline-warning details-style"
+                      >
+                        <i className="bi bi-info-square"></i>Details
+                      </button>
                     </div>
-                    <div className="menu-ingredients">{data.description}</div>
-                    <button
-                      className="btn btn-outline-warning cart-style"
-                      onClick={() => {
-                        addTocart(data.id);
-                      }}
-                    >
-                      <i className="bi bi-cart4"></i>Add to Cart
-                    </button>
-                    <button onClick={() => {
-                      handleOpen(data.id);
-                    }} className="btn btn-outline-warning details-style"><i className="bi bi-info-square"></i>Details</button>
-                  </div>
-                ))
+                  ))
                 : null}
             </div>
           </div>
@@ -373,176 +388,50 @@ function Index() {
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-3">
                 <ul className="nav nav-tabs flex-column">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link active show"
-                      data-bs-toggle="tab"
-                      href="#tab-1"
-                    >
-                      Cheese Burger
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="tab" href="#tab-2">
-                      Chicken fry
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="tab" href="#tab-3">
-                      Ckicken cheese pizza
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="tab" href="#tab-4">
-                      Hotdog
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="tab" href="#tab-5">
-                      Special sandwitch
-                    </a>
-                  </li>
+                  {spfood
+                    ? spfood.map((data, index) => (
+                        <li className="nav-item">
+                          <a
+                            className={
+                              index == 0 ? "nav-link active show" : "nav-link"
+                            }
+                            data-bs-toggle="tab"
+                            href={`#tab-${index}`}
+                          >
+                            {data.name}
+                          </a>
+                        </li>
+                      ))
+                    : null}
                 </ul>
               </div>
               <div className="col-lg-9 mt-4 mt-lg-0">
                 <div className="tab-content">
-                  <div className="tab-pane active show" id="tab-1">
-                    <div className="row">
-                      <div className="col-lg-8 details order-2 order-lg-1">
-                        <h3>The best food is possible to get</h3>
-                        <p className="fst-italic">
-                          Why do people love restaurants? Restaurants are known
-                          to provide excellent social settings and you could
-                          enjoy a wonderful meal amidst friends, family, and
-                          great ambiance.{" "}
-                        </p>
-                        <p>
-                          A restaurant is a place where people visit to eat and
-                          drink the food being prepared on the premises and pays
-                          for the same. The food is served at the table to have
-                          a comfortable visit for your meals. The restaurant
-                          offers a menu with various options for your meal, to
-                          choose from.
-                        </p>
-                      </div>
-                      <div className="col-lg-4 text-center order-1 order-lg-2">
-                        <img
-                          src={require("./assets/img/specials-1.png")}
-                          alt=""
-                          className="img-fluid"
-                        ></img>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="tab-pane" id="tab-2">
-                    <div className="row">
-                      <div className="col-lg-8 details order-2 order-lg-1">
-                        <h3>Et blanditiis nemo veritatis excepturi</h3>
-                        <p className="fst-italic">
-                          Qui laudantium consequatur laborum sit qui ad sapiente
-                          dila parde sonata raqer a videna mareta paulona marka
-                        </p>
-                        <p>
-                          Ea ipsum voluptatem consequatur quis est. Illum error
-                          ullam omnis quia et reiciendis sunt sunt est. Non
-                          aliquid repellendus itaque accusamus eius et velit
-                          ipsa voluptates. Optio nesciunt eaque beatae accusamus
-                          lerode pakto madirna desera vafle de nideran pal
-                        </p>
-                      </div>
-                      <div className="col-lg-4 text-center order-1 order-lg-2">
-                        <img
-                          src={require("./assets/img/specials-2.png")}
-                          alt=""
-                          className="img-fluid"
-                        ></img>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="tab-pane" id="tab-3">
-                    <div className="row">
-                      <div className="col-lg-8 details order-2 order-lg-1">
-                        <h3>
-                          Impedit facilis occaecati odio neque aperiam sit
-                        </h3>
-                        <p className="fst-italic">
-                          Eos voluptatibus quo. Odio similique illum id quidem
-                          non enim fuga. Qui natus non sunt dicta dolor et. In
-                          asperiores velit quaerat perferendis aut
-                        </p>
-                        <p>
-                          Iure officiis odit rerum. Harum sequi eum illum
-                          corrupti culpa veritatis quisquam. Neque
-                          necessitatibus illo rerum eum ut. Commodi ipsam minima
-                          molestiae sed laboriosam a iste odio. Earum odit
-                          nesciunt fugiat sit ullam. Soluta et harum voluptatem
-                          optio quae
-                        </p>
-                      </div>
-                      <div className="col-lg-4 text-center order-1 order-lg-2">
-                        <img
-                          src={require("./assets/img/specials-3.png")}
-                          alt=""
-                          className="img-fluid"
-                        ></img>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="tab-pane" id="tab-4">
-                    <div className="row">
-                      <div className="col-lg-8 details order-2 order-lg-1">
-                        <h3>
-                          Fuga dolores inventore laboriosam ut est accusamus
-                          laboriosam dolore
-                        </h3>
-                        <p className="fst-italic">
-                          Totam aperiam accusamus. Repellat consequuntur iure
-                          voluptas iure porro quis delectus
-                        </p>
-                        <p>
-                          Eaque consequuntur consequuntur libero expedita in
-                          voluptas. Nostrum ipsam necessitatibus aliquam fugiat
-                          debitis quis velit. Eum ex maxime error in consequatur
-                          corporis atque. Eligendi asperiores sed qui veritatis
-                          aperiam quia a laborum inventore
-                        </p>
-                      </div>
-                      <div className="col-lg-4 text-center order-1 order-lg-2">
-                        <img
-                          src={require("./assets/img/specials-4.png")}
-                          alt=""
-                          className="img-fluid"
-                        ></img>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="tab-pane" id="tab-5">
-                    <div className="row">
-                      <div className="col-lg-8 details order-2 order-lg-1">
-                        <h3>
-                          Est eveniet ipsam sindera pad rone matrelat sando reda
-                        </h3>
-                        <p className="fst-italic">
-                          Omnis blanditiis saepe eos autem qui sunt debitis
-                          porro quia.
-                        </p>
-                        <p>
-                          Exercitationem nostrum omnis. Ut reiciendis
-                          repudiandae minus. Omnis recusandae ut non quam ut
-                          quod eius qui. Ipsum quia odit vero atque qui
-                          quibusdam amet. Occaecati sed est sint aut vitae
-                          molestiae voluptate vel
-                        </p>
-                      </div>
-                      <div className="col-lg-4 text-center order-1 order-lg-2">
-                        <img
-                          src={require("./assets/img/specials-5.png")}
-                          alt=""
-                          className="img-fluid"
-                        ></img>
-                      </div>
-                    </div>
-                  </div>
+                  {spfood
+                    ? spfood.map((data, index) => (
+                        <div
+                          className={
+                            index == 0 ? "tab-pane active show" : "tab-pane"
+                          }
+                          id={`tab-${index}`}
+                        >
+                          <div className="row">
+                            <div className="col-lg-8 details order-2 order-lg-1">
+                              <h3>The best food is possible to get</h3>
+                              <p className="fst-italic">{data.description}</p>
+                              <p></p>
+                            </div>
+                            <div className="col-lg-4 text-center order-1 order-lg-2">
+                              <img
+                                src={`${baseUrl}/foods/small/${data.image}`}
+                                alt=""
+                                className="img-fluid"
+                              ></img>
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    : null}
                 </div>
               </div>
             </div>
@@ -581,7 +470,7 @@ function Index() {
                         children. It is a day full of celebrations where
                         children enjoy many fun activities, party with their
                         friends and family, receive a lot of gifts and of
-                        course.{" "}
+                        course.
                       </p>
                       <ul>
                         <li>
@@ -838,7 +727,10 @@ function Index() {
                       alt=""
                     ></img>
                     <h4>SM Mahabub Alam</h4>
-                    <h4>Founding President, <br></br>Entrepreneurs and Professionals Mirpur Club Ltd.</h4>
+                    <h4>
+                      Founding President, <br></br>Entrepreneurs and
+                      Professionals Mirpur Club Ltd.
+                    </h4>
                   </div>
                 </div>
                 <div className="swiper-slide">
@@ -1382,11 +1274,16 @@ function Index() {
         <div className="food-details">
           <div className="dis">
             <div>
-              <img src={`${baseUrl}/foods/medium/${singlefood.image}`} width="70%"></img>
+              <img
+                src={`${baseUrl}/foods/medium/${singlefood.image}`}
+                width="70%"
+              ></img>
             </div>
             <div className="sec_01">
               <div className="close-btn">
-                <a onClick={handleClose}><i className="bi bi-x-square"></i></a>
+                <a onClick={handleClose}>
+                  <i className="bi bi-x-square"></i>
+                </a>
               </div>
               <h1 className="fo-name">{singlefood.name}</h1>
               <p className="price">$ {singlefood.price}</p>
@@ -1401,7 +1298,12 @@ function Index() {
               >
                 <i className="bi bi-cart4"></i>Add to Cart
               </button>
-              <button className="btn btn-outline-warning details-style" onClick={handleClose}>Close</button>
+              <button
+                className="btn btn-outline-warning details-style"
+                onClick={handleClose}
+              >
+                Close
+              </button>
               <br></br>
             </div>
           </div>

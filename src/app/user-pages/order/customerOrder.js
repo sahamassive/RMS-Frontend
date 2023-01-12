@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-
+import Swal from "sweetalert2";
 import "./style.css";
 import { baseUrl } from "../constant/global";
 
@@ -64,7 +64,12 @@ function CustomerOrder({}) {
         if (data[0].qty > 1) {
           return (data[0].qty -= 1);
         } else {
-          alert("Quantity Cannot be 0");
+          Swal.fire({
+            title: "Quantity Can not be 0",
+
+            icon: "error",
+            confirmButtonText: "OK",
+          });
         }
       } else {
         // The rest haven't changed
