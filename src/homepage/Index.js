@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../app/user-pages/constant/global";
 import Modal from '@mui/material/Modal';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import CustomerOrder from "../app/user-pages/order/customerOrder";
 
 function Index() {
@@ -13,6 +15,7 @@ function Index() {
   const [orderDetails, setOrderDetails] = useState([]);
   const order = [];
   const [open, setOpen] = React.useState(false);
+  const [phone, setPhone] = useState();
   const handleOpen = (id) => {
     axios
       .get(`${baseUrl}/api/food-edit/${id}`)
@@ -710,6 +713,7 @@ function Index() {
             >
               <div className="row">
                 <div className="col-lg-4 col-md-6 form-group">
+                <label>Your name</label>
                   <input
                     type="text"
                     name="name"
@@ -722,6 +726,7 @@ function Index() {
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                <label>E-mail</label>
                   <input
                     type="email"
                     className="form-control"
@@ -734,20 +739,20 @@ function Index() {
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="phone"
-                    id="phone"
-                    placeholder="Your Phone"
-                    data-rule="minlen:4"
-                    data-msg="Please enter at least 4 chars"
-                  ></input>
+                <label>Phone number</label>
+                  <PhoneInput
+                  className="phone-style"
+                international
+                countryCallingCodeEditable={false}
+                defaultCountry="BD"
+                value={phone}
+                onChange={setPhone}/>
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3">
+                  <label>Booking Date</label>
                   <input
-                    type="text"
+                    type="date"
                     name="date"
                     className="form-control"
                     id="date"
@@ -758,8 +763,9 @@ function Index() {
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3">
+                <label>Starting time</label>
                   <input
-                    type="text"
+                    type="time"
                     className="form-control"
                     name="time"
                     id="time"
@@ -770,6 +776,20 @@ function Index() {
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3">
+                <label>Ending time</label>
+                  <input
+                    type="time"
+                    className="form-control"
+                    name="time"
+                    id="time"
+                    placeholder="Time"
+                    data-rule="minlen:4"
+                    data-msg="Please enter at least 4 chars"
+                  ></input>
+                  <div className="validate"></div>
+                </div>
+                <div className="col-lg-4 col-md-6 form-group mt-3">
+                <label>Number Of people</label>
                   <input
                     type="number"
                     className="form-control"
@@ -783,8 +803,9 @@ function Index() {
                 </div>
               </div>
               <div className="form-group mt-3">
+              <label>Any Special Note</label>
                 <textarea
-                  className="form-control"
+                  className="form-control area"
                   name="message"
                   rows="5"
                   placeholder="Message"
