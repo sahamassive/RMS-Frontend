@@ -3,14 +3,17 @@ import Form from 'react-bootstrap/Form';
 import './style.css';
 import axios, { all } from "axios";
 import { baseUrl } from "../constant/global";
+import countrydata from "./../Country/Countrydata.json";
 
 function NewRestaurant() {
     const [restaurantName, setRestaurantName] = useState();
     const [phoneNumber, setPhoneNumber] = useState();
     const [email, setEmail] = useState();
-    const [city, setCity] = useState();
-    const [area, setArea] = useState();
+    const [selectedCountry, setSelectedCountry] = useState("");
+    const [selectedState, setSelectedState] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
     const [metaTag, setMetaTag] = useState();
+    const [address, setAddress] = useState();
     const [metaDescription, setMetaDescription] = useState();
     const [metaKeywords, setMetaKeywords] = useState();
     const [image, setImage] = useState();
@@ -26,8 +29,10 @@ function NewRestaurant() {
         formData.append("restaurant_name", restaurantName);
         formData.append("phone", phoneNumber);
         formData.append("email", email);
-        formData.append("city", city);
-        formData.append("area", area);
+        formData.append("country", selectedCountry);
+        formData.append("city", selectedCity);
+        formData.append("state", selectedState);
+        formData.append("address", address);
         formData.append("meta_tag", metaTag);
         formData.append("meta_description", metaDescription);
         formData.append("meta_keyword", metaKeywords);
@@ -49,10 +54,10 @@ function NewRestaurant() {
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
-                    <div className="btn-section">
-                        <h4 className="card-title">All Restaurant</h4>
-                        <a className="btn-style btn btn-info" href="/restaurant/all"><i class="bi bi-card-list"></i> All Restaurant</a>
-                    </div>
+                        <div className="btn-section">
+                            <h4 className="card-title">All Restaurant</h4>
+                            <a className="btn-style btn btn-info" href="/restaurant/all"><i class="bi bi-card-list"></i> All Restaurant</a>
+                        </div>
                         <div className="card-body">
                             <Form>
                                 <div className='two_part'>
@@ -66,7 +71,7 @@ function NewRestaurant() {
                                                     onChange={changeHandler}
                                                 />
                                             </Form.Group>
-                                            <img src={preview} width="212rem"/>
+                                            <img src={preview} width="212rem" />
                                         </div>
                                     </div>
                                     <div className="col-sm-9 background">
@@ -77,7 +82,6 @@ function NewRestaurant() {
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Restaurant name"
-                                                    
                                                     onChange={(event) => {
                                                         setRestaurantName(event.target.value);
                                                     }}
@@ -105,27 +109,80 @@ function NewRestaurant() {
                                                     ></Form.Control>
                                                 </div>
                                             </div>
+                                            <div className="input_field">
+                                                <Form.Label className="level-style">Address</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Address"
+                                                    value={address}
+                                                    onChange={(event) => {
+                                                        setAddress(event.target.value);
+                                                    }}
+                                                ></Form.Control>
+                                            </div>
                                             <div className="input_field two_part">
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your city</Form.Label>
+                                                    <Form.Label className="level-style">Select your country</Form.Label>
                                                     <select
-                                                    onChange={(event) => {
-                                                        setCity(event.target.value);
-                                                    }}
+                                                        value={selectedCountry}
+                                                        onChange={(event) =>
+                                                            setSelectedCountry(event.target.value)
+                                                        }
                                                     >
-                                                        <option value="">Select here</option>
-                                                        <option value="chef">Chef</option>
+                                                        <option value="">Select a country</option>
+                                                        {countrydata.map((country) => (
+                                                            <option key={country.name} value={country.name}>
+                                                                {country.name}
+                                                            </option>
+                                                        ))}
                                                     </select>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your area</Form.Label>
+                                                    <Form.Label className="level-style">Select your state</Form.Label>
                                                     <select
-                                                    onChange={(event) => {
-                                                        setArea(event.target.value);
-                                                    }}
+                                                        value={selectedState}
+                                                        onChange={(event) =>
+                                                            setSelectedState(event.target.value)
+                                                        }
+                                                        disabled={!selectedCountry}
                                                     >
-                                                        <option value="">Select here</option>
-                                                        <option value="chef">Chef</option>
+                                                        <option value="">Select a state</option>
+                                                        {selectedCountry &&
+                                                            countrydata
+                                                                .find(
+                                                                    (country) => country.name === selectedCountry
+                                                                )
+                                                                .states.map((state) => (
+                                                                    <option key={state.name} value={state.name}>
+                                                                        {state.name}
+                                                                    </option>
+                                                                ))}
+                                                    </select>
+                                                </div>
+                                                <div className="wid">
+                                                    <Form.Label className="level-style">Select your city</Form.Label>
+                                                    <select
+                                                        id="city"
+                                                        value={selectedCity}
+                                                        onChange={(event) =>
+                                                            setSelectedCity(event.target.value)
+                                                        }
+                                                        disabled={!selectedState}
+                                                    >
+                                                        <option value="">Select a city</option>
+                                                        {selectedState &&
+                                                            countrydata
+                                                                .find(
+                                                                    (country) => country.name === selectedCountry
+                                                                )
+                                                                .states.find(
+                                                                    (state) => state.name === selectedState
+                                                                )
+                                                                .cities.map((city) => (
+                                                                    <option key={city.id} value={city.name}>
+                                                                        {city.name}
+                                                                    </option>
+                                                                ))}
                                                     </select>
                                                 </div>
                                             </div>
@@ -172,7 +229,7 @@ function NewRestaurant() {
                                             </div>
                                             <div className="input_field">
                                                 <button onClick={insert} className="btn btn-warning top-space"><i
-                                                        className="bi bi-save-fill"></i>Insert</button>
+                                                    className="bi bi-save-fill"></i>Insert</button>
                                                 <br></br><br></br>
                                             </div>
                                         </div>

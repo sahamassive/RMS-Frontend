@@ -1556,6 +1556,11 @@ section {
 .dis {
   display: flex;
 }
+@media (max-width: 768px) {
+  .dis {
+    display: block;
+  }
+}
 * {
   color: white;
 }

@@ -57,10 +57,9 @@ function Restaurant() {
                         <th>Restaurant Name</th>
                         <th>Logo</th>
                         <th>Phone</th>
-                        <th>E-mail</th>
                         <th>Status</th>
                         <th>City</th>
-                        <th>Area</th>
+                        <th>Outlate</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -76,7 +75,6 @@ function Restaurant() {
                             />
                           </td>
                           <td>{data.phone}</td>
-                          <td>{data.email}</td>
                           <td>
                             <button
                               className={data.status ? "btn btn-success" : "btn btn-danger"}
@@ -86,12 +84,19 @@ function Restaurant() {
                             >
                               {data.status ? "Active" : "Not Active"}
                             </button></td>
-                          <td>{data.city}</td>
-                          <td>{data.area}</td>
+                          <td>{data.state}</td>
+                          <td>
+                            <a
+                            className="btn btn-dark"
+                            href={`/restaurant/outlate/new-outlate/${data.id}`}
+                            >
+                              <i className="bi bi-bezier"></i>Outlate
+                            </a>
+                          </td>
                           <td>
                             <a
                               className="btn btn-warning"
-                              href={`/catalogue/edit-section/${data.id}`}
+                              href={`/restaurant/edit-restaurant/${data.id}`}
                             >
                               <i className="bi bi-pencil-square"></i>Edit
                             </a>

@@ -64,16 +64,13 @@ const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
 
 const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
-const CreateBooking = lazy(() =>
-  import("../app/user-pages/booking/createBooking.js")
-);
+const CreateBooking = lazy(() => import("../app/user-pages/booking/createBooking.js"));
 
-const Restaurant = lazy(() =>
-  import("../app/user-pages/restaurant/restaurant.js")
-);
-const NewRestaurant = lazy(() =>
-  import("../app/user-pages/restaurant/newRestaurant.js")
-);
+const Restaurant = lazy(() => import("../app/user-pages/restaurant/restaurant.js"));
+const NewRestaurant = lazy(() =>import("../app/user-pages/restaurant/newRestaurant.js"));
+const EditRestaurant = lazy(() => import("../app/user-pages/restaurant/editRestaurant.js"));
+
+const NewOutlet = lazy(() =>import("../app/user-pages/restaurant/outlate/newOutlate.js"));
 
 const RegisterEmployee = lazy(() =>
   import("../app/user-pages/registration/EmployeeRegistration.js")
@@ -123,6 +120,9 @@ class AppRoutes extends Component {
 
           <Route path="/restaurant/all" component={Restaurant} />
           <Route path="/restaurant/new-restaurant" component={NewRestaurant} />
+          <Route path="/restaurant/edit-restaurant/:id" component={EditRestaurant} />
+
+          <Route path="/restaurant/outlate/new-outlate/:id" component={ NewOutlet } />
 
           <Route path="/hr/add-employee" component={RegisterEmployee} />
           <Route path="/hr/all-employee" component={AllEmployee} />

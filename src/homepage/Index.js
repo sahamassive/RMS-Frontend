@@ -579,7 +579,7 @@ function Index() {
                           irure dolor in reprehenderit in voluptate velit.
                         </li>
                         <li>
-                          <i className="bi bi-check-circled"></i> Ullamco
+                          <i className="bi bi-check-circled"></i> Ullamco 
                           laboris nisi ut aliquip ex ea commodo consequat.
                         </li>
                       </ul>
