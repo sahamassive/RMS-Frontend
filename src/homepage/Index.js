@@ -7,11 +7,8 @@ import { baseUrl } from "../app/user-pages/constant/global";
 import Modal from "@mui/material/Modal";
 import Swal from "sweetalert2";
 
-
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
-
-
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 function Index() {
   const [category, setCategory] = useState("");
@@ -21,7 +18,48 @@ function Index() {
   const [orderDetails, setOrderDetails] = useState([]);
   const order = [];
   const [open, setOpen] = React.useState(false);
+
+  //booking
+  const [bookingDate, setBookingDate] = useState();
+  const [numberOfPeople, setNumberOfPeople] = useState();
+  const [table, setTable] = useState();
+  const [type, setType] = useState();
+  const [startingTime, setStartingTime] = useState();
+  const [endingTime, setEndingTime] = useState();
+
+  const [fname, setFname] = useState();
+
+  const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
+  const [note, setNote] = useState();
+
+  const insert = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    formData.append("booking_date", bookingDate);
+    formData.append("people", numberOfPeople);
+    formData.append("table", table);
+    formData.append("type", type);
+    formData.append("start_time", startingTime);
+    formData.append("end_time", endingTime);
+    formData.append("name", fname);
+
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("note", note);
+    await axios
+      .post(`${baseUrl}/api/booking-insert`, formData)
+      .then((response) => {
+        Swal.fire({
+          title: response.data.msg,
+
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      });
+  };
+
   const handleOpen = (id) => {
     axios
       .get(`${baseUrl}/api/food-edit/${id}`)
@@ -98,6 +136,14 @@ function Index() {
             <i className="bi bi-clock d-flex align-items-center ms-4">
               <span> Sat-Fri: 10AM - 11PM</span>
             </i>
+          </div>
+          <div>
+            <select className="nav-link">
+              <option value="1010">Mcl-Resturant</option>
+              <option value="1011">Mcl-Resturant 2</option>
+              <option value="1010">Mcl-Resturant 3</option>
+            </select>
+            <i class="bi bi-geo-alt-fill"></i>
           </div>
         </div>
       </div>
@@ -396,7 +442,6 @@ function Index() {
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-3">
                 <ul className="nav nav-tabs flex-column">
-
                   {spfood
                     ? spfood.map((data, index) => (
                         <li className="nav-item">
@@ -412,7 +457,6 @@ function Index() {
                         </li>
                       ))
                     : null}
-
                 </ul>
               </div>
               <div className="col-lg-9 mt-4 mt-lg-0">
@@ -612,10 +656,13 @@ function Index() {
             >
               <div className="row">
                 <div className="col-lg-4 col-md-6 form-group">
-                <label>Your name</label>
+                  <label>Your name</label>
                   <input
                     type="text"
                     name="name"
+                    onChange={(event) => {
+                      setFname(event.target.value);
+                    }}
                     className="form-control"
                     id="name"
                     placeholder="Your Name"
@@ -625,12 +672,13 @@ function Index() {
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                <label>E-mail</label>
+                  <label>E-mail</label>
                   <input
                     type="email"
                     className="form-control"
-                    name="email"
-                    id="email"
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
                     placeholder="Your Email"
                     data-rule="email"
                     data-msg="Please enter a valid email"
@@ -638,23 +686,25 @@ function Index() {
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                <label>Phone number</label>
+                  <label>Phone number</label>
                   <PhoneInput
-                  className="phone-style"
-                international
-                countryCallingCodeEditable={false}
-                defaultCountry="BD"
-                value={phone}
-                onChange={setPhone}/>
+                    className="phone-style"
+                    international
+                    countryCallingCodeEditable={false}
+                    defaultCountry="BD"
+                    value={phone}
+                    onChange={setPhone}
+                  />
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3">
                   <label>Booking Date</label>
                   <input
                     type="date"
-                    name="date"
                     className="form-control"
-                    id="date"
+                    onChange={(event) => {
+                      setBookingDate(event.target.value);
+                    }}
                     placeholder="Date"
                     data-rule="minlen:4"
                     data-msg="Please enter at least 4 chars"
@@ -662,52 +712,90 @@ function Index() {
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3">
-                <label>Starting time</label>
+                  <label>Starting time</label>
                   <input
                     type="time"
                     className="form-control"
-                    name="time"
-                    id="time"
-                    placeholder="Time"
+                    onChange={(event) => {
+                      setStartingTime(event.target.value);
+                    }}
+                    placeholder="Starting Time"
                     data-rule="minlen:4"
                     data-msg="Please enter at least 4 chars"
                   ></input>
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3">
-                <label>Ending time</label>
+                  <label>Ending time</label>
                   <input
                     type="time"
                     className="form-control"
-                    name="time"
-                    id="time"
-                    placeholder="Time"
+                    onChange={(event) => {
+                      setEndingTime(event.target.value);
+                    }}
+                    placeholder="Ending Time"
                     data-rule="minlen:4"
                     data-msg="Please enter at least 4 chars"
                   ></input>
                   <div className="validate"></div>
                 </div>
                 <div className="col-lg-4 col-md-6 form-group mt-3">
-                <label>Number Of people</label>
+                  <label>Number Of people</label>
                   <input
                     type="number"
                     className="form-control"
-                    name="people"
-                    id="people"
+                    onChange={(event) => {
+                      setNumberOfPeople(event.target.value);
+                    }}
                     placeholder="# of people"
                     data-rule="minlen:1"
                     data-msg="Please enter at least 1 chars"
                   ></input>
                   <div className="validate"></div>
                 </div>
+                <div className="col-lg-4 col-md-6 form-group mt-3">
+                  <label>Type of Booking</label>
+                  <select
+                    onChange={(event) => {
+                      setType(event.target.value);
+                    }}
+                    className="form-control"
+                  >
+                    <option value="">Select here</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="Others">Others</option>
+                  </select>
+                  <div className="validate"></div>
+                </div>
+                <div className="col-lg-4 col-md-6 form-group mt-3">
+                  <label> Select table</label>
+                  <select
+                    onChange={(event) => {
+                      setTable(event.target.value);
+                    }}
+                    className="form-control"
+                  >
+                    <option value="">Select here</option>
+                    <option value="table-1">Table 1</option>
+                    <option value="table-2">Table 2</option>
+                    <option value="table-3">Table 3</option>
+                  </select>
+                  <div className="validate"></div>
+                </div>
               </div>
               <div className="form-group mt-3">
-              <label>Any Special Note</label>
+                <label>Any Special Note</label>
                 <textarea
                   className="form-control area"
                   name="message"
                   rows="5"
                   placeholder="Message"
+                  onChange={(event) => {
+                    setNote(event.target.value);
+                  }}
                 ></textarea>
                 <div className="validate"></div>
               </div>
@@ -720,7 +808,9 @@ function Index() {
                 </div>
               </div>
               <div className="text-center">
-                <button type="submit">Book a Table</button>
+                <button type="submit" onClick={insert}>
+                  Book a Table
+                </button>
               </div>
             </form>
           </div>

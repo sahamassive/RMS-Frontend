@@ -15,6 +15,7 @@ function QuickOrder() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState();
+  const [waiter, setWaiter] = useState();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,6 +40,7 @@ function QuickOrder() {
     getSection();
     getCategory();
     getFood();
+    getEmployee();
   }, []);
   useEffect(() => {
     calTotal();
@@ -53,6 +55,13 @@ function QuickOrder() {
     });
     setTotal(sum);
   };
+
+  const getEmployee = () => {
+    axios.get(`${baseUrl}/api/get-employee/waiter`).then((response) => {
+      setWaiter(response.data);
+    });
+  };
+
   const getSection = () => {
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setSection(response.data);
@@ -291,8 +300,13 @@ function QuickOrder() {
                     </Form.Label>
                     <select className="select3">
                       <option value="">Select here</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      {waiter
+                        ? waiter.map((data) => (
+                            <option value={data.waiter_id}>
+                              {data.first_name} {data.last_name}
+                            </option>
+                          ))
+                        : null}
                     </select>
                   </div>
                   <div>
