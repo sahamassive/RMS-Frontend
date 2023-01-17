@@ -44,10 +44,9 @@ function NewRestaurant() {
             .then((response) => {
                 Swal.fire({
                     title: response.data.msg,
-          
                     icon: "success",
                     confirmButtonText: "OK",
-                  });
+                });
         });
     };
     const changeHandler = (event) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EmployeeRegistration.css";
 import profile from "../../../assets/images/profile/profile.jpg";
 import AccountDetails from "./AccountDetails";
@@ -10,6 +10,8 @@ import { Link, useLocation } from "react-router-dom";
 import countrydata from "./../Country/Countrydata.json";
 import axios from "axios";
 import { baseUrl } from "../constant/global";
+import { ComposableMap } from "react-simple-maps";
+
 
 function EmployeeRegistration() {
   const [accountDetails, setAccountDetails] = useState(true);
@@ -29,7 +31,7 @@ function EmployeeRegistration() {
   const [preview, setPrview] = useState();
   const [address1, setAddress1] = useState();
   const [address2, setAddress2] = useState();
-
+  
   const [zipCode, setZipCode] = useState();
 
   const [password, setPassword] = useState();
@@ -72,6 +74,7 @@ function EmployeeRegistration() {
     setPasswordView(false);
     setAccountDetails(false);
   };
+
   const insert = async (e) => {
     e.preventDefault();
 
@@ -141,7 +144,7 @@ function EmployeeRegistration() {
                           ? "btn_style_active icon2"
                           : "btn_style_inactive icon2"
                       }
-                    >
+                    > 
                       <i className="bi bi-geo-alt-fill icon-space"></i>Address
                     </p>
                   </Link>
@@ -292,23 +295,38 @@ function EmployeeRegistration() {
                           <Form.Label className="level-style">
                             Select employee type
                           </Form.Label>
-                          <select
+                          { window.location.pathname === '/super-admin/employee/registration' ? (
+                            <select
                             onChange={(event) => {
                               setType(event.target.value);
                             }}
                           >
                             <option value="">Select here</option>
-                            <option value="admin">Admin</option>
-                            <option value="sub-admin">Sub-Admin</option>
-                            <option value="chef">Chef</option>
-                            <option value="waiter">Waiter</option>
-                            <option value="delivery-men">Delivery Men</option>
-                            <option value="sales & marketing">
-                              Sales & Marketing
-                            </option>
-                            <option value="manager">Manager</option>
-                            <option value="cleaner">Cleaner</option>
-                          </select>
+                              <option value="supr-admin">Super Admin</option>
+                              <option value="admin">Admin</option>
+                              <option value="sub-admin">Sub-Admin</option>
+                              <option value="chef">Chef</option>
+                              <option value="waiter">Waiter</option>
+                              <option value="delivery-men">Delivery Men</option>
+                              <option value="sales & marketing">Sales & Marketing</option>
+                              <option value="manager">Manager</option>
+                              <option value="cleaner">Cleaner</option>
+                              </select>
+                          ) : (
+                            <select
+                            onChange={(event) => {
+                              setType(event.target.value);
+                            }}
+                          >
+                            <option value="">Select here</option>
+                              <option value="chef">Chef</option>
+                              <option value="waiter">Waiter</option>
+                              <option value="delivery-men">Delivery Men</option>
+                              <option value="sales & marketing">Sales & Marketing</option>
+                              <option value="manager">Manager</option>
+                              <option value="cleaner">Cleaner</option>
+                              </select>
+                            ) }
                         </div>
                       </div>
                       <p className="btn-style2">
