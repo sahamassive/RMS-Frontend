@@ -3,7 +3,8 @@ import $ from "jquery";
 import "datatables.net";
 import "./style.css";
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl } from "../constant/global";
+import Swal from "sweetalert2";
 
 function Restaurant() {
     const [allData, setAllData] = useState("");
@@ -23,8 +24,13 @@ function Restaurant() {
   
   
     const statusChange = (id) => {
-      axios.get(`${baseUrl}/api/restaurant-status/${id}`).then((response) => {
-        alert(response.data.msg);
+      axios.get(`${baseUrl}/api/restaurant-status/${id}`)
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         getData();
       });
     };
@@ -83,14 +89,15 @@ function Restaurant() {
                               }}
                             >
                               {data.status ? "Active" : "Not Active"}
-                            </button></td>
+                            </button>
+                          </td>
                           <td>{data.state}</td>
                           <td>
                             <a
                             className="btn btn-dark"
-                            href={`/restaurant/outlate/new-outlate/${data.id}`}
+                            href={`/restaurant/branchs/${data.restaurant_id}`}
                             >
-                              <i className="bi bi-bezier"></i>Outlate
+                              <i className="bi bi-bezier"></i>Branch
                             </a>
                           </td>
                           <td>
@@ -98,7 +105,7 @@ function Restaurant() {
                               className="btn btn-warning"
                               href={`/restaurant/edit-restaurant/${data.id}`}
                             >
-                              <i className="bi bi-pencil-square"></i>Edit
+                              <i className="bi bi-pencil-square"></i>Edit    
                             </a>
                           </td>
                         </tr>

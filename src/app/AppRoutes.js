@@ -69,8 +69,11 @@ const CreateBooking = lazy(() => import("../app/user-pages/booking/createBooking
 const Restaurant = lazy(() => import("../app/user-pages/restaurant/restaurant.js"));
 const NewRestaurant = lazy(() =>import("../app/user-pages/restaurant/newRestaurant.js"));
 const EditRestaurant = lazy(() => import("../app/user-pages/restaurant/editRestaurant.js"));
+const AllRestaurantBranches = lazy(() => import("../app/user-pages/restaurant/restaurantsBranches.js"));
 
-const NewOutlet = lazy(() =>import("../app/user-pages/restaurant/outlate/newOutlate.js"));
+const NewBranch = lazy(() =>import("../app/user-pages/restaurant/branch/newBranch.js"));
+const AllBranch = lazy(() => import("../app/user-pages/restaurant/branch/allBranch.js"));
+const EditBranch = lazy(() => import("../app/user-pages/restaurant/branch/editBranch"));
 
 const RegisterEmployee = lazy(() =>
   import("../app/user-pages/registration/EmployeeRegistration.js")
@@ -121,8 +124,11 @@ class AppRoutes extends Component {
           <Route path="/restaurant/all" component={Restaurant} />
           <Route path="/restaurant/new-restaurant" component={NewRestaurant} />
           <Route path="/restaurant/edit-restaurant/:id" component={EditRestaurant} />
+          <Route path="/restaurant/branchs/:restaurant_id" component={ AllRestaurantBranches } />
 
-          <Route path="/restaurant/outlate/new-outlate/:id" component={ NewOutlet } />
+          <Route path="/branch/new-branch" component={ NewBranch } />
+          <Route path="/branchs" component={AllBranch} />
+          <Route path="/branch/edit-branch/:id" component={EditBranch} />
 
           <Route path="/hr/add-employee" component={RegisterEmployee} />
           <Route path="/hr/all-employee" component={AllEmployee} />

@@ -112,3 +112,12 @@ select:focus{
     margin-right: .3rem;
     cursor: pointer;
 }
+.paginate_button:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid white;
+    padding: .5rem;
+    border-radius: 5px;
+    margin-right: .3rem;
+    cursor: pointer;
+}
