@@ -68,7 +68,7 @@ function AllEmployee() {
                 onClick={() => {
                   getEmployee("cleaner");
                 }}
-                className="btn btn-warning gap"
+                className="btn btn-light gap"
               >
                 <i className="bi bi-person-workspace"></i>Cleaner
               </button>

@@ -30,30 +30,24 @@ const NewHoliday = lazy(() =>
   import("../app/user-pages/hr/holiday/newHoliday.js")
 );
 
-const Brand = lazy(() => import("../app/user-pages/catelogue/brand.js"));
-const Category = lazy(() => import("../app/user-pages/catelogue/category.js"));
-const Section = lazy(() => import("../app/user-pages/catelogue/section.js"));
-const Food = lazy(() => import("../app/user-pages/catelogue/food.js"));
+const Brand = lazy(() => import("../app/user-pages/catelogue/brand/brand.js"));
+const CreateBrand = lazy(() => import("../app/user-pages/catelogue/brand/createBrand.js"));
+const EditBrand = lazy(() =>import("../app/user-pages/catelogue/brand/editBrand.js"));
 
-const CreateBrand = lazy(() =>
-  import("../app/user-pages/catelogue/createBrand.js")
-);
-const EditBrand = lazy(() =>
-  import("../app/user-pages/catelogue/editBrand.js")
-);
-const CreateCategory = lazy(() =>
-  import("../app/user-pages/catelogue/createCategory.js")
-);
-const CreateSection = lazy(() =>
-  import("../app/user-pages/catelogue/createSection.js")
-);
-const editSection = lazy(() =>
-  import("../app/user-pages/catelogue/editSection.js")
-);
-const CreateFood = lazy(() =>
-  import("../app/user-pages/catelogue/createFood.js")
-);
-const EditFood = lazy(() => import("../app/user-pages/catelogue/editFood.js"));
+const Category = lazy(() => import("../app/user-pages/catelogue/category/category.js"));
+const CreateCategory = lazy(() =>import("../app/user-pages/catelogue/category/createCategory.js"));
+
+
+const Section = lazy(() => import("../app/user-pages/catelogue/section/section.js"));
+const CreateSection = lazy(() =>import("../app/user-pages/catelogue/section/createSection.js"));
+const editSection = lazy(() =>import("../app/user-pages/catelogue/section/editSection.js"));
+
+
+const Food = lazy(() => import("../app/user-pages/catelogue/food/food.js"));
+const CreateFood = lazy(() =>import("../app/user-pages/catelogue/food/createFood.js"));
+const EditFood = lazy(() => import("../app/user-pages/catelogue/food/editFood.js"));
+
+
 const QuickOrder = lazy(() => import("../app/user-pages/pos/quickOrder.js"));
 
 const CustomerOrder = lazy(() =>

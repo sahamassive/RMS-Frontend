@@ -57,6 +57,12 @@ function EditBranch() {
             });
         });
     };
+    const changeCountry = (event) => {
+        setSelectedCountry(event.target.value);
+        setSelectedState("");
+        setSelectedCity("");
+    }
+
     return (
         <div>
         <div className="col-lg-12 grid-margin stretch-card">
@@ -114,9 +120,7 @@ function EditBranch() {
                                             <Form.Label className="level-style">Select your country</Form.Label>
                                             <select
                                                 value={selectedCountry}
-                                                onChange={(event) =>
-                                                    setSelectedCountry(event.target.value)
-                                                }
+                                                onChange={ changeCountry }
                                             >
                                                 <option value="">Select a country</option>
                                                 {countrydata.map((country) => (
