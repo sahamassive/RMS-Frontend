@@ -12,6 +12,7 @@ import "react-phone-number-input/style.css";
 
 function Index() {
   const [resturant, setResturant] = useState("");
+  const [branch, setBranch] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
   const [spfood, setSpFood] = useState("");
@@ -82,10 +83,16 @@ function Index() {
     getFood();
     getspFood();
     getResturant();
+    getBranch();
   }, []);
   const getFood = () => {
     axios.get(`${baseUrl}/api/quick-foods`).then((response) => {
       setFood(response.data);
+    });
+  };
+  const getBranch = () => {
+    axios.get(`${baseUrl}/api/branch/${resturant_id}`).then((response) => {
+      setBranch(response.data);
     });
   };
   const getResturant = () => {
@@ -145,8 +152,16 @@ function Index() {
           </div>
           <div>
             <i className="bi bi-phone d-flex align-items-center">
-              <span> {resturant ? resturant.restaurant_name : null}</span>
+              <span> {resturant.restaurant_name}</span>
             </i>
+            <select className="form-control">
+              <option value="">Visit Branch</option>
+              {branch
+                ? branch.map((data) => (
+                    <option value={data.id}>{data.city}</option>
+                  ))
+                : null}
+            </select>
           </div>
         </div>
       </div>
@@ -155,7 +170,9 @@ function Index() {
           <div className="dis">
             <h3 className="logo me-auto me-lg-0">
               <a href="index.html">
-                <img src={require("./assets/img/logo/logo.png")} alt=""></img>
+                <img
+                  src={`${baseUrl}/restaurants/small/${resturant.logo}`}
+                ></img>
               </a>
             </h3>
             <div>
