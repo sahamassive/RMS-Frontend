@@ -5,6 +5,7 @@ import axios, { all } from "axios";
 import { baseUrl } from "../constant/global";
 import { useParams } from "react-router-dom";
 import countrydata from "./../Country/Countrydata.json";
+import Swal from "sweetalert2";
 
 function EditRestaurant() {
     const [restaurantName, setRestaurantName] = useState();
@@ -65,14 +66,23 @@ function EditRestaurant() {
         await axios
             .post(`${baseUrl}/api/restaurant-edit/${params.id}`, formData)
             .then((response) => {
-                alert(response.data.msg);
-                console.log(response);
+                Swal.fire({
+                    title: response.data.msg,
+                    icon: "success",
+                    confirmButtonText: "OK",
+                });
         });
     };
     const changeHandler = (event) => {
         setImage(event.target.files[0]);
         setPrview(URL.createObjectURL(event.target.files[0]));
     };
+
+    const changeCountry = (event) => {
+        setSelectedCountry(event.target.value);
+        setSelectedState("");
+        setSelectedCity("");
+    }
 
     return (
         <div>
@@ -156,9 +166,7 @@ function EditRestaurant() {
                                         <Form.Label className="level-style">Select your country</Form.Label>
                                         <select
                                             value={selectedCountry}
-                                            onChange={(event) =>
-                                                setSelectedCountry(event.target.value)
-                                            }
+                                            onChange={ changeCountry }
                                         >
                                             <option value="">Select a country</option>
                                             {countrydata.map((country) => (

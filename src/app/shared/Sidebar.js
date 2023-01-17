@@ -74,7 +74,11 @@ class Sidebar extends Component {
         {
             path: '/hr',
             state: 'hrOpen'
-        },
+            },
+            {
+                path: '/branch',
+                state: 'branchOpen'
+            },
         ];
 
         dropdownPaths.forEach((obj => {
@@ -133,6 +137,36 @@ class Sidebar extends Component {
                                         <Link className={this.isPathActive('/restaurant/new-restaurant') ? 'nav-link active' : 'nav-link'}
                                             to="/restaurant/new-restaurant">
                                             <Trans>New restaurant</Trans>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </Collapse>
+                    </li>
+                    <li className={this.isPathActive('/branch') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
+                        <div className={this.state.restaurantOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() =>
+                            this.toggleMenuState('branchOpen')} data-toggle="collapse">
+                            <span className="menu-icon">
+                                <i className="mdi mdi-laptop"></i>
+                            </span>
+                            <span className="menu-title">
+                                <Trans>Branch Management</Trans>
+                            </span>
+                            <i className="menu-arrow"></i>
+                        </div>
+                        <Collapse in={this.state.branchOpen}>
+                            <div>
+                                <ul className="nav flex-column sub-menu">
+                                    <li className="nav-item">
+                                        <Link className={this.isPathActive('/restaurant/all') ? 'nav-link active'
+                                            : 'nav-link'} to="/branchs">
+                                            <Trans>All Branch</Trans>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={this.isPathActive('/branch/new-branch') ? 'nav-link active' : 'nav-link'}
+                                            to="/branch/new-branch">
+                                            <Trans>New Branch</Trans>
                                         </Link>
                                     </li>
                                 </ul>

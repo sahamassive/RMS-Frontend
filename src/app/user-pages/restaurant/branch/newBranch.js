@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
-import './style.css';
+import '../style.css';
 import axios, { all } from "axios";
-import { baseUrl } from "../constant/global";
-import countrydata from "./../Country/Countrydata.json";
+import { baseUrl } from "../../constant/global";
+import countrydata from "../../Country/Countrydata.json";
 import Swal from "sweetalert2";
 
-function NewRestaurant() {
+function NewBranch() {
     const [restaurantName, setRestaurantName] = useState();
+    const [restaurantID, setRestaurantID] = useState();
     const [phoneNumber, setPhoneNumber] = useState();
     const [email, setEmail] = useState();
     const [selectedCountry, setSelectedCountry] = useState("");
     const [selectedState, setSelectedState] = useState("");
     const [selectedCity, setSelectedCity] = useState("");
-    const [metaTag, setMetaTag] = useState();
     const [address, setAddress] = useState();
-    const [metaDescription, setMetaDescription] = useState();
-    const [metaKeywords, setMetaKeywords] = useState();
-    const [image, setImage] = useState();
-    const [preview, setPrview] = useState();
+
+
+    useEffect(() => {
+        axios.get(`${baseUrl}/api/restaurants`).then((response) => {
+            setRestaurantName(response.data);
+        });
+    }, []);
 
     const insert = async (e) => {
         e.preventDefault();
@@ -27,32 +30,23 @@ function NewRestaurant() {
 
         const formData = new FormData();
     
-        formData.append("restaurant_name", restaurantName);
+        formData.append("restaurant_id", restaurantID);
         formData.append("phone", phoneNumber);
         formData.append("email", email);
         formData.append("country", selectedCountry);
         formData.append("city", selectedCity);
         formData.append("state", selectedState);
         formData.append("address", address);
-        formData.append("meta_tag", metaTag);
-        formData.append("meta_description", metaDescription);
-        formData.append("meta_keyword", metaKeywords);
-        formData.append("image", image);
 
         await axios
-            .post(`${baseUrl}/api/restaurant-insert`, formData)
+            .post(`${baseUrl}/api/branch-insert`, formData)
             .then((response) => {
                 Swal.fire({
                     title: response.data.msg,
-          
                     icon: "success",
                     confirmButtonText: "OK",
-                  });
+            });
         });
-    };
-    const changeHandler = (event) => {
-        setImage(event.target.files[0]);
-        setPrview(URL.createObjectURL(event.target.files[0]));
     };
     return (
         <div>
@@ -60,39 +54,36 @@ function NewRestaurant() {
                 <div className="card">
                     <div className="card-body">
                         <div className="btn-section">
-                            <h4 className="card-title">All Restaurant</h4>
-                            <a className="btn-style btn btn-info" href="/restaurant/all"><i class="bi bi-card-list"></i> All Restaurant</a>
+                            <h4 className="card-title">Create New Branch</h4>
+                            <a className="btn-style btn btn-info" href="/branchs">
+                                <i className="bi bi-list-columns-reverse"></i>All Branch
+                            </a>
                         </div>
-                        <div className="card-body">
+                        <div>
                             <Form>
-                                <div className='two_part'>
-                                    <div className="col-sm-3 background">
-                                        <label className="logo-label-style">Restaurant logo</label>
-                                        <div className="col-sm-6">
-                                            <Form.Group controlId="formFileMultiple" className="mb-3">
-                                                <Form.Control
-                                                    type="file"
-                                                    multiple
-                                                    onChange={changeHandler}
-                                                />
-                                            </Form.Group>
-                                            <img src={preview} width="212rem" />
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-9 background">
-                                        <h2 className="header-style"> Enter All restaurant Information:</h2>
+                                <div>
+                                    <div className="background">
+                                        <h2 className="header-style">Branch Information:</h2>
                                         <div>
-                                            <div className="input_field">
-                                                <Form.Label className="level-style">Restaurant name</Form.Label>
-                                                <Form.Control
-                                                    type="text"
-                                                    placeholder="Restaurant name"
-                                                    onChange={(event) => {
-                                                        setRestaurantName(event.target.value);
-                                                    }}
-                                                ></Form.Control>
-                                            </div>
                                             <div className="input_field two_part">
+                                                <div className="wid">
+                                                    <Form.Label className="level-style">Select Restaurant</Form.Label>
+                                                    <select
+                                                        className="select2"
+                                                        onChange={(event) => {
+                                                            setRestaurantID(event.target.value);
+                                                        }}
+                                                    >
+                                                        <option value="">Select Section</option>
+                                                        {restaurantName
+                                                            ? restaurantName.map((data) => (
+                                                                <option value={data.restaurant_id}>
+                                                                    {data.restaurant_name}
+                                                                </option>
+                                                            ))
+                                                            : null}
+                                                    </select>
+                                                </div>
                                                 <div className="wid">
                                                     <Form.Label className="level-style">Contact no.</Form.Label>
                                                     <Form.Control
@@ -192,47 +183,6 @@ function NewRestaurant() {
                                                 </div>
                                             </div>
                                             <div className="input_field">
-                                                <Form.Group>
-                                                    <Form.Label className="level-style">Meta Tag</Form.Label>
-                                                    <Form.Control
-                                                        className="area"
-                                                        as="textarea"
-                                                        placeholder="Meat tag"
-                                                        onChange={(event) => {
-                                                            setMetaTag(event.target.value);
-                                                        }}
-                                                        rows={3} />
-                                                </Form.Group>
-                                            </div>
-                                            <div className="input_field">
-                                                <Form.Group>
-                                                    <Form.Label className="level-style">Meta description</Form.Label>
-                                                    <Form.Control
-                                                        className="area"
-                                                        as="textarea"
-                                                        placeholder="Meta description"
-                                                        onChange={(event) => {
-                                                            setMetaDescription(event.target.value);
-                                                        }}
-                                                        rows={6}>
-                                                    </Form.Control>
-                                                </Form.Group>
-                                            </div>
-                                            <div className="input_field">
-                                                <Form.Group>
-                                                    <Form.Label className="level-style">Meta keyword</Form.Label>
-                                                    <Form.Control
-                                                        className="area"
-                                                        as="textarea"
-                                                        placeholder="Meta keyword"
-                                                        onChange={(event) => {
-                                                            setMetaKeywords(event.target.value);
-                                                        }}
-                                                        rows={3}>
-                                                    </Form.Control>
-                                                </Form.Group>
-                                            </div>
-                                            <div className="input_field">
                                                 <button onClick={insert} className="btn btn-warning top-space"><i
                                                     className="bi bi-save-fill"></i>Insert</button>
                                                 <br></br><br></br>
@@ -248,4 +198,5 @@ function NewRestaurant() {
         </div>
     );
 }
-export default NewRestaurant;
+
+export default NewBranch;
