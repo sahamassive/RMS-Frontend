@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState, createContext } from "react";
 import "../homepage/assets/css/style.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { baseUrl } from "../app/user-pages/constant/global";
+import { baseUrl, resturant_id } from "../app/user-pages/constant/global";
 
 import Modal from "@mui/material/Modal";
 import Swal from "sweetalert2";
@@ -11,6 +11,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 function Index() {
+  const [resturant, setResturant] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
   const [spfood, setSpFood] = useState("");
@@ -80,10 +81,16 @@ function Index() {
     getCategory();
     getFood();
     getspFood();
+    getResturant();
   }, []);
   const getFood = () => {
     axios.get(`${baseUrl}/api/quick-foods`).then((response) => {
       setFood(response.data);
+    });
+  };
+  const getResturant = () => {
+    axios.get(`${baseUrl}/api/restaurant/${resturant_id}`).then((response) => {
+      setResturant(response.data);
     });
   };
   const getCategory = () => {
@@ -105,7 +112,6 @@ function Index() {
     if (orderDetails.find((data) => data[0].food_id == id)) {
       Swal.fire({
         title: "Already Added",
-
         icon: "warning",
         confirmButtonText: "OK",
       });
@@ -138,12 +144,9 @@ function Index() {
             </i>
           </div>
           <div>
-            <select className="nav-link">
-              <option value="1010">Mcl-Resturant</option>
-              <option value="1011">Mcl-Resturant 2</option>
-              <option value="1010">Mcl-Resturant 3</option>
-            </select>
-            <i class="bi bi-geo-alt-fill"></i>
+            <i className="bi bi-phone d-flex align-items-center">
+              <span> {resturant ? resturant.restaurant_name : null}</span>
+            </i>
           </div>
         </div>
       </div>
@@ -623,7 +626,7 @@ function Index() {
                           irure dolor in reprehenderit in voluptate velit.
                         </li>
                         <li>
-                          <i className="bi bi-check-circled"></i> Ullamco 
+                          <i className="bi bi-check-circled"></i> Ullamco
                           laboris nisi ut aliquip ex ea commodo consequat.
                         </li>
                       </ul>
