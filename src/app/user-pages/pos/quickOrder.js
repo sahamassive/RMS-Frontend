@@ -3,12 +3,14 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "./style.css";
 import axios from "axios";
-import { baseUrl } from "../constant/global";
+import { baseUrl, resturant_id } from "../constant/global";
 import Swal from "sweetalert2";
 import { ReactCalculator } from "simple-react-calculator";
 import Modal from "@mui/material/Modal";
 
 function QuickOrder() {
+  const [branch, setBranch] = useState("");
+  const [branchId, setBranchId] = useState("");
   const [section, setSection] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
@@ -41,7 +43,14 @@ function QuickOrder() {
     getCategory();
     getFood();
     getEmployee();
-  }, []);
+    getBranch();
+  }, [branchId]);
+
+  const getBranch = () => {
+    axios.get(`${baseUrl}/api/branch/${resturant_id}`).then((response) => {
+      setBranch(response.data);
+    });
+  };
   useEffect(() => {
     calTotal();
   }, [quantity, orderDetails]);
@@ -73,15 +82,30 @@ function QuickOrder() {
     });
   };
   const getFood = () => {
-    axios.get(`${baseUrl}/api/quick-foods`).then((response) => {
-      setFood(response.data);
-    });
+    axios
+      .get(
+        `${baseUrl}/api/quick-foods/${resturant_id}/${
+          branchId ? branchId : resturant_id
+        }`
+      )
+      .then((response) => {
+        setFood(response.data);
+      });
   };
-
+  const selectBranch = (event) => {
+    setBranchId(event.target.value);
+    setOrderDetails([]);
+  };
   const foodByCategory = (id) => {
-    axios.get(`${baseUrl}/api/category-foods/${id}`).then((response) => {
-      setFood(response.data);
-    });
+    axios
+      .get(
+        `${baseUrl}/api/category-foods/${id}/${resturant_id}/${
+          branchId ? branchId : resturant_id
+        }`
+      )
+      .then((response) => {
+        setFood(response.data);
+      });
   };
   const addTocart = (id) => {
     if (orderDetails.find((data) => data[0].food_id == id)) {
@@ -191,6 +215,14 @@ function QuickOrder() {
               <div className="col-md-7">
                 <h4 className="card-title">Quick Order:</h4>
               </div>
+              <select className="form-control" onChange={selectBranch}>
+                <option value="">Visit Branch</option>
+                {branch
+                  ? branch.map((data) => (
+                      <option value={data.id}>{data.city}</option>
+                    ))
+                  : null}
+              </select>
               <div className="col-md-5 inner-addon right-addon">
                 <Form.Control
                   type="search"

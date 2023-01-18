@@ -31,22 +31,37 @@ const NewHoliday = lazy(() =>
 );
 
 const Brand = lazy(() => import("../app/user-pages/catelogue/brand/brand.js"));
-const CreateBrand = lazy(() => import("../app/user-pages/catelogue/brand/createBrand.js"));
-const EditBrand = lazy(() =>import("../app/user-pages/catelogue/brand/editBrand.js"));
+const CreateBrand = lazy(() =>
+  import("../app/user-pages/catelogue/brand/createBrand.js")
+);
+const EditBrand = lazy(() =>
+  import("../app/user-pages/catelogue/brand/editBrand.js")
+);
 
-const Category = lazy(() => import("../app/user-pages/catelogue/category/category.js"));
-const CreateCategory = lazy(() =>import("../app/user-pages/catelogue/category/createCategory.js"));
+const Category = lazy(() =>
+  import("../app/user-pages/catelogue/category/category.js")
+);
+const CreateCategory = lazy(() =>
+  import("../app/user-pages/catelogue/category/createCategory.js")
+);
 
-
-const Section = lazy(() => import("../app/user-pages/catelogue/section/section.js"));
-const CreateSection = lazy(() =>import("../app/user-pages/catelogue/section/createSection.js"));
-const editSection = lazy(() =>import("../app/user-pages/catelogue/section/editSection.js"));
-
+const Section = lazy(() =>
+  import("../app/user-pages/catelogue/section/section.js")
+);
+const CreateSection = lazy(() =>
+  import("../app/user-pages/catelogue/section/createSection.js")
+);
+const editSection = lazy(() =>
+  import("../app/user-pages/catelogue/section/editSection.js")
+);
 
 const Food = lazy(() => import("../app/user-pages/catelogue/food/food.js"));
-const CreateFood = lazy(() =>import("../app/user-pages/catelogue/food/createFood.js"));
-const EditFood = lazy(() => import("../app/user-pages/catelogue/food/editFood.js"));
-
+const CreateFood = lazy(() =>
+  import("../app/user-pages/catelogue/food/createFood.js")
+);
+const EditFood = lazy(() =>
+  import("../app/user-pages/catelogue/food/editFood.js")
+);
 
 const QuickOrder = lazy(() => import("../app/user-pages/pos/quickOrder.js"));
 
@@ -58,16 +73,35 @@ const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
 
 const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
-const CreateBooking = lazy(() => import("../app/user-pages/booking/createBooking.js"));
+const CreateBooking = lazy(() =>
+  import("../app/user-pages/booking/createBooking.js")
+);
 
-const Restaurant = lazy(() => import("../app/user-pages/restaurant/restaurant.js"));
-const NewRestaurant = lazy(() =>import("../app/user-pages/restaurant/newRestaurant.js"));
-const EditRestaurant = lazy(() => import("../app/user-pages/restaurant/editRestaurant.js"));
-const AllRestaurantBranches = lazy(() => import("../app/user-pages/restaurant/restaurantsBranches.js"));
+const Restaurant = lazy(() =>
+  import("../app/user-pages/restaurant/restaurant.js")
+);
+const NewRestaurant = lazy(() =>
+  import("../app/user-pages/restaurant/newRestaurant.js")
+);
+const EditRestaurant = lazy(() =>
+  import("../app/user-pages/restaurant/editRestaurant.js")
+);
+const AllRestaurantBranches = lazy(() =>
+  import("../app/user-pages/restaurant/restaurantsBranches.js")
+);
 
-const NewBranch = lazy(() =>import("../app/user-pages/restaurant/branch/newBranch.js"));
-const AllBranch = lazy(() => import("../app/user-pages/restaurant/branch/allBranch.js"));
-const EditBranch = lazy(() => import("../app/user-pages/restaurant/branch/editBranch"));
+const NewBranch = lazy(() =>
+  import("../app/user-pages/restaurant/branch/newBranch.js")
+);
+const AllBranch = lazy(() =>
+  import("../app/user-pages/restaurant/branch/allBranch.js")
+);
+const EditBranch = lazy(() =>
+  import("../app/user-pages/restaurant/branch/editBranch")
+);
+const FoodAdd = lazy(() =>
+  import("../app/user-pages/restaurant/branch/foodAdd")
+);
 
 const RegisterEmployee = lazy(() =>
   import("../app/user-pages/registration/EmployeeRegistration.js")
@@ -117,12 +151,19 @@ class AppRoutes extends Component {
 
           <Route path="/restaurant/all" component={Restaurant} />
           <Route path="/restaurant/new-restaurant" component={NewRestaurant} />
-          <Route path="/restaurant/edit-restaurant/:id" component={EditRestaurant} />
-          <Route path="/restaurant/branchs/:restaurant_id" component={ AllRestaurantBranches } />
+          <Route
+            path="/restaurant/edit-restaurant/:id"
+            component={EditRestaurant}
+          />
+          <Route
+            path="/restaurant/branchs/:restaurant_id"
+            component={AllRestaurantBranches}
+          />
 
-          <Route path="/branch/new-branch" component={ NewBranch } />
+          <Route path="/branch/new-branch" component={NewBranch} />
           <Route path="/branchs" component={AllBranch} />
           <Route path="/branch/edit-branch/:id" component={EditBranch} />
+          <Route path="/branch/food-add" component={FoodAdd} />
 
           <Route path="/hr/add-employee" component={RegisterEmployee} />
           <Route path="/hr/all-employee" component={AllEmployee} />
