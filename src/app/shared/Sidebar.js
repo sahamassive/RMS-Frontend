@@ -169,6 +169,12 @@ class Sidebar extends Component {
                                             <Trans>New Branch</Trans>
                                         </Link>
                                     </li>
+                                    <li className="nav-item">
+                                        <Link className={this.isPathActive('/branch/food-add') ? 'nav-link active' : 'nav-link'}
+                                            to="/branch/food-add">
+                                            <Trans>Food Add</Trans>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                         </Collapse>

@@ -13,6 +13,7 @@ import "react-phone-number-input/style.css";
 function Index() {
   const [resturant, setResturant] = useState("");
   const [branch, setBranch] = useState("");
+  const [branchId, setBranchId] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
   const [spfood, setSpFood] = useState("");
@@ -84,11 +85,17 @@ function Index() {
     getspFood();
     getResturant();
     getBranch();
-  }, []);
+  }, [branchId]);
   const getFood = () => {
-    axios.get(`${baseUrl}/api/quick-foods`).then((response) => {
-      setFood(response.data);
-    });
+    axios
+      .get(
+        `${baseUrl}/api/quick-foods/${resturant_id}/${
+          branchId ? branchId : resturant_id
+        }`
+      )
+      .then((response) => {
+        setFood(response.data);
+      });
   };
   const getBranch = () => {
     axios.get(`${baseUrl}/api/branch/${resturant_id}`).then((response) => {
@@ -106,14 +113,24 @@ function Index() {
     });
   };
   const foodByCategory = (id) => {
-    axios.get(`${baseUrl}/api/category-foods/${id}`).then((response) => {
-      setFood(response.data);
-    });
+    axios
+      .get(
+        `${baseUrl}/api/category-foods/${id}/${resturant_id}/${
+          branchId ? branchId : resturant_id
+        }`
+      )
+      .then((response) => {
+        setFood(response.data);
+      });
   };
   const getspFood = () => {
     axios.get(`${baseUrl}/api/sp-foods`).then((response) => {
       setSpFood(response.data);
     });
+  };
+  const selectBranch = (event) => {
+    setBranchId(event.target.value);
+    setOrderDetails([]);
   };
   const addTocart = (id) => {
     if (orderDetails.find((data) => data[0].food_id == id)) {
@@ -154,7 +171,7 @@ function Index() {
             <i className="bi bi-phone d-flex align-items-center">
               <span> {resturant.restaurant_name}</span>
             </i>
-            <select className="form-control">
+            <select className="form-control" onChange={selectBranch}>
               <option value="">Visit Branch</option>
               {branch
                 ? branch.map((data) => (
@@ -430,7 +447,9 @@ function Index() {
                         <a href="#">{data.name}</a>
                         <span>$ {data.price}</span>
                       </div>
-                      <div className="menu-ingredients">{data.description}</div>
+                      <div className="menu-ingredients">
+                        {data.description.substring(0, 50)}
+                      </div>
                       <button
                         className="btn btn-outline-warning cart-style"
                         onClick={() => {
