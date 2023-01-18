@@ -11,6 +11,9 @@ function EditFood() {
   const [section, setSection] = useState();
   const [brand, setBrand] = useState();
   const [category, setCategory] = useState();
+  const [sectionName, setSectionName] = useState();
+  const [brandName, setBrandName] = useState();
+  const [categoryName, setCategoryName] = useState();
   const [sectionId, setSectionId] = useState();
   const [brandId, setBrandId] = useState();
   const [categoryId, setCategoryId] = useState();
@@ -31,7 +34,10 @@ function EditFood() {
       .get(`${baseUrl}/api/food-edit/${params.id}`)
 
       .then((res) => {
-        setFoodName(res.data.name);
+        setFoodName(res.data.name); 
+        setBrandName(res.data.brand_name);
+        setCategoryName(res.data.category_name);
+        setSectionName(res.data.section_name);
         setDescription(res.data.description);
         setPrice(res.data.price);
         setSpeciality(res.data.speciality);
@@ -51,6 +57,7 @@ function EditFood() {
       setSection(response.data);
     });
   }, []);
+
   useEffect(() => {
     axios.get(`${baseUrl}/api/brands`).then((response) => {
       setBrand(response.data);
@@ -86,27 +93,33 @@ function EditFood() {
     formData.append("meta_keywords", metaKeyword);
     formData.append("image", image);
     await axios
-      .post(`${baseUrl}/api/food-insert`, formData)
+      .post(`${baseUrl}/api/food-edit/${params.id}`, formData)
       .then((response) => {
         Swal.fire({
           title: response.data.msg,
           icon: "success",
           confirmButtonText: "OK",
         });
-        console.log(response);
       });
   };
-
   return (
     <div>
       <Form>
         <div className="col-lg-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
-              <h2>Edit Food Item</h2>
+            <div className="btn-section">
+            <h4 className="card-title">All Food</h4>
+            <a
+              className="btn-style btn btn-info"
+              href="/catalogue/food"
+            >
+              <i className="bi bi-card-list"></i>All Food
+            </a>
+          </div>
               <div className="two_part">
                 <div className="col-sm-3 background">
-                  <lavel className="label-style">Food Image</lavel>
+                  <Form.Label  className="label-style">Food Image</Form.Label>
                   <div className="col-sm-6">
                     <Form.Group controlId="formFileMultiple" className="mb-3">
                       <Form.Control
@@ -188,10 +201,10 @@ function EditFood() {
                           setSectionId(event.target.value);
                         }}
                       >
-                        <option value={secid}>Select Section</option>
+                        <option>Select Section</option>
                         {section
                           ? section.map((data) => (
-                              <option value={data.id}>{data.name}</option>
+                            <option { ...data.name === sectionName ? 'selected' : null } key={data.id} value={data.id}>{data.name}</option>
                             ))
                           : null}
                       </select>
@@ -207,10 +220,10 @@ function EditFood() {
                           setCategoryId(event.target.value);
                         }}
                       >
-                        <option value="">Select Section</option>
+                        <option value="">Select Category</option>
                         {category
                           ? category.map((data) => (
-                              <option value={data.id}>
+                            <option {...data.category_name === categoryName ? "selected" : null } value={data.id}> 
                                 {data.category_name}
                               </option>
                             ))
@@ -228,10 +241,10 @@ function EditFood() {
                           setBrandId(event.target.value);
                         }}
                       >
-                        <option value="">Select Section</option>
+                        <option value="">Select Brand</option>
                         {brand
                           ? brand.map((data) => (
-                              <option value={data.id}>{data.name}</option>
+                              <option {...data.name === brandName ? "selected" : null }  value={data.id}>{data.name}</option>
                             ))
                           : null}
                       </select>
