@@ -40,20 +40,20 @@ function Food() {
                 <table id="example" className="table table-striped table-style">
                   <thead>
                     <tr>
+                      <th>SL.</th>
                       <th>item Name</th>
                       <th>Image</th>
                       <th>Description</th>
                       <th>Section</th>
                       <th>Category</th>
-
                       <th>Brand</th>
-
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {allData.map((data) => (
                       <tr>
+                        <td>{data.id}</td>
                         <td>{data.name}</td>
                         <td>
                           <img

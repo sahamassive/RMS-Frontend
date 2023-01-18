@@ -82,7 +82,15 @@ function CreateFood() {
         <div className="col-lg-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
-              <h2> Create new Food Item</h2>
+            <div className="btn-section">
+            <h4 className="card-title">All Food</h4>
+            <a
+              className="btn-style btn btn-info"
+              href="/catalogue/food"
+            >
+              <i className="bi bi-card-list"></i>All Food
+            </a>
+          </div>
               <div className="two_part">
                 <div className="col-sm-3 background">
                   <label className="logo-label-style">Food Image</label>
