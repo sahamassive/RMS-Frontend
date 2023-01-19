@@ -3,16 +3,15 @@ import "../homepage/assets/css/style.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseUrl, resturant_id } from "../app/user-pages/constant/global";
-
 import Modal from "@mui/material/Modal";
 import Swal from "sweetalert2";
-
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 function Index() {
   const [resturant, setResturant] = useState("");
   const [branch, setBranch] = useState("");
+  const [branchName, setBranchName] = useState("");
   const [branchId, setBranchId] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
@@ -21,6 +20,7 @@ function Index() {
   const [orderDetails, setOrderDetails] = useState([]);
   const order = [];
   const [open, setOpen] = React.useState(false);
+  const [branchModalStatus, setBranchModalStatus] = React.useState(false);
 
   //booking
   const [bookingDate, setBookingDate] = useState();
@@ -63,6 +63,13 @@ function Index() {
       });
   };
 
+  const branchOpen = () => {
+    getBranch();
+    setBranchModalStatus(true);
+  };
+
+  const branchClose = () => setBranchModalStatus(false);
+
   const handleOpen = (id) => {
     axios
       .get(`${baseUrl}/api/food-edit/${id}`)
@@ -80,12 +87,15 @@ function Index() {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    getCategory();
     getFood();
     getspFood();
+  }, [branchId]);
+  
+  useEffect(() => {
+    getCategory();
     getResturant();
     getBranch();
-  }, [branchId]);
+  }, []);
   const getFood = () => {
     axios
       .get(
@@ -100,6 +110,7 @@ function Index() {
   const getBranch = () => {
     axios.get(`${baseUrl}/api/branch/${resturant_id}`).then((response) => {
       setBranch(response.data);
+      setBranchName(response.data[0].city);
     });
   };
   const getResturant = () => {
@@ -128,9 +139,11 @@ function Index() {
       setSpFood(response.data);
     });
   };
-  const selectBranch = (event) => {
-    setBranchId(event.target.value);
+  const selectBranch = (id,city) => {
+    setBranchId(id);
+    setBranchName(city);
     setOrderDetails([]);
+    setBranchModalStatus(false);
   };
   const addTocart = (id) => {
     if (orderDetails.find((data) => data[0].food_id == id)) {
@@ -168,17 +181,15 @@ function Index() {
             </i>
           </div>
           <div>
-            <i className="bi bi-phone d-flex align-items-center">
-              <span> {resturant.restaurant_name}</span>
-            </i>
-            <select className="form-control" onChange={selectBranch}>
-              <option value="">Visit Branch</option>
-              {branch
-                ? branch.map((data) => (
-                    <option value={data.id}>{data.city}</option>
-                  ))
-                : null}
-            </select>
+            <button
+              className="form-control branch-style"
+              onClick={() => {
+                branchOpen();
+            }}
+            >
+            <i className="bi bi-geo-alt-fill icon-space4"></i>
+              {resturant.restaurant_name}, {branchName ? branchName : null }
+            </button>
           </div>
         </div>
       </div>
@@ -1466,6 +1477,39 @@ function Index() {
           </div>
         </div>
       </Modal>
+      <Modal
+      open={branchModalStatus}
+      onClose={branchClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+        <div className="food-details">
+          <div>
+            <div>
+              <h3 className="modal-title">Select Your Nearest Branch</h3>
+              <div className="close-btn">
+                <a onClick={branchClose}>
+                  <i className="bi bi-x-square"></i>
+                </a>
+              </div>
+            </div>
+          {branch
+            ? branch.map((data) => (
+              <div className="section-branch">
+                <button
+                  className="btn-details"
+                  onClick={ ()=>selectBranch(data.id, data.city) }
+                >
+                  <i className="bi bi-geo-alt-fill icon-space5"></i>
+                  <span className="city-01">{data.city} Branch</span><br></br>
+                  <span className="address-01">{data.address}</span>
+                </button>
+              </div>
+              ))
+            : null}
+          </div>
+    </div>
+    </Modal>
     </div>
   );
 }
