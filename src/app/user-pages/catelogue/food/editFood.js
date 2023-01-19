@@ -34,7 +34,7 @@ function EditFood() {
       .get(`${baseUrl}/api/food-edit/${params.id}`)
 
       .then((res) => {
-        setFoodName(res.data.name); 
+        setFoodName(res.data.name);
         setBrandName(res.data.brand_name);
         setCategoryName(res.data.category_name);
         setSectionName(res.data.section_name);
@@ -45,13 +45,15 @@ function EditFood() {
         setMetaKeyword(res.data.meta_keywords);
         setMetDes(res.data.meta_description);
         setImage(res.data.image);
-        setSecid(res.data.section_id);
+        setSectionId(res.data.section_id);
+        setCategoryId(res.data.category_id);
+        setBrandId(res.data.brand_id);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [params.id]);
-  
+
   useEffect(() => {
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setSection(response.data);
@@ -108,18 +110,15 @@ function EditFood() {
         <div className="col-lg-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
-            <div className="btn-section">
-            <h4 className="card-title">All Food</h4>
-            <a
-              className="btn-style btn btn-info"
-              href="/catalogue/food"
-            >
-              <i className="bi bi-card-list"></i>All Food
-            </a>
-          </div>
+              <div className="btn-section">
+                <h4 className="card-title">All Food</h4>
+                <a className="btn-style btn btn-info" href="/catalogue/food">
+                  <i className="bi bi-card-list"></i>All Food
+                </a>
+              </div>
               <div className="two_part">
                 <div className="col-sm-3 background">
-                  <Form.Label  className="label-style">Food Image</Form.Label>
+                  <Form.Label className="label-style">Food Image</Form.Label>
                   <div className="col-sm-6">
                     <Form.Group controlId="formFileMultiple" className="mb-3">
                       <Form.Control
@@ -155,7 +154,8 @@ function EditFood() {
                         <Form.Label className="level-style">
                           Description
                         </Form.Label>
-                        <Form.Control className="area"
+                        <Form.Control
+                          className="area"
                           as="textarea"
                           value={description}
                           rows={3}
@@ -201,10 +201,15 @@ function EditFood() {
                           setSectionId(event.target.value);
                         }}
                       >
-                        <option>Select Section</option>
                         {section
                           ? section.map((data) => (
-                            <option { ...data.name === sectionName ? 'selected' : null } key={data.id} value={data.id}>{data.name}</option>
+                              <option
+                                key={data.id}
+                                value={data.id}
+                                selected={data.name == sectionName}
+                              >
+                                {data.name}
+                              </option>
                             ))
                           : null}
                       </select>
@@ -220,10 +225,12 @@ function EditFood() {
                           setCategoryId(event.target.value);
                         }}
                       >
-                        <option value="">Select Category</option>
                         {category
                           ? category.map((data) => (
-                            <option {...data.category_name === categoryName ? "selected" : null } value={data.id}> 
+                              <option
+                                value={data.id}
+                                selected={data.category_name == categoryName}
+                              >
                                 {data.category_name}
                               </option>
                             ))
@@ -241,10 +248,14 @@ function EditFood() {
                           setBrandId(event.target.value);
                         }}
                       >
-                        <option value="">Select Brand</option>
                         {brand
                           ? brand.map((data) => (
-                              <option {...data.name === brandName ? "selected" : null }  value={data.id}>{data.name}</option>
+                              <option
+                                value={data.id}
+                                selected={data.name == brandName}
+                              >
+                                {data.name}
+                              </option>
                             ))
                           : null}
                       </select>
