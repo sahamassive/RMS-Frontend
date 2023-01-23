@@ -24,6 +24,7 @@ function CustomerOrder({}) {
   useEffect(() => {
     calTotal();
   }, [quantity, orderDetails]);
+  
   const calTotal = () => {
     // console.log(orderDetails);
 

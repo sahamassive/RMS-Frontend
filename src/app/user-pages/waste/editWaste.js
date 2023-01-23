@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { useEffect, useState } from "react";
 import './style.css';
+import { Form } from "react-bootstrap";
 import { baseUrl, resturant_id } from "../constant/global";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { useParams } from "react-router-dom";
 
-function Insert() {
+function EditWaste() {
     const [foodName, setFoodName] = useState();
     const [type, setType] = useState();
     const [reason, setReason] = useState();
@@ -15,6 +16,7 @@ function Insert() {
     const [allData, setAllData] = useState();
     const [food, setFood] = useState();
     const [branchId, setBranchId] = useState();
+    const params = useParams();
 
     const typeFunction = (type) => {
         axios.get(`${baseUrl}/api/get-employee/${type}`).then((response) => {
@@ -22,6 +24,23 @@ function Insert() {
             //console.log(response.data);
         });
     }
+    useEffect(() => {
+        axios
+            .get(`${baseUrl}/api/wastes-edit/${params.id}`)
+    
+            .then((res) => {
+                console.log(res.data);
+                setFoodName(res.data.food_id);
+                setReason(res.data.reason);
+                setAmount(res.data.amount);
+                setPrice(res.data.price);
+                setEmployee(res.data.employee_id);
+                setType(res.data.employee_type);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [params.id]);
 
     useEffect(() => {
         axios
@@ -32,11 +51,11 @@ function Insert() {
         )
         .then((response) => {
             setFood(response.data);
-            console.log(response.data);
+            //console.log(response.data);
         });
     }, [])
     
-    const Insert = async (e) => { 
+    const Update = async (e) => { 
         e.preventDefault();
 
         const formData = new FormData();
@@ -49,7 +68,7 @@ function Insert() {
         formData.append("employee_id", employee);
 
         await axios
-            .post(`${baseUrl}/api/waste-insert`, formData)
+            .post(`${baseUrl}/api/wastes-edit/${params.id}`, formData)
             .then((response) => {
                 Swal.fire({
                     title: response.data.msg,
@@ -57,23 +76,24 @@ function Insert() {
                     confirmButtonText: "OK"
                 })
             })
-    }
+    } 
     return (
         <div>
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
                         <div className="btn-section">
-                            <h4 className="card-title">Create New wastage</h4>
-                            <a className="btn-style btn btn-info" href="/waste/all"><i className="bi bi-card-list"></i> All
+                            <h4 className="card-title">Edit wastage</h4>
+                            <a className="btn-style btn btn-success" href="/waste/all"><i className="bi bi-card-list"></i> All
                                 Wasteage</a>
-                        </div> 
+                        </div>
                         <div className='background'>
                             <div className='col-sm-12 background'>
                                 <div className='input_field two_part'>
                                     <div className="wid">
                                         <Form.Label className="level-style">Food name</Form.Label>
                                         <select
+                                            value={foodName}
                                             onChange={(event) => {
                                                 setFoodName(event.target.value)
                                             }}
@@ -81,7 +101,7 @@ function Insert() {
                                             <option value="">Select food...</option>
                                             {
                                                 food ?
-                                                    food.map((data) => 
+                                                    food.map((data) =>
                                                         <option value={data.id}>
                                                             {data.name}
                                                         </option>
@@ -92,6 +112,7 @@ function Insert() {
                                     <div className="wid">
                                         <Form.Label className="level-style">Reason</Form.Label>
                                         <Form.Control
+                                            value={reason}
                                             type="text"
                                             placeholder="Reason"
                                             onChange={(event) => {
@@ -104,6 +125,7 @@ function Insert() {
                                     <div className="wid">
                                         <Form.Label className="level-style">Amount</Form.Label>
                                         <Form.Control
+                                            value={amount}
                                             type="number"
                                             placeholder="Amount"
                                             onChange={(event) => {
@@ -114,6 +136,7 @@ function Insert() {
                                     <div className="wid">
                                         <Form.Label className="level-style">Price</Form.Label>
                                         <Form.Control
+                                            value={price}
                                             type="number"
                                             placeholder="Price"
                                             onChange={(event) => {
@@ -126,6 +149,7 @@ function Insert() {
                                     <div className="wid">
                                         <Form.Label className="level-style">Select employee type</Form.Label>
                                         <select
+                                            value={type}
                                             onChange={(event) => {
                                                 setType(event.target.value)
                                                 setEmployee("");
@@ -144,21 +168,22 @@ function Insert() {
                                     <div className='wid'>
                                         <Form.Label className="level-style">Select employee</Form.Label>
                                         <select
+                                            value={employee}
                                             onChange={(event) => {
                                                 setEmployee(event.target.value)
                                             }}
                                         >
                                             <option value="">Select from here...</option>
                                             {allData ?
-                                                allData.map((data) => 
+                                                allData.map((data) =>
                                                     <option value={data.emp_id}>
-                                                    {data.emp_id}, {data.first_name} {data.last_name}</option>
+                                                        {data.emp_id}, {data.first_name} {data.last_name}</option>
                                                 )
-                                            : null}
+                                                : null}
                                         </select>
-                                    </div>   
+                                    </div>
                                 </div>
-                                <button onClick={ Insert } className="btn btn-warning top-space"><i
+                                <button onClick={Update} className="btn btn-warning top-space"><i
                                     className="bi bi-save-fill"></i>Insert</button>
                                 <br></br>
                                 <br></br>
@@ -171,4 +196,5 @@ function Insert() {
         </div>
     );
 }
-export default Insert; 
+
+export default EditWaste;

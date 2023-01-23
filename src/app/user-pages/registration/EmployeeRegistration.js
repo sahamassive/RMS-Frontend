@@ -11,6 +11,7 @@ import countrydata from "./../Country/Countrydata.json";
 import axios from "axios";
 import { baseUrl } from "../constant/global";
 import { ComposableMap } from "react-simple-maps";
+import Swal from "sweetalert2";
 
 
 function EmployeeRegistration() {
@@ -100,8 +101,11 @@ function EmployeeRegistration() {
       await axios
         .post(`${baseUrl}/api/employee-insert`, formData)
         .then((response) => {
-          alert(response.data.msg);
-          console.log(response);
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         });
     } else {
       alert(`password doesn't match`);
