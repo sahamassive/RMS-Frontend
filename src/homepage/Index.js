@@ -12,6 +12,10 @@ function Index() {
   const [resturant, setResturant] = useState("");
   const [branch, setBranch] = useState("");
   const [branchName, setBranchName] = useState("");
+  const [branchPhone, setBranchPhone] = useState("");
+  const [branchEmail, setBranchEmail] = useState("");
+  const [branchAddres, setBranchAddress] = useState("");
+
   const [branchId, setBranchId] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
@@ -35,6 +39,8 @@ function Index() {
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [note, setNote] = useState();
+  const [location, setLocation] = useState({});
+  const [userCity, setuserCity] = useState();
 
   const insert = async (e) => {
     e.preventDefault();
@@ -90,12 +96,38 @@ function Index() {
     getFood();
     getspFood();
   }, [branchId]);
-  
+
   useEffect(() => {
     getCategory();
     getResturant();
     getBranch();
+    getLocation();
+    localStorage.removeItem("branchId");
   }, []);
+  useEffect(() => {
+    getLocation();
+  }, [location]);
+  const getLocation = async () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        setLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+        // get address information using Nominatim API
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${location.latitude}&lon=${location.longitude}`
+        );
+        if (location) {
+          const data = await response.json();
+          const b = data.address ? data.address.city : null;
+          setuserCity(b);
+        }
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
   const getFood = () => {
     axios
       .get(
@@ -139,11 +171,22 @@ function Index() {
       setSpFood(response.data);
     });
   };
-  const selectBranch = (id,city) => {
+  const selectBranch = (id, city, phone, address, email) => {
     setBranchId(id);
     setBranchName(city);
     setOrderDetails([]);
+    setBranchPhone(phone);
+    setBranchAddress(address);
+    setBranchEmail(email);
     setBranchModalStatus(false);
+    localStorage.setItem("branchId", id);
+    setBranchId(id);
+    console.log(userCity);
+  };
+  const setMainBranch = () => {
+    setBranchId("");
+    setBranchModalStatus(false);
+    localStorage.removeItem("branchId");
   };
   const addTocart = (id) => {
     if (orderDetails.find((data) => data[0].food_id == id)) {
@@ -173,11 +216,13 @@ function Index() {
       <div id="topbar" className="d-flex align-items-center fixed-top">
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
+
             <button className="branch-style"><i className="bi bi-phone d-flex align-items-center">
               <span className="branch-style">
-                <a href="tel:+88 01323 148188"></a>+88 01323 148188
+                <a href=`tel: ${resturant.phone}`></a>{resturant.phone}
               </span>
             </i></button>
+
             <i className="bi bi-clock d-flex align-items-center ms-4">
               <span className="active-time"> Sat-Fri: 10AM - 11PM</span>
             </i>
@@ -187,10 +232,11 @@ function Index() {
               className="form-control branch-style"
               onClick={() => {
                 branchOpen();
-            }}
+              }}
             >
-            <i className="bi bi-geo-alt-fill icon-space4"></i>
-              {resturant.restaurant_name}, {branchName ? branchName : null }
+              <i className="bi bi-geo-alt-fill icon-space4"></i>
+              {resturant.restaurant_name},{" "}
+              {branchId ? branchName : resturant.city}
             </button>
           </div>
         </div>
@@ -1240,7 +1286,11 @@ function Index() {
                   <div className="address">
                     <i className="bi bi-geo-alt"></i>
                     <h4>Location:</h4>
-                    <p>A108 Adam Street, New York, NY 535022</p>
+                    <p>
+                      {branchId
+                        ? `${branchAddres},${branchName}`
+                        : `${resturant.address},${resturant.state},${resturant.city}`}
+                    </p>
                   </div>
                   <div className="open-hours">
                     <i className="bi bi-clock"></i>
@@ -1253,12 +1303,12 @@ function Index() {
                   <div className="email">
                     <i className="bi bi-envelope"></i>
                     <h4>Email:</h4>
-                    <p>info@example.com</p>
+                    <p>{branchId ? branchEmail : resturant.email}</p>
                   </div>
                   <div className="phone">
                     <i className="bi bi-phone"></i>
                     <h4>Call:</h4>
-                    <p>+1 5589 55488 55s</p>
+                    <p>{branchId ? branchPhone : resturant.phone}</p>
                   </div>
                 </div>
               </div>
@@ -1332,13 +1382,33 @@ function Index() {
             <div className="row">
               <div className="col-lg-3 col-md-6">
                 <div className="footer-info">
-                  <h3>Restaurantly</h3>
+                  <div className="dis">
+                    <h3 className="logo me-auto me-lg-0">
+                      <a href="index.html">
+                        <img
+                          src={`${baseUrl}/restaurants/small/${resturant.logo}`}
+                          width="10rem"
+                        ></img>
+                      </a>
+                    </h3>
+                    <div>
+                      <span className="res"> {resturant.restaurant_name}</span>
+                      <span className="company_name">FOOD</span>
+                    </div>
+                  </div>
                   <p>
-                    A108 Adam Street <br></br>
-                    NY 535022, USA<br></br>
+                    <span className="res"> Main Branch</span>
                     <br></br>
-                    <strong>Phone:</strong> +1 5589 55488 55<br></br>
-                    <strong>Email:</strong> info@example.com<br></br>
+                    {resturant.address},<br></br>
+                    {resturant.state}, {resturant.city},{resturant.country}
+                    <br></br>
+                    <br></br>
+                    <strong>Phone:</strong>
+                    {resturant.phone}
+                    <br></br>
+                    <strong>Email:</strong>
+                    {resturant.email}
+                    <br></br>
                   </p>
                   <div className="social-links mt-3">
                     <a href="#" className="twitter">
@@ -1424,11 +1494,7 @@ function Index() {
         </div>
         <div className="container">
           <div className="copyright">
-            &copy; Copyright{" "}
-            <strong>
-              <span>Restaurantly</span>
-            </strong>
-            . All Rights Reserved
+            &copy; Copyright <strong></strong>. All Rights Reserved
           </div>
           <div className="credits">
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
@@ -1480,11 +1546,11 @@ function Index() {
         </div>
       </Modal>
       <Modal
-      open={branchModalStatus}
-      onClose={branchClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+        open={branchModalStatus}
+        onClose={branchClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <div className="food-details">
           <div>
             <div>
@@ -1495,23 +1561,41 @@ function Index() {
                 </a>
               </div>
             </div>
-          {branch
-            ? branch.map((data) => (
-              <div className="section-branch table-responsive">
-                <button
-                  className="btn-details"
-                  onClick={ ()=>selectBranch(data.id, data.city) }
-                >
-                  <i className="bi bi-geo-alt-fill icon-space5"></i>
-                  <span className="city-01">{data.city} Branch</span><br></br>
-                  <span className="address-01">{data.address}</span>
-                </button>
-              </div>
-              ))
-            : null}
+
+            {branch
+              ? branch.map((data) => (
+                  <div className="section-branch">
+                    <button
+                      className="btn-details"
+                      onClick={() =>
+                        selectBranch(
+                          data.id,
+                          data.city,
+                          data.phone,
+                          data.address,
+                          data.email
+                        )
+                      }
+                    >
+                      <i className="bi bi-geo-alt-fill icon-space5"></i>
+                      <span className="city-01">{data.city} Branch</span>
+                      <br></br>
+                      <span className="address-01">{data.address}</span>
+                    </button>
+                  </div>
+                ))
+              : null}
+
           </div>
-    </div>
-    </Modal>
+          <div className="section-branch">
+            <button className="btn-details" onClick={() => setMainBranch()}>
+              <i className="bi bi-geo-alt-fill icon-space5"></i>
+              <span className="city-01">GoTo Main Branch</span>
+              <br></br>
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

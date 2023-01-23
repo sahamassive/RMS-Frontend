@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
 import "./style.css";
-import { baseUrl } from "../constant/global";
+import axios from "axios";
+import { baseUrl, resturant_id } from "../constant/global";
 
 function CustomerOrder({}) {
   const [allData, setAllData] = useState([]);
@@ -11,16 +12,19 @@ function CustomerOrder({}) {
   const [orderDetails, setOrderDetails] = useState(state);
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState();
-
-  useEffect(() => {
-    const url = "";
-    fetch(url)
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-        setAllData(response.data);
-      });
-  }, []);
+  const [pickup, setPickUp] = useState();
+  const [vat, setVat] = useState();
+  const [grandTotal, setGrandTotal] = useState();
+  const branchId = localStorage.getItem("branchId");
+  // useEffect(() => {
+  //   const url = "";
+  //   fetch(url)
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       console.log(response);
+  //       setAllData(response.data);
+  //     });
+  // }, []);
   useEffect(() => {
     calTotal();
   }, [quantity, orderDetails]);
@@ -31,9 +35,11 @@ function CustomerOrder({}) {
     let sum = 0;
 
     orderDetails.forEach((element) => {
-      sum = sum + parseInt(element[0].food_price * parseInt(element[0].qty));
+      sum = sum + element[0].food_price * element[0].qty;
     });
     setTotal(sum);
+    setVat((sum * 0.05).toFixed(2));
+    setGrandTotal((sum + sum * 0.05).toFixed(2));
   };
 
   const removeItem = (id) => {
@@ -77,6 +83,37 @@ function CustomerOrder({}) {
         return data;
       }
     });
+  };
+
+  const submitOrder = () => {
+    // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+    if (pickup == null) {
+      Swal.fire({
+        title: "Please Select PickUp Method",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
+    } else {
+      axios
+        .post(`${baseUrl}/api/order-store`, {
+          resturant_id: resturant_id,
+          branch_id: branchId,
+
+          item: orderDetails.length,
+          total: total,
+          grand_price: grandTotal,
+          pickup_method: pickup,
+          vat: vat,
+          details: orderDetails,
+        })
+        .then((response) => {
+          Swal.fire({
+            title: "Order submitted",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        });
+    }
   };
   return (
     <div>
@@ -166,16 +203,18 @@ function CustomerOrder({}) {
             </div>
             <div className="col-md-12 section_01">
               <div className="col-md-4 block_01">
-                <h4>Shipping Method:</h4>
-                <input
-                  type="radio"
-                  value="home-delivery"
-                  name="shipping-method"
-                />
-                Home Delivery<br></br>
-                <input type="radio" value="Female" name="shipping-method" />
-                Pickup
-                <br></br>
+                <div onChange={(e) => setPickUp(e.target.value)}>
+                  <h4>Shipping Method:</h4>
+                  <input
+                    type="radio"
+                    value="home-delivery"
+                    name="shipping-method"
+                  />
+                  Home Delivery<br></br>
+                  <input type="radio" value="pickup" name="shipping-method" />
+                  Pickup
+                  <br></br>
+                </div>
                 <div className="section_01 section-border">
                   <div className="badge">
                     <Form.Label>Order Date:</Form.Label>
@@ -226,7 +265,7 @@ function CustomerOrder({}) {
                       </tr>
                       <tr>
                         <td>VAT(n%)</td>
-                        <td>104.25</td>
+                        <td>{vat ? vat : null}</td>
                       </tr>
                       <tr>
                         <td>Discount</td>
@@ -238,13 +277,18 @@ function CustomerOrder({}) {
                       </tr>
                       <tr>
                         <td>Grand Total</td>
-                        <td>799.25</td>
+                        <td>{grandTotal ? grandTotal : null}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <button className="btn btn-warning btn-se">
-                  <i className="bi bi-credit-card"></i>Proceed to Checkout
+                <button
+                  className="btn btn-warning btn-se"
+                  onClick={() => {
+                    submitOrder();
+                  }}
+                >
+                  <i className="bi bi-credit-card"></i>Submit Order
                 </button>
               </div>
             </div>
