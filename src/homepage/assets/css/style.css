@@ -1613,6 +1613,22 @@ section {
   margin-left: 20%;
   margin-right: 20%;
 }
+@media(max-width:780px){
+  .food-details {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+}
+@media(max-width:450px){
+  .food-details {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
 .sec_01 {
   margin-left: -8rem;
 }
@@ -1628,14 +1644,35 @@ section {
 }
 .close-btn {
   position: absolute;
-  right: 18rem;
+  right: 21%;
   top:0;
   font-size: 2rem;
   color: rgb(206, 24, 100);
   background-color: none !important;
   cursor: pointer !important;
 }
-
+@media(max-width:780px) and (min-width:449px){
+  .close-btn {
+    position: absolute;
+    right: 16%;
+    top:0;
+    font-size: 2rem;
+    color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
+}
+@media(max-width:450px){
+  .close-btn {
+    position: absolute;
+    right: 3%;
+    top:0;
+    font-size: 2rem;
+    color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
+}
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus,
@@ -1645,7 +1682,7 @@ input[type="time"]:focus {
   color: black;
 }
 .area {
-  color: white;
+  color: white !important;
 }
 .area:focus {
   background-color: white;
@@ -1683,20 +1720,43 @@ select:focus {
   border-radius: 18px;
   border-bottom: 2px solid rgb(255, 255, 255);
   background-color: transparent;
-  width: 30rem;
+}
+@media(max-width:950px){
+  .btn-details{
+    padding: 3%;
+    margin-left: 8%;
+    margin-right:8%;
+    margin-bottom: .1rem;
+    border-radius: 18px;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    background-color: transparent;
+  }
+}
+@media(max-width:450px){
+  .btn-details{
+    padding: 3%;
+    margin-left: 2%;
+    margin-right:2%;
+    margin-bottom: .1rem;
+    border-radius: 18px;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    background-color: transparent;
+  }
 }
 .btn-details:hover{
   background-color: rgba(37, 37, 37, 0.8)
 }
 .city-01{
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 .address-01{
-  font-size: .7rem;
+  font-size: .7em;
 }
 .modal-title{
   text-align: center;
   color:rgb(4, 184, 255);
+  margin-bottom: 1rem;
+  padding-top: 2rem;
 }
 .icon-space4{
   padding-right: .5rem;
@@ -1707,3 +1767,9 @@ select:focus {
   font-size: 1.5rem;
   color: rgb(129, 129, 3) !important;
 }
+@media(max-width:450px){
+  .active-time{
+    display: none;
+  }
+}
+

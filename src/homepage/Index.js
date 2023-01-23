@@ -173,11 +173,13 @@ function Index() {
       <div id="topbar" className="d-flex align-items-center fixed-top">
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
-            <i className="bi bi-phone d-flex align-items-center">
-              <span>+88 01323 148188</span>
-            </i>
+            <button className="branch-style"><i className="bi bi-phone d-flex align-items-center">
+              <span className="branch-style">
+                <a href="tel:+88 01323 148188"></a>+88 01323 148188
+              </span>
+            </i></button>
             <i className="bi bi-clock d-flex align-items-center ms-4">
-              <span> Sat-Fri: 10AM - 11PM</span>
+              <span className="active-time"> Sat-Fri: 10AM - 11PM</span>
             </i>
           </div>
           <div>
@@ -809,7 +811,7 @@ function Index() {
                     onChange={(event) => {
                       setType(event.target.value);
                     }}
-                    className="form-control"
+                    className="form-control area"
                   >
                     <option value="">Select here</option>
                     <option value="birthday">Birthday</option>
@@ -826,7 +828,7 @@ function Index() {
                     onChange={(event) => {
                       setTable(event.target.value);
                     }}
-                    className="form-control"
+                    className="form-control area"
                   >
                     <option value="">Select here</option>
                     <option value="table-1">Table 1</option>
@@ -1495,7 +1497,7 @@ function Index() {
             </div>
           {branch
             ? branch.map((data) => (
-              <div className="section-branch">
+              <div className="section-branch table-responsive">
                 <button
                   className="btn-details"
                   onClick={ ()=>selectBranch(data.id, data.city) }

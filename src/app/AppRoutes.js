@@ -71,6 +71,7 @@ const CustomerOrder = lazy(() =>
 
 const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
+const EditWaste = lazy(() => import("../app/user-pages/waste/editWaste.js"));
 
 const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
 const CreateBooking = lazy(() =>
@@ -103,9 +104,18 @@ const FoodAdd = lazy(() =>
   import("../app/user-pages/restaurant/branch/foodAdd")
 );
 
+const NewRecipe = lazy(() => import("../app/user-pages/recipe/newRecipe.js"));
+
 const RegisterEmployee = lazy(() =>
   import("../app/user-pages/registration/EmployeeRegistration.js")
 );
+
+const NewDiscount = lazy(() => import("../app/user-pages/discount/discount/newDiscount.js"));
+const AllDiscount = lazy(() => import("../app/user-pages/discount/discount/allDiscount.js"));
+const EditDiscount = lazy(() => import("../app/user-pages/discount/discount/editDiscount.js"));
+
+
+const NewCoupon = lazy(() => import("../app/user-pages/discount/coupon/newCoupon.js"));
 
 const Error404 = lazy(() => import("./error-pages/Error404"));
 const Error500 = lazy(() => import("./error-pages/Error500"));
@@ -145,6 +155,9 @@ class AppRoutes extends Component {
 
           <Route path="/waste/all" component={Waste} />
           <Route path="/waste/new-waste" component={NewWaste} />
+          <Route path="/waste/edit-waste/:id" component={EditWaste} />
+
+          <Route path="/recipe/new-recipe" component={NewRecipe} />
 
           <Route path="/booking/all" component={Booking} />
           <Route path="/booking/new-booking" component={CreateBooking} />
@@ -176,6 +189,13 @@ class AppRoutes extends Component {
           <Route path="/hr/new-leave" component={NewEmployeeLeave} />
 
           <Route path="/customer-order" component={CustomerOrder} />
+
+
+          <Route path="/discount/new-discount" component={NewDiscount} />
+          <Route path="/discount/all-discount" component={AllDiscount} />
+          <Route path="/discount/edit-discount/:id" component={EditDiscount} />
+
+          <Route path="/discount/new-coupon" component={NewCoupon} />
 
           <Route
             path="/super-admin/employee/registration"

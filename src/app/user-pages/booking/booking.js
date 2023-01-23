@@ -29,7 +29,7 @@ function Booking() {
             <div className="btn-section">
               <h4 className="card-title">All bookings:</h4>
               <a className="btn-style btn btn-info" href="/booking/new-booking">
-                <i class="bi bi-card-list"></i>New Booking
+                <i class="bi bi-plus-square"></i>New Booking
               </a>
             </div>
             <div className="table-responsive">

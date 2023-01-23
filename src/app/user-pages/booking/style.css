@@ -68,6 +68,14 @@ input[type=email]:focus{
     outline: 2px solid rgb(1, 61, 16);
     background-color: white;
 }
+input[type=text]:hover,
+input[type=number]:hover,
+input[type=date]:hover,
+input[type=time]:hover,
+input[type=email]:hover{
+    background-color: white;
+    color: black;
+}
 
 .area{
     background-color: #00000085;
@@ -77,6 +85,11 @@ input[type=email]:focus{
 .area:focus{
     outline: 2px solid rgb(1, 61, 16);
     background-color: white;
+    color: black;
+}
+.area:hover{
+    background-color: white;
+    color: black;
 }
 select{
     background-color: #00000085;
@@ -92,7 +105,10 @@ select:focus{
     background-color: white;
     color: black;
 }
-
+select:hover{
+    background-color: white;
+    color: black;
+}
 .input_field {
     margin-left: 2rem;
     margin-right: 2rem;
