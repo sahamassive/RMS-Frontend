@@ -105,6 +105,10 @@ function Index() {
     localStorage.removeItem("branchId");
   }, []);
   useEffect(() => {
+    defultbranch();
+  }, [userCity]);
+
+  useEffect(() => {
     getLocation();
   }, [location]);
   const getLocation = async () => {
@@ -150,6 +154,22 @@ function Index() {
       setResturant(response.data);
     });
   };
+  const defultbranch = () => {
+    axios
+      .get(
+        `${baseUrl}/api/restaurant/${resturant_id}/${
+          userCity ? userCity : null
+        }`
+      )
+      .then((response) => {
+        setBranchId(response.data.id);
+        setBranchName(response.data.city);
+
+        setBranchPhone(response.data.phone);
+        setBranchAddress(response.data.address);
+        setBranchEmail(response.data.email);
+      });
+  };
   const getCategory = () => {
     axios.get(`${baseUrl}/api/categories`).then((response) => {
       setCategory(response.data);
@@ -181,8 +201,10 @@ function Index() {
     setBranchModalStatus(false);
     localStorage.setItem("branchId", id);
     setBranchId(id);
+    console.log(resturant);
     console.log(userCity);
   };
+
   const setMainBranch = () => {
     setBranchId("");
     setBranchModalStatus(false);
@@ -217,11 +239,13 @@ function Index() {
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
 
+
             <button className="branch-style"><i className="bi bi-phone d-flex align-items-center">
               <span className="branch-style">
                 <a href={`tel: ${resturant.phone}`}></a>{resturant.phone}
               </span>
             </i></button>
+
 
             <i className="bi bi-clock d-flex align-items-center ms-4">
               <span className="active-time"> Sat-Fri: 10AM - 11PM</span>
@@ -1591,6 +1615,15 @@ function Index() {
                   </div>
                 ))
               : null}
+
+          </div>
+          <div className="section-branch">
+            <button className="btn-details" onClick={() => setMainBranch()}>
+              <i className="bi bi-geo-alt-fill icon-space5"></i>
+              <span className="city-01">GoTo Main Branch</span>
+              <br></br>
+            </button>
+
           </div>
         </div>
       </Modal>
