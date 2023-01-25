@@ -50,9 +50,9 @@ function Attendence() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {allData.map((data) => (
+                                    {allData.map((data, index) => (
                                         <tr>
-                                            <td>{data.category_name}</td>
+                                            <td>{index + 1}</td>
                                             <td>{data.description}</td>
                                             <td>{data.category_discount}</td>
                                             <td>{data.category_discount}</td>

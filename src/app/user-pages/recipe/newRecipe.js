@@ -54,19 +54,6 @@ function NewRecipe() {
                   </select>
                 </div>
               </div>
-              <div className="input_field">
-                <Form.Group>
-                  <Form.Label className="label-style">
-                    How To make step by step
-                  </Form.Label>
-                  <Form.Control
-                    className="area"
-                    as="textarea"
-                    placeholder="Meta keyword"
-                    rows={20}
-                  ></Form.Control>
-                </Form.Group>
-              </div>
             </div>
           </div>
         </div>
