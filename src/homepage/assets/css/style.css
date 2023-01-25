@@ -169,7 +169,7 @@ h6 {
 }
 #header .logo {
   position: absolute;
-  left: 6rem;
+  left: 7%;
 }
 #header .logo a {
   color: #fff;
@@ -1713,6 +1713,7 @@ select:focus {
   border-style: none;
 }
 .btn-details{
+  width: 60%;
   padding: 3%;
   margin-left: 20%;
   margin-right:20%;
@@ -1723,6 +1724,7 @@ select:focus {
 }
 @media(max-width:950px){
   .btn-details{
+    width: 84%;
     padding: 3%;
     margin-left: 8%;
     margin-right:8%;
@@ -1734,6 +1736,7 @@ select:focus {
 }
 @media(max-width:450px){
   .btn-details{
+    width:96%;
     padding: 3%;
     margin-left: 2%;
     margin-right:2%;

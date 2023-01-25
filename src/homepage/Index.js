@@ -219,7 +219,7 @@ function Index() {
 
             <button className="branch-style"><i className="bi bi-phone d-flex align-items-center">
               <span className="branch-style">
-                <a href=`tel: ${resturant.phone}`></a>{resturant.phone}
+                <a href={`tel: ${resturant.phone}`}></a>{resturant.phone}
               </span>
             </i></button>
 
@@ -229,7 +229,7 @@ function Index() {
           </div>
           <div>
             <button
-              className="form-control branch-style"
+              className="branch-style"
               onClick={() => {
                 branchOpen();
               }}
@@ -251,7 +251,7 @@ function Index() {
                 ></img>
               </a>
             </h3>
-            <div>
+            <div className="logo me-auto me-lg-0">
               <span className="res"> Restaurent</span>
               <span className="company_name">FOOD</span>{" "}
             </div>
@@ -1561,7 +1561,13 @@ function Index() {
                 </a>
               </div>
             </div>
-
+            <div className="section-branch">
+            <button className="btn-details" onClick={() => setMainBranch()}>
+              <i className="bi bi-geo-alt-fill icon-space5"></i>
+              <span className="city-01">GoTo Main Branch</span>
+              <br></br>
+            </button>
+          </div>
             {branch
               ? branch.map((data) => (
                   <div className="section-branch">
@@ -1585,14 +1591,6 @@ function Index() {
                   </div>
                 ))
               : null}
-
-          </div>
-          <div className="section-branch">
-            <button className="btn-details" onClick={() => setMainBranch()}>
-              <i className="bi bi-geo-alt-fill icon-space5"></i>
-              <span className="city-01">GoTo Main Branch</span>
-              <br></br>
-            </button>
           </div>
         </div>
       </Modal>

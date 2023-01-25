@@ -1,0 +1,113 @@
+.section_01{
+    display: flex;
+    gap: .4rem;
+}
+@media (max-width: 750px){
+    .section_01{
+        display: block;
+    }
+}
+input[type=text]{
+    background-color: #00000085;
+    border-radius: 5px;
+}
+input[type=text]:focus{
+    outline: 2px solid rgb(1, 61, 16);
+    background-color: white;
+}
+.icon-plus{
+    background-color: green;
+    color: white;
+    font-size: 1.5em;
+    border-style: none;
+    border-radius: 5px;
+    margin-right: .3rem;
+}
+.icon-minus{
+    background-color: red;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 5px;
+    border-style: none;
+    margin-left: .35rem;
+}
+.section-border{
+    border: .1px solid rgb(68, 67, 67);
+    border-radius: 8PX;
+    margin-top: 5PX;
+    padding-top: 10PX;
+    margin-bottom: 10px;
+}
+.level-style{
+    font-size: .9em;
+    font-family: "Times New Roman";
+    margin-bottom: -9px;
+}
+.top-section{
+    background-image: url('../../../assets/images/bannar.jpg');
+    margin-top: .7rem;
+    height: 15rem;
+    margin-left: 1rem;
+    margin-bottom: .3rem;
+    margin-right: 1rem;
+    border-radius: 15px;
+    padding-left: 1rem;
+}
+.icon-delete{
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    border-style: none;
+    border-radius: 5px;
+    padding: .3rem;
+}
+.btn-se{
+    margin-top: .5rem;
+}
+space3{
+    margin-left: .2rem;
+}
+h3{
+    text-align: center;
+    font-family: 'Edwardian Script ITC';
+    font-style: italic;
+    font-weight: bold;
+    font-size: 3rem;
+}
+h1{
+    text-align: center;
+    font-family: 'Courgette';
+    font-style: italic;
+    font-weight: bold;
+    font-size: 3rem;
+    padding-top:2rem;
+}
+.table-style{
+    width: 100%;
+    padding-bottom: 10px;
+}
+.img-style{
+    height: 5rem;
+}
+.block_01{
+    background-color: #292727;
+    border-radius: 8px;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+.right-side{
+    position: absolute;
+    right: 1rem;
+}
+.right-side2{
+    position: absolute;
+    right: 2.5rem;
+}
+@media (max-width: 700px){
+    .right-side{
+        display: none;
+    }
+    .right-side2{
+        display: none;
+    }
+}

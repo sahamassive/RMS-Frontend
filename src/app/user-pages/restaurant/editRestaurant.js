@@ -25,7 +25,7 @@ function EditRestaurant() {
     useEffect(() => {
         axios
             .get(`${baseUrl}/api/restaurant-edit/${params.id}`)
-    
+
             .then((res) => {
                 setRestaurantName(res.data.restaurant_name);
                 setPhoneNumber(res.data.phone);
@@ -271,7 +271,7 @@ function EditRestaurant() {
                                     </div>
                                     <div className="input_field">
                                         <button onClick={update} className="btn btn-warning top-space"><i
-                                                className="bi bi-save-fill"></i>Insert</button>
+                                                className="bi bi-save-fill"></i>Update</button>
                                         <br></br><br></br>
                                     </div>
                                 </div>

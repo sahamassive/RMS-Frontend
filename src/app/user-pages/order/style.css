@@ -1,113 +1,62 @@
-.section_01{
+.btn-section{
     display: flex;
-    gap: .4rem;
 }
-@media (max-width: 750px){
-    .section_01{
+@media (max-width: 700px) {
+    .btn-section{
         display: block;
     }
 }
-input[type=text]{
-    background-color: #00000085;
+.btn-style{
+    position: absolute;
+    right: 2rem;
+}
+.background {
+  background-color: #222222;
+  border-radius: 15px;
+  padding: 1px;
+  text-align: left;
+  margin-top: 10px;
+  min-height: 15vh;
+}
+.top-space{
+    margin-top: .9rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: 2rem;
+}
+.two_part {
+    display: flex;
+    gap: .4rem;
+}
+@media (max-width: 700px) {
+    .two_part {
+        display: block;
+    }
+}
+.paginate_button{
+  color: white;
+  border: 1px solid white;
+  padding: .5rem;
+  border-radius: 5px;
+  margin-right: .3rem;
+  cursor: pointer;
+}
+.paginate_button:hover{
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  padding: .5rem;
+  border-radius: 5px;
+  margin-right: .3rem;
+  cursor: pointer;
+}
+select {
+    background-color: #ffffff85;
     border-radius: 5px;
-}
-input[type=text]:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-}
-.icon-plus{
-    background-color: green;
-    color: white;
-    font-size: 1.5em;
-    border-style: none;
-    border-radius: 5px;
-    margin-right: .3rem;
-}
-.icon-minus{
-    background-color: red;
-    color: white;
-    font-size: 1.5em;
-    border-radius: 5px;
-    border-style: none;
-    margin-left: .35rem;
-}
-.section-border{
-    border: .1px solid rgb(68, 67, 67);
-    border-radius: 8PX;
-    margin-top: 5PX;
-    padding-top: 10PX;
-    margin-bottom: 10px;
-}
-.level-style{
-    font-size: .9em;
-    font-family: "Times New Roman";
-    margin-bottom: -9px;
-}
-.top-section{
-    background-image: url('../../../assets/images/bannar.jpg');
-    margin-top: .7rem;
-    height: 15rem;
-    margin-left: 1rem;
-    margin-bottom: .3rem;
-    margin-right: 1rem;
-    border-radius: 15px;
-    padding-left: 1rem;
-}
-.icon-delete{
-    background-color: red;
-    color: white;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 5px;
-    padding: .3rem;
-}
-.btn-se{
-    margin-top: .5rem;
-}
-space3{
-    margin-left: .2rem;
-}
-h3{
-    text-align: center;
-    font-family: 'Edwardian Script ITC';
-    font-style: italic;
-    font-weight: bold;
-    font-size: 3rem;
-}
-h1{
-    text-align: center;
-    font-family: 'Courgette';
-    font-style: italic;
-    font-weight: bold;
-    font-size: 3rem;
-    padding-top:2rem;
-}
-.table-style{
+    border: none;
+    height: 2.3rem;
+    color: rgb(0, 0, 0);
     width: 100%;
-    padding-bottom: 10px;
-}
-.img-style{
-    height: 5rem;
-}
-.block_01{
-    background-color: #292727;
-    border-radius: 8px;
-    margin-top: 1rem;
-    padding: 1rem;
-}
-.right-side{
-    position: absolute;
-    right: 1rem;
-}
-.right-side2{
-    position: absolute;
-    right: 2.5rem;
-}
-@media (max-width: 700px){
-    .right-side{
-        display: none;
-    }
-    .right-side2{
-        display: none;
-    }
-}
+    border: .1px solid rgb(68, 67, 67);
+  }
+  
