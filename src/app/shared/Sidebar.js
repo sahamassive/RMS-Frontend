@@ -87,6 +87,10 @@ class Sidebar extends Component {
                 path: '/discount',
                 state: 'discountOpen'
             },
+            {
+                path: '/order',
+                state: 'orderOpen'
+            },
         ];
 
         dropdownPaths.forEach((obj => {
@@ -120,7 +124,6 @@ class Sidebar extends Component {
                             </span>
                         </Link>
                     </li>
-
                     <li className={this.isPathActive('/restaurant') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
                         <div className={this.state.restaurantOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() =>
                             this.toggleMenuState('restaurantOpen')} data-toggle="collapse">
@@ -253,6 +256,30 @@ class Sidebar extends Component {
                             </div>
                         </Collapse>
                     </li>
+                    <li className={this.isPathActive('/order') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
+                    <div className={this.state.orderOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() =>
+                        this.toggleMenuState('orderOpen')} data-toggle="collapse">
+                        <span className="menu-icon">
+                            <i className="mdi mdi-laptop"></i>
+                        </span>
+                        <span className="menu-title">
+                            <Trans>Order Management</Trans>
+                        </span>
+                        <i className="menu-arrow"></i>
+                    </div>
+                    <Collapse in={this.state.orderOpen}>
+                        <div>
+                            <ul className="nav flex-column sub-menu">
+                                <li className="nav-item">
+                                    <Link className={this.isPathActive('/order/all-order') ? 'nav-link active'
+                                        : 'nav-link'} to="/order/all-order">
+                                        <Trans>All Order</Trans>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </Collapse>
+                    </li>
                     <li className={this.isPathActive('/recipe') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
                     <div className={this.state.recipeOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() =>
                         this.toggleMenuState('recipeOpen')} data-toggle="collapse">
@@ -267,12 +294,6 @@ class Sidebar extends Component {
                     <Collapse in={this.state.recipeOpen}>
                         <div>
                             <ul className="nav flex-column sub-menu">
-                                <li className="nav-item">
-                                    <Link className={this.isPathActive('/restaurant/all') ? 'nav-link active'
-                                        : 'nav-link'} to="/restaurant/all">
-                                        <Trans>All restaurant</Trans>
-                                    </Link>
-                                </li>
                                 <li className="nav-item">
                                     <Link className={this.isPathActive('/recipe/new-recipe') ? 'nav-link active' : 'nav-link'}
                                         to="/recipe/new-recipe">
@@ -352,8 +373,14 @@ class Sidebar extends Component {
                                     </Link>
                                     </li>
                                     <li className="nav-item">
-                                    <Link className={this.isPathActive('/discount/new-coupon') ? 'nav-link active' : 'nav-link'}
-                                        to="/discount/new-coupon">
+                                    <Link className={this.isPathActive('/discount/coupon/all-coupon') ? 'nav-link active' : 'nav-link'}
+                                        to="/discount/coupon/all-coupon">
+                                        <Trans>All Coupon</Trans>
+                                    </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                    <Link className={this.isPathActive('/discount/coupon/new-coupon') ? 'nav-link active' : 'nav-link'}
+                                        to="/discount/coupon/new-coupon">
                                         <Trans>New Coupon</Trans>
                                     </Link>
                                     </li>

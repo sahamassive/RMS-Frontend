@@ -4,8 +4,9 @@ import { Form } from "react-bootstrap";
 import { baseUrl, resturant_id } from "../../constant/global";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { useParams } from "react-router-dom";
 
-function NewCoupon() {
+function EditCoupon() {
     const [couponCode, setCouponCode] = useState();
     const [discountAmount, setDiscountAmount] = useState();
     const [startingDate, setStartingDate] = useState();
@@ -13,34 +14,49 @@ function NewCoupon() {
     const [endingDate, setEndingDate] = useState();
     const [quantity, setQuantity] = useState();
     const [endingTime, setEndingTime] = useState();
-    const [branchId, setBranchId] = useState();
+    const params = useParams();
+
+    useEffect(() => {
+        axios
+            .get(`${baseUrl}/api/coupon-edit/${params.id}`)
     
-    const Insert = async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData();
-
-        formData.append('coupon_code', couponCode);
-        formData.append('restaurant_id', resturant_id);
-        formData.append('branch_id', 1);
-        formData.append('quantity', quantity);
-        formData.append('discount_amount', discountAmount);
-        formData.append('starting_date', startingDate);
-        formData.append('starting_time', startingTime);
-        formData.append('ending_date', endingDate);
-        formData.append('ending_time', endingTime);
-
-        await axios
-            .post(`${baseUrl}/api/coupon-insert`, formData)
-            .then((response) => {
-                Swal.fire({
-                    title: response.data.msg,
-                    icon: 'success',
-                    confirmButtonText: "OK"
-                })
+            .then((res) => {
+                setCouponCode(res.data.coupon_code);
+                setDiscountAmount(res.data.discount_amount);
+                setStartingDate(res.data.starting_date);
+                setQuantity(res.data.quantity);
+                setStartingTime(res.data.starting_time);
+                setEndingDate(res.data.ending_date);
+                setEndingTime(res.data.ending_time);
             })
-    }
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [params.id]);
+        
+        const Update = async (event) => {
+            event.preventDefault();
+    
+            const formData = new FormData();
 
+            formData.append('coupon_code', couponCode);
+            formData.append('quantity', quantity);
+            formData.append('discount_amount', discountAmount);
+            formData.append('starting_date', startingDate);
+            formData.append('starting_time', startingTime);
+            formData.append('ending_date', endingDate);
+            formData.append('ending_time', endingTime);
+    
+            await axios
+                .post(`${baseUrl}/api/coupon-edit/${params.id}`, formData)
+                .then((response) => {
+                    Swal.fire({
+                        title: response.data.msg,
+                        icon: 'success',
+                        confirmButtonText: "OK"
+                    })
+                })
+        }
     return (
         <div>
             <div className="col-lg-12 grid-margin stretch-card">
@@ -56,6 +72,7 @@ function NewCoupon() {
                                 <div className="wid">
                                     <Form.Label className="label-style">Coupon/Promo Code/Voucher</Form.Label>
                                     <Form.Control
+                                        value={couponCode}
                                         onChange={(event) => {
                                             setCouponCode(event.target.value);
                                         }}
@@ -64,31 +81,34 @@ function NewCoupon() {
                                     ></Form.Control>
                                 </div>
                                 <div className="wid">
-                                <Form.Label className="label-style">Discount amount</Form.Label>
+                                    <Form.Label className="label-style">Discount amount</Form.Label>
                                     <Form.Control
+                                        value={discountAmount}
                                         onChange={(event) => {
                                             setDiscountAmount(event.target.value);
-                                    }}
-                                    type="number"
-                                    placeholder="Discount Amount"
-                                ></Form.Control>
+                                        }}
+                                        type="number"
+                                        placeholder="Discount Amount"
+                                    ></Form.Control>
                                 </div>
                                 <div className="wid">
-                                <Form.Label className="label-style">Coupon Users Quantity</Form.Label>
+                                    <Form.Label className="label-style">Coupon Users Quantity</Form.Label>
                                     <Form.Control
+                                        value={quantity}
                                         onChange={(event) => {
                                             setQuantity(event.target.value);
-                                    }}
-                                    type="number"
-                                    placeholder="How many users can use this coupon"
-                                ></Form.Control>
-                            </div>
+                                        }}
+                                        type="number"
+                                        placeholder="How many users can use this coupon"
+                                    ></Form.Control>
+                                </div>
                             </div>
                             <div className='input_field two_part'>
                                 <div className="wid">
                                     <Form.Label className="label-style">Starting Date</Form.Label>
                                     <Form.Control
                                         type="date"
+                                        value={startingDate}
                                         placeholder="coupon/voucher/promo code..."
                                         onChange={(event) => {
                                             setStartingDate(event.target.value);
@@ -98,6 +118,7 @@ function NewCoupon() {
                                 <div className="wid">
                                     <Form.Label className="label-style">Starting time</Form.Label>
                                     <Form.Control
+                                        value={startingTime}
                                         type="time"
                                         placeholder="coupon/voucher/promo code..."
                                         onChange={(event) => {
@@ -110,6 +131,7 @@ function NewCoupon() {
                                 <div className="wid">
                                     <Form.Label className="label-style">Ending Date</Form.Label>
                                     <Form.Control
+                                        value={endingDate}
                                         type="date"
                                         placeholder="coupon/voucher/promo code..."
                                         onChange={(event) => {
@@ -120,6 +142,7 @@ function NewCoupon() {
                                 <div className="wid">
                                     <Form.Label className="label-style">Ending time</Form.Label>
                                     <Form.Control
+                                        value={endingTime}
                                         type="time"
                                         placeholder="coupon/voucher/promo code..."
                                         onChange={(event) => {
@@ -128,7 +151,7 @@ function NewCoupon() {
                                     ></Form.Control>
                                 </div>
                             </div>
-                            <button onClick={Insert} className="btn btn-warning top-space"><i
+                            <button onClick={Update} className="btn btn-warning top-space"><i
                                 className="bi bi-save-fill"></i>Insert</button>
                             <br></br>
                             <br></br>
@@ -141,4 +164,4 @@ function NewCoupon() {
     );
 }
 
-export default NewCoupon;
+export default EditCoupon;

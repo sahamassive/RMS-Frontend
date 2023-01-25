@@ -13,6 +13,9 @@ const AllAdmin = lazy(() => import("../app/user-pages/admin/all.js"));
 
 const AllEmployee = lazy(() => import("../app/user-pages/hr/allEmployee.js"));
 const Attendence = lazy(() => import("../app/user-pages/hr/attendence.js"));
+
+const AllOrder = lazy(() => import("../app/user-pages/order/allOrder.js"));
+
 const Department = lazy(() =>
   import("../app/user-pages/hr/department/department.js")
 );
@@ -66,7 +69,7 @@ const EditFood = lazy(() =>
 const QuickOrder = lazy(() => import("../app/user-pages/pos/quickOrder.js"));
 
 const CustomerOrder = lazy(() =>
-  import("../app/user-pages/order/customerOrder.js")
+  import("../app/user-pages/customer_order/customerOrder.js")
 );
 
 const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
@@ -116,6 +119,8 @@ const EditDiscount = lazy(() => import("../app/user-pages/discount/discount/edit
 
 
 const NewCoupon = lazy(() => import("../app/user-pages/discount/coupon/newCoupon.js"));
+const AllCoupon = lazy(() => import("../app/user-pages/discount/coupon/allCoupon.js"));
+const EditCoupon = lazy(() => import("../app/user-pages/discount/coupon/editCoupon.js"));
 
 const Error404 = lazy(() => import("./error-pages/Error404"));
 const Error500 = lazy(() => import("./error-pages/Error500"));
@@ -195,7 +200,11 @@ class AppRoutes extends Component {
           <Route path="/discount/all-discount" component={AllDiscount} />
           <Route path="/discount/edit-discount/:id" component={EditDiscount} />
 
-          <Route path="/discount/new-coupon" component={NewCoupon} />
+          <Route path="/discount/coupon/new-coupon" component={NewCoupon} />
+          <Route path="/discount/coupon/all-coupon" component={AllCoupon} />
+          <Route path="/discount/coupon/edit-coupon/:id" component={EditCoupon} />
+
+          <Route path="/order/all-order" component={AllOrder} />
 
           <Route
             path="/super-admin/employee/registration"
