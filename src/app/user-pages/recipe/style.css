@@ -61,3 +61,24 @@ select:focus{
   background-color: white;
   color: black;
 }
+select:hover{
+  background-color: white;
+  color: black;
+}
+input[type=text]{
+  background-color: #00000085;
+  border-radius: 5px;
+  width: 100%;
+}
+
+input[type=text]:focus{
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+  border-radius: 5px;
+  padding: 1px;
+  text-align: left;
+}
+input[type=text]:hover{
+  background-color: white;
+  color: black;
+}
