@@ -108,19 +108,31 @@ const FoodAdd = lazy(() =>
 );
 
 const NewRecipe = lazy(() => import("../app/user-pages/recipe/newRecipe.js"));
+const Ingredient = lazy(() => import("../app/user-pages/recipe/ingredient.js"));
 
 const RegisterEmployee = lazy(() =>
   import("../app/user-pages/registration/EmployeeRegistration.js")
 );
 
-const NewDiscount = lazy(() => import("../app/user-pages/discount/discount/newDiscount.js"));
-const AllDiscount = lazy(() => import("../app/user-pages/discount/discount/allDiscount.js"));
-const EditDiscount = lazy(() => import("../app/user-pages/discount/discount/editDiscount.js"));
+const NewDiscount = lazy(() =>
+  import("../app/user-pages/discount/discount/newDiscount.js")
+);
+const AllDiscount = lazy(() =>
+  import("../app/user-pages/discount/discount/allDiscount.js")
+);
+const EditDiscount = lazy(() =>
+  import("../app/user-pages/discount/discount/editDiscount.js")
+);
 
-
-const NewCoupon = lazy(() => import("../app/user-pages/discount/coupon/newCoupon.js"));
-const AllCoupon = lazy(() => import("../app/user-pages/discount/coupon/allCoupon.js"));
-const EditCoupon = lazy(() => import("../app/user-pages/discount/coupon/editCoupon.js"));
+const NewCoupon = lazy(() =>
+  import("../app/user-pages/discount/coupon/newCoupon.js")
+);
+const AllCoupon = lazy(() =>
+  import("../app/user-pages/discount/coupon/allCoupon.js")
+);
+const EditCoupon = lazy(() =>
+  import("../app/user-pages/discount/coupon/editCoupon.js")
+);
 
 const Error404 = lazy(() => import("./error-pages/Error404"));
 const Error500 = lazy(() => import("./error-pages/Error500"));
@@ -163,6 +175,7 @@ class AppRoutes extends Component {
           <Route path="/waste/edit-waste/:id" component={EditWaste} />
 
           <Route path="/recipe/new-recipe" component={NewRecipe} />
+          <Route path="/recipe/ingredient" component={Ingredient} />
 
           <Route path="/booking/all" component={Booking} />
           <Route path="/booking/new-booking" component={CreateBooking} />
@@ -195,14 +208,16 @@ class AppRoutes extends Component {
 
           <Route path="/customer-order" component={CustomerOrder} />
 
-
           <Route path="/discount/new-discount" component={NewDiscount} />
           <Route path="/discount/all-discount" component={AllDiscount} />
           <Route path="/discount/edit-discount/:id" component={EditDiscount} />
 
           <Route path="/discount/coupon/new-coupon" component={NewCoupon} />
           <Route path="/discount/coupon/all-coupon" component={AllCoupon} />
-          <Route path="/discount/coupon/edit-coupon/:id" component={EditCoupon} />
+          <Route
+            path="/discount/coupon/edit-coupon/:id"
+            component={EditCoupon}
+          />
 
           <Route path="/order/all-order" component={AllOrder} />
 
