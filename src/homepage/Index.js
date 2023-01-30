@@ -1533,7 +1533,7 @@ function Index() {
       >
         <div className="food-details">
           <div className="dis">
-            <div>
+            <div className="sec-image">
               <img
                 src={`${baseUrl}/foods/medium/${singlefood.image}`}
                 width="70%"
@@ -1616,13 +1616,7 @@ function Index() {
                 ))
               : null}
           </div>
-          <div className="section-branch">
-            <button className="btn-details" onClick={() => setMainBranch()}>
-              <i className="bi bi-geo-alt-fill icon-space5"></i>
-              <span className="city-01">GoTo Main Branch</span>
-              <br></br>
-            </button>
-          </div>
+
         </div>
       </Modal>
     </div>

@@ -1,69 +1,71 @@
+import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
-import React, { useEffect, useState } from "react";
-import '../style.css';
-import { Form } from "react-bootstrap";
-import { baseUrl, resturant_id } from "../../constant/global";
+import "../style.css";
 import axios from "axios";
-import Swal from 'sweetalert2';
+import { baseUrl, resturant_id  } from "../../constant/global";
+import Swal from "sweetalert2";
 
-function AllCoupon() {
+function AllSupplier() {
     const [allData, setAllData] = useState("");
 
     useEffect(() => {
-        axios.get(`${baseUrl}/api/coupons`).then((response) => {
+      axios.get(`${baseUrl}/api/suppliers/${resturant_id}`).then((response) => {
         setAllData(response.data);
         console.log(allData);
-    });
+      });
     }, []);
-
+  
     const getData = () => {
-        axios.get(`${baseUrl}/api/coupons`).then((response) => {
+      axios.get(`${baseUrl}/api/suppliers/${resturant_id}`).then((response) => {
         setAllData(response.data);
-    });
+      });
     };
+  
+  
     const statusChange = (id) => {
-        axios.get(`${baseUrl}/api/coupon-status/${id}`)
-            .then((response) => {
-            Swal.fire({
-                title: response.data.msg,
-                icon: "success",
-                confirmButtonText: "OK",
-            });
+      axios.get(`${baseUrl}/api/supplier-status/${id}`)
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         getData();
-        });
+      });
     };
-    
+  
     $.DataTable = require("datatables.net");
     $(document).ready(function () {
-        $("#restaurant").DataTable();
+      $("#suppliers").DataTable();
     });
+    
     return (
         <div>
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
                         <div className="btn-section">
-                            <h4 className="card-title">All Discounts</h4>
+                            <h4 className="card-title">All Suppliers</h4>
                             <a
                                 className="btn-style btn btn-info"
-                                href="/discount/coupon/new-coupon"
+                                href="/inventory/new-supplier"
                             >
-                                <i className="bi bi-plus-square"></i>New Coupon
+                                <i className="bi bi-plus-square"></i>New suppliers
                             </a>
                         </div>
                         <div className="background table-responsive table-style table-background">
                             {allData ? (
-                                <table id="restaurant" className="table table-striped table-style">
+                                <table id="suppliers" className="table table-striped table-style">
                                     <thead>
                                         <tr>
                                             <th>SI.</th>
-                                            <th>Coupon Code</th>
-                                            <th>Discount Amount</th>
-                                            <th>Quantity</th>
+                                            <th>Supplier Name</th>
+                                            <th>Market Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
                                             <th>Status</th>
-                                            <th>Start</th>
-                                            <th>End</th>
+                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -71,9 +73,10 @@ function AllCoupon() {
                                         {allData.map((data, index) => (
                                             <tr>
                                                 <td>{index + 1}</td>
-                                                <td>{data.coupon_code}</td>
-                                                <td>$ {data.discount_amount}</td>
-                                                <td>{data.quantity}</td>
+                                                <td>{data.supplier_name}</td>
+                                                <td>{data.market_name}</td>
+                                                <td>{data.email}</td>
+                                                <td>{data.phone}</td>
                                                 <td>
                                                     <button
                                                         className={data.status ? "btn btn-success" : "btn btn-danger"}
@@ -84,24 +87,11 @@ function AllCoupon() {
                                                         {data.status ? "Active" : "Not Active"}
                                                     </button>
                                                 </td>
-                                                <td>
-                                                    {new Date(data.starting_date).toLocaleString("en-US", { day: "2-digit" })}-
-                                                    {new Date(data.starting_date).toLocaleString("en-US", { month: "long" })}-
-                                                    {new Date(data.starting_date).getFullYear()}
-                                                    <br></br>
-                                                    {data.starting_time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
-                                                </td>
-                                                <td>
-                                                    {new Date(data.ending_date).toLocaleString("en-US", { day: "2-digit" })}-
-                                                    {new Date(data.ending_date).toLocaleString("en-US", { month: "long" })}-
-                                                    {new Date(data.ending_date).getFullYear()}
-                                                    <br></br>
-                                                    {data.ending_time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
-                                                </td>
+                                                <td>{data.address}</td>
                                                 <td>
                                                     <a
                                                         className="btn btn-warning"
-                                                        href={`/discount/coupon/edit-coupon/${data.id}`}
+                                                        href={`/inventory/edit-supplier/${data.id}`}
                                                     >
                                                         <i className="bi bi-pencil-square"></i>Edit
                                                     </a>
@@ -120,4 +110,4 @@ function AllCoupon() {
     );
 }
 
-export default AllCoupon;
+export default AllSupplier;

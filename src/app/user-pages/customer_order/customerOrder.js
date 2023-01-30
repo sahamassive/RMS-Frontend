@@ -25,6 +25,7 @@ function CustomerOrder({}) {
   //       setAllData(response.data);
   //     });
   // }, []);
+  
   useEffect(() => {
     calTotal();
   }, [quantity, orderDetails]);
@@ -158,8 +159,7 @@ function CustomerOrder({}) {
                                   src={`${baseUrl}/foods/medium/${data[0].image}`}
                                 ></img>
                               </td>
-                              <td>{data[0].food_name}</td>
-
+                              <td>{data[0].food_name}</td>      
                               <td>{data[0].food_price}</td>
                               <td>
                                 <button
@@ -180,9 +180,7 @@ function CustomerOrder({}) {
                                   <i className="bi bi-dash"></i>
                                 </button>
                               </td>
-
                               <td>{data[0].food_price * data[0].qty} </td>
-
                               <td>
                                 <button
                                   className="icon-delete"

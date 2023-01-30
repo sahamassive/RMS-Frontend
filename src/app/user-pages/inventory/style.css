@@ -1,0 +1,304 @@
+.btn-section{
+    display: flex;
+}
+@media (max-width: 700px) {
+    .btn-section{
+        display: block;
+    }
+}
+.btn-style{
+    position: absolute;
+    right: 2rem;
+}
+@media (max-width: 700px) {
+  .btn-style{
+    position: absolute;
+    right: 2rem;
+    top:1rem;
+  }
+}
+@media (max-width: 450px) {
+  .btn-style{
+    position: absolute;
+    left: 2rem;
+    border-radius: 5px;
+    top:4rem;
+  }
+}
+.area {
+    background-color: #00000085;
+    border-radius: 4px;
+}
+.area:focus {
+  outline: 1px solid rgb(1, 61, 16);
+  background-color: white;
+  color:black;
+}
+.area:hover {
+  background-color: white;
+  color: black;
+}
+.input_field {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 700px) {
+  .input_field {
+    margin-left: .2rem;
+    margin-right: .2rem;
+    margin-top: .5rem;
+  }
+}
+.background {
+  background-color: #222222;
+  border-radius: 15px;
+  padding: 1px;
+  text-align: left;
+  margin-top: 10px;
+  min-height: 15vh;
+}
+.label-style{
+    font-size: .8em;
+    margin-bottom: -.1em;
+}
+.wid{
+  width: 100%;
+}
+select{
+  background-color: #00000085;
+  border-radius: 5px;
+  border:none;
+  height:2.3rem;
+  color:white;
+  width: 100%;
+  border: .1px solid rgb(68, 67, 67);
+}
+select:focus{
+  outline: 2px solid rgb(1, 61, 16);
+  background-color: white;
+  color: black;
+}
+select:hover{
+  background-color: white;
+  color: black;
+}
+input[type=text],
+input[type=number],
+input[type=date],
+input[type=email]{
+  background-color: #00000085;
+  border-radius: 4px;
+  width: 100%;
+  border: .1px solid rgb(68, 67, 67);
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=date]:focus,
+input[type=number]:focus{
+  outline: 1px solid rgb(1, 61, 16);
+  background-color: white;
+  border-radius: 4px;
+  text-align: left;
+}
+input[type=text]:hover,
+input[type=email]:hover,
+input[type=date]:hover,
+input[type=number]:hover{
+  background-color: white;
+  color: black;
+}
+.two_part {
+  display: flex;
+  gap: .4rem;
+}
+@media (max-width: 700px) {
+  .two_part {
+      display: block;
+  }
+}
+.top-space{
+  margin-top: .8rem;
+  margin-left: 2rem;
+}
+@media (max-width:700px) {
+  .top-space{
+    margin-top: 1rem;
+    margin-left: .4rem;
+  }
+}
+.add-btn{
+  margin-left: 2rem;
+  margin-top: .3rem;
+}
+.icon-delete{
+  background-color: red;
+  color: white;
+  font-size: 1.4rem;
+  border-style: none;
+  border-radius: 5px;
+  margin-top: 1.5rem;
+}
+#id-style{
+  background-color: #00000085;
+  border-radius: 4px;
+  width: 100%;
+  border: .1px solid rgb(68, 67, 67);
+}
+#id-style:focus{
+  outline: 1px solid rgb(1, 61, 16);
+  background-color: white;
+  border-radius: 4px;
+  text-align: left;
+}
+#id-style:hover{
+  background-color: white;
+  color: black;
+}
+::placeholder{
+  color:rgb(138, 135, 135) !important;
+}
+.paginate_button{
+  color: white;
+  border: 1px solid white;
+  padding: .5rem;
+  border-radius: 5px;
+  margin-right: .3rem;
+  cursor: pointer;
+}
+.paginate_button:hover{
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  padding: .5rem;
+  border-radius: 5px;
+  margin-right: .3rem;
+  cursor: pointer;
+}
+.emp-modal{
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  margin-left: 20%;
+  margin-right: 20%;
+  border-radius: 10px;
+}
+@media(max-width:780px){
+  .emp-modal {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 10px;
+  }
+}
+@media(max-width:450px){
+  .emp-modal {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 10px;
+  }
+}
+.table-style5{
+  padding-left: 50%;
+}
+.close-btn {
+  position: absolute;
+  right: 21%;
+  top:0;
+  font-size: 2rem;
+  color: rgb(206, 24, 100);
+  background-color: none !important;
+  cursor: pointer !important;
+}
+@media(max-width:780px) and (min-width:449px){
+  .close-btn {
+    position: absolute;
+    right: 16%;
+    top:0;
+    font-size: 2rem;
+    color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
+}
+@media(max-width:450px){
+  .close-btn {
+    position: absolute;
+    right: 3%;
+    top:0;
+    font-size: 2rem;
+    color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
+}
+.res2 {
+  color: red;
+  font-style: italic;
+  font-size: 1em;
+  font-family: 'Monotype Corsiva';
+  background-color: white;
+}
+
+.logo2 {
+  width: 4em;
+  position: absolute;
+  top: 5%;
+  left:25%;
+}
+
+.company_name2 {
+  font-size: 1.3em;
+  color: rgb(179, 179, 14);
+  font-family: 'Gill Sans';
+  text-align: center;
+  margin-top: 6rem;
+  font-weight: bold;
+}
+.border-box{
+  border: 2px dashed #90AADB;
+  height: auto;
+  width: auto;
+  margin-top: 1.9rem;
+  margin-left: .7rem;
+  padding: .3rem;
+}
+
+.border-box2{
+  border: 2px dashed #90AADB;
+  height: auto;
+  width: auto;
+  margin-left: .7rem;
+  padding: .3rem;
+}
+
+.border-box3{
+  border: 2px dashed #90AADB;
+  width: auto;
+  height:2.4rem;
+  margin-left: .7rem;
+  padding: .3rem;
+}
+
+.logo-section{
+  padding-left: 2rem;
+}
+.invoice{
+  border: 2px dashed #90AADB;
+  position: absolute;
+  right:25%;
+  top:10%;
+  padding-right: 6rem;
+}
+.line-style{
+border: 1.5px solid rgb(0, 0, 0) !important;
+margin-left: 5%;
+margin-right: 5%;
+}
+.icon-color{
+  color: rgb(0, 0, 0);
+}

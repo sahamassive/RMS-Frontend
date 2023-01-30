@@ -23,6 +23,7 @@
     height: $navbar-height;
     @media (max-width: 991px) {
       width: 55px;
+      border-radius: 15px;
     }
     .navbar-brand {
       color: lighten(color(gray-dark), 20%);

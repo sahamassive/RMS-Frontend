@@ -62,10 +62,10 @@ function NewRestaurant() {
                             <h4 className="card-title">All Restaurant</h4>
                             <a className="btn-style btn btn-info" href="/restaurant/all"><i class="bi bi-card-list"></i> All Restaurant</a>
                         </div>
-                        <div className="card-body">
+                        <div>
                             <Form>
                                 <div className='two_part'>
-                                    <div className="col-sm-3 background">
+                                    <div className="background">
                                         <label className="logo-label-style">Restaurant logo</label>
                                         <div className="col-sm-6">
                                             <Form.Group controlId="formFileMultiple" className="mb-3">
@@ -78,9 +78,9 @@ function NewRestaurant() {
                                             <img src={preview} width="212rem" />
                                         </div>
                                     </div>
-                                    <div className="col-sm-9 background">
-                                        <h2 className="header-style"> Enter All restaurant Information:</h2>
-                                        <div>
+                                    <div className="background">
+                                        <p className="header-style"> Enter All restaurant Information:</p>
+                                        <div className="res-class">
                                             <div className="input_field">
                                                 <Form.Label className="level-style">Restaurant name</Form.Label>
                                                 <Form.Control
