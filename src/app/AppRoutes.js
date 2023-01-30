@@ -158,7 +158,6 @@ class AppRoutes extends Component {
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/" component={Homepage} />
-
           <Route exact path="/login" component={Login} />
 
           <Route path="/super-admin/super-admin" component={SuperAdmin} />
