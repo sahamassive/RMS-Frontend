@@ -4,7 +4,6 @@ import { Form } from "react-bootstrap";
 import { baseUrl, resturant_id } from "../constant/global";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Ingredient from "./ingredient";
 
 function NewRecipe() {
   const [inputs, setInputs] = useState([{ value: "" }]);
@@ -68,53 +67,80 @@ function NewRecipe() {
   };
   return (
     <div>
-      <div className="input_field two_part">
-        <div className="wid">
-          <Form.Label className="level-style">Item Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Item Name"
-            onChange={(event) => {
-              setRecipeItem(event.target.value);
-            }}
-          ></Form.Control>
+      <div className="col-lg-12 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
+            <div className="btn-section">
+              <h4 className="card-title">Create New Recipe</h4>
+              <a className="btn-style btn btn-primary" href="/catalogue/category">
+                <i className="bi bi-list-columns-reverse"></i>All recipe
+              </a>
+            </div>
+
+            <div className="col-sm-12 background">
+              <div className="input_field two_part">
+                <div className="wid">
+                  <Form.Label className="label-style">Item Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Item Name"
+                    onChange={(event) => {
+                      setRecipeItem(event.target.value);
+                    }}
+                  ></Form.Control>
+                </div>
+              </div>
+              {inputs.map((input, index) => (
+                <div className="input_field two_part" key={index}>
+                  <div className="wid">
+                    <Form.Label className="label-style">Select Ingredient</Form.Label>
+    
+                    <select
+                      className="select2 wid"
+                      value={input.value}
+                      onChange={(event) => handleInputChange(index, event)}
+                    >
+                      <option value="">Select Ingredient</option>
+                      {item
+                        ? item.map((data) => (
+                          <option value={data.id}>
+                            {data.ingredient}({data.unit})
+                          </option>
+                        ))
+                        : null}
+                    </select>
+                  </div>
+                  <div className="wid">
+                    <Form.Label className="label-style">Ingredient Quantity</Form.Label>
+                    <input
+                      className="form-control"
+                      type="number"
+                      value={quantity.qty_value}
+                      onChange={(event) => handleInputChangeQty(index, event)}
+                    />
+                  </div>
+                  <div>
+                    <button
+                      className="icon-delete"
+                      onClick={() => handleRemoveInput(index)}
+                    >
+                      <i className="bi bi-x-circle"></i>
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <button className="btn btn-light add-btn" onClick={handleAddInput}>Add New Ingredient</button>
+              <div className="d-grid gap-2 col-6 mx-auto">
+                <button className="btn btn-warning top-space" onClick={insert}>
+                  <i className="bi bi-save-fill"></i>Insert
+                </button>
+              </div>
+              <br></br>
+            </div>
+
+          </div>
         </div>
       </div>
-      {inputs.map((input, index) => (
-        <div key={index}>
-          <Form.Label className="level-style">Select Ingredient</Form.Label>
-
-          <select
-            className="select2"
-            value={input.value}
-            onChange={(event) => handleInputChange(index, event)}
-          >
-            <option value="">Select Ingredient</option>
-            {item
-              ? item.map((data) => (
-                  <option value={data.id}>
-                    {data.ingredient}({data.unit})
-                  </option>
-                ))
-              : null}
-          </select>
-          <br></br>
-          <Form.Label className="level-style">Ingredient Quantity</Form.Label>
-
-          <input
-            type="number"
-            value={quantity.qty_value}
-            onChange={(event) => handleInputChangeQty(index, event)}
-          />
-          <button onClick={() => handleRemoveInput(index)}>Remove</button>
-        </div>
-      ))}
-      <button onClick={handleAddInput}>Add Input</button>
-      <a className="btn btn-success top-space2" onClick={insert}>
-        <i className="bi bi-save-fill"></i>Insert
-      </a>
-      <br></br>
-      <br></br> <br></br>
     </div>
   );
 }

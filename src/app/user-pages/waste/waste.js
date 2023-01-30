@@ -24,7 +24,7 @@ function Waste() {
             });
             setTotal(sum);
             setAmount(totalAmount);
-            console.log(response.data);
+            //console.log(response.data);
         })
         setModalStatus(true);
     };

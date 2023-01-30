@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import './style.css';
 import { Form } from "react-bootstrap";
 import { baseUrl, resturant_id } from "../constant/global";
-import axios from "axios";
+import axios, { all } from "axios";
 import Swal from 'sweetalert2';
 
 
@@ -13,6 +13,20 @@ function AllOrder() {
     const [id, setId] = useState();
     const [chef, setChef] = useState();
     const [status, setStatus] = useState();
+    const allStatus = [
+        {
+            id: 1,
+            status: "pending"
+        },
+        {
+            id: 2,
+            status: "running"
+        },
+        {
+            id: 3,
+            status: "completed"
+        },
+    ]
 
     useEffect(() => {
         axios.get(`${baseUrl}/api/orders`).then((response) => {
@@ -109,14 +123,13 @@ function AllOrder() {
                                                                         <td>{data.quantity}</td>
                                                                         <td>
                                                                                 <select
-                                                                                    value={data.status}
                                                                                     onChange={(event) => {
                                                                                         setStatus(event.target.value)
                                                                                     }}
-                                                                                    >
-                                                                                    <option value="pending">Pending</option>                                                                                                                                                          
-                                                                                    <option value="running">Running</option>                                                                                                                                                          
-                                                                                    <option value="completed">Completed</option>                                                                                                                                                          
+                                                                                >
+                                                                                    {allStatus.map((item) =>
+                                                                                        <option value={item.status}>{item.status}</option> 
+                                                                                    )}                                                                                                                                                       
                                                                                 </select>
                                                                                 <br></br>
                                                                                 <button className="btn btn-primary">Confirm</button>

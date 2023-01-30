@@ -65,20 +65,48 @@ select:hover{
   background-color: white;
   color: black;
 }
-input[type=text]{
+input[type=text],
+input[type=number]{
   background-color: #00000085;
   border-radius: 5px;
   width: 100%;
+  border: .1px solid rgb(68, 67, 67);
 }
 
-input[type=text]:focus{
+input[type=text]:focus,
+input[type=number]:focus{
   outline: 2px solid rgb(1, 61, 16);
   background-color: white;
   border-radius: 5px;
-  padding: 1px;
   text-align: left;
 }
-input[type=text]:hover{
+input[type=text]:hover,
+input[type=number]:hover{
   background-color: white;
   color: black;
+}
+.two_part {
+  display: flex;
+  gap: .4rem;
+}
+@media (max-width: 700px) {
+  .two_part {
+      display: block;
+  }
+}
+.top-space{
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+.add-btn{
+  margin-left: 2rem;
+  margin-top: .3rem;
+}
+.icon-delete{
+  background-color: red;
+  color: white;
+  font-size: 1.4rem;
+  border-style: none;
+  border-radius: 5px;
+  margin-top: 1.5rem;
 }

@@ -76,6 +76,9 @@ const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
 const EditWaste = lazy(() => import("../app/user-pages/waste/editWaste.js"));
 
+const NewInventory = lazy(() => import("../app/user-pages/inventory/inventory/newInventory.js"));
+const InventoryList = lazy(() => import("../app/user-pages/inventory/inventory/inventoryList.js"));
+
 const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
 const CreateBooking = lazy(() =>
   import("../app/user-pages/booking/createBooking.js")
@@ -108,7 +111,16 @@ const FoodAdd = lazy(() =>
 );
 
 const NewRecipe = lazy(() => import("../app/user-pages/recipe/newRecipe.js"));
-const Ingredient = lazy(() => import("../app/user-pages/recipe/ingredient.js"));
+
+const Ingredient = lazy(() => import("../app/user-pages/inventory/ingredient/ingredient.js"));
+const IngredientList = lazy(() => import("../app/user-pages/inventory/ingredient/ingredientList.js"));
+const EditIngredient = lazy(() => import("../app/user-pages/inventory/ingredient/editIngredient.js"));
+
+
+const NewSupplier = lazy(() => import("./user-pages/inventory/supplier/newSupplier.js"));
+const AllSupplier = lazy(() => import("./user-pages/inventory/supplier/allSuppliers.js"));
+const EditSupplier = lazy(() => import("./user-pages/inventory/supplier/editSupplier.js"));
+const NewInvoice= lazy(() => import("./user-pages/inventory/invoice/newInvoice.js"));
 
 const RegisterEmployee = lazy(() =>
   import("../app/user-pages/registration/EmployeeRegistration.js")
@@ -175,7 +187,6 @@ class AppRoutes extends Component {
           <Route path="/waste/edit-waste/:id" component={EditWaste} />
 
           <Route path="/recipe/new-recipe" component={NewRecipe} />
-          <Route path="/recipe/ingredient" component={Ingredient} />
 
           <Route path="/booking/all" component={Booking} />
           <Route path="/booking/new-booking" component={CreateBooking} />
@@ -225,6 +236,18 @@ class AppRoutes extends Component {
             path="/super-admin/employee/registration"
             component={RegisterEmployee}
           />
+
+          <Route path="/inventory/new-inventory" component={NewInventory} />
+          <Route path="/inventory/all-inventory" component={InventoryList} />
+
+          <Route path="/inventory/ingredient" component={Ingredient} />
+          <Route path="/inventory/ingredient-list" component={IngredientList} />
+          <Route path="/inventory/edit-ingredient/:id" component={EditIngredient} />
+
+          <Route path="/inventory/new-supplier" component={NewSupplier} />
+          <Route path="/inventory/all-supplier/:id" component={AllSupplier} />
+          <Route path="/inventory/edit-supplier/:id" component={EditSupplier} />
+          <Route path="/inventory/new-invoice" component={NewInvoice} />
 
           <Route path="/error-pages/error-404" component={Error404} />
           <Route path="/error-pages/error-500" component={Error500} />
