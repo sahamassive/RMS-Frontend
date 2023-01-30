@@ -1630,7 +1630,14 @@ section {
   }
 }
 .sec_01 {
-  margin-left: -8rem;
+  margin-left: 0rem;
+  text-align: justify;
+  padding-right: 2rem;
+}
+.sec-image{
+  width: 100%;
+  padding-left: 2rem;
+  padding-top: 1rem;
 }
 .price {
   font-size: 2em;
@@ -1647,7 +1654,7 @@ section {
   right: 21%;
   top:0;
   font-size: 2rem;
-  color: rgb(206, 24, 100);
+  color: rgb(206, 24, 100) !important;
   background-color: none !important;
   cursor: pointer !important;
 }
