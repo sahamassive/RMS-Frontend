@@ -1,8 +1,9 @@
 import React, { Component, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import { Collapse, Dropdown } from "react-bootstrap";
 import { Trans } from "react-i18next";
 import "./style2.css";
+const loginType = sessionStorage.getItem("loginType");
 
 class Sidebar extends Component {
   state = {};
