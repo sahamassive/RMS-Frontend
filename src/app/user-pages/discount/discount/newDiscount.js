@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../style.css';
-import { Form } from "react-bootstrap";
-import { baseUrl, resturant_id } from "../../constant/global";
-import axios from "axios";
-import Swal from 'sweetalert2';
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+
 
 function NewDiscount() {
     const [foodName, setFoodName] = useState();
@@ -18,8 +16,8 @@ function NewDiscount() {
   useEffect(() => {
     axios
     .get(
-        `${baseUrl}/api/quick-foods/${resturant_id}/${
-        branchId ? branchId : resturant_id
+        `${baseUrl}/api/quick-foods/${restaurant_id}/${
+        branchId ? branchId : restaurant_id
     }`
     )
     .then((response) => {
@@ -34,7 +32,7 @@ function NewDiscount() {
         const formData = new FormData();
 
         formData.append('food_id', foodName);
-        formData.append('restaurant_id', resturant_id);
+        formData.append('restaurant_id', restaurant_id);
         formData.append('branch_id', 1);
         formData.append('discount', discount);
         formData.append('starting_date', startingDate);

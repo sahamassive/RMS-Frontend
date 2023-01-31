@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Form from 'react-bootstrap/Form';
 import '../style.css';
-import axios, { all } from "axios";
-import { baseUrl, resturant_id  } from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form  } from "../../constant/global";
 import { useParams } from "react-router-dom";
-import Swal from "sweetalert2";
 
 function EditSupplier() {
     const [supplierName, setSupplierName] = useState();
@@ -58,7 +55,7 @@ function EditSupplier() {
             <div className="card-body">
                 <div className="btn-section">
                     <h4 className="card-title">Edit Supplier Information</h4>
-                    <a className="btn-style btn btn-primary" href={`/inventory/all-supplier/${resturant_id}`}>
+                    <a className="btn-style btn btn-primary" href={`/inventory/all-supplier/${restaurant_id}`}>
                         <i className="bi bi-list-columns-reverse"></i>All Suppliers
                     </a>
                 </div>

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
 import './style.css';
-import { baseUrl, resturant_id } from "../constant/global";
-import axios from "axios";
-import Swal from 'sweetalert2';
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 
 function Insert() {
     const [foodName, setFoodName] = useState();
@@ -26,8 +23,8 @@ function Insert() {
     useEffect(() => {
         axios
         .get(
-            `${baseUrl}/api/quick-foods/${resturant_id}/${
-            branchId ? branchId : resturant_id
+            `${baseUrl}/api/quick-foods/${restaurant_id}/${
+            branchId ? branchId : restaurant_id
         }`
         )
         .then((response) => {

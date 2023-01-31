@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "./style.css";
-import axios from "axios";
-import { baseUrl, resturant_id } from "../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { ReactCalculator } from "simple-react-calculator";
 import Modal from "@mui/material/Modal";
 
@@ -47,7 +44,7 @@ function QuickOrder() {
   }, [branchId]);
 
   const getBranch = () => {
-    axios.get(`${baseUrl}/api/branch/${resturant_id}`).then((response) => {
+    axios.get(`${baseUrl}/api/branch/${restaurant_id}`).then((response) => {
       setBranch(response.data);
     });
   };
@@ -85,8 +82,8 @@ function QuickOrder() {
   const getFood = () => {
     axios
       .get(
-        `${baseUrl}/api/quick-foods/${resturant_id}/${
-          branchId ? branchId : resturant_id
+        `${baseUrl}/api/quick-foods/${restaurant_id}/${
+          branchId ? branchId : restaurant_id
         }`
       )
       .then((response) => {
@@ -100,8 +97,8 @@ function QuickOrder() {
   const foodByCategory = (id) => {
     axios
       .get(
-        `${baseUrl}/api/category-foods/${id}/${resturant_id}/${
-          branchId ? branchId : resturant_id
+        `${baseUrl}/api/category-foods/${id}/${restaurant_id}/${
+          branchId ? branchId : restaurant_id
         }`
       )
       .then((response) => {

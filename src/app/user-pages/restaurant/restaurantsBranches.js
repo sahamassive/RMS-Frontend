@@ -2,10 +2,8 @@ import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "./style.css";
-import axios from "axios";
-import { baseUrl } from "../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { useParams } from "react-router-dom";
-import Swal from "sweetalert2";
 
 function RestaurantsBranches() {
     const [allData, setAllData] = useState("");

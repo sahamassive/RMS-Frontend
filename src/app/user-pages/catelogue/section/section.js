@@ -1,10 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
-import axios, { all } from "axios";
 import "../style.css";
 import $ from "jquery";
 import "datatables.net";
-import { baseUrl } from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function Section() {
   const [allData, setAllData] = useState("");

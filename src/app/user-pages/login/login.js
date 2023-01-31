@@ -1,9 +1,6 @@
 import React, { Component, useState } from "react";
-import Form from "react-bootstrap/Form";
 import "./login.css";
-import axios from "axios";
-import { baseUrl, resturant_id } from "../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 
 function Login() {
   const [type, setType] = useState();

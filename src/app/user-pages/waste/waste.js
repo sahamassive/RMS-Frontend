@@ -2,8 +2,7 @@ import React,  { useEffect, useState } from 'react';
 import $ from "jquery";
 import "datatables.net";
 import './style.css';
-import axios from "axios";
-import { baseUrl } from "../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import Modal from "@mui/material/Modal";
 
 function Waste() {

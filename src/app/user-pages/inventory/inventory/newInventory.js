@@ -1,9 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
-import { baseUrl, resturant_id } from "../../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function NewInventory() {
     const [item, setItem] = useState();
@@ -38,7 +35,7 @@ function NewInventory() {
     };
     
     useEffect(() => {
-        axios.get(`${baseUrl}/api/suppliers/${resturant_id}`).then((response) => {
+        axios.get(`${baseUrl}/api/suppliers/${restaurant_id}`).then((response) => {
             setSuppliers(response.data);
             //console.log(allData);
         });
@@ -46,7 +43,7 @@ function NewInventory() {
 
     useEffect(() => {
         axios
-            .get(`${baseUrl}/api/ingredient-list/${resturant_id}`)
+            .get(`${baseUrl}/api/ingredient-list/${restaurant_id}`)
             .then((response) => {
                 setItem(response.data);
             });
@@ -54,7 +51,7 @@ function NewInventory() {
 
     useEffect(() => {
         axios
-            .get(`${baseUrl}/api/supplier-list/${resturant_id}`)
+            .get(`${baseUrl}/api/supplier-list/${restaurant_id}`)
             .then((response) => {
                 setItem(response.data);
             });
@@ -111,7 +108,7 @@ function NewInventory() {
 
         await axios
             .post(`${baseUrl}/api/invoice-insert`, {
-                restaurant_id : resturant_id,
+                restaurant_id : restaurant_id,
                 supplier_id: supplierId,
                 date: date,
                 invoice_id: invoiceId,

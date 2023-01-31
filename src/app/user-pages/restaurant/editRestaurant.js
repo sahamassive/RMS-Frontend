@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Form from 'react-bootstrap/Form';
 import './style.css';
-import axios, { all } from "axios";
-import { baseUrl } from "../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { useParams } from "react-router-dom";
 import countrydata from "./../Country/Countrydata.json";
-import Swal from "sweetalert2";
 
 function EditRestaurant() {
     const [restaurantName, setRestaurantName] = useState();

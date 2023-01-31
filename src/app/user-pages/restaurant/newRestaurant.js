@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import Form from 'react-bootstrap/Form';
 import './style.css';
-import axios, { all } from "axios";
-import { baseUrl } from "../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import countrydata from "./../Country/Countrydata.json";
-import Swal from "sweetalert2";
 
 function NewRestaurant() {
     const [restaurantName, setRestaurantName] = useState();

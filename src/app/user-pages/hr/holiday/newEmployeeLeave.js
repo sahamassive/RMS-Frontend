@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-
 import "../style.css";
-import {
-  baseUrl,
-  resturant_id,
-  axios,
-  Swal,
-  Form,
-} from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function NewEmployeeLeave() {
   const [startingTime, setStartingTime] = useState();
@@ -26,7 +19,7 @@ function NewEmployeeLeave() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("restaurant_id", resturant_id);
+    formData.append("restaurant_id", restaurant_id);
     formData.append("emp_id", employeeId);
     formData.append("reason", reason);
     formData.append("start_time", startingTime);
@@ -132,7 +125,7 @@ function NewEmployeeLeave() {
                     />
                   </Form.Group>
                 </div>
-                <button onClick={Insert} className="btn btn-warning top-space">
+                <button onClick={Insert} className="btn btn-warning top-space2">
                   <i className="bi bi-save-fill"></i>Insert
                 </button>
                 <br></br>

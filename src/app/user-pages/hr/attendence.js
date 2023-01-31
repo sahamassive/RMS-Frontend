@@ -2,8 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "./style.css";
-import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 
 function Attendence() {
     const [allData, setAllData] = useState("");

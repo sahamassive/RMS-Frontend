@@ -1,9 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
-import { baseUrl } from "../../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function CreateCategory() {
   const [sectionId, setSectionId] = useState();

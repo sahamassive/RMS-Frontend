@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./EmployeeRegistration.css";
 import profile from "../../../assets/images/profile/profile.jpg";
-import AccountDetails from "./AccountDetails";
-import Form from "react-bootstrap/Form";
-import Address from "./Address";
-import Others from "./Others";
-import Password from "./Password";
 import { Link, useLocation } from "react-router-dom";
 import countrydata from "./../Country/Countrydata.json";
-import axios from "axios";
-import { baseUrl } from "../constant/global";
-import { ComposableMap } from "react-simple-maps";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 
 
 function EmployeeRegistration() {

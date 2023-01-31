@@ -1,10 +1,8 @@
 import React, { Component, useEffect, useState, createContext } from "react";
 import "../homepage/assets/css/style.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { baseUrl, resturant_id } from "../app/user-pages/constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../app/user-pages/constant/global";
 import Modal from "@mui/material/Modal";
-import Swal from "sweetalert2";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -135,8 +133,8 @@ function Index() {
   const getFood = () => {
     axios
       .get(
-        `${baseUrl}/api/quick-foods/${resturant_id}/${
-          branchId ? branchId : resturant_id
+        `${baseUrl}/api/quick-foods/${restaurant_id}/${
+          branchId ? branchId : restaurant_id
         }`
       )
       .then((response) => {
@@ -144,20 +142,20 @@ function Index() {
       });
   };
   const getBranch = () => {
-    axios.get(`${baseUrl}/api/branch/${resturant_id}`).then((response) => {
+    axios.get(`${baseUrl}/api/branch/${restaurant_id}`).then((response) => {
       setBranch(response.data);
       setBranchName(response.data[0].city);
     });
   };
   const getResturant = () => {
-    axios.get(`${baseUrl}/api/restaurant/${resturant_id}`).then((response) => {
+    axios.get(`${baseUrl}/api/restaurant/${restaurant_id}`).then((response) => {
       setResturant(response.data);
     });
   };
   const defultbranch = () => {
     axios
       .get(
-        `${baseUrl}/api/restaurant/${resturant_id}/${
+        `${baseUrl}/api/restaurant/${restaurant_id}/${
           userCity ? userCity : null
         }`
       )
@@ -178,8 +176,8 @@ function Index() {
   const foodByCategory = (id) => {
     axios
       .get(
-        `${baseUrl}/api/category-foods/${id}/${resturant_id}/${
-          branchId ? branchId : resturant_id
+        `${baseUrl}/api/category-foods/${id}/${restaurant_id}/${
+          branchId ? branchId : restaurant_id
         }`
       )
       .then((response) => {

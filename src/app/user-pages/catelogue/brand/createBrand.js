@@ -1,9 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { baseUrl } from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function CreateBrand() {
   const [name, setName] = useState();

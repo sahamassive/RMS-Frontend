@@ -1,10 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import axios, { all } from "axios";
-import Swal from "sweetalert2";
-import { baseUrl } from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 
 
