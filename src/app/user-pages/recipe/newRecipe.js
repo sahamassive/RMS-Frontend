@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { Form } from "react-bootstrap";
-import { baseUrl, resturant_id } from "../constant/global";
-import axios from "axios";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 
 function NewRecipe() {
   const [inputs, setInputs] = useState([{ value: "" }]);
@@ -12,7 +9,7 @@ function NewRecipe() {
   const [recipeItem, setRecipeItem] = useState();
   useEffect(() => {
     axios
-      .get(`${baseUrl}/api/ingredient-list/${resturant_id}`)
+      .get(`${baseUrl}/api/ingredient-list/${restaurant_id}`)
       .then((response) => {
         setItem(response.data);
       });
@@ -21,7 +18,7 @@ function NewRecipe() {
   const insert = () => {
     axios
       .post(`${baseUrl}/api/recipe-insert`, {
-        resturant_id: resturant_id,
+        restaurant_id: restaurant_id,
         ingredient_name: inputs,
         ingredient_quantity: quantity,
         item: recipeItem,

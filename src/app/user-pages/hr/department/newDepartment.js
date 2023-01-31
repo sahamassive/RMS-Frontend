@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
 import "../style.css";
-import axios, { all } from "axios";
-const baseUrl = "http://127.0.0.1:8000";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function NewDepartment() {
   const [departmentName, setDepartmentName] = useState();

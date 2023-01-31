@@ -2,9 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "../style.css";
-import axios, { all } from "axios";
-import { baseUrl } from "../../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function Brand() {
   const [allData, setAllData] = useState("");

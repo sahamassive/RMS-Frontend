@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import $ from "jquery";
 import "datatables.net";
-import axios from "axios";
-
-import { baseUrl } from "../constant/global";
+import { baseUrl, axios } from "../constant/global";
 
 function Booking() {
   const [allData, setAllData] = useState();

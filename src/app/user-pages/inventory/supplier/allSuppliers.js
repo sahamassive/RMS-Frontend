@@ -2,22 +2,20 @@ import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "../style.css";
-import axios from "axios";
-import { baseUrl, resturant_id  } from "../../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form  } from "../../constant/global";
 
 function AllSupplier() {
     const [allData, setAllData] = useState("");
 
     useEffect(() => {
-      axios.get(`${baseUrl}/api/suppliers/${resturant_id}`).then((response) => {
+      axios.get(`${baseUrl}/api/suppliers/${restaurant_id}`).then((response) => {
         setAllData(response.data);
         console.log(allData);
       });
     }, []);
   
     const getData = () => {
-      axios.get(`${baseUrl}/api/suppliers/${resturant_id}`).then((response) => {
+      axios.get(`${baseUrl}/api/suppliers/${restaurant_id}`).then((response) => {
         setAllData(response.data);
       });
     };

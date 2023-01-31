@@ -1,11 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
 import "../style.css";
 import $ from "jquery";
 import "datatables.net";
-import axios, { all } from "axios";
-import Swal from "sweetalert2";
-import { baseUrl, resturant_id } from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function FoodAdd() {
   const [allData, setAllData] = useState("");
@@ -44,13 +41,13 @@ function FoodAdd() {
   };
   const getData = () => {
     axios
-      .get(`${baseUrl}/api/quick-foods/${resturant_id}/${resturant_id}`)
+      .get(`${baseUrl}/api/quick-foods/${restaurant_id}/${restaurant_id}`)
       .then((response) => {
         setAllData(response.data);
       });
   };
   const getBranch = () => {
-    axios.get(`${baseUrl}/api/branch/${resturant_id}`).then((response) => {
+    axios.get(`${baseUrl}/api/branch/${restaurant_id}`).then((response) => {
       setBranch(response.data);
     });
   };
@@ -58,7 +55,7 @@ function FoodAdd() {
   const foodSubmit = () => {
     axios
       .post(`${baseUrl}/api/branch-food-add`, {
-        restaurant_id: resturant_id,
+        restaurant_id: restaurant_id,
         branch_id: branchId,
         details: details,
       })

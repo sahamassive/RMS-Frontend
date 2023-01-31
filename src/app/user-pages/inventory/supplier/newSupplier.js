@@ -1,9 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import Form from "react-bootstrap/Form";
-import axios, { Axios } from "axios";
-import { baseUrl, resturant_id } from "../../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function NewSupplier() {
     const [supplierName, setSupplierName] = useState();
@@ -16,7 +13,7 @@ function NewSupplier() {
         event.preventDefault();
 
         const formdata = new FormData();
-        formdata.append('restaurant_id', resturant_id);
+        formdata.append('restaurant_id', restaurant_id);
         formdata.append('supplier_name', supplierName);
         formdata.append('market_name', marketName);
         formdata.append('email', email);
@@ -40,7 +37,7 @@ function NewSupplier() {
                     <div className="card-body">
                         <div className="btn-section">
                             <h4 className="card-title">Create New Supplier</h4>
-                            <a className="btn-style btn btn-primary" href={`/inventory/all-supplier/${resturant_id}`}>
+                            <a className="btn-style btn btn-primary" href={`/inventory/all-supplier/${restaurant_id}`}>
                                 <i className="bi bi-list-columns-reverse"></i>All Suppliers
                             </a>
                         </div>

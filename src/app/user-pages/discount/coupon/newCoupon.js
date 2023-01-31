@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../style.css';
-import { Form } from "react-bootstrap";
-import { baseUrl, resturant_id } from "../../constant/global";
-import axios from "axios";
-import Swal from 'sweetalert2';
+import { baseUrl, restaurant_id, axios, Swal, Form} from "../../constant/global";
 
 function NewCoupon() {
     const [couponCode, setCouponCode] = useState();
@@ -21,7 +18,7 @@ function NewCoupon() {
         const formData = new FormData();
 
         formData.append('coupon_code', couponCode);
-        formData.append('restaurant_id', resturant_id);
+        formData.append('restaurant_id', restaurant_id);
         formData.append('branch_id', 1);
         formData.append('quantity', quantity);
         formData.append('discount_amount', discountAmount);

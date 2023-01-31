@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../style.css";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
-import { baseUrl } from "../../constant/global";
-import Swal from "sweetalert2";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function EditBrand() {
   const params = useParams();

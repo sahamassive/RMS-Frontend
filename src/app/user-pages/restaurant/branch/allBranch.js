@@ -2,9 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "../style.css";
-
-import { baseUrl, resturant_id, axios, Swal } from "../../constant/global";
-
+import { baseUrl, restaurant_id, axios, Swal } from "../../constant/global";
 import { Redirect } from "react-router-dom";
 
 const token = sessionStorage.getItem("token");

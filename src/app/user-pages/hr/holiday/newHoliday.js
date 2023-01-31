@@ -1,6 +1,6 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
 import '../style.css';
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function NewHoliday() { 
     return (

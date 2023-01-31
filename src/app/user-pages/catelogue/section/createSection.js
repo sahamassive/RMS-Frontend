@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "../style.css";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
-import { baseUrl } from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function CreateSection() {
   const [name, setName] = useState();

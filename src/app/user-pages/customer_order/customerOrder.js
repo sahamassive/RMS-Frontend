@@ -1,10 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Swal from "sweetalert2";
 import "./style.css";
-import axios from "axios";
-import { baseUrl, resturant_id } from "../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 
 function CustomerOrder({}) {
   const [allData, setAllData] = useState([]);
@@ -97,7 +94,7 @@ function CustomerOrder({}) {
     } else {
       axios
         .post(`${baseUrl}/api/order-store`, {
-          resturant_id: resturant_id,
+          restaurant_id: restaurant_id,
           branch_id: branchId,
 
           item: orderDetails.length,
