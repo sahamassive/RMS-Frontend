@@ -324,7 +324,7 @@ function Index() {
                 </a>
               </li>
               <li>
-                <a className="nav-link scrollto" href="/login">
+                <a className="nav-link scrollto" href="/customer/login">
                   Login
                 </a>
               </li>

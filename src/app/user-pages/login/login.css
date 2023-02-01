@@ -3,13 +3,52 @@
     font-style: italic;
     font-size: 1.3em;
     font-family: 'Monotype Corsiva';
-    background-color: white;
+    background-color: transparent;
+}
+@media (max-width: 850px) and (min-width:750px ){
+    .res {
+        color: red;
+        font-style: italic;
+        font-size: 1em;
+        font-family: 'Monotype Corsiva';
+        background-color: transparent;
+    }
 }
 
 .logo {
     width: 5em;
     position: absolute;
-    top: 4rem;
+    top: 16%;
+}
+.logo2{
+    width: 5em;
+    position: absolute;
+    top: 16%;
+    left: 36%;
+}
+@media (max-width: 990px){
+    .logo2{
+        width: 4em;
+        position: absolute;
+        top: 2rem;
+        left:4rem;
+    }
+}
+@media (max-width: 850px) and (min-width:750px ){
+    .logo2{
+        width: 3em;
+        position: absolute;
+        top: 2.7rem;
+        left:4.5rem;
+    }
+}
+@media (max-width: 720px){
+    .logo2{
+        width: 5em;
+        position: absolute;
+        top: 20%;
+        left: 42%;
+    }
 }
 @media (max-width: 800px){
     .logo {
@@ -34,39 +73,68 @@
     margin-top: 6rem;
     font-weight: bold;
 }
-
+@media (max-width: 850px) and (min-width:750px ){
+    .company_name {
+        font-size: 1em;
+        color: rgb(179, 179, 14);
+        font-family: 'Gill Sans';
+        text-align: center;
+        margin-top: 6rem;
+        font-weight: bold;
+    }
+}
 .background {
     background-color: white;
     padding-top: 7rem;
 }
 
+.background-2 {
+    background-color: black;
+    height: 70%;
+}
+
+.background-3 {
+    background-color: black;
+}
+
 input[type=text],
 input[type=password] {
-    background-color: #ffffff85;
+    background-color: white;
     color: black;
-    border-radius: 7px;
+    border-radius: 5px;
     margin-top: .5rem;
 }
 
 input[type=text]:focus,
 input[type=password]:focus {
-    outline: 2px solid rgb(141, 113, 22);
+    outline: 1px solid rgb(141, 113, 22);
     background-color: rgb(255, 255, 255);
 }
 
 .right-pic {
     width: 100%;
 }
-@media (max-width: 850px){
-    .right-pic {
-        width: 100%;
-        padding-top: 8rem;
+.right-pic-2 {
+    width: 100%;
+    border-left: 5px solid white;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+}
+@media (max-width: 750px){
+    .right-pic-2 {
+        display: none;
     }
 }
 @media (max-width: 950px){
     .right-pic {
         width: 100%;
         padding-top: 4rem;
+    }
+}
+@media (max-width: 850px){
+    .right-pic {
+        width: 100%;
+        padding-top: 8rem;
     }
 }
 @media (max-width: 700px){
@@ -79,7 +147,7 @@ input[type=password]:focus {
     display: flex;
 }
 
-@media (max-width: 700px){
+@media (max-width: 800px){
     .section-04 {
         display: block;
     }
@@ -98,4 +166,33 @@ input[type=password]:focus {
 ::placeholder{
     font-style: italic;
     color: #000000;
+}
+.input-sec{
+    padding-top: 5rem;
+    border-right: 5px solid white;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+    margin-left: -.8rem;
+}
+
+@media(max-width:950px){
+    .input-sec{
+        padding-top: 0rem;
+    }
+}
+@media(max-width:750px){
+    .input-sec{
+        padding-top: 5rem;
+        border-style: none;
+    }
+}
+.phone-style {
+    background-color: white;
+    border-style: none !important;
+    border-radius: 5px;
+    height: 2.6rem;
+    padding-top: 0.5rem;
+}
+.new-sec{
+    text-align: right;
 }

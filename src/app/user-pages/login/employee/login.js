@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
-import "./login.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import "../login.css";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
 function Login() {
   const [type, setType] = useState();
@@ -33,7 +33,7 @@ function Login() {
             window.location.href = "/dashboard";
           } else {
             sessionStorage.setItem("authenticated", false);
-            window.location.href = "/login";
+            window.location.href = "/employee/login";
 
             Swal.fire({
               title: "login attempt failed",
@@ -56,7 +56,7 @@ function Login() {
           <div className="col-md-3">
             <img
               className="logo"
-              src={require("../../../assets/images/logo.png")}
+              src={require("../../../../assets/images/logo.png")}
               alt=""
             ></img>
             <p className="company_name">
@@ -105,7 +105,7 @@ function Login() {
           <div className="col-md-5">
             <img
               className="right-pic"
-              src={require("../../../assets/images/login-page.jpg")}
+              src={require("../../../../assets/images/login-page.jpg")}
               alt=""
             ></img>
           </div>
