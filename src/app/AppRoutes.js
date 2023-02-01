@@ -147,9 +147,10 @@ const EditCoupon = lazy(() =>
 );
 
 const Error404 = lazy(() => import("./error-pages/Error404"));
-const Error500 = lazy(() => import("./error-pages/Error500"));
 
-const Login = lazy(() => import("./user-pages/login/login.js"));
+const EmployeeLogin = lazy(() => import("./user-pages/login/employee/login.js"));
+const CustomerLogin = lazy(() => import("./user-pages/login/customer/login.js"));
+const CustomerRegister = lazy(() => import("./user-pages/login/customer/register.js"));
 
 class AppRoutes extends Component {
   render() {
@@ -158,7 +159,9 @@ class AppRoutes extends Component {
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/employee/login" component={EmployeeLogin} />
+          <Route exact path="/customer/login" component={CustomerLogin} />
+          <Route exact path="/customer/register" component={CustomerRegister} />
 
           <Route path="/super-admin/super-admin" component={SuperAdmin} />
           <Route path="/super-admin/admin" component={Admin} />
@@ -248,10 +251,10 @@ class AppRoutes extends Component {
           <Route path="/inventory/edit-supplier/:id" component={EditSupplier} />
           <Route path="/inventory/new-invoice" component={NewInvoice} />
 
-          <Route path="/error-pages/error-404" component={Error404} />
-          <Route path="/error-pages/error-500" component={Error500} />
 
-          <Redirect to="/" />
+          <Route path="/error-pages/error-404" component={Error404} />
+
+          <Redirect to="/error-pages/error-404" />
         </Switch>
       </Suspense>
     );
