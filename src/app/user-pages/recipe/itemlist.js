@@ -1,22 +1,16 @@
 import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
-import "../style.css";
-import {
-  baseUrl,
-  restaurant_id,
-  axios,
-  Swal,
-  Form,
-} from "../../constant/global";
+import "./style.css";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 
-function Brand() {
+function ItemList() {
   const [allData, setAllData] = useState("");
   useEffect(() => {
     getData();
   }, []);
   const getData = () => {
-    axios.get(`${baseUrl}/api/brands`).then((response) => {
+    axios.get(`${baseUrl}/api/items/${restaurant_id}`).then((response) => {
       setAllData(response.data);
     });
   };
@@ -57,49 +51,23 @@ function Brand() {
                   <thead>
                     <tr>
                       <th>Brand Name</th>
-                      <th>logo</th>
-                      <th>Status</th>
+                      <th>Basic Price</th>
+                      <th>Selling Price</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {allData.map((data) => (
                       <tr>
-                        <td>{data.name}</td>
+                        <td>{data.item_name}</td>
 
-                        <td>
-                          <img
-                            src={`${baseUrl}/${data.logo}`}
-                            width="80px"
-                            height="50px"
-                          />
-                        </td>
-                        <td>
-                          {data.status == 0 ? (
-                            <button
-                              className="btn btn-primary"
-                              onClick={() => {
-                                statusChange(data.id);
-                              }}
-                            >
-                              Deactive
-                            </button>
-                          ) : (
-                            <button
-                              className="btn btn-warning"
-                              onClick={() => {
-                                statusChange(data.id);
-                              }}
-                            >
-                              Active
-                            </button>
-                          )}
-                        </td>
+                        <td>{data.basic_price}</td>
+                        <td>{data.selling_price}</td>
 
                         <td>
                           <a
                             className="btn btn-danger"
-                            href={`/catalogue/edit-brand/${data.id}`}
+                            href={`/item/edit/${data.id}`}
                           >
                             <i className="bi bi-pencil-square"></i>Edit
                           </a>
@@ -117,4 +85,4 @@ function Brand() {
     </div>
   );
 }
-export default Brand;
+export default ItemList;
