@@ -1,50 +1,6 @@
-.section_01{
-    display: flex;
-    gap: .4rem;
-}
-@media (max-width: 800px){
-    .section_01{
-        display: block;
-    }
-}
-input[type=text]{
-    background-color: #00000085;
-    border-radius: 5px;
-}
-input[type=text]:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-}
 .input-field-2{
     position: absolute;
     right: 0;
-}
-.select3{
-    background-color: #00000085;
-    color: #7F7F7F;
-    margin-top: .5rem;
-    width: 100%;
-    padding: 7px;
-    border-radius: 5px;
-    border: .1px solid rgb(68, 67, 67);
-    margin-right: .5rem;
-}
-@media only screen and (max-width: 650px){
-    .select3{
-        background-color: #00000085;
-        color: #7F7F7F;
-        margin-top: .5rem;
-        width: 100%;
-        padding: 7px;
-        border: .1px solid rgb(68, 67, 67);
-        border-radius: 5px;
-        margin-right: .4rem;
-    }  
-}
-.select3:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-    color: black;
 }
 .icon-plus{
     background-color: green;
@@ -92,11 +48,6 @@ input[type=text]:focus{
     font-family: "Times New Roman";
     margin-bottom: -9px;
 }
-.top-space{
-    margin-top: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
 .top-section{
     background-color: black;
     margin-top: .7rem;
@@ -104,7 +55,6 @@ input[type=text]:focus{
     margin-bottom: .3rem;
     margin-right: 1rem;
     border-radius: 15px;
-    padding-left: 1rem;
     padding-bottom: 1.1rem;
 }
 .icon-delete{
@@ -120,15 +70,20 @@ input[type=text]:focus{
     width:50%;
     margin-left: 50%;
 }
+@media(max-width:850px){
+    .table-style{
+        width:100%;
+    }
+}
 .btn-se{
     position: absolute;
-    right: .8rem;
+    right: 1.7rem;
 }
 .space3{
     margin-left: .2rem;
 }
 .cart-height{
-    height: 5rem;
+    height: 3.5rem;
 }
 .btn-cart{
     border-radius: 10px;
@@ -155,6 +110,28 @@ input[type=text]:focus{
 }
 .css-hayew9{
     font-size: 2em !important;
+}
+
+.section-11{
+    width: 15%;
+}
+.section-12{
+    width: 50%;
+}
+.section-13{
+    width: 35%;
+}
+
+@media(max-width:850px){
+    .section-11{
+        width: 100%;
+    }
+    .section-12{
+        width: 100%;
+    }
+    .section-13{
+        width: 100%;
+    }
 }
 
 ul{

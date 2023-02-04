@@ -91,7 +91,7 @@ function NewSupplier() {
                                 </div>
                                 <div className="input_field">
                                     <Form.Group>
-                                        <Form.Label className="level-style">
+                                        <Form.Label className="label-style">
                                             Address
                                         </Form.Label>
                                         <Form.Control

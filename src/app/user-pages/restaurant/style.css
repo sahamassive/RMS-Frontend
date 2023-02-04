@@ -1,11 +1,3 @@
-.background {
-    background-color: #141414;
-    border-radius: 15px;
-    padding: 1px;
-    text-align: left;
-    margin-top: 10px;
-    min-height: 15vh;
-}
 .table-background{
     background-color: #141414;
     border-radius: 15px;
@@ -14,123 +6,19 @@
     padding-left: 5px;
     padding-right: 5px;
 }
-.input_field {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-}
-
-@media (max-width: 700px) {
-    .input_field {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        margin-top: 1rem;
-    }
-}
-@media (max-width: 550px) {
-    .input_field {
-        margin-left: .5rem;
-        margin-right: .5rem;
-        margin-top: 1rem;
-    }
-}
-.two_part {
-    display: flex;
-    gap: .4rem;
-}
-@media (max-width: 700px) {
-    .two_part {
-        display: block;
-    }
-}
-
 input[type=file]{
     background-color: #00000085;
     border-radius: 5px;
     width: 13.5rem;
-}
-input[type=text],
-input[type=email]{
-    background-color: #00000085;
-    border-radius: 5px;
-}
-input[type=text]:focus, input[type=email]:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-}
-input[type=text]:hover, input[type=email]:hover{
-    background-color: white;
-    color: black;
-}
-select{
-    background-color: #00000085;
-    border-radius: 5px;
-    border:none;
-    height:2.3rem;
-    color:white;
-    width: 100%;
-    border: .1px solid rgb(68, 67, 67);
-
-}
-select:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-    color: black;
-}
-.area{
-    background-color: #00000085;
-    border-radius: 5px;
-}
-
-.area:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
 }
 .header-style{
     padding-top: 1rem;
     padding-left: 1.5rem;
     font-size: 1.5em;
 }
-.level-style{
-    font-size: .9em;
-    font-family: "Times New Roman";
-    margin-bottom: -6px;
-}
 .logo-label-style{
     font-size: .9em;
     font-family: "Times New Roman";
     margin-left: 1rem;
     margin-top: 1rem;
-}
-.wid{
-    width:100%;
-}
-.top-space{
-    margin-top: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-.btn-style {
-    position: absolute;
-    right: 2rem;
-}
-.btn-section {
-    display: flex;
-}
-.paginate_button{
-    color: white;
-    border: 1px solid white;
-    padding: .5rem;
-    border-radius: 5px;
-    margin-right: .3rem;
-    cursor: pointer;
-}
-.paginate_button:hover{
-    background-color: white;
-    color: black;
-    border: 1px solid white;
-    padding: .5rem;
-    border-radius: 5px;
-    margin-right: .3rem;
-    cursor: pointer;
 }

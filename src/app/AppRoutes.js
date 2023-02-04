@@ -78,6 +78,9 @@ const EditWaste = lazy(() => import("../app/user-pages/waste/editWaste.js"));
 
 const NewInventory = lazy(() => import("../app/user-pages/inventory/inventory/newInventory.js"));
 const InventoryList = lazy(() => import("../app/user-pages/inventory/inventory/inventoryList.js"));
+const DistributeInventory = lazy(() => import("../app/user-pages/inventory/inventory/distributeInventory.js"));
+
+const InvoiceList = lazy(() => import("../app/user-pages/inventory/invoice/invoiceList.js"));
 
 const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
 const CreateBooking = lazy(() =>
@@ -240,7 +243,9 @@ class AppRoutes extends Component {
           />
 
           <Route path="/inventory/new-inventory" component={NewInventory} />
+          <Route path="/inventory/all-invoice" component={InvoiceList} />
           <Route path="/inventory/all-inventory" component={InventoryList} />
+          <Route path="/inventory/inventory-distribution" component={DistributeInventory} />
 
           <Route path="/inventory/ingredient" component={Ingredient} />
           <Route path="/inventory/ingredient-list" component={IngredientList} />

@@ -69,7 +69,7 @@ function Insert() {
                             <div className='col-sm-12 background'>
                                 <div className='input_field two_part'>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Food name</Form.Label>
+                                        <Form.Label className="label-style">Food name</Form.Label>
                                         <select
                                             onChange={(event) => {
                                                 setFoodName(event.target.value)
@@ -87,7 +87,7 @@ function Insert() {
                                         </select>
                                     </div>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Reason</Form.Label>
+                                        <Form.Label className="label-style">Reason</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Reason"
@@ -99,7 +99,7 @@ function Insert() {
                                 </div>
                                 <div className='input_field two_part'>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Amount</Form.Label>
+                                        <Form.Label className="label-style">Amount</Form.Label>
                                         <Form.Control
                                             type="number"
                                             placeholder="Amount"
@@ -109,7 +109,7 @@ function Insert() {
                                         ></Form.Control>
                                     </div>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Price</Form.Label>
+                                        <Form.Label className="label-style">Price</Form.Label>
                                         <Form.Control
                                             type="number"
                                             placeholder="Price"
@@ -121,7 +121,7 @@ function Insert() {
                                 </div>
                                 <div className='input_field two_part'>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Select employee type</Form.Label>
+                                        <Form.Label className="label-style">Select employee type</Form.Label>
                                         <select
                                             onChange={(event) => {
                                                 setType(event.target.value)
@@ -139,7 +139,7 @@ function Insert() {
                                         </select>
                                     </div>
                                     <div className='wid'>
-                                        <Form.Label className="level-style">Select employee</Form.Label>
+                                        <Form.Label className="label-style">Select employee</Form.Label>
                                         <select
                                             onChange={(event) => {
                                                 setEmployee(event.target.value)

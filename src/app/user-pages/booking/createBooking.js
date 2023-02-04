@@ -114,7 +114,7 @@ function CreateBooking() {
                         <div>
                           <div className="input_field two_part">
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Booking date
                               </Form.Label>
                               <Form.Control
@@ -126,7 +126,7 @@ function CreateBooking() {
                               ></Form.Control>
                             </div>
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Number of people
                               </Form.Label>
                               <Form.Control
@@ -141,7 +141,7 @@ function CreateBooking() {
 
                           <div className="input_field two_part">
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Select table
                               </Form.Label>
                               <select
@@ -156,7 +156,7 @@ function CreateBooking() {
                               </select>
                             </div>
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Type of Booking
                               </Form.Label>
                               <select
@@ -176,7 +176,7 @@ function CreateBooking() {
 
                           <div className="input_field two_part">
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Starting time
                               </Form.Label>
                               <Form.Control
@@ -188,7 +188,7 @@ function CreateBooking() {
                               />
                             </div>
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Ending time
                               </Form.Label>
                               <Form.Control
@@ -208,7 +208,7 @@ function CreateBooking() {
                         <div>
                           <div className="input_field two_part">
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Name
                               </Form.Label>
                               <Form.Control
@@ -222,7 +222,7 @@ function CreateBooking() {
                           </div>
                           <div className="input_field two_part">
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 E-mail
                               </Form.Label>
                               <Form.Control
@@ -234,7 +234,7 @@ function CreateBooking() {
                               />
                             </div>
                             <div className="wid">
-                              <Form.Label className="level-style">
+                              <Form.Label className="label-style">
                                 Contact no.
                               </Form.Label>
                               <Form.Control

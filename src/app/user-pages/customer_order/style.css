@@ -1,20 +1,4 @@
-.section_01{
-    display: flex;
-    gap: .4rem;
-}
-@media (max-width: 750px){
-    .section_01{
-        display: block;
-    }
-}
-input[type=text]{
-    background-color: #00000085;
-    border-radius: 5px;
-}
-input[type=text]:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-}
+
 .icon-plus{
     background-color: green;
     color: white;
@@ -64,24 +48,7 @@ input[type=text]:focus{
 .btn-se{
     margin-top: .5rem;
 }
-space3{
-    margin-left: .2rem;
-}
-h3{
-    text-align: center;
-    font-family: 'Edwardian Script ITC';
-    font-style: italic;
-    font-weight: bold;
-    font-size: 3rem;
-}
-h1{
-    text-align: center;
-    font-family: 'Courgette';
-    font-style: italic;
-    font-weight: bold;
-    font-size: 3rem;
-    padding-top:2rem;
-}
+
 .table-style{
     width: 100%;
     padding-bottom: 10px;

@@ -79,7 +79,7 @@ function NewRestaurant() {
                                         <p className="header-style"> Enter All restaurant Information:</p>
                                         <div className="res-class">
                                             <div className="input_field">
-                                                <Form.Label className="level-style">Restaurant name</Form.Label>
+                                                <Form.Label className="label-style">Restaurant name</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Restaurant name"
@@ -90,7 +90,7 @@ function NewRestaurant() {
                                             </div>
                                             <div className="input_field two_part">
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Contact no.</Form.Label>
+                                                    <Form.Label className="label-style">Contact no.</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         placeholder="Contact no."
@@ -100,7 +100,7 @@ function NewRestaurant() {
                                                     ></Form.Control>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">E-mail</Form.Label>
+                                                    <Form.Label className="label-style">E-mail</Form.Label>
                                                     <Form.Control
                                                         type="email"
                                                         placeholder="E-mail"
@@ -111,7 +111,7 @@ function NewRestaurant() {
                                                 </div>
                                             </div>
                                             <div className="input_field">
-                                                <Form.Label className="level-style">Address</Form.Label>
+                                                <Form.Label className="label-style">Address</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Address"
@@ -123,7 +123,7 @@ function NewRestaurant() {
                                             </div>
                                             <div className="input_field two_part">
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your country</Form.Label>
+                                                    <Form.Label className="label-style">Select your country</Form.Label>
                                                     <select
                                                         value={selectedCountry}
                                                         onChange={(event) =>
@@ -139,7 +139,7 @@ function NewRestaurant() {
                                                     </select>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your state</Form.Label>
+                                                    <Form.Label className="label-style">Select your state</Form.Label>
                                                     <select
                                                         value={selectedState}
                                                         onChange={(event) =>
@@ -161,7 +161,7 @@ function NewRestaurant() {
                                                     </select>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your city</Form.Label>
+                                                    <Form.Label className="label-style">Select your city</Form.Label>
                                                     <select
                                                         id="city"
                                                         value={selectedCity}
@@ -189,7 +189,7 @@ function NewRestaurant() {
                                             </div>
                                             <div className="input_field">
                                                 <Form.Group>
-                                                    <Form.Label className="level-style">Meta Tag</Form.Label>
+                                                    <Form.Label className="label-style">Meta Tag</Form.Label>
                                                     <Form.Control
                                                         className="area"
                                                         as="textarea"
@@ -202,7 +202,7 @@ function NewRestaurant() {
                                             </div>
                                             <div className="input_field">
                                                 <Form.Group>
-                                                    <Form.Label className="level-style">Meta description</Form.Label>
+                                                    <Form.Label className="label-style">Meta description</Form.Label>
                                                     <Form.Control
                                                         className="area"
                                                         as="textarea"
@@ -216,7 +216,7 @@ function NewRestaurant() {
                                             </div>
                                             <div className="input_field">
                                                 <Form.Group>
-                                                    <Form.Label className="level-style">Meta keyword</Form.Label>
+                                                    <Form.Label className="label-style">Meta keyword</Form.Label>
                                                     <Form.Control
                                                         className="area"
                                                         as="textarea"
@@ -229,7 +229,7 @@ function NewRestaurant() {
                                                 </Form.Group>
                                             </div>
                                             <div className="input_field">
-                                                <button onClick={insert} className="btn btn-warning top-space"><i
+                                                <button onClick={insert} className="btn btn-warning"><i
                                                     className="bi bi-save-fill"></i>Insert</button>
                                                 <br></br><br></br>
                                             </div>

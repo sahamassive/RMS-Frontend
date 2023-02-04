@@ -60,11 +60,10 @@ function CreateCategory() {
               <div>
                 <div className="input_field two_part">
                   <div className="wid">
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select Section
                     </Form.Label>
                     <select
-                      className="select2"
                       onChange={(event) => {
                         setSectionId(event.target.value);
                       }}
@@ -78,11 +77,10 @@ function CreateCategory() {
                     </select>
                   </div>
                   <div className="wid">
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select category
                     </Form.Label>
                     <select
-                      className="select2"
                       onChange={(event) => {
                         setCategoryId(event.target.value);
                       }}
@@ -95,7 +93,7 @@ function CreateCategory() {
                 </div>
                 <div className="input_field two_part">
                   <div className="wid">
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Category name
                     </Form.Label>
                     <Form.Control
@@ -107,7 +105,7 @@ function CreateCategory() {
                     ></Form.Control>
                   </div>
                   <div className="wid">
-                    <Form.Label className="level-style">Discount(%)</Form.Label>
+                    <Form.Label className="label-style">Discount(%)</Form.Label>
                     <Form.Control
                       type="number"
                       placeholder="Discount ( % )"
@@ -119,11 +117,10 @@ function CreateCategory() {
                 </div>
                 <div className="input_field two_part">
                   <div className="wid">
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select Status
                     </Form.Label>
                     <select
-                      className="select2"
                       onChange={(event) => {
                         setStatus(event.target.value);
                       }}
@@ -134,7 +131,7 @@ function CreateCategory() {
                     </select>
                   </div>
                   <div className="wid">
-                    <Form.Label className="level-style">URL</Form.Label>
+                    <Form.Label className="label-style">URL</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="URL"
@@ -146,7 +143,7 @@ function CreateCategory() {
                 </div>
                 <div className="input_field">
                   <Form.Group>
-                    <Form.Label className="level-style">Description</Form.Label>
+                    <Form.Label className="label-style">Description</Form.Label>
                     <Form.Control
                       className="area"
                       as="textarea"
@@ -160,7 +157,7 @@ function CreateCategory() {
                 </div>
                 <div className="input_field">
                   <Form.Group>
-                    <Form.Label className="level-style">Meta Title</Form.Label>
+                    <Form.Label className="label-style">Meta Title</Form.Label>
                     <Form.Control
                       className="area"
                       as="textarea"
@@ -174,7 +171,7 @@ function CreateCategory() {
                 </div>
                 <div className="input_field">
                   <Form.Group>
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Meta description
                     </Form.Label>
                     <Form.Control
@@ -190,7 +187,7 @@ function CreateCategory() {
                 </div>
                 <div className="input_field">
                   <Form.Group>
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Meta keyword
                     </Form.Label>
                     <Form.Control
@@ -205,7 +202,7 @@ function CreateCategory() {
                   </Form.Group>
                 </div>
                 <div className="input_field">
-                  <Form.Label className="level-style">
+                  <Form.Label className="label-style">
                     Category image
                   </Form.Label>
                   <div className="section-03">

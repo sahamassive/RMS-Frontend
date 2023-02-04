@@ -37,7 +37,7 @@ function NewDepartment() {
                 <div>
                   <div className="input_field">
                     <div className="wid">
-                      <Form.Label className="level-style">
+                      <Form.Label className="label-style">
                         Department name
                       </Form.Label>
                       <Form.Control
@@ -51,7 +51,7 @@ function NewDepartment() {
                   </div>
                   <div className="input_field">
                     <Form.Group>
-                      <Form.Label className="level-style">
+                      <Form.Label className="label-style">
                         Description
                       </Form.Label>
                       <Form.Control

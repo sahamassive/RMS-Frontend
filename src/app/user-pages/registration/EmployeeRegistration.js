@@ -194,7 +194,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field two_part">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             First name
                           </Form.Label>
                           <Form.Control
@@ -206,7 +206,7 @@ function EmployeeRegistration() {
                           />
                         </div>
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Last name
                           </Form.Label>
                           <Form.Control
@@ -220,7 +220,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             E-mail
                           </Form.Label>
                           <Form.Control
@@ -234,7 +234,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field two_part">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Contact no.
                           </Form.Label>
                           <Form.Control
@@ -246,7 +246,7 @@ function EmployeeRegistration() {
                           />
                         </div>
                         <div className="wid">
-                          <Form.Label className="level-style">NID</Form.Label>
+                          <Form.Label className="label-style">NID</Form.Label>
                           <Form.Control
                             type="number"
                             placeholder="NID"
@@ -258,7 +258,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field two_part">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Select gender
                           </Form.Label>
                           <select
@@ -272,7 +272,7 @@ function EmployeeRegistration() {
                           </select>
                         </div>
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Date Of birth
                           </Form.Label>
                           <Form.Control
@@ -288,7 +288,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Select employee type
                           </Form.Label>
                           { window.location.pathname === '/super-admin/employee/registration' ? (
@@ -334,7 +334,7 @@ function EmployeeRegistration() {
                     <div className="background">
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Address line 1
                           </Form.Label>
                           <Form.Control
@@ -350,7 +350,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Address line 2
                           </Form.Label>
                           <Form.Control
@@ -366,7 +366,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field two_part">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Country
                           </Form.Label>
                           <select
@@ -384,7 +384,7 @@ function EmployeeRegistration() {
                           </select>
                         </div>
                         <div className="wid">
-                          <Form.Label className="level-style">State</Form.Label>
+                          <Form.Label className="label-style">State</Form.Label>
 
                           <select
                             value={selectedState}
@@ -409,7 +409,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field two_part">
                         <div className="wid">
-                          <Form.Label className="level-style">City</Form.Label>
+                          <Form.Label className="label-style">City</Form.Label>
                           <select
                             id="city"
                             value={selectedCity}
@@ -435,7 +435,7 @@ function EmployeeRegistration() {
                           </select>
                         </div>
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             ZIP code
                           </Form.Label>
                           <Form.Control
@@ -457,7 +457,7 @@ function EmployeeRegistration() {
                     <div className="background">
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Password
                           </Form.Label>
                           <Form.Control
@@ -472,7 +472,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Confirm Password
                           </Form.Label>
                           <Form.Control
@@ -495,7 +495,7 @@ function EmployeeRegistration() {
                     <div className="background">
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Salary
                           </Form.Label>
                           <Form.Control
@@ -510,7 +510,7 @@ function EmployeeRegistration() {
                       </div>
                       <div className="input_field">
                         <div className="wid">
-                          <Form.Label className="level-style">
+                          <Form.Label className="label-style">
                             Date Of joining
                           </Form.Label>
                           <Form.Control
