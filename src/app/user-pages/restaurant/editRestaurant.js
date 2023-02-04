@@ -113,7 +113,7 @@ function EditRestaurant() {
                                 <h2 className="header-style"> Edit All restaurant Information:</h2>
                                 <div>
                                     <div className="input_field">
-                                        <Form.Label className="level-style">Restaurant name</Form.Label>
+                                        <Form.Label className="label-style">Restaurant name</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Restaurant name"
@@ -125,7 +125,7 @@ function EditRestaurant() {
                                     </div>
                                     <div className="input_field two_part">
                                         <div className="wid">
-                                            <Form.Label className="level-style">Contact no.</Form.Label>
+                                            <Form.Label className="label-style">Contact no.</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                         placeholder="Contact no."
@@ -136,7 +136,7 @@ function EditRestaurant() {
                                             ></Form.Control>
                                         </div>
                                         <div className="wid">
-                                            <Form.Label className="level-style">E-mail</Form.Label>
+                                            <Form.Label className="label-style">E-mail</Form.Label>
                                             <Form.Control
                                                 type="email"
                                                         placeholder="E-mail"
@@ -148,7 +148,7 @@ function EditRestaurant() {
                                         </div>
                                     </div>
                                     <div className="input_field">
-                                    <Form.Label className="level-style">Address</Form.Label>
+                                    <Form.Label className="label-style">Address</Form.Label>
                                     <Form.Control
                                         type="text"
                                         placeholder="Address"
@@ -160,7 +160,7 @@ function EditRestaurant() {
                                 </div>
                                 <div className="input_field two_part">
                                     <div className="wid">
-                                        <Form.Label className="level-style">Select your country</Form.Label>
+                                        <Form.Label className="label-style">Select your country</Form.Label>
                                         <select
                                             value={selectedCountry}
                                             onChange={ changeCountry }
@@ -174,7 +174,7 @@ function EditRestaurant() {
                                         </select>
                                                 </div>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Select your state</Form.Label>
+                                        <Form.Label className="label-style">Select your state</Form.Label>
                                         <select
                                             value={selectedState}
                                             onChange={(event) =>
@@ -196,7 +196,7 @@ function EditRestaurant() {
                                         </select>
                                     </div>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Select your city</Form.Label>
+                                        <Form.Label className="label-style">Select your city</Form.Label>
                                         <select
                                             id="city"
                                             value={selectedCity}
@@ -224,7 +224,7 @@ function EditRestaurant() {
                                 </div>
                                     <div className="input_field">
                                         <Form.Group>
-                                            <Form.Label className="level-style">Meta Tag</Form.Label>
+                                            <Form.Label className="label-style">Meta Tag</Form.Label>
                                             <Form.Control
                                                 className="area"
                                                         as="textarea"
@@ -238,7 +238,7 @@ function EditRestaurant() {
                                     </div>
                                     <div className="input_field">
                                         <Form.Group>
-                                            <Form.Label className="level-style">Meta description</Form.Label>
+                                            <Form.Label className="label-style">Meta description</Form.Label>
                                             <Form.Control
                                                 className="area"
                                                 as="textarea"
@@ -253,7 +253,7 @@ function EditRestaurant() {
                                     </div>
                                     <div className="input_field">
                                         <Form.Group>
-                                            <Form.Label className="level-style">Meta keyword</Form.Label>
+                                            <Form.Label className="label-style">Meta keyword</Form.Label>
                                             <Form.Control
                                                 className="area"
                                                 as="textarea"

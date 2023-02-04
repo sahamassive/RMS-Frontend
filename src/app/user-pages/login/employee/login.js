@@ -63,7 +63,7 @@ function Login() {
               <span className="res">Restaurant</span> FOOD
             </p>
 
-            <Form.Label className="level-style">Select Section</Form.Label>
+            <Form.Label className="label-style">Select Section</Form.Label>
             <select
               className="select2"
               onChange={(event) => {

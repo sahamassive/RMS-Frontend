@@ -50,7 +50,7 @@ function NewEmployeeLeave() {
               <div className="col-sm-12 background">
                 <div className="input_field two_part">
                   <div className="wid">
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select employee type
                     </Form.Label>
                     <select
@@ -68,7 +68,7 @@ function NewEmployeeLeave() {
                     </select>
                   </div>
                   <div className="wid">
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select employee
                     </Form.Label>
                     <select
@@ -89,7 +89,7 @@ function NewEmployeeLeave() {
                 </div>
                 <div className="input_field two_part">
                   <div className="wid">
-                    <Form.Label className="level-style">Start Date</Form.Label>
+                    <Form.Label className="label-style">Start Date</Form.Label>
                     <Form.Control
                       type="date"
                       placeholder="Amount"
@@ -99,7 +99,7 @@ function NewEmployeeLeave() {
                     ></Form.Control>
                   </div>
                   <div className="wid">
-                    <Form.Label className="level-style">End Date</Form.Label>
+                    <Form.Label className="label-style">End Date</Form.Label>
                     <Form.Control
                       type="date"
                       placeholder="Price"
@@ -111,7 +111,7 @@ function NewEmployeeLeave() {
                 </div>
                 <div className="input_field">
                   <Form.Group>
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Reason of Leave
                     </Form.Label>
                     <Form.Control

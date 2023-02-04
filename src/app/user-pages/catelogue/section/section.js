@@ -92,6 +92,7 @@ function Section() {
                   </tbody>
                 </table>
               ) : null}
+              <br></br>
             </div>
           </div>
         </div>
