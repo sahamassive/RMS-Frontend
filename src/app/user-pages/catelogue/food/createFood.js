@@ -106,7 +106,7 @@ function CreateFood() {
                   <div>
                     <div className="input_field two_part">
                       <div className="wid">
-                        <Form.Label className="level-style">
+                        <Form.Label className="label-style">
                           Food name
                         </Form.Label>
                         <Form.Control
@@ -118,7 +118,7 @@ function CreateFood() {
                         ></Form.Control>
                       </div>
                       <div className="wid">
-                        <Form.Label className="level-style">
+                        <Form.Label className="label-style">
                           Description
                         </Form.Label>
                         <Form.Control
@@ -134,7 +134,7 @@ function CreateFood() {
                     </div>
                     <div className="input_field two_part">
                       <div className="wid">
-                        <Form.Label className="level-style">
+                        <Form.Label className="label-style">
                           Speciality
                         </Form.Label>
                         <Form.Control
@@ -146,7 +146,7 @@ function CreateFood() {
                         ></Form.Control>
                       </div>
                       <div className="wid">
-                        <Form.Label className="level-style">Price</Form.Label>
+                        <Form.Label className="label-style">Price</Form.Label>
                         <Form.Control
                           type="number"
                           placeholder="Price"
@@ -159,11 +159,10 @@ function CreateFood() {
                   </div>
                   <div className="input_field two_part">
                     <div className="wid">
-                      <Form.Label className="level-style">
+                      <Form.Label className="label-style">
                         Select Section
                       </Form.Label>
                       <select
-                        className="select2"
                         onChange={(event) => {
                           setSectionId(event.target.value);
                         }}
@@ -178,11 +177,10 @@ function CreateFood() {
                     </div>
 
                     <div className="wid">
-                      <Form.Label className="level-style">
+                      <Form.Label className="label-style">
                         Select Category
                       </Form.Label>
                       <select
-                        className="select2"
                         onChange={(event) => {
                           setCategoryId(event.target.value);
                         }}
@@ -199,11 +197,10 @@ function CreateFood() {
                     </div>
 
                     <div className="wid">
-                      <Form.Label className="level-style">
+                      <Form.Label className="label-style">
                         Select Brand
                       </Form.Label>
                       <select
-                        className="select2"
                         onChange={(event) => {
                           setBrandId(event.target.value);
                         }}
@@ -219,7 +216,7 @@ function CreateFood() {
                   </div>
                   <div className="input_field">
                     <Form.Group>
-                      <Form.Label className="level-style">Meta Tag</Form.Label>
+                      <Form.Label className="label-style">Meta Tag</Form.Label>
                       <Form.Control
                         className="area"
                         as="textarea"
@@ -234,7 +231,7 @@ function CreateFood() {
 
                   <div className="input_field">
                     <Form.Group>
-                      <Form.Label className="level-style">
+                      <Form.Label className="label-style">
                         Meta description
                       </Form.Label>
                       <Form.Control
@@ -251,7 +248,7 @@ function CreateFood() {
 
                   <div className="input_field">
                     <Form.Group>
-                      <Form.Label className="level-style">
+                      <Form.Label className="label-style">
                         Meta keyword
                       </Form.Label>
                       <Form.Control

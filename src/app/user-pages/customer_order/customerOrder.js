@@ -13,15 +13,6 @@ function CustomerOrder({}) {
   const [vat, setVat] = useState();
   const [grandTotal, setGrandTotal] = useState();
   const branchId = localStorage.getItem("branchId");
-  // useEffect(() => {
-  //   const url = "";
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       console.log(response);
-  //       setAllData(response.data);
-  //     });
-  // }, []);
   
   useEffect(() => {
     calTotal();
@@ -122,7 +113,7 @@ function CustomerOrder({}) {
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
-            <div className="section_01">
+            <div className="two_part ">
               <div className="">
                 <h4 className="card-title">Your Cart Items:</h4>
               </div>
@@ -196,7 +187,7 @@ function CustomerOrder({}) {
                 </div>
               </div>
             </div>
-            <div className="col-md-12 section_01">
+            <div className="col-md-12 two_part ">
               <div className="col-md-4 block_01">
                 <div onChange={(e) => setPickUp(e.target.value)}>
                   <h4>Shipping Method:</h4>
@@ -210,7 +201,7 @@ function CustomerOrder({}) {
                   Pickup
                   <br></br>
                 </div>
-                <div className="section_01 section-border">
+                <div className="two_part  section-border">
                   <div className="badge">
                     <Form.Label>Order Date:</Form.Label>
                     <br></br>
@@ -234,7 +225,7 @@ function CustomerOrder({}) {
                 <p>Enter your coupon code if you have one.</p>
                 <div className="input_field">
                   <div className="wid">
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       {" "}
                       Enter your coupon code{" "}
                     </Form.Label>

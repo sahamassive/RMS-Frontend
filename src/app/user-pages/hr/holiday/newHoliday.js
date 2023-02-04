@@ -17,21 +17,21 @@ function NewHoliday() {
                         <div className='col-sm-12 background'>
                             <div className='input_field'>
                                 <div className="wid">
-                                    <Form.Label className="level-style">Holiday name</Form.Label>
+                                    <Form.Label className="label-style">Holiday name</Form.Label>
                                     <Form.Control type="text" placeholder="Holiday name" />
                                 </div>
                             </div>
                             <div className='input_field two_part'>
                                 <div className="wid">
-                                    <Form.Label className="level-style">Start Date</Form.Label>
+                                    <Form.Label className="label-style">Start Date</Form.Label>
                                     <Form.Control type="date" placeholder="Amount"></Form.Control>
                                 </div>
                                 <div className="wid">
-                                    <Form.Label className="level-style">End Date</Form.Label>
+                                    <Form.Label className="label-style">End Date</Form.Label>
                                     <Form.Control type="date" placeholder="Price"></Form.Control>
                                     </div>
                                     <div className="wid">
-                                    <Form.Label className="level-style">Select holiday type</Form.Label>
+                                    <Form.Label className="label-style">Select holiday type</Form.Label>
                                     <select className="search_box2">
                                         <option value="">Select from here</option>
                                         <option value="chef">Govt. Holiday</option>
@@ -41,7 +41,7 @@ function NewHoliday() {
                             </div>
                             <div className="input_field">
                                 <Form.Group>
-                                    <Form.Label className="level-style">Description</Form.Label>
+                                    <Form.Label className="label-style">Description</Form.Label>
                                     <Form.Control className="area" as="textarea" placeholder="Description" rows={3}/>
                                 </Form.Group>
                             </div>

@@ -399,7 +399,7 @@ class Sidebar extends Component {
               data-toggle="collapse"
             >
               <span className="menu-icon">
-                <i className="mdi mdi-laptop"></i>
+                <i className="bi bi-border-style"></i>
               </span>
               <span className="menu-title">
                 <Trans>Order Management</Trans>
@@ -440,7 +440,7 @@ class Sidebar extends Component {
             data-toggle="collapse"
           >
             <span className="menu-icon">
-              <i className="mdi mdi-laptop"></i>
+              <i className="bi bi-buildings-fill"></i>
             </span>
             <span className="menu-title">
               <Trans>Inventory <br></br>Management</Trans>
@@ -489,6 +489,18 @@ class Sidebar extends Component {
                   <li className="nav-item">
                   <Link
                     className={
+                      this.isPathActive("/inventory/inventory-distribution")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                    to="/inventory/inventory-distribution"
+                  >
+                    <Trans> Inventory Distribution</Trans>
+                  </Link>
+                  </li>
+                  <li className="nav-item">
+                  <Link
+                    className={
                       this.isPathActive("/inventory/ingredient")
                         ? "nav-link active"
                         : "nav-link"
@@ -517,7 +529,7 @@ class Sidebar extends Component {
               data-toggle="collapse"
             >
               <span className="menu-icon">
-                <i className="mdi mdi-laptop"></i>
+                <i className="bi bi-receipt"></i>
               </span>
               <span className="menu-title">
                 <Trans>Recipe Management</Trans>
@@ -560,7 +572,7 @@ class Sidebar extends Component {
               data-toggle="collapse"
             >
               <span className="menu-icon">
-                <i className="mdi mdi-table-large"></i>
+                <i className="bi bi-cassette"></i>
               </span>
               <span className="menu-title">
                 <Trans>
@@ -716,7 +728,7 @@ class Sidebar extends Component {
               data-toggle="collapse"
             >
               <span className="menu-icon">
-                <i className="mdi mdi-security"></i>
+                <i className="bi bi-app-indicator"></i>
               </span>
               <span className="menu-title">
                 <Trans>Waste Management</Trans>

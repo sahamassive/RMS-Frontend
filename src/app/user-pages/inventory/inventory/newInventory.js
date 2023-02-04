@@ -133,9 +133,15 @@ function NewInventory() {
                     <div className="card-body">
                         <div className="btn-section">
                             <h4 className="card-title">Create New Inventory</h4>
-                            <a className="btn-style btn btn-primary" href="/inventory/all-inventory">
-                                <i className="bi bi-list-columns-reverse"></i>All Inventory
+                            <div className="btn-style">
+                            <a className="btn btn-primary" href="/inventory/all-invoice">
+                            <i className="bi bi-receipt"></i>All Invoices
+                                </a> 
+                                <span>   </span>
+                        <a className="btn btn-info" href="/inventory/all-inventory">
+                        <i className="bi bi-buildings-fill"></i>All Inventory
                             </a>
+                            </div>
                         </div>
                         <div className="col-sm-12 background">
                             <div>
@@ -233,13 +239,13 @@ function NewInventory() {
                                             </select>
                                         </div>
                                         <div className="wid">
-                                            <Form.Label className="label-style">Amount</Form.Label>
+                                            <Form.Label className="label-style">Quantity</Form.Label>
                                             <Form.Control
                                                 onChange={(event) => {
                                                     addAmount(event, index)
                                                 }}
                                                 type="text"
-                                                placeholder="Amount"
+                                                placeholder="Quantity"
                                             ></Form.Control>
                                         </div>
                                         <div className="wid">

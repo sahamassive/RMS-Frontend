@@ -113,7 +113,7 @@ function EditSupplier() {
                         </div>
                         <div className="input_field">
                             <Form.Group>
-                                <Form.Label className="level-style">Address</Form.Label>
+                                <Form.Label className="label-style">Address</Form.Label>
                                         <Form.Control
                                             value={address}
                                 onChange={(event) =>{

@@ -79,7 +79,7 @@ function EditBranch() {
                                 <div>
                                     <div className="input_field two_part">
                                         <div className="wid">
-                                            <Form.Label className="level-style">Contact no.</Form.Label>
+                                            <Form.Label className="label-style">Contact no.</Form.Label>
                                             <Form.Control
                                                         type="text"
                                                         value={ phoneNumber }
@@ -90,7 +90,7 @@ function EditBranch() {
                                             ></Form.Control>
                                         </div>
                                         <div className="wid">
-                                            <Form.Label className="level-style">E-mail</Form.Label>
+                                            <Form.Label className="label-style">E-mail</Form.Label>
                                             <Form.Control
                                                         type="email"
                                                         value={ email }
@@ -102,7 +102,7 @@ function EditBranch() {
                                         </div>
                                     </div>
                                     <div className="input_field">
-                                        <Form.Label className="level-style">Address</Form.Label>
+                                        <Form.Label className="label-style">Address</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Address"
@@ -114,7 +114,7 @@ function EditBranch() {
                                     </div>
                                     <div className="input_field two_part">
                                         <div className="wid">
-                                            <Form.Label className="level-style">Select your country</Form.Label>
+                                            <Form.Label className="label-style">Select your country</Form.Label>
                                             <select
                                                 value={selectedCountry}
                                                 onChange={ changeCountry }
@@ -128,7 +128,7 @@ function EditBranch() {
                                             </select>
                                         </div>
                                         <div className="wid">
-                                            <Form.Label className="level-style">Select your state</Form.Label>
+                                            <Form.Label className="label-style">Select your state</Form.Label>
                                             <select
                                                 value={selectedState}
                                                 onChange={(event) =>
@@ -150,7 +150,7 @@ function EditBranch() {
                                             </select>
                                         </div>
                                         <div className="wid">
-                                            <Form.Label className="level-style">Select your city</Form.Label>
+                                            <Form.Label className="label-style">Select your city</Form.Label>
                                             <select
                                                 id="city"
                                                 value={selectedCity}

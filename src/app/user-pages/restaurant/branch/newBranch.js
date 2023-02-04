@@ -64,7 +64,7 @@ function NewBranch() {
                                         <div>
                                             <div className="input_field two_part">
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select Restaurant</Form.Label>
+                                                    <Form.Label className="label-style">Select Restaurant</Form.Label>
                                                     <select
                                                         className="select2"
                                                         onChange={(event) => {
@@ -82,7 +82,7 @@ function NewBranch() {
                                                     </select>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Contact no.</Form.Label>
+                                                    <Form.Label className="label-style">Contact no.</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         placeholder="Contact no."
@@ -92,7 +92,7 @@ function NewBranch() {
                                                     ></Form.Control>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">E-mail</Form.Label>
+                                                    <Form.Label className="label-style">E-mail</Form.Label>
                                                     <Form.Control
                                                         type="email"
                                                         placeholder="E-mail"
@@ -103,7 +103,7 @@ function NewBranch() {
                                                 </div>
                                             </div>
                                             <div className="input_field">
-                                                <Form.Label className="level-style">Address</Form.Label>
+                                                <Form.Label className="label-style">Address</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Address"
@@ -115,7 +115,7 @@ function NewBranch() {
                                             </div>
                                             <div className="input_field two_part">
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your country</Form.Label>
+                                                    <Form.Label className="label-style">Select your country</Form.Label>
                                                     <select
                                                         value={selectedCountry}
                                                         onChange={(event) =>
@@ -131,7 +131,7 @@ function NewBranch() {
                                                     </select>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your state</Form.Label>
+                                                    <Form.Label className="label-style">Select your state</Form.Label>
                                                     <select
                                                         value={selectedState}
                                                         onChange={(event) =>
@@ -153,7 +153,7 @@ function NewBranch() {
                                                     </select>
                                                 </div>
                                                 <div className="wid">
-                                                    <Form.Label className="level-style">Select your city</Form.Label>
+                                                    <Form.Label className="label-style">Select your city</Form.Label>
                                                     <select
                                                         id="city"
                                                         value={selectedCity}
@@ -180,7 +180,7 @@ function NewBranch() {
                                                 </div>
                                             </div>
                                             <div className="input_field">
-                                                <button onClick={insert} className="btn btn-warning top-space"><i
+                                                <button onClick={insert} className="btn btn-warning"><i
                                                     className="bi bi-save-fill"></i>Insert</button>
                                                 <br></br><br></br>
                                             </div>

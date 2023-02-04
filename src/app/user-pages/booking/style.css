@@ -35,15 +35,7 @@
         font-family: 'Times New Roman';
     }
 }
-.two_part {
-    display: flex;
-    gap: .4rem;
-}
-@media (max-width: 700px) {
-    .two_part {
-        display: block;
-    }
-}
+
 .text_style {
     color: white;
     text-align: center;
@@ -51,84 +43,11 @@
 .space{
     padding-top: 1rem;
 }
-input[type=text],
-input[type=number],
-input[type=date],
-input[type=time],
-input[type=email]{
-    background-color: #00000085;
-    border-radius: 5px;
-
-}
-input[type=text]:focus,
-input[type=number]:focus,
-input[type=date]:focus,
-input[type=time]:focus,
-input[type=email]:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-}
-input[type=text]:hover,
-input[type=number]:hover,
-input[type=date]:hover,
-input[type=time]:hover,
-input[type=email]:hover{
-    background-color: white;
-    color: black;
-}
-
-.area{
-    background-color: #00000085;
-    border-radius: 5px;
-}
-
-.area:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-    color: black;
-}
-.area:hover{
-    background-color: white;
-    color: black;
-}
-select{
-    background-color: #00000085;
-    border-radius: 5px;
-    border:none;
-    height:2.4rem;
-    color:white;
-    width: 100%;
-    border: .1px solid rgb(68, 67, 67);
-}
-select:focus{
-    outline: 2px solid rgb(1, 61, 16);
-    background-color: white;
-    color: black;
-}
-select:hover{
-    background-color: white;
-    color: black;
-}
-.input_field {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-}
-@media (max-width: 700px) {
-    .input_field {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        margin-top: 1rem;
-    }
-}
 .icon-space{
     padding-right: .5rem;
 }
 .left-space{
 padding-left: 1rem;
-}
-.wid{
-    width: 100%;
 }
 .top-space{
     margin-top: 1rem;
@@ -143,11 +62,4 @@ padding-left: 1rem;
 }
 .section-22{
     margin: 1.1rem;
-}
-.btn-section{
-    display: flex;
-}
-.btn-style{
-    position: absolute;
-    right: 2rem;
 }

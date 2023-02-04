@@ -88,7 +88,7 @@ function EditWaste() {
                             <div className='col-sm-12 background'>
                                 <div className='input_field two_part'>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Food name</Form.Label>
+                                        <Form.Label className="label-style">Food name</Form.Label>
                                         <select
                                             value={foodName}
                                             onChange={(event) => {
@@ -107,7 +107,7 @@ function EditWaste() {
                                         </select>
                                     </div>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Reason</Form.Label>
+                                        <Form.Label className="label-style">Reason</Form.Label>
                                         <Form.Control
                                             value={reason}
                                             type="text"
@@ -120,7 +120,7 @@ function EditWaste() {
                                 </div>
                                 <div className='input_field two_part'>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Amount</Form.Label>
+                                        <Form.Label className="label-style">Amount</Form.Label>
                                         <Form.Control
                                             value={amount}
                                             type="number"
@@ -131,7 +131,7 @@ function EditWaste() {
                                         ></Form.Control>
                                     </div>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Price</Form.Label>
+                                        <Form.Label className="label-style">Price</Form.Label>
                                         <Form.Control
                                             value={price}
                                             type="number"
@@ -144,7 +144,7 @@ function EditWaste() {
                                 </div>
                                 <div className='input_field two_part'>
                                     <div className="wid">
-                                        <Form.Label className="level-style">Select employee type</Form.Label>
+                                        <Form.Label className="label-style">Select employee type</Form.Label>
                                         <select
                                             value={type}
                                             onChange={(event) => {
@@ -163,7 +163,7 @@ function EditWaste() {
                                         </select>
                                     </div>
                                     <div className='wid'>
-                                        <Form.Label className="level-style">Select employee</Form.Label>
+                                        <Form.Label className="label-style">Select employee</Form.Label>
                                         <select
                                             value={employee}
                                             onChange={(event) => {

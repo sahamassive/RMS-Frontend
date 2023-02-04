@@ -6,6 +6,7 @@ import { ReactCalculator } from "simple-react-calculator";
 import Modal from "@mui/material/Modal";
 
 function QuickOrder() {
+  const order = [];
   const [branch, setBranch] = useState("");
   const [branchId, setBranchId] = useState("");
   const [section, setSection] = useState("");
@@ -34,7 +35,6 @@ function QuickOrder() {
     // Trigger render with updated values
   };
 
-  const order = [];
   useEffect(() => {
     getSection();
     getCategory();
@@ -109,7 +109,6 @@ function QuickOrder() {
     if (orderDetails.find((data) => data[0].food_id == id)) {
       Swal.fire({
         title: "Already Added",
-
         icon: "warning",
         confirmButtonText: "OK",
       });
@@ -176,64 +175,61 @@ function QuickOrder() {
   return (
     <div>
       <div className="top-section">
-        <div className="section_01">
-          <a href="/dashboard" className="btn btn-primary top-space">
-            <i className="bi bi-house-door-fill"></i>
-          </a>
-          <a href="" className="btn btn-info top-space">
-            <i className="bi bi-view-list"></i>All Order
-          </a>
-          <a href="" className="btn btn-danger top-space">
-            <i className="bi bi-plus-square"></i>New Order
-          </a>
-          <a href="" className="btn btn-warning top-space">
-            <i className="bi bi-arrow-left-right"></i>OnGoing Order
-          </a>
-          <a href="" className="btn btn-success top-space">
-            <i className="bi bi-question-square-fill"></i>Kitchen Status
-          </a>
-          <a href="" className="btn btn-warning top-space">
-            <i className="bi bi-arrow-90deg-up"></i>Online Order
-          </a>
-          <a href="" className="btn btn-success top-space">
-            <i className="bi bi-qr-code"></i>QR Order
-          </a>
-          <a href="" className="btn btn-danger top-space">
-            <i className="bi bi-x-square-fill"></i>Cancel Order
-          </a>
-          <a href="" className="btn btn-info top-space">
-            <i className="bi bi-alarm"></i>Today's Order
-          </a>
-        </div>
+
       </div>
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
-            <div className="section_01">
-              <div className="col-md-7">
-                <h4 className="card-title">Quick Order:</h4>
-              </div>
-              <select className="form-control" onChange={selectBranch}>
-                <option value="">Visit Branch</option>
-                {branch
-                  ? branch.map((data) => (
-                      <option value={data.id}>{data.city}</option>
-                    ))
-                  : null}
-              </select>
-              <div className="col-md-5 inner-addon right-addon">
+            <h4 className="card-title">Quick Order:</h4>
+            <div className="two_part">
+            <a href="/dashboard" className="btn btn-primary">
+              <i className="bi bi-house-door-fill"></i>
+            </a>
+            <a href="" className="btn btn-info">
+              <i className="bi bi-view-list"></i>All Order
+            </a>
+            <a href="" className="btn btn-danger">
+              <i className="bi bi-plus-square"></i>New Order
+            </a>
+            <a href="" className="btn btn-warning">
+              <i className="bi bi-arrow-left-right"></i>OnGoing Order
+            </a>
+            <a href="" className="btn btn-success">
+              <i className="bi bi-question-square-fill"></i>Kitchen Status
+            </a>
+            <a href="" className="btn btn-warning">
+              <i className="bi bi-arrow-90deg-up"></i>Online Order
+            </a>
+            <a href="" className="btn btn-success">
+              <i className="bi bi-qr-code"></i>QR Order
+            </a>
+            <a href="" className="btn btn-danger">
+              <i className="bi bi-x-square-fill"></i>Cancel Order
+            </a>
+            <a href="" className="btn btn-info">
+              <i className="bi bi-alarm"></i>Today's Order
+            </a>
+            </div>
+            <br></br>
+            <div className="two_part ">
                 <Form.Control
                   type="search"
                   name="search-form"
-                  className="search-input"
                   placeholder="Search for..."
                   id="search-box"
                   onChange={filterBySearch}
                 ></Form.Control>
-              </div>
+              <select onChange={selectBranch}>
+              <option value="">Select Branch from here...</option>
+              {branch
+                ? branch.map((data) => (
+                    <option value={data.id}>{data.city}</option>
+                  ))
+                : null}
+            </select>
             </div>
-            <div className="col-md-12 section_01">
-              <div className="col-md-2 section-border">
+            <div className="two_part">
+              <div className="section-11 section-border">
                 <ul className="list-unstyled components mb-5">
                   <li>
                     <Link onClick={getFood}>
@@ -260,8 +256,7 @@ function QuickOrder() {
                   </li>
                 </ul>
               </div>
-
-              <div className="col-md-5 section-border">
+              <div className="section-12 section-border">
                 <div className="container">
                   <div className="row">
                     {food
@@ -272,7 +267,6 @@ function QuickOrder() {
                               src={`${baseUrl}/foods/small/${data.image}`}
                               alt={data.name}
                             ></img>
-
                             <p className="img-level cart-height">
                               {data.name} <br></br>$ <span>{data.price}</span>
                             </p>
@@ -289,31 +283,11 @@ function QuickOrder() {
                       : null}
                   </div>
                 </div>
-                {/* <table className="table table-responsive table-bordered table-style">
-                  <tbody>
-                    <tr>
-                      {food
-                        ? food.map((data) => (
-                            <td>
-                              <img
-                                className="food-image"
-                                src={`${baseUrl}/foods/small/${data.image}`}
-                                alt="cake"
-                              ></img>
-                              <p className="img-level">
-                                {data.name} <br></br> <span>{data.price}</span>
-                              </p>
-                            </td>
-                          ))
-                        : null}
-                    </tr>
-                  </tbody>
-                </table> */}
               </div>
-              <div className="col-md-5 section-border">
+              <div className="section-13 section-border">
                 <div className="input_field">
                   <div>
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Customer name
                     </Form.Label>
                     <input
@@ -323,12 +297,12 @@ function QuickOrder() {
                     ></input>
                   </div>
                 </div>
-                <div className="input_field section_01">
+                <div className="input_field two_part ">
                   <div>
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select waiter
                     </Form.Label>
-                    <select className="select3">
+                    <select>
                       <option value="">Select here</option>
                       {waiter
                         ? waiter.map((data) => (
@@ -340,20 +314,20 @@ function QuickOrder() {
                     </select>
                   </div>
                   <div>
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select table
                     </Form.Label>
-                    <select className="select3">
+                    <select>
                       <option value="">Select here</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
                   </div>
                   <div>
-                    <Form.Label className="level-style">
+                    <Form.Label className="label-style">
                       Select order type
                     </Form.Label>
-                    <select className="select3">
+                    <select>
                       <option value="">Select here</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
@@ -449,10 +423,10 @@ function QuickOrder() {
                       </tbody>
                     </table>
                   </div>
-
-                  <div className="section_01 btn-se">
+                  <br></br>
+                  <div className="two_part btn-se">
                     <button
-                      className="btn btn-primary top-space"
+                      className="btn btn-primary"
                       onClick={handleOpen}
                     >
                       <i className="bi bi-calculator"></i>
@@ -461,15 +435,18 @@ function QuickOrder() {
                       onClick={() => {
                         cancleOrder();
                       }}
-                      className="btn btn-danger top-space"
+                      className="btn btn-danger"
                     >
                       <i className="bi bi-x-octagon-fill"></i>Cancel
                     </button>
 
-                    <a className="btn btn-success top-space">
+                    <a className="btn btn-success">
                       <i className="bi bi-check-square-fill"></i>Confirm Order
                     </a>
                   </div>
+                  <br></br>
+                  <br></br>
+                  <br></br>
                   <Modal
                     open={open}
                     onClose={handleClose}
