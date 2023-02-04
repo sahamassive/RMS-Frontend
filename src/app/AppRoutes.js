@@ -76,11 +76,13 @@ const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
 const EditWaste = lazy(() => import("../app/user-pages/waste/editWaste.js"));
 
+
 const NewInventory = lazy(() => import("../app/user-pages/inventory/inventory/newInventory.js"));
 const InventoryList = lazy(() => import("../app/user-pages/inventory/inventory/inventoryList.js"));
 const DistributeInventory = lazy(() => import("../app/user-pages/inventory/inventory/distributeInventory.js"));
 
 const InvoiceList = lazy(() => import("../app/user-pages/inventory/invoice/invoiceList.js"));
+
 
 const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
 const CreateBooking = lazy(() =>
@@ -114,16 +116,32 @@ const FoodAdd = lazy(() =>
 );
 
 const NewRecipe = lazy(() => import("../app/user-pages/recipe/newRecipe.js"));
+const BasicPrice = lazy(() => import("../app/user-pages/recipe/basicPrice.js"));
+const ItemList = lazy(() => import("../app/user-pages/recipe/itemlist"));
+const ItemEdit = lazy(() => import("../app/user-pages/recipe/itemEdit.js"));
 
-const Ingredient = lazy(() => import("../app/user-pages/inventory/ingredient/ingredient.js"));
-const IngredientList = lazy(() => import("../app/user-pages/inventory/ingredient/ingredientList.js"));
-const EditIngredient = lazy(() => import("../app/user-pages/inventory/ingredient/editIngredient.js"));
+const Ingredient = lazy(() =>
+  import("../app/user-pages/inventory/ingredient/ingredient.js")
+);
+const IngredientList = lazy(() =>
+  import("../app/user-pages/inventory/ingredient/ingredientList.js")
+);
+const EditIngredient = lazy(() =>
+  import("../app/user-pages/inventory/ingredient/editIngredient.js")
+);
 
-
-const NewSupplier = lazy(() => import("./user-pages/inventory/supplier/newSupplier.js"));
-const AllSupplier = lazy(() => import("./user-pages/inventory/supplier/allSuppliers.js"));
-const EditSupplier = lazy(() => import("./user-pages/inventory/supplier/editSupplier.js"));
-const NewInvoice= lazy(() => import("./user-pages/inventory/invoice/newInvoice.js"));
+const NewSupplier = lazy(() =>
+  import("./user-pages/inventory/supplier/newSupplier.js")
+);
+const AllSupplier = lazy(() =>
+  import("./user-pages/inventory/supplier/allSuppliers.js")
+);
+const EditSupplier = lazy(() =>
+  import("./user-pages/inventory/supplier/editSupplier.js")
+);
+const NewInvoice = lazy(() =>
+  import("./user-pages/inventory/invoice/newInvoice.js")
+);
 
 const RegisterEmployee = lazy(() =>
   import("../app/user-pages/registration/EmployeeRegistration.js")
@@ -151,9 +169,15 @@ const EditCoupon = lazy(() =>
 
 const Error404 = lazy(() => import("./error-pages/Error404"));
 
-const EmployeeLogin = lazy(() => import("./user-pages/login/employee/login.js"));
-const CustomerLogin = lazy(() => import("./user-pages/login/customer/login.js"));
-const CustomerRegister = lazy(() => import("./user-pages/login/customer/register.js"));
+const EmployeeLogin = lazy(() =>
+  import("./user-pages/login/employee/login.js")
+);
+const CustomerLogin = lazy(() =>
+  import("./user-pages/login/customer/login.js")
+);
+const CustomerRegister = lazy(() =>
+  import("./user-pages/login/customer/register.js")
+);
 
 class AppRoutes extends Component {
   render() {
@@ -192,6 +216,9 @@ class AppRoutes extends Component {
           <Route path="/waste/edit-waste/:id" component={EditWaste} />
 
           <Route path="/recipe/new-recipe" component={NewRecipe} />
+          <Route path="/basic/price" component={BasicPrice} />
+          <Route path="/item/list" component={ItemList} />
+          <Route path="/item/edit/:id" component={ItemEdit} />
 
           <Route path="/booking/all" component={Booking} />
           <Route path="/booking/new-booking" component={CreateBooking} />
@@ -249,13 +276,15 @@ class AppRoutes extends Component {
 
           <Route path="/inventory/ingredient" component={Ingredient} />
           <Route path="/inventory/ingredient-list" component={IngredientList} />
-          <Route path="/inventory/edit-ingredient/:id" component={EditIngredient} />
+          <Route
+            path="/inventory/edit-ingredient/:id"
+            component={EditIngredient}
+          />
 
           <Route path="/inventory/new-supplier" component={NewSupplier} />
           <Route path="/inventory/all-supplier/:id" component={AllSupplier} />
           <Route path="/inventory/edit-supplier/:id" component={EditSupplier} />
           <Route path="/inventory/new-invoice" component={NewInvoice} />
-
 
           <Route path="/error-pages/error-404" component={Error404} />
 

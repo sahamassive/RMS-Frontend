@@ -1,20 +1,28 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
 import { Link } from "react-router-dom";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
-
-
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
 
 function CreateFood() {
   const [section, setSection] = useState();
   const [brand, setBrand] = useState();
   const [category, setCategory] = useState();
+  const [item, setItem] = useState();
+  const [itemCode, setItemCode] = useState();
+
   const [sectionId, setSectionId] = useState();
   const [brandId, setBrandId] = useState();
   const [categoryId, setCategoryId] = useState();
   const [fooName, setFoodName] = useState();
   const [description, setDescription] = useState();
   const [speciality, setSpeciality] = useState();
+  const [basicPrice, setBasicPric] = useState();
   const [price, setPrice] = useState();
   const [metaTag, setMetaTag] = useState();
   const [metaDes, setMetDes] = useState();
@@ -23,28 +31,54 @@ function CreateFood() {
   const [image, setImage] = useState();
 
   useEffect(() => {
-    axios.get(`${baseUrl}/api/sections`).then((response) => {
-      setSection(response.data);
-    });
+    getCategories();
+    getBrand();
+    getSection();
+    getItem();
   }, []);
-  useEffect(() => {
-    axios.get(`${baseUrl}/api/brands`).then((response) => {
-      setBrand(response.data);
-    });
-  }, []);
-  useEffect(() => {
+
+  const getCategories = () => {
     axios.get(`${baseUrl}/api/categories`).then((response) => {
       setCategory(response.data);
     });
-  }, []);
+  };
+  const getBrand = () => {
+    axios.get(`${baseUrl}/api/brands`).then((response) => {
+      setBrand(response.data);
+    });
+  };
+  const getSection = () => {
+    axios.get(`${baseUrl}/api/sections`).then((response) => {
+      setSection(response.data);
+    });
+  };
+  const getItem = () => {
+    axios.get(`${baseUrl}/api/get-items/${restaurant_id}`).then((response) => {
+      setItem(response.data);
+    });
+  };
   const changeHandler = (event) => {
     setImage(event.target.files[0]);
     setPrview(URL.createObjectURL(event.target.files[0]));
   };
 
+  const foodSet = (value) => {
+    setItemCode(value);
+    item.find((data) => {
+      if (data.item_code == value) {
+        setBasicPric(data.basic_price);
+        setPrice(data.selling_price);
+        setFoodName(data.item_name);
+      }
+    });
+  };
+
   const insert = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("restaurant_id", restaurant_id);
+
+    formData.append("item_code", itemCode);
 
     formData.append("category_id", categoryId);
     formData.append("brand_id", brandId);
@@ -56,6 +90,7 @@ function CreateFood() {
     formData.append("description", description);
 
     formData.append("speciality", speciality);
+    formData.append("basic_price", basicPrice);
     formData.append("price", price);
     formData.append("meta_title", metaTag);
     formData.append("meta_description", metaDes);
@@ -79,15 +114,12 @@ function CreateFood() {
         <div className="col-lg-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
-            <div className="btn-section">
-            <h4 className="card-title">All Food</h4>
-            <a
-              className="btn-style btn btn-info"
-              href="/catalogue/food"
-            >
-              <i className="bi bi-card-list"></i>All Food
-            </a>
-          </div>
+              <div className="btn-section">
+                <h4 className="card-title">All Food</h4>
+                <a className="btn-style btn btn-info" href="/catalogue/food">
+                  <i className="bi bi-card-list"></i>All Food
+                </a>
+              </div>
               <div className="two_part">
                 <div className="col-sm-3 background">
                   <label className="logo-label-style">Food Image</label>
@@ -99,26 +131,34 @@ function CreateFood() {
                         multiple
                       />
                     </Form.Group>
-                    <img src={preview} width="225rem"/>
+                    <img src={preview} width="225rem" />
                   </div>
                 </div>
                 <div className="col-sm-9 background">
                   <div>
                     <div className="input_field two_part">
                       <div className="wid">
-                        <Form.Label className="label-style">
-                          Food name
+                        <Form.Label className="level-style">
+                          Select Food
                         </Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Food name"
+                        <select
+                          className="select2"
                           onChange={(event) => {
-                            setFoodName(event.target.value);
+                            foodSet(event.target.value);
                           }}
-                        ></Form.Control>
+                        >
+                          <option value="">Select Food</option>
+                          {item
+                            ? item.map((data) => (
+                                <option value={data.item_code}>
+                                  {data.item_name}
+                                </option>
+                              ))
+                            : null}
+                        </select>
                       </div>
                       <div className="wid">
-                        <Form.Label className="label-style">
+                        <Form.Label className="level-style">
                           Description
                         </Form.Label>
                         <Form.Control
@@ -134,7 +174,7 @@ function CreateFood() {
                     </div>
                     <div className="input_field two_part">
                       <div className="wid">
-                        <Form.Label className="label-style">
+                        <Form.Label className="level-style">
                           Speciality
                         </Form.Label>
                         <Form.Control
@@ -146,23 +186,34 @@ function CreateFood() {
                         ></Form.Control>
                       </div>
                       <div className="wid">
-                        <Form.Label className="label-style">Price</Form.Label>
+                        <Form.Label className="level-style">
+                          Basic Price
+                        </Form.Label>
                         <Form.Control
                           type="number"
                           placeholder="Price"
-                          onChange={(event) => {
-                            setPrice(event.target.value);
-                          }}
+                          value={basicPrice ? basicPrice : null}
+                          readOnly
+                        ></Form.Control>
+                      </div>
+                      <div className="wid">
+                        <Form.Label className="level-style">Price</Form.Label>
+                        <Form.Control
+                          type="number"
+                          placeholder="Price"
+                          value={price ? price : null}
+                          readOnly
                         ></Form.Control>
                       </div>
                     </div>
                   </div>
                   <div className="input_field two_part">
                     <div className="wid">
-                      <Form.Label className="label-style">
+                      <Form.Label className="level-style">
                         Select Section
                       </Form.Label>
                       <select
+                        className="select2"
                         onChange={(event) => {
                           setSectionId(event.target.value);
                         }}
@@ -177,10 +228,11 @@ function CreateFood() {
                     </div>
 
                     <div className="wid">
-                      <Form.Label className="label-style">
+                      <Form.Label className="level-style">
                         Select Category
                       </Form.Label>
                       <select
+                        className="select2"
                         onChange={(event) => {
                           setCategoryId(event.target.value);
                         }}
@@ -197,10 +249,11 @@ function CreateFood() {
                     </div>
 
                     <div className="wid">
-                      <Form.Label className="label-style">
+                      <Form.Label className="level-style">
                         Select Brand
                       </Form.Label>
                       <select
+                        className="select2"
                         onChange={(event) => {
                           setBrandId(event.target.value);
                         }}
@@ -216,7 +269,7 @@ function CreateFood() {
                   </div>
                   <div className="input_field">
                     <Form.Group>
-                      <Form.Label className="label-style">Meta Tag</Form.Label>
+                      <Form.Label className="level-style">Meta Tag</Form.Label>
                       <Form.Control
                         className="area"
                         as="textarea"
@@ -231,7 +284,7 @@ function CreateFood() {
 
                   <div className="input_field">
                     <Form.Group>
-                      <Form.Label className="label-style">
+                      <Form.Label className="level-style">
                         Meta description
                       </Form.Label>
                       <Form.Control
@@ -248,7 +301,7 @@ function CreateFood() {
 
                   <div className="input_field">
                     <Form.Group>
-                      <Form.Label className="label-style">
+                      <Form.Label className="level-style">
                         Meta keyword
                       </Form.Label>
                       <Form.Control

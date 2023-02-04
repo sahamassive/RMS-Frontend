@@ -426,19 +426,13 @@ class Sidebar extends Component {
             </Collapse>
           </li>
           <li
-          className={
-            this.isPathActive("/inventory")
-              ? "nav-item menu-items active"
-              : "nav-item menu-items"
-          }
-        >
-          <div
             className={
-              this.state.orderOpen ? "nav-link menu-expanded" : "nav-link"
+              this.isPathActive("/inventory")
+                ? "nav-item menu-items active"
+                : "nav-item menu-items"
             }
-            onClick={() => this.toggleMenuState("inventoryOpen")}
-            data-toggle="collapse"
           >
+
             <span className="menu-icon">
               <i className="bi bi-buildings-fill"></i>
             </span>
@@ -511,9 +505,63 @@ class Sidebar extends Component {
                   </Link>
                 </li>
               </ul>
+
             </div>
-          </Collapse>
-        </li>
+            <Collapse in={this.state.inventoryOpen}>
+              <div>
+                <ul className="nav flex-column sub-menu">
+                  <li className="nav-item">
+                    <Link
+                      className={
+                        this.isPathActive("/inventory/new-supplier")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/inventory/new-supplier"
+                    >
+                      <Trans>New Supplier</Trans>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className={
+                        this.isPathActive("/inventory/new-invoice")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/inventory/new-invoice"
+                    >
+                      <Trans>New Invoice</Trans>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className={
+                        this.isPathActive("/inventory/new-inventory")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/inventory/new-inventory"
+                    >
+                      <Trans>New Inventory</Trans>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className={
+                        this.isPathActive("/inventory/ingredient")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/inventory/ingredient"
+                    >
+                      <Trans>Ingredient</Trans>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </Collapse>
+          </li>
           <li
             className={
               this.isPathActive("/recipe")
@@ -549,6 +597,30 @@ class Sidebar extends Component {
                       to="/recipe/new-recipe"
                     >
                       <Trans>New recipe</Trans>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className={
+                        this.isPathActive("/basic/price")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/basic/price"
+                    >
+                      <Trans>Basic Price</Trans>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className={
+                        this.isPathActive("/item/list")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/item/list"
+                    >
+                      <Trans>Item List</Trans>
                     </Link>
                   </li>
                 </ul>

@@ -19,7 +19,7 @@ function NewRecipe() {
     axios
       .post(`${baseUrl}/api/recipe-insert`, {
         restaurant_id: restaurant_id,
-        ingredient_name: inputs,
+        ingredient_id: inputs,
         ingredient_quantity: quantity,
         item: recipeItem,
       })
@@ -69,7 +69,7 @@ function NewRecipe() {
           <div className="card-body">
             <div className="btn-section">
               <h4 className="card-title">Create New Recipe</h4>
-              <a className="btn-style btn btn-primary" href="/catalogue/category">
+              <a className="btn-style btn btn-primary" href="/item/list">
                 <i className="bi bi-list-columns-reverse"></i>All recipe
               </a>
             </div>
@@ -90,8 +90,10 @@ function NewRecipe() {
               {inputs.map((input, index) => (
                 <div className="input_field two_part" key={index}>
                   <div className="wid">
-                    <Form.Label className="label-style">Select Ingredient</Form.Label>
-    
+                    <Form.Label className="label-style">
+                      Select Ingredient
+                    </Form.Label>
+
                     <select
                       className="select2 wid"
                       value={input.value}
@@ -100,15 +102,17 @@ function NewRecipe() {
                       <option value="">Select Ingredient</option>
                       {item
                         ? item.map((data) => (
-                          <option value={data.id}>
-                            {data.ingredient}({data.unit})
-                          </option>
-                        ))
+                            <option value={data.id}>
+                              {data.ingredient}({data.unit})
+                            </option>
+                          ))
                         : null}
                     </select>
                   </div>
                   <div className="wid">
-                    <Form.Label className="label-style">Ingredient Quantity</Form.Label>
+                    <Form.Label className="label-style">
+                      Ingredient Quantity
+                    </Form.Label>
                     <input
                       className="form-control"
                       type="number"
@@ -126,7 +130,12 @@ function NewRecipe() {
                   </div>
                 </div>
               ))}
-              <button className="btn btn-light add-btn" onClick={handleAddInput}>Add New Ingredient</button>
+              <button
+                className="btn btn-light add-btn"
+                onClick={handleAddInput}
+              >
+                Add New Ingredient
+              </button>
               <div className="d-grid gap-2 col-6 mx-auto">
                 <button className="btn btn-warning top-space" onClick={insert}>
                   <i className="bi bi-save-fill"></i>Insert
@@ -134,7 +143,6 @@ function NewRecipe() {
               </div>
               <br></br>
             </div>
-
           </div>
         </div>
       </div>
