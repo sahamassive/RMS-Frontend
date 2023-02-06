@@ -16,7 +16,7 @@ function AllBranch() {
 
     axios.get(`${baseUrl}/api/branchs`).then((response) => {
       setAllData(response.data);
-      console.log(allData);
+      //console.log(allData);
     });
   }, []);
 

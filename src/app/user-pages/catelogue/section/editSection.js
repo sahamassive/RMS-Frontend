@@ -51,7 +51,8 @@ function EditSection() {
                 setName(event.target.value);
               }}
             ></Form.Control>
-            <button className="btn btn-success top-space" onClick={update}>
+            <br></br>
+            <button className="btn btn-success" onClick={update}>
               <i className="bi bi-save-fill"></i>Update
             </button>
           </div>

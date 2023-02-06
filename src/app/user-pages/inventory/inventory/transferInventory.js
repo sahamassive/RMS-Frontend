@@ -4,15 +4,23 @@ import $ from "jquery";
 import "datatables.net";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
-function DistributeInventory() {
+
+function TransferInventory() {
     const singleQueue = [];
     const [chef, setChef] = useState();
-    const [chefId, setChefId] = useState();
+    const [branchId, setBranchId] = useState();
     const [inventory, setInventory] = useState();
     const [askQuantity, setAskQuantity] = useState();
     const [inventoryQueue, setInventoryQueue] = useState([]);
     const [prev, setPrev] = useState(0);
     const [prevId, setPrevId] = useState(0);
+    const [allBranch, setAllBranch] = useState("");
+
+    useEffect(() => {  
+        axios.get(`${baseUrl}/api/restaurant/branchs/${restaurant_id}`).then((response) => {
+            setAllBranch(response.data);
+        });
+    }, []);
 
     useEffect(() => {
         axios.get(`${baseUrl}/api/chefs/${restaurant_id}`).then((response) => {
@@ -90,10 +98,11 @@ function DistributeInventory() {
 
     const Confirm = async (event) => {
         event.preventDefault();
-        console.log(chefId);
+        //console.log(chefId);
         axios
-            .post(`${baseUrl}/api/inventory-distribution`, {
-                chefId: chefId,
+            .post(`${baseUrl}/api/inventory-transfer`, {
+                branchId: branchId,
+                restaurant_id: restaurant_id,
                 inventoryQueue: inventoryQueue,
             })
             .then((response) => { 
@@ -116,7 +125,7 @@ function DistributeInventory() {
                 <div className="card">
                     <div className="card-body">
                         <div className="btn-section">
-                            <h4 className="card-title">Inventory distribution among Chefs</h4>
+                            <h4 className="card-title">Inventory Transfer between branchs</h4>
                             <div className="btn-style">
                                 <a className="btn btn-primary" href="/inventory/all-invoice">
                                     <i className="bi bi-receipt"></i>All Invoices
@@ -132,18 +141,18 @@ function DistributeInventory() {
                                 <div className="input_field two_part">
                                     <div className="wid">
                                         <Form.Label className="label-style">
-                                            Select Chef
+                                            Select Branch...
                                         </Form.Label>
                                         <select
                                             onChange={(event) => {
-                                                setChefId(event.target.value)
+                                                setBranchId(event.target.value)
                                         }}
                                         >
                                             <option>Select from here...</option>
-                                            {chef
-                                                ? chef.map((data) => (
-                                                    <option value={data.emp_id}>
-                                                        {data.emp_id}, {data.first_name} {data.last_name}
+                                            {allBranch
+                                                ? allBranch.map((data) => (
+                                                    <option value={data.id}>
+                                                        {data.city} Branch
                                                     </option>
                                                 ))
                                                 : null}
@@ -265,4 +274,4 @@ function DistributeInventory() {
     );
 }
 
-export default DistributeInventory;
+export default TransferInventory;

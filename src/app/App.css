@@ -175,10 +175,9 @@ input[type=number]:hover {
 ::placeholder{
     color: rgb(160, 159, 159);
 }
-h3{
+h2{
     text-align: center;
-    font-family: 'Edwardian Script ITC';
-    font-style: italic;
+    font-family: 'Times New Roman';
     font-weight: bold;
     font-size: 3rem;
 }
@@ -189,4 +188,7 @@ h1{
     font-weight: bold;
     font-size: 3rem;
     padding-top:2rem;
+}
+.table-padding{
+    padding: 2rem;
 }

@@ -104,11 +104,12 @@ function CustomerOrder({}) {
         });
     }
   };
+  
   return (
     <div>
       <div className="top-section">
         <h1>Your Cart</h1>
-        <h3>Check Out Now and Enjoy Your Food</h3>
+        <h1>Check Out Now and Enjoy Your Food</h1>
       </div>
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
@@ -223,7 +224,7 @@ function CustomerOrder({}) {
               <div className="col-md-4 block_01">
                 <h4>Coupon Code</h4>
                 <p>Enter your coupon code if you have one.</p>
-                <div className="input_field">
+                <div className="">
                   <div className="wid">
                     <Form.Label className="label-style">
                       {" "}
