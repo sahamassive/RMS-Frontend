@@ -501,6 +501,18 @@ class Sidebar extends Component {
                     </Link>
                   </li>
                   <li className="nav-item">
+                  <Link
+                    className={
+                      this.isPathActive("/inventory/inventory-transfer")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                    to="/inventory/inventory-transfer"
+                  >
+                    <Trans>Transfer Inventory</Trans>
+                  </Link>
+                </li>
+                  <li className="nav-item">
                     <Link
                       className={
                         this.isPathActive("/inventory/ingredient")

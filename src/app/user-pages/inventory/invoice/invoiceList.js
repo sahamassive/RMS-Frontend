@@ -15,7 +15,7 @@ function InvoiceList() {
 
     const invoiceModalOpen = (invoice_id) => {
         axios.get(`${baseUrl}/api/invoice-details/${invoice_id}`).then((response) => {
-            console.log(response.data.supplier);
+            //console.log(response.data.supplier);
             setDetailsData(response.data.details);
             setSupplier(response.data.supplier);
         })
@@ -37,11 +37,23 @@ function InvoiceList() {
         })
         getResturant();
     }, []);
+
+    const printModal = () => { 
+        var divContents = document.getElementById("invoiceDetails").innerHTML;
+        var a = window.open('', '', '');
+        a.document.write('<html><head><title>Print Invoice</title>');   
+        a.document.write('</head><body>');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
     
     $.DataTable = require("datatables.net");
     $(document).ready(function () {
         $("#inventory").DataTable();
     });
+
     return (
         <div>
             <div className="col-lg-12 grid-margin stretch-card">
@@ -111,7 +123,7 @@ function InvoiceList() {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <div className='emp-modal'>
+                <div id='invoiceDetails' className='emp-modal'>
                     <div className='btn-section'>
                         <div className='logo-section'>
                             <img className="logo2" src={require('../../../../assets/images/logo.png')} alt=""></img>
@@ -150,7 +162,6 @@ function InvoiceList() {
                                     <p>Date: <strong>{supplier ? supplier.date : null}</strong></p>
                                 </div>
                             </div>
-                
                             <div>
                                 <div className='modal-table table-responsive table-background'>
                                     <table id="branchs" className="table table-striped table-hover">
@@ -173,7 +184,7 @@ function InvoiceList() {
                                                     <td>{data.unit}</td>
                                                     <td>{data.amount}</td>
                                                     <td>{data.price}</td>
-                                                    <td>{data.date}</td>
+                                                    <td>{supplier ? supplier.date : null}</td>
                                                     <td>
                                                         <a
                                                             className="btn btn-warning"
@@ -201,6 +212,12 @@ function InvoiceList() {
                             </div>
                         </div>
                         : null}
+                    <div className="d-grid gap-2 col-6 mx-auto two_part">
+                        <button className="btn btn-dark top-space" onClick={printModal}>
+                            <i className="bi bi-save-fill"></i>Print
+                        </button>
+                        <br></br>
+                    </div>
                 </div>
             </Modal>
         </div>

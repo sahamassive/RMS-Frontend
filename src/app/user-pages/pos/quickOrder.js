@@ -172,6 +172,7 @@ function QuickOrder() {
   const cancleOrder = () => {
     setOrderDetails([]);
   };
+  
   return (
     <div>
       <div className="top-section">
@@ -378,7 +379,6 @@ function QuickOrder() {
                               <td className="level-quantity">
                                 {data[0].food_price * data[0].qty}{" "}
                               </td>
-
                               <td>
                                 <button
                                   className="icon-delete"

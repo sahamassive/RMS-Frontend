@@ -20,7 +20,7 @@ function NewInvoive() {
                     <div className="card-body">
                         <div className="btn-section">
                             <h4 className="card-title">Create New Invoive</h4>
-                            <a className="btn-style btn btn-primary" href="/catalogue/category">
+                            <a className="btn-style btn btn-primary" href="/inventory/all-invoice">
                                 <i className="bi bi-list-columns-reverse"></i>All Invoices
                             </a>
                         </div>
