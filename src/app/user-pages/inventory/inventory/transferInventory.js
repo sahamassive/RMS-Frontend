@@ -13,7 +13,6 @@ function TransferInventory() {
     const [askQuantity, setAskQuantity] = useState();
     const [inventoryQueue, setInventoryQueue] = useState([]);
     const [prev, setPrev] = useState(0);
-    const [prevId, setPrevId] = useState(0);
     const [allBranch, setAllBranch] = useState("");
 
     useEffect(() => {  
@@ -25,7 +24,6 @@ function TransferInventory() {
     useEffect(() => {
         axios.get(`${baseUrl}/api/chefs/${restaurant_id}`).then((response) => {
             setChef(response.data);
-            console.log(response.data);
         });
     }, []);
 
@@ -38,18 +36,24 @@ function TransferInventory() {
     const changeQuantity = (event, id) => {
         var updatedList = [...inventory];
         setPrev(event)  
-        setPrevId(id);
 
-        updatedList = inventory.filter((item,index) => {
-            if (id == item.id) {
+        inventoryQueue.find((item) => {
+            if (id === item[0].ingredient_id) {
+                setPrev(item[0].askQuantity)
+            }
+        })
+
+        updatedList = inventory.filter((item) => {
+            if (id == item.ingredient_id) {
                 let p = parseFloat(item.current_quantity) + parseFloat(prev);
-                item.current_quantity =  p- event;
+                item.current_quantity =  p - event;
             }
             return item;
         });
         setAskQuantity(event)
         setInventory(updatedList);
     }
+    
     const changePrev = (data) => { 
         setPrev(0)
         if (askQuantity > 0) {
@@ -74,13 +78,9 @@ function TransferInventory() {
             });
         }
         else {
-            if (inventoryQueue.find((data) => data[0].ingredient_id == checkid)) {
-                singleQueue.push({
-                    ingredient_name: data.ingredient,
-                    ingredient_id: data.ingredient_id,
-                    unit: data.unit,
-                    askQuantity: askQuantity
-                });
+            if (inventoryQueue.find((data,index) => data[0].ingredient_id == checkid)) {
+                setPrev(0);
+                //singleQueue = data;
             } else {
                 singleQueue.push({
                     ingredient_name: data.ingredient,
@@ -93,12 +93,11 @@ function TransferInventory() {
             setAskQuantity(0)
             setPrev(0)
         }
-        //console.log(inventoryQueue);
     }
 
     const Confirm = async (event) => {
         event.preventDefault();
-        //console.log(chefId);
+
         axios
             .post(`${baseUrl}/api/inventory-transfer`, {
                 branchId: branchId,
@@ -242,7 +241,7 @@ function TransferInventory() {
                                                         <Form.Control
                                                             id="inp"
                                                             onChange={(event) => {
-                                                                changeQuantity(event.target.value,data.id)
+                                                                changeQuantity(event.target.value, data.ingredient_id)
                                                             }}
                                                             onBlur={()=>changePrev(data)}
                                                             type="number"
