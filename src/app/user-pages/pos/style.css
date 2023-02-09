@@ -24,12 +24,6 @@
     padding-bottom: .3rem;
     padding-top: .3rem;
 }
-.section-border{
-    border: .1px solid rgb(68, 67, 67);
-    border-radius: 8PX;
-    margin-top: 5PX;
-    padding-top: 10PX;
-}
 .food-image{
     width:7.5rem;
     border-radius: 8PX;

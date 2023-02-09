@@ -27,7 +27,7 @@ function InventoryList() {
                     <h4 className="card-title">All wastage</h4>
                     <a className="btn-style btn btn-info" href="/inventory/new-inventory"><i className="bi bi-plus-square"></i>New Inventory</a>
                 </div>
-                <div className="table-responsive table-style table-background">
+                <div className="background table-responsive table-style table-background">
                     {allData ? (
                         <table id="inventory" className="table table-striped table-style">
                             <thead>

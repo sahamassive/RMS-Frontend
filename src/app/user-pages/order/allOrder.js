@@ -27,7 +27,7 @@ function AllOrder() {
 
     useEffect(() => {
         axios.get(`${baseUrl}/api/orders`).then((response) => {
-            console.log(response.data.id);
+            //console.log(response.data.id);
             setAllData(response.data.data);
             setId(response.data.id)
         
@@ -38,7 +38,7 @@ function AllOrder() {
         let filter = "chef";
         axios.get(`${baseUrl}/api/get-employee/${filter}`).then((response) => {
             setChef(response.data);
-            console.log(allData);
+            //console.log(allData);
         });
     }, []);
 
@@ -147,8 +147,6 @@ function AllOrder() {
                                                                         </td>
                                                                     </tr>
                                                                         : null
-                                                                    
-
                                                                     ))}
                                                                 </tbody>
                                                             </table>

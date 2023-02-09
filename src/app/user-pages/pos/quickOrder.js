@@ -184,7 +184,7 @@ function QuickOrder() {
             <h4 className="card-title">Quick Order:</h4>
             <div className="two_part">
             <a href="/dashboard" className="btn btn-primary">
-              <i className="bi bi-house-door-fill"></i>
+              <i className="bi bi-house-door-fill"></i>Dashboard
             </a>
             <a href="" className="btn btn-info">
               <i className="bi bi-view-list"></i>All Order

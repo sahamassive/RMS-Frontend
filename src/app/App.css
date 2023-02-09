@@ -73,11 +73,9 @@
     font-size: .8em;
     margin-bottom: -.1em; 
 }
-
 .wid {
     width: 100%;
 }
-
 select {
     background-color: #00000085;
     border-radius: 5px;
@@ -103,6 +101,7 @@ input[type=text],
 input[type=number],
 input[type=date],
 input[type=search],
+input[type=password],
 input[type=time],
 input[type=email] {
     background-color: #00000085;
@@ -114,6 +113,7 @@ input[type=email] {
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=date]:focus,
+input[type=password]:focus,
 input[type=search]:focus,
 input[type=time]:focus,
 input[type=number]:focus {
@@ -126,6 +126,7 @@ input[type=number]:focus {
 input[type=text]:hover,
 input[type=email]:hover,
 input[type=search]:hover,
+input[type=password]:hover,
 input[type=date]:hover,
 input[type=time]:hover,
 input[type=number]:hover {
@@ -189,6 +190,30 @@ h1{
     font-size: 3rem;
     padding-top:2rem;
 }
+
 .table-padding{
     padding: 2rem;
 }
+
+.section-border{
+    border: .1px solid rgb(94, 94, 94);
+    border-radius: 8PX;
+    margin-top: 5PX;
+    padding-top: 10PX;
+}
+#id-style{
+    background-color: #00000085;
+    border-radius: 4px;
+    width: 100%;
+    border: .1px solid rgb(68, 67, 67);
+  }
+  #id-style:focus{
+    outline: 1px solid rgb(1, 61, 16);
+    background-color: white;
+    border-radius: 4px;
+    text-align: left;
+  }
+  #id-style:hover{
+    background-color: white;
+    color: black;
+  }
