@@ -1,17 +1,36 @@
 import React, { useState } from "react";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
 
 function CreateSection() {
   const [name, setName] = useState();
+
   const insert = () => {
-    axios
-      .post(`${baseUrl}/api/section-insert`, {
-        section_name: name,
-      })
-      .then((response) => {
-        alert(response.data.msg);
+    if (name != null) {
+      axios
+        .post(`${baseUrl}/api/section-insert`, {
+          section_name: name,
+        })
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        });
+    } else {
+      Swal.fire({
+        title: "Name Field Required",
+        icon: "warning",
+        confirmButtonText: "OK",
       });
+    }
   };
   return (
     <div>
@@ -24,6 +43,7 @@ function CreateSection() {
                 <i class="bi bi-card-list"></i>All Section
               </a>
             </div>
+
             <div className="input-field">
               <Form.Label className="label-style">Section name</Form.Label>
               <Form.Control

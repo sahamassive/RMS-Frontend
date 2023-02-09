@@ -16,6 +16,8 @@ function QuickOrder() {
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState();
   const [waiter, setWaiter] = useState();
+  const [vat, setVat] = useState();
+  const [grandTotal, setGrandTotal] = useState();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,7 +53,7 @@ function QuickOrder() {
   useEffect(() => {
     calTotal();
   }, [quantity, orderDetails]);
-  
+
   const calTotal = () => {
     // console.log(orderDetails);
 
@@ -61,6 +63,8 @@ function QuickOrder() {
       sum = sum + parseInt(element[0].food_price * parseInt(element[0].qty));
     });
     setTotal(sum);
+    setVat((sum * 0.05).toFixed(2));
+    setGrandTotal((sum + sum * 0.05).toFixed(2));
   };
 
   const getEmployee = () => {
@@ -172,62 +176,81 @@ function QuickOrder() {
   const cancleOrder = () => {
     setOrderDetails([]);
   };
-  
+  const submitOrder = () => {
+    // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+    axios
+      .post(`${baseUrl}/api/order-store`, {
+        restaurant_id: restaurant_id,
+        branch_id: branchId,
+        pickup_method: "pos",
+        item: orderDetails.length,
+        total: total,
+        grand_price: grandTotal,
+        vat: vat,
+        details: orderDetails,
+      })
+      .then((response) => {
+        Swal.fire({
+          title: "Order submitted",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      });
+  };
   return (
     <div>
-      <div className="top-section">
-
-      </div>
+      <div className="top-section"></div>
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
             <h4 className="card-title">Quick Order:</h4>
             <div className="two_part">
-            <a href="/dashboard" className="btn btn-primary">
-              <i className="bi bi-house-door-fill"></i>
-            </a>
-            <a href="" className="btn btn-info">
-              <i className="bi bi-view-list"></i>All Order
-            </a>
-            <a href="" className="btn btn-danger">
-              <i className="bi bi-plus-square"></i>New Order
-            </a>
-            <a href="" className="btn btn-warning">
-              <i className="bi bi-arrow-left-right"></i>OnGoing Order
-            </a>
-            <a href="" className="btn btn-success">
-              <i className="bi bi-question-square-fill"></i>Kitchen Status
-            </a>
-            <a href="" className="btn btn-warning">
-              <i className="bi bi-arrow-90deg-up"></i>Online Order
-            </a>
-            <a href="" className="btn btn-success">
-              <i className="bi bi-qr-code"></i>QR Order
-            </a>
-            <a href="" className="btn btn-danger">
-              <i className="bi bi-x-square-fill"></i>Cancel Order
-            </a>
-            <a href="" className="btn btn-info">
-              <i className="bi bi-alarm"></i>Today's Order
-            </a>
+              <a href="/dashboard" className="btn btn-primary">
+                <i className="bi bi-house-door-fill"></i>
+              </a>
+              <a href="" className="btn btn-info">
+                <i className="bi bi-view-list"></i>All Order
+              </a>
+              <a href="" className="btn btn-danger">
+                <i className="bi bi-plus-square"></i>New Order
+              </a>
+              <a href="" className="btn btn-warning">
+                <i className="bi bi-arrow-left-right"></i>OnGoing Order
+              </a>
+              <a href="" className="btn btn-success">
+                <i className="bi bi-question-square-fill"></i>Kitchen Status
+              </a>
+              <a href="" className="btn btn-warning">
+                <i className="bi bi-arrow-90deg-up"></i>Online Order
+              </a>
+              <a href="" className="btn btn-success">
+                <i className="bi bi-qr-code"></i>QR Order
+              </a>
+              <a href="" className="btn btn-danger">
+                <i className="bi bi-x-square-fill"></i>Cancel Order
+              </a>
+              <a href="" className="btn btn-info">
+                <i className="bi bi-alarm"></i>Today's Order
+              </a>
             </div>
             <br></br>
             <div className="two_part ">
-                <Form.Control
-                  type="search"
-                  name="search-form"
-                  placeholder="Search for..."
-                  id="search-box"
-                  onChange={filterBySearch}
-                ></Form.Control>
+              <Form.Control
+                type="search"
+                name="search-form"
+                placeholder="Search for..."
+                id="search-box"
+                onChange={filterBySearch}
+              ></Form.Control>
               <select onChange={selectBranch}>
-              <option value="">Select Branch from here...</option>
-              {branch
-                ? branch.map((data) => (
-                    <option value={data.id}>{data.city}</option>
-                  ))
-                : null}
-            </select>
+                <option value="">Select Branch from here...</option>
+                {branch
+                  ? branch.map((data) => (
+                      <option value={data.id}>{data.city}</option>
+                    ))
+                  : null}
+              </select>
             </div>
             <div className="two_part">
               <div className="section-11 section-border">
@@ -425,10 +448,7 @@ function QuickOrder() {
                   </div>
                   <br></br>
                   <div className="two_part btn-se">
-                    <button
-                      className="btn btn-primary"
-                      onClick={handleOpen}
-                    >
+                    <button className="btn btn-primary" onClick={handleOpen}>
                       <i className="bi bi-calculator"></i>
                     </button>
                     <button
@@ -440,9 +460,14 @@ function QuickOrder() {
                       <i className="bi bi-x-octagon-fill"></i>Cancel
                     </button>
 
-                    <a className="btn btn-success">
-                      <i className="bi bi-check-square-fill"></i>Confirm Order
-                    </a>
+                    <button
+                      className="btn btn-warning btn-se"
+                      onClick={() => {
+                        submitOrder();
+                      }}
+                    >
+                      <i className="bi bi-credit-card"></i>Submit Order
+                    </button>
                   </div>
                   <br></br>
                   <br></br>
