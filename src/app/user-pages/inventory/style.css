@@ -11,22 +11,6 @@
   border-radius: 5px;
   margin-top: 1.5rem;
 }
-#id-style{
-  background-color: #00000085;
-  border-radius: 4px;
-  width: 100%;
-  border: .1px solid rgb(68, 67, 67);
-}
-#id-style:focus{
-  outline: 1px solid rgb(1, 61, 16);
-  background-color: white;
-  border-radius: 4px;
-  text-align: left;
-}
-#id-style:hover{
-  background-color: white;
-  color: black;
-}
 
 .emp-modal{
   background-color: rgb(255, 255, 255);

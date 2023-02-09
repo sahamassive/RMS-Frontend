@@ -44,7 +44,7 @@ function NewRestaurant() {
                     icon: "success",
                     confirmButtonText: "OK",
                 });
-        });
+            });
     };
     const changeHandler = (event) => {
         setImage(event.target.files[0]);
