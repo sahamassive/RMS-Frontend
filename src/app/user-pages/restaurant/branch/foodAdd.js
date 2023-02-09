@@ -2,8 +2,14 @@ import React, { Component, useEffect, useState } from "react";
 import "../style.css";
 import $ from "jquery";
 import "datatables.net";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
-
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+const branch_id = 3;
 function FoodAdd() {
   const [allData, setAllData] = useState("");
   const [branch, setBranch] = useState("");
@@ -41,7 +47,7 @@ function FoodAdd() {
   };
   const getData = () => {
     axios
-      .get(`${baseUrl}/api/quick-foods/${restaurant_id}/${restaurant_id}`)
+      .get(`${baseUrl}/api/quick-foods-branch/${restaurant_id}/${branch_id}`)
       .then((response) => {
         setAllData(response.data);
       });
