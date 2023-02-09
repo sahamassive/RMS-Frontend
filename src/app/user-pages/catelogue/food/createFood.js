@@ -190,6 +190,7 @@ function CreateFood() {
                           Basic Price
                         </Form.Label>
                         <Form.Control
+                          id="id-style"
                           type="number"
                           placeholder="Price"
                           value={basicPrice ? basicPrice : null}
@@ -199,6 +200,7 @@ function CreateFood() {
                       <div className="wid">
                         <Form.Label className="level-style">Price</Form.Label>
                         <Form.Control
+                          id="id-style"
                           type="number"
                           placeholder="Price"
                           value={price ? price : null}

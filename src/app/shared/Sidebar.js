@@ -49,6 +49,10 @@ class Sidebar extends Component {
         state: "appsMenuOpen",
       },
       {
+        path: "/dashboard",
+        state: "dashboardOpen",
+      },
+      {
         path: "/super-admin",
         state: "superAdminOpen",
       },
@@ -140,6 +144,22 @@ class Sidebar extends Component {
               </span>
             </Link>
           </li>
+          <li
+          className={
+            this.isPathActive("/chef/dashboard")
+              ? "nav-item menu-items active"
+              : "nav-item menu-items"
+          }
+        >
+          <Link className="nav-link" to="/chef/dashboard">
+            <span className="menu-icon">
+              <i className="bi bi-house-door-fill"></i>
+            </span>
+            <span className="menu-title">
+              <Trans>Chef Dashboard</Trans>
+            </span>
+          </Link>
+        </li>
           <li
             className={
               this.isPathActive("/restaurant")
