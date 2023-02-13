@@ -97,7 +97,7 @@ function CustomerOrder({}) {
         })
         .then((response) => {
           Swal.fire({
-            title: "Order submitted",
+            title: response.data.msg,
             icon: "success",
             confirmButtonText: "OK",
           });

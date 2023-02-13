@@ -131,7 +131,7 @@ function NewRecipe() {
                 </div>
               ))}
               <button
-                className="btn btn-light add-btn"
+                className="btn btn-light add-btn respomsive-add-btn"
                 onClick={handleAddInput}
               >
                 Add New Ingredient
