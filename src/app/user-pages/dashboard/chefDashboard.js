@@ -26,10 +26,10 @@ function ChefDashboard() {
         setRefresh(false);
     }, [refresh]);
 
-    const ConfirmItem = (order_id, item_code, quantity) => { 
+    const ConfirmItem = (order_id, item_code, quantity) => {
         axios
             .get(`${baseUrl}/api/chef-order/C-02034260217/${order_id}/${item_code}/${quantity}`)
-            .then((response) => { 
+            .then((response) => {
                 if (response.data.msg) {
                     Swal.fire({
                         title: response.data.msg,
@@ -73,51 +73,50 @@ function ChefDashboard() {
                                     {recentId ? recentId.map((id) => (
                                         <div className="col-md-4">
                                             <div className="section-12">
-                                            <div className="container">
-                                                <div className="row">
-                                                    {recentOrder
+                                                <div className="container">
+                                                    <div className="row">
+                                                        {recentOrder
                                                             ? recentOrder.map((data) => (
-                                                            id.order_id === data.order_id ?
-                                                            <div className="section-border">
-                                                            <p className="order-id">Order ID: <strong>{id.order_id}</strong></p>
-                                                            <div className="col section-border item-border">
-                                                            <div className="two_part">
-                                                            <img
-                                                            className="food-image"
-                                                            src={`${baseUrl}/foods/small/${data.image}`}
-                                                            alt={data.name}
-                                                                ></img>
-                                                                <p className="img-level cart-height">
-                                                                {data.name}
-                                                            </p>
-                                                            </div>
-                                                            <p className="img-level cart-height">
-                                                                Quantity: <strong>{data.quantity} </strong>
-                                                                <br></br>
-                                                                <span>Status: {data.order_status}</span>
-                                                            </p>
-                                                            <button
-                                                                className="btn btn-block btn-primary"
-                                                                onClick={() =>
-                                                                    ConfirmItem(id.order_id, data.item_code, data.quantity)
-                                                                }
-                                                        >
-                                                            <i className="bi bi-check2-square"></i>Confirm
-                                                        </button>
-                                                                <button
-                                                                className="btn btn-block btn-danger"
-                                                            >
-                                                                <i className="bi bi-x-circle"></i>Cancel
-                                                            </button>
-                                                            
-                                                        </div>
-                                                            </div>
+                                                                id.order_id === data.order_id ?
+                                                                    <div className="section-border">
+                                                                        <p className="order-id">Order ID: <strong>{id.order_id}</strong></p>
+                                                                        <div className="section-border item-border">
+                                                                            <div className="two_part">
+                                                                                <img
+                                                                                    className="food-image"
+                                                                                    src={`${baseUrl}/foods/small/${data.image}`}
+                                                                                    alt={data.name}
+                                                                                ></img>
+                                                                                <p className="img-level cart-height">
+                                                                                    {data.name}
+                                                                                </p>
+                                                                            </div>
+                                                                            <p className="img-level cart-height">
+                                                                                Quantity: <strong>{data.quantity} </strong>
+                                                                                <br></br>
+                                                                                <span>Status: {data.order_status}</span>
+                                                                            </p>
+                                                                            <button
+                                                                                className="btn btn-block btn-primary"
+                                                                                onClick={() =>
+                                                                                    ConfirmItem(id.order_id, data.item_code, data.quantity)
+                                                                                }
+                                                                            >
+                                                                                <i className="bi bi-check2-square"></i>Confirm
+                                                                            </button>
+                                                                            <button
+                                                                                className="btn btn-block btn-danger"
+                                                                            >
+                                                                                <i className="bi bi-x-circle"></i>Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
                                                                     : null
-                                                        ))
-                                                        : null}
+                                                            ))
+                                                            : null}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         </div>
                                     ))
                                         : null}
@@ -125,7 +124,8 @@ function ChefDashboard() {
                             </div>
                         </div>
                         <div className="col-sm-12 background">
-                        <h4 className="card-title">Today's taken inventory item:</h4>
+                            <br></br>
+                            <h4 className="card-title">Today's taken inventory item:</h4>
                             <div className="two_part">
                                 <a href="" className="btn btn-danger">
                                     <i className="bi bi-alarm"></i>Today
@@ -140,6 +140,7 @@ function ChefDashboard() {
                                     <i className="bi bi-arrow-90deg-up"></i>Last month
                                 </a>
                             </div>
+                            <br></br>
                             <div className="table-responsive">
                                 <table className="table table-hover table-bordered">
                                     <thead>
@@ -166,14 +167,14 @@ function ChefDashboard() {
                                                     </td>
                                                     <td>{data.ingredient}</td>
                                                     <td>
-                                                        {data.quantity} 
+                                                        {data.quantity}
                                                         {data.unit === 'Kg' ? "Gm" : null}
                                                         {data.unit === 'L' ? "Gm" : null}
                                                         {data.unit === 'Ps' ? data.unit : null}
                                                         {data.unit === 'Gm' ? data.unit : null}
                                                     </td>
                                                     <td>
-                                                        {data.used_quantity} 
+                                                        {data.used_quantity}
                                                         {data.unit === 'Kg' ? "Gm" : null}
                                                         {data.unit === 'L' ? "Gm" : null}
                                                         {data.unit === 'Ps' ? data.unit : null}

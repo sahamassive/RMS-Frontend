@@ -221,6 +221,7 @@ function Index() {
           order.push({
             food_name: val.name,
             food_id: val.id,
+            item_code: val.item_code,
             image: val.image,
             food_price: val.price,
             qty: 1,

@@ -18,6 +18,8 @@
   margin-left: 20%;
   margin-right: 20%;
   border-radius: 10px;
+  height: 80vh;
+  overflow-y: auto;
 }
 @media(max-width:780px){
   .emp-modal {
@@ -26,6 +28,8 @@
     margin-left: 15%;
     margin-right: 15%;
     border-radius: 10px;
+    height: 80vh;
+    overflow-y: auto;
   }
 }
 @media(max-width:450px){
@@ -35,6 +39,8 @@
     margin-left: 1%;
     margin-right: 1%;
     border-radius: 10px;
+    height: 80vh;
+    overflow-y: auto;
   }
 }
 .table-style5{
@@ -81,7 +87,7 @@
 
 .logo2 {
   width: 4em;
-  position: absolute;
+  position: inherit;
   top: 5%;
   left:25%;
 }
@@ -124,7 +130,7 @@
 }
 .invoice{
   border: 2px dashed #90AADB;
-  position: absolute;
+  position: inherit;
   right:25%;
   top:10%;
   padding-right: 6rem;
@@ -138,8 +144,8 @@ margin-right: 5%;
   color: rgb(0, 0, 0);
 }
 .position{
-  position: absolute;
-  right: 23%;
+  position:relative;
+  right: 0;
 }
 .modal-table{
   padding: 1rem;
