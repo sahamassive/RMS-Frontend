@@ -71,51 +71,47 @@ function ChefDashboard() {
                             <div className="container">
                                 <div className="row">
                                     {recentId ? recentId.map((id) => (
-                                        <div className="col-md-4">
-                                            <div className="section-12">
-                                                <div className="container">
-                                                    <div className="row">
-                                                        {recentOrder
-                                                            ? recentOrder.map((data) => (
-                                                                id.order_id === data.order_id ?
-                                                                    <div className="section-border">
-                                                                        <p className="order-id">Order ID: <strong>{id.order_id}</strong></p>
-                                                                        <div className="section-border item-border">
-                                                                            <div className="two_part">
-                                                                                <img
-                                                                                    className="food-image"
-                                                                                    src={`${baseUrl}/foods/small/${data.image}`}
-                                                                                    alt={data.name}
-                                                                                ></img>
-                                                                                <p className="img-level cart-height">
-                                                                                    {data.name}
-                                                                                </p>
-                                                                            </div>
-                                                                            <p className="img-level cart-height">
-                                                                                Quantity: <strong>{data.quantity} </strong>
-                                                                                <br></br>
-                                                                                <span>Status: {data.order_status}</span>
-                                                                            </p>
-                                                                            <button
-                                                                                className="btn btn-block btn-primary"
-                                                                                onClick={() =>
-                                                                                    ConfirmItem(id.order_id, data.item_code, data.quantity)
-                                                                                }
-                                                                            >
-                                                                                <i className="bi bi-check2-square"></i>Confirm
-                                                                            </button>
-                                                                            <button
-                                                                                className="btn btn-block btn-danger"
-                                                                            >
-                                                                                <i className="bi bi-x-circle"></i>Cancel
-                                                                            </button>
-                                                                        </div>
+                                        <div className="col col-md-4 section-border">
+                                            <p className="order-id">Order ID: <strong>{id.order_id}</strong></p>
+                                            <div className="row">
+                                                {recentOrder ?
+                                                    recentOrder.map((data) => (
+                                                        id.order_id == data.order_id ?
+                                                            <div className="col">
+                                                                <div className="item-border">
+                                                                    <div className="two_part">
+                                                                        <img
+                                                                            className="food-image"
+                                                                            src={`${baseUrl}/foods/small/${data.image}`}
+                                                                            alt={data.name}
+                                                                        ></img>
+                                                                        <p className="img-level cart-height">
+                                                                            {data.name}
+                                                                        </p>
                                                                     </div>
-                                                                    : null
-                                                            ))
-                                                            : null}
-                                                    </div>
-                                                </div>
+                                                                    <p className="img-level cart-height">
+                                                                        Quantity: <strong>{data.quantity} </strong>
+                                                                        <br></br>
+                                                                        <span>Status: {data.order_status}</span>
+                                                                    </p>
+                                                                    <button
+                                                                        className="btn btn-block btn-primary"
+                                                                        onClick={() =>
+                                                                            ConfirmItem(id.order_id, data.item_code, data.quantity)
+                                                                        }
+                                                                    >
+                                                                        <i className="bi bi-check2-square"></i>Confirm
+                                                                    </button>
+                                                                    <button
+                                                                        className="btn btn-block btn-danger"
+                                                                    >
+                                                                        <i className="bi bi-x-circle"></i>Cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            : null
+                                                    ))
+                                                    : null}
                                             </div>
                                         </div>
                                     ))

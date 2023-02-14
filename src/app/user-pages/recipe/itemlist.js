@@ -37,12 +37,12 @@ function ItemList() {
         <div className="card">
           <div className="card-body">
             <div className="btn-section">
-              <h4 className="card-title">All Brand</h4>
+              <h4 className="card-title">All Item</h4>
               <a
                 className="btn-style btn btn-info"
                 href="/catalogue/create-brand"
               >
-                <i className="bi bi-plus-square"></i>New Brand
+                <i className="bi bi-plus-square"></i>New Item
               </a>
             </div>
             <div className="table-responsive">
@@ -50,7 +50,7 @@ function ItemList() {
                 <table id="example" className="table table-striped table-style">
                   <thead>
                     <tr>
-                      <th>Brand Name</th>
+                      <th>Food Name</th>
                       <th>Basic Price</th>
                       <th>Selling Price</th>
                       <th>Action</th>

@@ -75,7 +75,7 @@ function BasicPrice() {
                         <td>{data.basic_price.toFixed(2)}</td>
                         <td>
                           <Form.Control
-                            className=""
+                            id="field-style"
                             type="number"
                             placeholder="Enter Price"
                             onChange={(event) => {

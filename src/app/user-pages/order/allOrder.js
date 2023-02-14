@@ -118,32 +118,37 @@ function AllOrder() {
                                                                             />
                                                                         </td>
                                                                         <td>{data.quantity}</td>
-                                                                        <td>
+                                                                            <td>
+                                                                                <div  className="two_part">
                                                                                 <select
-                                                                                    onChange={(event) => {
-                                                                                        setStatus(event.target.value)
-                                                                                    }}
-                                                                                >
-                                                                                    {allStatus.map((item) =>
-                                                                                        <option value={item.status}>{item.status}</option> 
-                                                                                    )}                                                                                                                                                       
-                                                                                </select>
-                                                                                <br></br>
-                                                                                <button className="btn btn-primary">Confirm</button>
+                                                                                id="field-style"
+                                                                                onChange={(event) => {
+                                                                                    setStatus(event.target.value)
+                                                                                }}
+                                                                            >
+                                                                                {allStatus.map((item) =>
+                                                                                    <option value={item.status}>{item.status}</option> 
+                                                                                )}                                                                                                                                                       
+                                                                            </select>
+                                                                            <br></br>
+                                                                            <button className="btn btn-primary btn-sm">Confirm</button>
+                                                                                </div>
                                                                         </td>
                                                                             <td>
-                                                                                <select>
-                                                                                    <option>Select Chef...</option>
-                                                                                    {chef ? 
-                                                                                        chef.map((data) => 
-                                                                                            <option value={data.emp_id}>
-                                                                                                {data.first_name} {data.last_name}
-                                                                                            </option>
-                                                                                        )                                                                                     
-                                                                                    : null }
-                                                                                </select>
-                                                                                <br></br>
-                                                                                <button className="btn btn-warning">Confirm</button>
+                                                                                <div className="two_part">
+                                                                                <select id="field-style">
+                                                                                <option>Select Chef...</option>
+                                                                                {chef ? 
+                                                                                    chef.map((data) => 
+                                                                                        <option value={data.emp_id}>
+                                                                                            {data.first_name} {data.last_name}
+                                                                                        </option>
+                                                                                    )                                                                                     
+                                                                                : null }
+                                                                            </select>
+                                                                            <br></br>
+                                                                            <button className="btn btn-warning btn-sm">Confirm</button>
+                                                                                </div>
                                                                         </td>
                                                                     </tr>
                                                                         : null

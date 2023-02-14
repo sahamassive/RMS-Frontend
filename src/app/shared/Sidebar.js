@@ -100,6 +100,10 @@ class Sidebar extends Component {
         path: "/inventory",
         state: "inventoryOpen",
       },
+      {
+        path: "/table",
+        state: "tableOpen",
+      },
     ];
 
     dropdownPaths.forEach((obj) => {
@@ -826,6 +830,74 @@ class Sidebar extends Component {
               </div>
             </Collapse>
           </li>
+          <li
+          className={
+            this.isPathActive("/table")
+              ? "nav-item menu-items active"
+              : "nav-item menu-items"
+          }
+        >
+          <div
+            className={
+              this.state.bookingOpen ? "nav-link menu-expanded" : "nav-link"
+            }
+            onClick={() => this.toggleMenuState("tableOpen")}
+            data-toggle="collapse"
+          >
+            <span className="menu-icon">
+              <i className="mdi mdi-contacts"></i>
+            </span>
+            <span className="menu-title">
+              <Trans>Table Management</Trans>
+            </span>
+            <i className="menu-arrow"></i>
+          </div>
+          <Collapse in={this.state.tableOpen}>
+            <div>
+              <ul className="nav flex-column sub-menu">
+                <li className="nav-item">
+                  {" "}
+                  <Link
+                    className={
+                      this.isPathActive("/table/all-table")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                    to="/table/all-table"
+                  >
+                    <Trans>All Table</Trans>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  {" "}
+                  <Link
+                    className={
+                      this.isPathActive("/table/new-table")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                    to="/table/new-table"
+                  >
+                    <Trans>New Table</Trans>
+                  </Link>
+                  </li>
+                  <li className="nav-item">
+                  {" "}
+                  <Link
+                    className={
+                      this.isPathActive("/table/table-type")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                    to="/table/table-type"
+                  >
+                    <Trans>New Table Type</Trans>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </Collapse>
+        </li>
           <li
             className={
               this.isPathActive("/booking")

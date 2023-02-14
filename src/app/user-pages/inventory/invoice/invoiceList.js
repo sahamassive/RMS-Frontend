@@ -60,7 +60,7 @@ function InvoiceList() {
                 <div className="card">
                     <div className="card-body">
                         <div className="btn-section">
-                            <h4 className="card-title">All wastage</h4>
+                            <h4 className="card-title">All Invoices</h4>
                             <a className="btn-style btn btn-info" href="/inventory/new-inventory"><i className="bi bi-plus-square"></i>New Inventory</a>
                         </div>
                         <div className="table-responsive table-style table-background">
