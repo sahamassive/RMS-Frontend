@@ -1,7 +1,13 @@
 import React, { Component, useEffect, useState, createContext } from "react";
 import "../homepage/assets/css/style.css";
 import { Link } from "react-router-dom";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../app/user-pages/constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../app/user-pages/constant/global";
 import Modal from "@mui/material/Modal";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -224,6 +230,7 @@ function Index() {
             item_code: val.item_code,
             image: val.image,
             food_price: val.price,
+            basic: val.basic_price,
             qty: 1,
           });
 

@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import ReactLoading from "react-loading";
 
 function CustomerOrder({}) {
   const [allData, setAllData] = useState([]);
@@ -12,23 +13,36 @@ function CustomerOrder({}) {
   const [pickup, setPickUp] = useState();
   const [vat, setVat] = useState();
   const [grandTotal, setGrandTotal] = useState();
+  const [memberId, setMemberId] = useState();
+  const [msp, setMsp] = useState();
+  const [disMsp, setDisMsp] = useState();
+  const [loading, setLoading] = useState(false);
   const branchId = localStorage.getItem("branchId");
-  
+
   useEffect(() => {
     calTotal();
-  }, [quantity, orderDetails]);
-  
+  }, [quantity, orderDetails, msp]);
+
   const calTotal = () => {
     // console.log(orderDetails);
 
     let sum = 0;
+    let mspDis = 0;
 
     orderDetails.forEach((element) => {
       sum = sum + element[0].food_price * element[0].qty;
+      mspDis = msp
+        ? mspDis +
+          element[0].food_price * element[0].qty -
+          (element[0].food_price -
+            ((element[0].food_price - element[0].basic) / 100) * msp) *
+            element[0].qty
+        : 0;
     });
     setTotal(sum);
     setVat((sum * 0.05).toFixed(2));
-    setGrandTotal((sum + sum * 0.05).toFixed(2));
+    setGrandTotal((sum + sum * 0.05 - mspDis).toFixed(2));
+    setDisMsp(mspDis);
   };
 
   const removeItem = (id) => {
@@ -73,7 +87,28 @@ function CustomerOrder({}) {
       }
     });
   };
-
+  const memberSubmit = () => {
+    setLoading(true);
+    axios.get(`${baseUrl}/api/get-msp/${memberId}`).then((response) => {
+      if (response.data == "not a member") {
+        Swal.fire({
+          title:
+            "It seems like you are not a member yet! Please contact +880 1323-148188 to be a member",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        setLoading(false);
+      } else {
+        setMsp(response.data.msp);
+        Swal.fire({
+          title: "Member Discount Has Been Applied",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        setLoading(false);
+      }
+    });
+  };
   const submitOrder = () => {
     // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     if (pickup == null) {
@@ -104,7 +139,7 @@ function CustomerOrder({}) {
         });
     }
   };
-  
+
   return (
     <div>
       <div className="top-section">
@@ -135,6 +170,7 @@ function CustomerOrder({}) {
                         <th>Unit Price</th>
                         <th>Quantity</th>
                         <th>Sub Total</th>
+                        <th>Discount</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -148,7 +184,7 @@ function CustomerOrder({}) {
                                   src={`${baseUrl}/foods/medium/${data[0].image}`}
                                 ></img>
                               </td>
-                              <td>{data[0].food_name}</td>      
+                              <td>{data[0].food_name}</td>
                               <td>{data[0].food_price}</td>
                               <td>
                                 <button
@@ -169,7 +205,15 @@ function CustomerOrder({}) {
                                   <i className="bi bi-dash"></i>
                                 </button>
                               </td>
-                              <td>{data[0].food_price * data[0].qty} </td>
+                              <td>{data[0].food_price * data[0].qty}</td>
+                              <td>
+                                {msp
+                                  ? ((data[0].food_price * data[0].qty -
+                                      data[0].basic * data[0].qty) /
+                                      100) *
+                                    msp
+                                  : 0}
+                              </td>
                               <td>
                                 <button
                                   className="icon-delete"
@@ -222,25 +266,53 @@ function CustomerOrder({}) {
                 </div>
               </div>
               <div className="col-md-4 block_01">
+                <h4>Member?</h4>
+                <p>Enter your member id if you are member.</p>
+                <div className="">
+                  <div className="wid">
+                    <Form.Label className="label-style">
+                      Enter Member Id
+                    </Form.Label>
+                    <Form.Control
+                      name="coupon"
+                      type="text"
+                      placeholder="Enter Member Id"
+                      onChange={(event) => {
+                        setMemberId(event.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                {loading ? (
+                  <ReactLoading type="cylon" />
+                ) : (
+                  <button
+                    className="btn btn-warning btn-se"
+                    onClick={memberSubmit}
+                  >
+                    <i className="bi bi-back"></i>Submit
+                  </button>
+                )}
+              </div>
+              {/* <div className="col-md-4 block_01">
                 <h4>Coupon Code</h4>
                 <p>Enter your coupon code if you have one.</p>
                 <div className="">
                   <div className="wid">
                     <Form.Label className="label-style">
-                      {" "}
-                      Enter your coupon code{" "}
+                      Enter Member Id
                     </Form.Label>
                     <Form.Control
                       name="coupon"
                       type="text"
-                      placeholder="Enter your coupon code"
+                      placeholder="Enter "
                     />
                   </div>
                 </div>
                 <button className="btn btn-warning btn-se">
                   <i className="bi bi-back"></i>Apply Coupon
                 </button>
-              </div>
+              </div> */}
               <div className="col-md-4 block_01">
                 <h4>Cart Totals</h4>
                 <div className="table-style table-responsive">
@@ -256,7 +328,7 @@ function CustomerOrder({}) {
                       </tr>
                       <tr>
                         <td>Discount</td>
-                        <td>0</td>
+                        <td>{disMsp ? disMsp : null}</td>
                       </tr>
                       <tr>
                         <td>Service Charge</td>
