@@ -103,7 +103,7 @@ function NewRecipe() {
                       {item
                         ? item.map((data) => (
                             <option value={data.id}>
-                              {data.ingredient}({data.unit})
+                              {data.ingredient}
                             </option>
                           ))
                         : null}

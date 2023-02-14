@@ -19,6 +19,7 @@ function Ingredient() {
         });
       });
   };
+  
   return (
     <div>
       <div className="col-lg-12 grid-margin stretch-card">

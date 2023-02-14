@@ -24,7 +24,7 @@ function InventoryList() {
         <div className="card">
             <div className="card-body">
                 <div className="btn-section">
-                    <h4 className="card-title">All wastage</h4>
+                    <h4 className="card-title">All Inventory</h4>
                     <a className="btn-style btn btn-info" href="/inventory/new-inventory"><i className="bi bi-plus-square"></i>New Inventory</a>
                 </div>
                 <div className="background table-responsive table-style table-background">

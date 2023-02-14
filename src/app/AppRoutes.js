@@ -181,6 +181,14 @@ const CustomerRegister = lazy(() =>
   import("./user-pages/login/customer/register.js")
 );
 
+const NewTable = lazy(() =>import("./user-pages/table/newTable.js"));
+const AllTable = lazy(() => import("./user-pages/table/tableList.js"));
+const EditTable = lazy(() => import("./user-pages/table/editTable.js"));
+
+const TableType = lazy(() =>import("./user-pages/table/type/newType.js"));
+const TableTypeList = lazy(() =>import("./user-pages/table/type/allTypes.js"));
+const EditTableType = lazy(() =>import("./user-pages/table/type/editTypes"));
+
 class AppRoutes extends Component {
   render() {
     return (
@@ -292,6 +300,14 @@ class AppRoutes extends Component {
           <Route path="/inventory/new-invoice" component={NewInvoice} />
 
           <Route path="/error-pages/error-404" component={Error404} />
+
+          <Route path="/table/new-table" component={NewTable} />
+          <Route path="/table/all-table" component={AllTable} />
+          <Route path="/table/edit-table/:table_id" component={EditTable} />
+
+          <Route path="/table/table-type" component={TableType} />
+          <Route path="/table/table-type-list" component={TableTypeList} />
+          <Route path="/table/edit-table-type/:id" component={EditTableType} />
 
           <Redirect to="/error-pages/error-404" />
         </Switch>

@@ -1,27 +1,27 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import "../style.css";
 import $ from "jquery";
 import "datatables.net";
-import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form  } from "../../constant/global";
+import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
 
-function IngredientList() {
+function AllTypes() {
     const [allData, setAllData] = useState("");
 
     useEffect(() => {
-        axios.get(`${baseUrl}/api/ingredient-list/${restaurant_id}`).then((response) => {
-        setAllData(response.data);
-        console.log(allData);
+        axios.get(`${baseUrl}/api/table-type-list/${restaurant_id}`).then((response) => {
+            //console.log(allData);
+            setAllData(response.data);
     });
     }, []);
 
     const getData = () => {
-        axios.get(`${baseUrl}/api/ingredient-list/${restaurant_id}`).then((response) => {
+        axios.get(`${baseUrl}/api/table-type-list/${restaurant_id}`).then((response) => {
             setAllData(response.data);
         });
     };
-    
+
     const statusChange = (id) => {
-        axios.get(`${baseUrl}/api/ingredient-status/${id}`)
+        axios.get(`${baseUrl}/api/table-type-status/${id}`)
             .then((response) => {
             Swal.fire({
                 title: response.data.msg,
@@ -31,7 +31,7 @@ function IngredientList() {
         getData();
         });
     };
-    
+
     $.DataTable = require("datatables.net");
     $(document).ready(function () {
         $("#suppliers").DataTable();
@@ -43,12 +43,12 @@ function IngredientList() {
         <div className="card">
             <div className="card-body">
                 <div className="btn-section">
-                    <h4 className="card-title">All Suppliers</h4>
+                    <h4 className="card-title">All Table Types</h4>
                     <a
-                        className="btn-style btn btn-info"
-                        href="/inventory/new-supplier"
+                        className="btn-style btn btn-primary"
+                        href="/table/table-type"
                     >
-                        <i className="bi bi-plus-square"></i>New suppliers
+                        <i className="bi bi-plus-square"></i>New Table Type
                     </a>
                 </div>
                 <div className="background table-responsive table-style table-background">
@@ -57,7 +57,7 @@ function IngredientList() {
                             <thead>
                                 <tr>
                                     <th>SI.</th>
-                                    <th>Ingredient Name</th>
+                                    <th>Type Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -66,7 +66,7 @@ function IngredientList() {
                                 {allData.map((data, index) => (
                                     <tr>
                                         <td>{index + 1}</td>
-                                        <td>{data.ingredient}</td>
+                                        <td>{data.type}</td>
                                         <td>
                                             <button
                                                 className={data.status ? "btn btn-success" : "btn btn-danger"}
@@ -80,7 +80,7 @@ function IngredientList() {
                                         <td>
                                             <a
                                                 className="btn btn-warning"
-                                                href={`/inventory/edit-ingredient/${data.id}`}
+                                                href={`/table/edit-table-type/${data.id}`}
                                             >
                                                 <i className="bi bi-pencil-square"></i>Edit
                                             </a>
@@ -99,4 +99,4 @@ function IngredientList() {
     );
 }
 
-export default IngredientList;
+export default AllTypes;
