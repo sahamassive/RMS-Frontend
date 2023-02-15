@@ -86,7 +86,7 @@ function QuickOrder() {
           branchId ? branchId : restaurant_id
         }`
       )
-      .then((response) => {
+      .then((response) => { 
         setFood(response.data);
       });
   };

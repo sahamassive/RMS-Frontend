@@ -8,20 +8,27 @@ function ChefDashboard() {
     const [allData, setAllData] = useState();
     const [recentOrder, setRecentOrder] = useState();
     const [recentId, setRecentId] = useState();
-    const [yesterday, setYesterday] = useState();
     const [refresh, setRefresh] = useState(true);
-
-    useEffect(() => {
-        axios.get(`${baseUrl}/api/chef-inventory/C-02034260217`).then((response) => {
-            setAllData(response.data);
-        });
-    }, []);
+    const [attendOrder, setAttendOrder] = useState();
 
     useEffect(() => {
         axios.get(`${baseUrl}/api/order/recent-order`).then((response) => {
-            //console.log(response.data.id);
             setRecentOrder(response.data.data);
             setRecentId(response.data.id);
+        });
+        setRefresh(false);
+    }, [refresh]);
+
+    useEffect(() => {
+        axios.get(`${baseUrl}/api/chef-inventory/C-02034260217/today`).then((response) => {
+            setAllData(response.data);
+        });
+        setRefresh(false);
+    }, [refresh]);
+
+    useEffect(() => {
+        axios.get(`${baseUrl}/api/chef-attend-order/C-02034260217/today`).then((response) => {
+            setAttendOrder(response.data);
         });
         setRefresh(false);
     }, [refresh]);
@@ -48,16 +55,39 @@ function ChefDashboard() {
         setRefresh(true);
     }
 
-    const yesterdayData = () => {
-        axios.get(`${baseUrl}/api/chef-inventory/C-02034260217/yesterday`).then((response) => {
-            setYesterday(response.data);
+    const filterSet = (fil) => { 
+        axios.get(`${baseUrl}/api/chef-inventory/C-02034260217/${fil}`).then((response) => {
+            setAllData(response.data);
         });
+    }
+
+    const attendOrderFilter = (fil) => { 
+        axios.get(`${baseUrl}/api/chef-attend-order/C-02034260217/${fil}`).then((response) => {
+            setAttendOrder(response.data);
+        });
+    }
+
+    const completeOrder = (order_id, item_code) => {
+        axios
+            .get(`${baseUrl}/api/chef-attend-order-status/${order_id}/${item_code}`)
+            .then((response) => {
+                Swal.fire({
+                    title: response.data.msg,
+                    icon: "success",
+                    confirmButtonText: "OK",
+                });
+            });
+        setRefresh(true);
     }
 
     $.DataTable = require("datatables.net");
     $(document).ready(function () {
-        $("#inventory").DataTable();
+        $("#chefInventory").DataTable();
     });
+
+    // $(document).ready(function () {
+    //     $("#chefAttendedInventory").DataTable();
+    // });
 
     return (
         <div>
@@ -68,6 +98,86 @@ function ChefDashboard() {
                             <h4 className="card-title">Dashboard</h4>
                         </div>
                         <div className="col-sm-12 background">
+                            <br></br>
+                            <h4 className="card-title">Running Order:</h4>
+                            <div className="two_part">
+                                <button
+                                    onClick={() => {
+                                        attendOrderFilter('today')
+                                    }}
+                                    className="btn btn-danger">
+                                    <i className="bi bi-alarm"></i>Today
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        attendOrderFilter('yesterday')
+                                    }}
+                                    className="btn btn-warning">
+                                    <i className="bi bi-arrow-left-right"></i>Yesterday
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        attendOrderFilter('week')
+                                    }}
+                                    className="btn btn-success">
+                                    <i className="bi bi-question-square-fill"></i>Last 7 days
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        attendOrderFilter('month')
+                                    }}
+                                    className="btn btn-warning">
+                                    <i className="bi bi-arrow-90deg-up"></i>Last month
+                                </button>
+                            </div>
+                            <br></br>
+                            <div className="table-responsive table-style table-background">
+                                <table id="chefAttendedInventory" className="table table-hover table-striped table-style">
+                                    <thead>
+                                        <tr>
+                                            <th>SL.</th>
+                                            <th>KOT</th>
+                                            <th>Image</th>
+                                            <th>Food Name</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {attendOrder ?
+                                            attendOrder.map((data, index) =>
+                                                <tr>
+                                                    <td>{index + 1}</td>
+                                                    <td>{data.kot}</td>
+                                                    <td>
+                                                        <img
+                                                            src={`${baseUrl}/foods/small/${data.image}`}
+                                                            width="80px"
+                                                            height="50px"
+                                                        />
+                                                    </td>
+                                                    <td>{data.name}</td>
+                                                    <td>{data.quantity}</td>
+                                                    <td>{data.status}</td>
+                                                    <td>
+                                                        <button
+                                                            onClick={() => {
+                                                                completeOrder(data.order_id, data.item_code);
+                                                            }}
+                                                            className="btn btn-dark">Complete</button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                            : null}
+                                    </tbody>
+                                </table>
+                                <br></br>
+                                <br></br>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 background">
+                            <h4 className="card-title">Pending Order:</h4>
                             <div className="container">
                                 <div className="row">
                                     {recentId ? recentId.map((id) => (
@@ -123,22 +233,38 @@ function ChefDashboard() {
                             <br></br>
                             <h4 className="card-title">Today's taken inventory item:</h4>
                             <div className="two_part">
-                                <a href="" className="btn btn-danger">
+                                <button
+                                    onClick={() => {
+                                        filterSet('today')
+                                    }}
+                                    className="btn btn-danger">
                                     <i className="bi bi-alarm"></i>Today
-                                </a>
-                                <button onClick={yesterdayData} className="btn btn-warning">
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        filterSet('yesterday')
+                                    }}
+                                    className="btn btn-warning">
                                     <i className="bi bi-arrow-left-right"></i>Yesterday
                                 </button>
-                                <a href="" className="btn btn-success">
+                                <button
+                                    onClick={() => {
+                                        filterSet('week')
+                                    }}
+                                    className="btn btn-success">
                                     <i className="bi bi-question-square-fill"></i>Last 7 days
-                                </a>
-                                <a href="" className="btn btn-warning">
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        filterSet('month')
+                                    }}
+                                    className="btn btn-warning">
                                     <i className="bi bi-arrow-90deg-up"></i>Last month
-                                </a>
+                                </button>
                             </div>
                             <br></br>
-                            <div className="table-responsive">
-                                <table className="table table-hover table-bordered">
+                            <div className="table-responsive table-style table-background">
+                                <table id="chefInventory" className="table table-hover table-striped table-style">
                                     <thead>
                                         <tr>
                                             <th>SL.</th>
@@ -188,6 +314,8 @@ function ChefDashboard() {
                                             : null}
                                     </tbody>
                                 </table>
+                                <br></br>
+                                <br></br>
                             </div>
                         </div>
                     </div>
