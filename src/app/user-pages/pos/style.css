@@ -1,187 +1,193 @@
-.input-field-2{
-    position: absolute;
-    right: 0;
+.input-field-2 {
+  position: absolute;
+  right: 0;
 }
-.icon-plus{
-    background-color: green;
-    color: white;
-    font-size: 1.2em;
-    border-radius: 5px;
-    border: none;
+.icon-plus {
+  background-color: green;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
 }
-.icon-minus{
-    background-color: red;
-    color: white;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
+.icon-minus {
+  background-color: red;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
 }
-.menu-style{
-    background-color: white;
-    color:black;
-    border-radius: 5px;
-    padding-left: 1rem;
-    padding-bottom: .3rem;
-    padding-top: .3rem;
+.menu-style {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding-left: 1rem;
+  padding-bottom: 0.3rem;
+  padding-top: 0.3rem;
 }
-.food-image{
-    width:7.5rem;
-    border-radius: 8PX;
-    border: .1px solid rgb(68, 67, 67);
-    padding-left: 2px;
+.food-image {
+  width: 7.5rem;
+  border-radius: 8px;
+  border: 0.1px solid rgb(68, 67, 67);
+  padding-left: 2px;
 }
-.img-level{
-    text-align: center;
-    border-radius: 15PX;
-    margin-top: 5px;
-    width:7.5rem;
-    border: .1px solid rgb(68, 67, 67);
+.img-level {
+  text-align: center;
+  border-radius: 15px;
+  margin-top: 5px;
+  width: 7.5rem;
+  border: 0.1px solid rgb(68, 67, 67);
 }
-.level-style{
-    font-size: .9em;
-    font-family: "Times New Roman";
-    margin-bottom: -9px;
+.level-style {
+  font-size: 0.9em;
+  font-family: "Times New Roman";
+  margin-bottom: -9px;
 }
-.top-section{
-    background-color: black;
-    margin-top: .7rem;
-    margin-left: 1rem;
-    margin-bottom: .3rem;
-    margin-right: 1rem;
-    border-radius: 15px;
-    padding-bottom: 1.1rem;
+.top-section {
+  background-color: black;
+  margin-top: 0.7rem;
+  margin-left: 1rem;
+  margin-bottom: 0.3rem;
+  margin-right: 1rem;
+  border-radius: 15px;
+  padding-bottom: 1.1rem;
 }
-.icon-delete{
-    background-color: red;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    padding: .3rem;
+.icon-delete {
+  background-color: red;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem;
 }
-.table-style{
-    width:50%;
-    margin-left: 50%;
+.table-style {
+  width: 50%;
+  margin-left: 50%;
 }
-@media(max-width:850px){
-    .table-style{
-        width:100%;
-    }
+@media (max-width: 850px) {
+  .table-style {
+    width: 100%;
+  }
 }
-.btn-se{
-    position: absolute;
-    right: 1.7rem;
+.btn-se {
+  position: absolute;
+  right: 1.7rem;
 }
-.space3{
-    margin-left: .2rem;
+.space3 {
+  margin-left: 0.2rem;
 }
-.cart-height{
-    height: 3.5rem;
+.cart-height {
+  height: 3.5rem;
 }
-.btn-cart{
-    border-radius: 10px;
-    width:7.5rem;
-    font-size: .8em;
-    margin-top: -1.5rem;
+.btn-cart {
+  border-radius: 10px;
+  width: 7.5rem;
+  font-size: 0.8em;
+  margin-top: -1.5rem;
 }
-.action{
-    width:.2rem;
+.action {
+  width: 0.2rem;
 }
-.table-header-item{
-    width:10.1rem;
+.table-header-item {
+  width: 10.1rem;
 }
-.level-quantity{
-    font-size: 1em;
-    padding:3px;
+.level-quantity {
+  font-size: 1em;
+  padding: 3px;
 }
-.css-h2okw{
-    height: 55vh !important;
-    width: 35vh !important;
-    position: absolute;
-    left:59%;
-    top: 42%;
+.css-h2okw {
+  height: 55vh !important;
+  width: 35vh !important;
+  position: absolute;
+  left: 59%;
+  top: 42%;
 }
-.css-hayew9{
-    font-size: 2em !important;
-}
-
-.section-11{
-    width: 15%;
-}
-.section-12{
-    width: 50%;
-}
-.section-13{
-    width: 35%;
+.css-hayew9 {
+  font-size: 2em !important;
 }
 
-@media(max-width:850px){
-    .section-11{
-        width: 100%;
-    }
-    .section-12{
-        width: 100%;
-    }
-    .section-13{
-        width: 100%;
-    }
+.section-11 {
+  width: 15%;
+}
+.section-12 {
+  width: 50%;
+}
+.section-13 {
+  width: 35%;
 }
 
-ul{
-    padding: 0px 0 0px 30px;
+@media (max-width: 850px) {
+  .section-11 {
+    width: 100%;
+  }
+  .section-12 {
+    width: 100%;
+  }
+  .section-13 {
+    width: 100%;
+  }
 }
-ul li{
-    list-style: none;
-    font-weight: bold;
-    margin: 5px;
-    position: relative;
-    max-height: 35px;
-    text-transform: capitalize;
+
+ul {
+  padding: 0px 0 0px 30px;
 }
-ul:first-child li{
-    max-height: 150px;
+ul li {
+  list-style: none;
+  font-weight: bold;
+  margin: 5px;
+  position: relative;
+  max-height: 35px;
+  text-transform: capitalize;
 }
-ul li:hover{
-    background: white;
+ul:first-child li {
+  max-height: 150px;
 }
-ul:first-child li:hover{
-    background: none;
+ul li:hover {
+  background: white;
 }
-ul li button{
-    text-decoration: none;
-    color: white;
+ul:first-child li:hover {
+  background: none;
 }
-ul li a i{
-    position: absolute;
-    right: .5rem;
-    color: rgb(0, 0, 0);
+ul li button {
+  text-decoration: none;
+  color: white;
 }
-ul li a{
-    color: rgb(255, 255, 255);
-    padding-left: 1rem;
+ul li a i {
+  position: absolute;
+  right: 0.5rem;
+  color: rgb(0, 0, 0);
 }
-.li-style{
-    background-color: white;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
+ul li a {
+  color: rgb(255, 255, 255);
+  padding-left: 1rem;
 }
-ul li>ul{
-    padding: 1px;
-    margin: 0 0 0 1rem;
+.li-style {
+  background-color: white;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
 }
-ul li>ul li{
-    height: 25px;
-    line-height: 20px;
-    font-size: 15px;
-    padding: 1px 1px 1px 0px;
-    font-weight: normal;
-    border-left: 1px solid white;
-    margin: 5px;
-    color: wheat;
-    cursor: pointer;
+ul li > ul {
+  padding: 1px;
+  margin: 0 0 0 1rem;
 }
-ul li>ul li button,
-ul li:target>ul li button{
-    background: transparent;
+ul li > ul li {
+  height: 25px;
+  line-height: 20px;
+  font-size: 15px;
+  padding: 1px 1px 1px 0px;
+  font-weight: normal;
+  border-left: 1px solid white;
+  margin: 5px;
+  color: wheat;
+  cursor: pointer;
+}
+ul li > ul li button,
+ul li:target > ul li button {
+  background: transparent;
+}
+.block_01 {
+  background-color: #292727;
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 1rem;
 }

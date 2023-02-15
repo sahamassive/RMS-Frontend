@@ -4,6 +4,7 @@ import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { ReactCalculator } from "simple-react-calculator";
 import Modal from "@mui/material/Modal";
+import ReactLoading from "react-loading";
 
 function QuickOrder() {
   const order = [];
@@ -15,7 +16,20 @@ function QuickOrder() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState();
+  const [vat, setVat] = useState();
+  const [grandTotal, setGrandTotal] = useState();
   const [waiter, setWaiter] = useState();
+  const [table, setTable] = useState();
+  const [waiterId, setWaiterId] = useState();
+  const [tableId, setTableId] = useState();
+  const [customerName, setCustomerName] = useState();
+  const [customerPhone, setCustomerPhone] = useState();
+  const [loading, setLoading] = useState(false);
+  const [memberId, setMemberId] = useState();
+  const [searchFood, setSearchFood] = useState();
+
+  const [msp, setMsp] = useState();
+  const [disMsp, setDisMsp] = useState();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -25,10 +39,14 @@ function QuickOrder() {
 
     const query = event.target.value;
     // Create copy of item list
+    // console.log(query);
+    // if (query == null) {
+    //   return getFood();
+    // }
     var updatedList = [...food];
     // Include all elements which includes the search query
 
-    updatedList = food.filter((item) => {
+    updatedList = searchFood.filter((item) => {
       return item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
     setFood(updatedList);
@@ -41,8 +59,15 @@ function QuickOrder() {
     getFood();
     getEmployee();
     getBranch();
+    getTable();
   }, [branchId]);
 
+  const getTable = () => {
+    axios.get(`${baseUrl}/api/tables/${restaurant_id}`).then((response) => {
+      //console.log(allData);
+      setTable(response.data);
+    });
+  };
   const getBranch = () => {
     axios.get(`${baseUrl}/api/branch/${restaurant_id}`).then((response) => {
       setBranch(response.data);
@@ -50,17 +75,30 @@ function QuickOrder() {
   };
   useEffect(() => {
     calTotal();
-  }, [quantity, orderDetails]);
-  
+  }, [quantity, orderDetails, msp, disMsp]);
+
   const calTotal = () => {
     // console.log(orderDetails);
 
     let sum = 0;
+    let mspDis = 0;
 
     orderDetails.forEach((element) => {
-      sum = sum + parseInt(element[0].food_price * parseInt(element[0].qty));
+      sum = sum + element[0].food_price * element[0].qty;
+      mspDis = msp
+        ? mspDis +
+          element[0].food_price * element[0].qty -
+          (element[0].food_price -
+            ((element[0].food_price - element[0].basic) / 100) * msp) *
+            element[0].qty
+        : 0;
     });
     setTotal(sum);
+    setVat((sum * 0.05).toFixed(2));
+    setGrandTotal((sum + sum * 0.05 - mspDis).toFixed(2));
+    console.log(msp);
+    console.log(mspDis);
+    setDisMsp(mspDis);
   };
 
   const getEmployee = () => {
@@ -88,6 +126,7 @@ function QuickOrder() {
       )
       .then((response) => {
         setFood(response.data);
+        setSearchFood(response.data);
       });
   };
   const selectBranch = (event) => {
@@ -118,7 +157,9 @@ function QuickOrder() {
           order.push({
             food_name: val.name,
             food_id: val.id,
+            item_code: val.item_code,
             food_price: val.price,
+            basic: val.basic_price,
             qty: 1,
           });
 
@@ -172,62 +213,113 @@ function QuickOrder() {
   const cancleOrder = () => {
     setOrderDetails([]);
   };
-  
+  const memberSubmit = () => {
+    setLoading(true);
+    axios.get(`${baseUrl}/api/get-msp/${memberId}`).then((response) => {
+      if (response.data == "not a member") {
+        Swal.fire({
+          title:
+            "It seems like you are not a member yet! Please contact +880 1323-148188 to be a member",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        setLoading(false);
+      } else {
+        setMsp(response.data.msp);
+        setCustomerName(response.data.member_name);
+        setCustomerPhone(response.data.mobile);
+        Swal.fire({
+          title: "Member Discount Has Been Applied",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        setLoading(false);
+      }
+    });
+  };
+
+  const submitOrder = () => {
+    // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+    axios
+      .post(`${baseUrl}/api/order-store`, {
+        restaurant_id: restaurant_id,
+        branch_id: branchId,
+
+        item: orderDetails.length,
+        total: total,
+        grand_price: grandTotal,
+        pickup_method: "pos",
+        vat: vat,
+        details: orderDetails,
+        customer_name: customerName,
+        customer_phone: customerPhone,
+        table_id: tableId,
+        waiter_id: waiterId,
+      })
+      .then((response) => {
+        Swal.fire({
+          title: response.data.msg,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      });
+    setOrderDetails([]);
+  };
+
   return (
     <div>
-      <div className="top-section">
-
-      </div>
+      <div className="top-section"></div>
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
             <h4 className="card-title">Quick Order:</h4>
             <div className="two_part">
-            <a href="/dashboard" className="btn btn-primary">
-              <i className="bi bi-house-door-fill"></i>Dashboard
-            </a>
-            <a href="" className="btn btn-info">
-              <i className="bi bi-view-list"></i>All Order
-            </a>
-            <a href="" className="btn btn-danger">
-              <i className="bi bi-plus-square"></i>New Order
-            </a>
-            <a href="" className="btn btn-warning">
-              <i className="bi bi-arrow-left-right"></i>OnGoing Order
-            </a>
-            <a href="" className="btn btn-success">
-              <i className="bi bi-question-square-fill"></i>Kitchen Status
-            </a>
-            <a href="" className="btn btn-warning">
-              <i className="bi bi-arrow-90deg-up"></i>Online Order
-            </a>
-            <a href="" className="btn btn-success">
-              <i className="bi bi-qr-code"></i>QR Order
-            </a>
-            <a href="" className="btn btn-danger">
-              <i className="bi bi-x-square-fill"></i>Cancel Order
-            </a>
-            <a href="" className="btn btn-info">
-              <i className="bi bi-alarm"></i>Today's Order
-            </a>
+              <a href="/dashboard" className="btn btn-primary">
+                <i className="bi bi-house-door-fill"></i>Dashboard
+              </a>
+              <a href="" className="btn btn-info">
+                <i className="bi bi-view-list"></i>All Order
+              </a>
+              <a href="" className="btn btn-danger">
+                <i className="bi bi-plus-square"></i>New Order
+              </a>
+              <a href="" className="btn btn-warning">
+                <i className="bi bi-arrow-left-right"></i>OnGoing Order
+              </a>
+              <a href="" className="btn btn-success">
+                <i className="bi bi-question-square-fill"></i>Kitchen Status
+              </a>
+              <a href="" className="btn btn-warning">
+                <i className="bi bi-arrow-90deg-up"></i>Online Order
+              </a>
+              <a href="" className="btn btn-success">
+                <i className="bi bi-qr-code"></i>QR Order
+              </a>
+              <a href="" className="btn btn-danger">
+                <i className="bi bi-x-square-fill"></i>Cancel Order
+              </a>
+              <a href="" className="btn btn-info">
+                <i className="bi bi-alarm"></i>Today's Order
+              </a>
             </div>
             <br></br>
             <div className="two_part ">
-                <Form.Control
-                  type="search"
-                  name="search-form"
-                  placeholder="Search for..."
-                  id="search-box"
-                  onChange={filterBySearch}
-                ></Form.Control>
+              <Form.Control
+                type="search"
+                name="search-form"
+                placeholder="Search for..."
+                id="search-box"
+                onChange={filterBySearch}
+              ></Form.Control>
               <select onChange={selectBranch}>
-              <option value="">Select Branch from here...</option>
-              {branch
-                ? branch.map((data) => (
-                    <option value={data.id}>{data.city}</option>
-                  ))
-                : null}
-            </select>
+                <option value="">Select Branch from here...</option>
+                {branch
+                  ? branch.map((data) => (
+                      <option value={data.id}>{data.city}</option>
+                    ))
+                  : null}
+              </select>
             </div>
             <div className="two_part">
               <div className="section-11 section-border">
@@ -286,8 +378,53 @@ function QuickOrder() {
                 </div>
               </div>
               <div className="section-13 section-border">
-                <div className="input_field">
+                {/* <div className="input_field two_part">
+                  <div className="wid">
+                    <Form.Label className="label-style">Member id</Form.Label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Customer name"
+                      onChange={(event) => {
+                        setCustomerName(event.target.value);
+                      }}
+                    ></input>
+                  </div>
                   <div>
+                    <button className="btn btn-light">Submit</button>
+                  </div>
+                </div> */}
+                <div className="block_01 input_field">
+                  <h4>Member?</h4>
+                  <p>Enter your member id if you are member.</p>
+                  <div className="">
+                    <div className="wid">
+                      <Form.Label className="label-style">
+                        Enter Member Id
+                      </Form.Label>
+                      <Form.Control
+                        name="coupon"
+                        type="text"
+                        placeholder="Enter Member Id"
+                        onChange={(event) => {
+                          setMemberId(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  {loading ? (
+                    <ReactLoading type="cylon" />
+                  ) : (
+                    <button
+                      className="btn btn-warning btn-se"
+                      onClick={memberSubmit}
+                    >
+                      <i className="bi bi-back"></i>Submit
+                    </button>
+                  )}
+                </div>
+                <div className="input_field two_part">
+                  <div className="wid">
                     <Form.Label className="label-style">
                       Customer name
                     </Form.Label>
@@ -295,15 +432,35 @@ function QuickOrder() {
                       type="text"
                       className="form-control"
                       placeholder="Customer name"
+                      value={customerName}
+                      onChange={(event) => {
+                        setCustomerName(event.target.value);
+                      }}
+                    ></input>
+                  </div>
+                  <div className="wid">
+                    <Form.Label className="label-style">Phone</Form.Label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Customer Phone"
+                      value={customerPhone}
+                      onChange={(event) => {
+                        setCustomerPhone(event.target.value);
+                      }}
                     ></input>
                   </div>
                 </div>
                 <div className="input_field two_part ">
-                  <div>
+                  <div className="wid">
                     <Form.Label className="label-style">
                       Select waiter
                     </Form.Label>
-                    <select>
+                    <select
+                      onChange={(event) => {
+                        setWaiterId(event.target.value);
+                      }}
+                    >
                       <option value="">Select here</option>
                       {waiter
                         ? waiter.map((data) => (
@@ -314,24 +471,23 @@ function QuickOrder() {
                         : null}
                     </select>
                   </div>
-                  <div>
+                  <div className="wid">
                     <Form.Label className="label-style">
                       Select table
                     </Form.Label>
-                    <select>
+                    <select
+                      onChange={(event) => {
+                        setTableId(event.target.value);
+                      }}
+                    >
                       <option value="">Select here</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                  <div>
-                    <Form.Label className="label-style">
-                      Select order type
-                    </Form.Label>
-                    <select>
-                      <option value="">Select here</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      {table
+                        ? table.map((data) => (
+                            <option value={data.table_id}>
+                              {data.table_name}({data.table_type})
+                            </option>
+                          ))
+                        : null}
                     </select>
                   </div>
                 </div>
@@ -404,13 +560,11 @@ function QuickOrder() {
                         </tr>
                         <tr>
                           <td>VAT(n%)</td>
-                          <td>
-                            {total ? (total * (10 / 100)).toFixed(2) : null}
-                          </td>
+                          <td>{vat ? vat : null}</td>
                         </tr>
                         <tr>
                           <td>Discount</td>
-                          <td> 0.00 </td>
+                          <td>{disMsp ? disMsp : null}</td>
                         </tr>
                         <tr>
                           <td>Service Charge</td>
@@ -418,17 +572,14 @@ function QuickOrder() {
                         </tr>
                         <tr>
                           <td>Grand Total</td>
-                          <td>{total ? total : null}</td>
+                          <td>{grandTotal ? grandTotal : null}</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                   <br></br>
                   <div className="two_part btn-se">
-                    <button
-                      className="btn btn-primary"
-                      onClick={handleOpen}
-                    >
+                    <button className="btn btn-primary" onClick={handleOpen}>
                       <i className="bi bi-calculator"></i>
                     </button>
                     <button
@@ -440,9 +591,14 @@ function QuickOrder() {
                       <i className="bi bi-x-octagon-fill"></i>Cancel
                     </button>
 
-                    <a className="btn btn-success">
+                    <button
+                      className="btn btn-success"
+                      onClick={() => {
+                        submitOrder();
+                      }}
+                    >
                       <i className="bi bi-check-square-fill"></i>Confirm Order
-                    </a>
+                    </button>
                   </div>
                   <br></br>
                   <br></br>
