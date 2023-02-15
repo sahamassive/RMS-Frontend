@@ -67,6 +67,7 @@ function TransferInventory() {
     //   setPrev(0);
     //   if (askQuantity > 0) {
     //     AddToQueue(data);
+
     setCheckId(id);
     setAskQuantity(event);
   };
@@ -143,8 +144,9 @@ function TransferInventory() {
           });
           setDisabledButton((prevState) => ({
             ...prevState,
-            [index]: true,
+            [data.ingredient_id]: true,
           }));
+          console.log(disabledButton);
           setInventory(updatedList);
         }
         setAskQuantity(0);
@@ -175,10 +177,14 @@ function TransferInventory() {
         item.current_quantity =
           parseFloat(item.current_quantity) + parseFloat(qty);
       }
+      console.log(disabledButton);
       setDisabledButton((prevState) => ({
         ...prevState,
-        [index]: false,
+
+        [id]: false,
       }));
+      console.log(disabledButton);
+
       return item;
     });
   };
@@ -376,9 +382,7 @@ function TransferInventory() {
                           </td>
                           <td className="btn-section">
                             <Form.Control
-                              disabled={
-                                disabledButton ? disabledButton[index] : null
-                              }
+                              disabled={disabledButton[data.ingredient_id]}
                               id="inp"
                               onChange={(event) => {
                                 changeQuantity(
@@ -395,11 +399,9 @@ function TransferInventory() {
                             <button
                               className="btn btn-dark"
                               key={index}
-                              disabled={
-                                disabledButton ? disabledButton[index] : null
-                              }
+                              disabled={disabledButton[data.ingredient_id]}
                               onClick={() => {
-                                AddToQueue(data, index);
+                                AddToQueue(data, data.ingredient_id);
                               }}
                             >
                               <i className="bi bi-pencil-square"></i>Confirm
