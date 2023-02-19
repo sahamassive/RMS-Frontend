@@ -1565,7 +1565,10 @@ section {
   color: white;
 }
 .writing-style {
-  text-align: left;
+  text-align: left !important;
+}
+h2{
+  text-align: left
 }
 .map-style {
   border: 0;
@@ -1613,9 +1616,21 @@ section {
   margin-left: 20%;
   margin-right: 20%;
 }
+.login_modal {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+}
 @media(max-width:780px){
   .food-details {
     background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .login_modal {
+    background-color: rgba(0, 0, 0, 0.1);
     color: white;
     margin-left: 15%;
     margin-right: 15%;
@@ -1628,11 +1643,18 @@ section {
     margin-left: 1%;
     margin-right: 1%;
   }
+  .login_modal {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 }
 .sec_01 {
-  margin-left: 0rem;
-  text-align: justify;
-  padding-right: 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 .sec-image{
   width: 100%;
@@ -1655,6 +1677,15 @@ section {
   top:0;
   font-size: 2rem;
   color: rgb(206, 24, 100) !important;
+  background-color: none !important;
+  cursor: pointer !important;
+}
+.close-btn-login{
+  position: absolute;
+  right: 15%;
+  top:3%;
+  font-size: 2rem;
+  color: rgb(192, 13, 13);
   background-color: none !important;
   cursor: pointer !important;
 }

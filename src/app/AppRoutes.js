@@ -5,6 +5,8 @@ import Spinner from "../app/shared/Spinner";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 const ChefDashboard = lazy(() => import("../app/user-pages/dashboard/chefDashboard.js"));
+const WaiterDashboard = lazy(() => import("../app/user-pages/dashboard/waiterDashboard.js"));
+const CustomerDashboard = lazy(() => import("../app/user-pages/dashboard/customerDashboard.js"));
 const Homepage = lazy(() => import("../homepage/Index.js"));
 
 const SuperAdmin = lazy(() => import("../app/user-pages/admin/superAdmin.js"));
@@ -196,6 +198,8 @@ class AppRoutes extends Component {
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/chef/dashboard" component={ChefDashboard} />
+          <Route exact path="/waiter/dashboard" component={WaiterDashboard} />
+          <Route exact path="/customer/dashboard" component={CustomerDashboard} />
 
           <Route exact path="/" component={Homepage} />
           <Route exact path="/employee/login" component={EmployeeLogin} />

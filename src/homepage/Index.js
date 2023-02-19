@@ -1,4 +1,6 @@
 import React, { Component, useEffect, useState, createContext } from "react";
+import { useLocation } from "react-router-dom";
+import  Login  from '../app/user-pages/login/customer/login';
 import "../homepage/assets/css/style.css";
 import { Link } from "react-router-dom";
 import {
@@ -19,21 +21,25 @@ function Index() {
   const [branchPhone, setBranchPhone] = useState("");
   const [branchEmail, setBranchEmail] = useState("");
   const [branchAddres, setBranchAddress] = useState("");
+  const { state } = useLocation();
+  const [orderDetails, setOrderDetails] = useState(state ? state :[]);
 
   const [branchId, setBranchId] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
   const [spfood, setSpFood] = useState("");
   const [singlefood, setSingleFood] = useState("");
-  const [orderDetails, setOrderDetails] = useState([]);
+  //const [orderDetails, setOrderDetails] = useState([]);
   const order = [];
   const [open, setOpen] = React.useState(false);
   const [branchModalStatus, setBranchModalStatus] = React.useState(false);
+  const [loginModalStatus, setLoginModalStatus] = React.useState(false);
 
   //booking
   const [bookingDate, setBookingDate] = useState();
   const [numberOfPeople, setNumberOfPeople] = useState();
   const [table, setTable] = useState();
+  const [alltable, setAllTable] = useState();
   const [type, setType] = useState();
   const [startingTime, setStartingTime] = useState();
   const [endingTime, setEndingTime] = useState();
@@ -45,6 +51,7 @@ function Index() {
   const [note, setNote] = useState();
   const [location, setLocation] = useState({});
   const [userCity, setuserCity] = useState();
+  
 
   const insert = async (e) => {
     e.preventDefault();
@@ -80,6 +87,12 @@ function Index() {
 
   const branchClose = () => setBranchModalStatus(false);
 
+  const LoginModalOpen = () => {
+    setLoginModalStatus(true);
+  };
+
+  const LoginModalClose = () => setLoginModalStatus(false);
+
   const handleOpen = (id) => {
     axios
       .get(`${baseUrl}/api/food-edit/${id}`)
@@ -104,6 +117,7 @@ function Index() {
   useEffect(() => {
     getCategory();
     getResturant();
+    getTable();
     getBranch();
     getLocation();
     localStorage.removeItem("branchId");
@@ -136,6 +150,14 @@ function Index() {
       console.log("Geolocation is not supported by this browser.");
     }
   };
+
+  const getTable = () => {
+    axios.get(`${baseUrl}/api/tables/${restaurant_id}`).then((response) => {
+      //console.log(allData);
+      setAllTable(response.data);
+    });
+  };
+
   const getFood = () => {
     axios
       .get(
@@ -337,16 +359,19 @@ function Index() {
                 </a>
               </li>
               <li>
-                <Link
-                  className="nav-link scrollto"
-                  to={{
-                    pathname: "/customer-order",
-                    state: orderDetails,
-                  }}
-                >
-                  <i className="bi bi-cart4"></i>
-                  <span className="cart-number">{orderDetails.length}</span>
-                </Link>
+                {sessionStorage.getItem("loginType")=='customer' ? <Link
+                className="nav-link scrollto"
+                to={{
+                  pathname: "/customer-order",
+                  state: orderDetails,
+                }}
+              >
+                <i className="bi bi-cart4"></i>
+                <span className="cart-number">{orderDetails ? orderDetails.length : 0}</span>
+                </Link> : <Link onClick={LoginModalOpen}> 
+                <i className="bi bi-cart4"></i>
+                  <span className="cart-number">{orderDetails ? orderDetails.length : 0}</span>
+                </Link>}
               </li>
             </ul>
             <i className="bi bi-list mobile-nav-toggle"></i>
@@ -887,7 +912,7 @@ function Index() {
                     onChange={(event) => {
                       setType(event.target.value);
                     }}
-                    className="form-control area"
+                    className="form-control"
                   >
                     <option value="">Select here</option>
                     <option value="birthday">Birthday</option>
@@ -904,12 +929,16 @@ function Index() {
                     onChange={(event) => {
                       setTable(event.target.value);
                     }}
-                    className="form-control area"
+                    className="form-control"
                   >
-                    <option value="">Select here</option>
-                    <option value="table-1">Table 1</option>
-                    <option value="table-2">Table 2</option>
-                    <option value="table-3">Table 3</option>
+                  <option value="">Select here</option>
+                  {alltable
+                    ? alltable.map((data) => (
+                        <option value={data.table_id}>
+                          {data.table_name}({data.table_type})
+                        </option>
+                      ))
+                    : null}
                   </select>
                   <div className="validate"></div>
                 </div>
@@ -1624,6 +1653,21 @@ function Index() {
           </div>
         </div>
       </Modal>
+      <Modal
+      open={loginModalStatus}
+      onClose={LoginModalClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+        <div className="login_modal">
+        <div className="close-btn-login">
+        <a onClick={LoginModalClose}>
+          <i className="bi bi-x-square"></i>
+        </a>
+      </div>
+          <Login setLoginModalStatus = { setLoginModalStatus } />
+      </div>
+    </Modal>
     </div>
   );
 }

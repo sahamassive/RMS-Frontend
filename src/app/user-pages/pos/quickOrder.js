@@ -19,6 +19,7 @@ function QuickOrder() {
   const [vat, setVat] = useState();
   const [grandTotal, setGrandTotal] = useState();
   const [waiter, setWaiter] = useState();
+  const [waiterOrders, setWaiterOrders] = useState();
   const [table, setTable] = useState();
   const [waiterId, setWaiterId] = useState();
   const [tableId, setTableId] = useState();
@@ -102,8 +103,9 @@ function QuickOrder() {
   };
 
   const getEmployee = () => {
-    axios.get(`${baseUrl}/api/get-employee/waiter`).then((response) => {
-      setWaiter(response.data);
+    axios.get(`${baseUrl}/api/waiter-with-orders`).then((response) => {
+      setWaiter(response.data.waiters);
+      setWaiterOrders(response.data.attendOrder);
     });
   };
 
@@ -378,22 +380,6 @@ function QuickOrder() {
                 </div>
               </div>
               <div className="section-13 section-border">
-                {/* <div className="input_field two_part">
-                  <div className="wid">
-                    <Form.Label className="label-style">Member id</Form.Label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Customer name"
-                      onChange={(event) => {
-                        setCustomerName(event.target.value);
-                      }}
-                    ></input>
-                  </div>
-                  <div>
-                    <button className="btn btn-light">Submit</button>
-                  </div>
-                </div> */}
                 <div className="block_01 input_field">
                   <h4>Member?</h4>
                   <p>Enter your member id if you are member.</p>
@@ -402,6 +388,7 @@ function QuickOrder() {
                       <Form.Label className="label-style">
                         Enter Member Id
                       </Form.Label>
+                      <div className="two_part">
                       <Form.Control
                         name="coupon"
                         type="text"
@@ -410,18 +397,19 @@ function QuickOrder() {
                           setMemberId(event.target.value);
                         }}
                       />
+                      {loading ? (
+                        <ReactLoading type="cylon" />
+                      ) : (
+                        <button
+                          className="btn btn-primary"
+                          onClick={memberSubmit}
+                        >
+                          Submit
+                        </button>
+                        )}
+                        </div>
                     </div>
                   </div>
-                  {loading ? (
-                    <ReactLoading type="cylon" />
-                  ) : (
-                    <button
-                      className="btn btn-warning btn-se"
-                      onClick={memberSubmit}
-                    >
-                      <i className="bi bi-back"></i>Submit
-                    </button>
-                  )}
                 </div>
                 <div className="input_field two_part">
                   <div className="wid">
@@ -464,10 +452,12 @@ function QuickOrder() {
                       <option value="">Select here</option>
                       {waiter
                         ? waiter.map((data) => (
-                            <option value={data.waiter_id}>
-                              {data.first_name} {data.last_name}
-                            </option>
-                          ))
+                          <option value={data.emp_id}>
+                            {data.first_name} {data.last_name} ({waiterOrders ? waiterOrders.map((item) =>
+                              item.waiter_id == data.emp_id ?
+                                `${item.count ? item.count : 0}` : null)
+                              : null})
+                          </option>))
                         : null}
                     </select>
                   </div>

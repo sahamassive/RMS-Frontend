@@ -1,5 +1,6 @@
-import React, { Component, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { Component, useEffect, useState, lazy } from "react";
+import { Link } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import ReactLoading from "react-loading";
@@ -22,6 +23,7 @@ function CustomerOrder({}) {
   useEffect(() => {
     calTotal();
   }, [quantity, orderDetails, msp]);
+
 
   const calTotal = () => {
     // console.log(orderDetails);
@@ -122,9 +124,9 @@ function CustomerOrder({}) {
         .post(`${baseUrl}/api/order-store`, {
           restaurant_id: restaurant_id,
           branch_id: branchId,
-
-          item: orderDetails.length,
+          item: orderDetails ? orderDetails.length : 0,
           total: total,
+          customer_id: sessionStorage.getItem("customer_id"),
           grand_price: grandTotal,
           pickup_method: pickup,
           vat: vat,
@@ -136,8 +138,13 @@ function CustomerOrder({}) {
             icon: "success",
             confirmButtonText: "OK",
           });
+          if (response.data.msg == 'Order Submitted') {
+            setOrderDetails([])
+            window.location.href = "/";
+          }
         });
     }
+
   };
 
   return (
@@ -154,9 +161,15 @@ function CustomerOrder({}) {
                 <h4 className="card-title">Your Cart Items:</h4>
               </div>
               <div>
-                <a href="/" className="btn btn-outline-success right-side2">
-                  <i className="bi bi-house-door-fill"></i>Back To Home
-                </a>
+              <Link
+              className="btn btn-outline-success nav-link scrollto right-side2"
+              to={{
+                pathname: "/",
+                state: orderDetails,
+              }}
+            >
+            <i className="bi bi-house-door-fill"></i> Back To Home
+            </Link>
               </div>
             </div>
             <div className="col-md-12">

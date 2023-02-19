@@ -163,6 +163,38 @@ class Sidebar extends Component {
               <Trans>Chef Dashboard</Trans>
             </span>
           </Link>
+          </li>
+          <li
+          className={
+            this.isPathActive("/waiter/dashboard")
+              ? "nav-item menu-items active"
+              : "nav-item menu-items"
+          }
+        >
+          <Link className="nav-link" to="/waiter/dashboard">
+            <span className="menu-icon">
+              <i className="bi bi-house-door-fill"></i>
+            </span>
+            <span className="menu-title">
+              <Trans>Waiter Dashboard</Trans>
+            </span>
+          </Link>
+          </li>
+          <li
+          className={
+            this.isPathActive("/customer/dashboard")
+              ? "nav-item menu-items active"
+              : "nav-item menu-items"
+          }
+        >
+          <Link className="nav-link" to="/customer/dashboard">
+            <span className="menu-icon">
+              <i className="bi bi-house-door-fill"></i>
+            </span>
+            <span className="menu-title">
+              <Trans>Customer Dashboard</Trans>
+            </span>
+          </Link>
         </li>
           <li
             className={

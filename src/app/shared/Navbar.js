@@ -9,7 +9,8 @@ class Navbar extends Component {
   logout() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("loginType");
-    window.location.href = "/login";
+    sessionStorage.removeItem("customer_id");
+    window.location.href = "/";
   }
   toggleOffcanvas() {
     document.querySelector(".sidebar-offcanvas").classList.toggle("active");
