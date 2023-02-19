@@ -203,6 +203,9 @@ function TransferInventory() {
           icon: "success",
           confirmButtonText: "OK",
         });
+        if (branchId) {
+          setInventoryQueue([]);
+        }
       });
   };
 
@@ -290,33 +293,35 @@ function TransferInventory() {
                           <tr>
                             <td>{index + 1}</td>
                             <td>{data[0].ingredient_name}</td>
-                            <td className="two_part">
-                              <Form.Control
-                                id="inp"
-                                value={data[0].askQuantity}
-                                type="number"
-                                placeholder="Must be Gram or pieces"
-                                readOnly
-                              ></Form.Control>
-                              <Form.Control
-                                id="inp"
-                                onChange={(event) => {
-                                  changeQuantity(
-                                    event.target.value,
-                                    data[0].ingredient_id
-                                  );
-                                }}
-                                type="number"
-                                placeholder="Must be Gram or pieces"
-                              ></Form.Control>
-                              <button
-                                className="btn btn-dark"
-                                onClick={() => {
-                                  updateQuea(data[0], index);
-                                }}
-                              >
-                                <i className="bi bi-pencil-square"></i>Update
-                              </button>
+                          <td>
+                            <div className="two_part">
+                            <Form.Control
+                            id="inp"
+                            value={data[0].askQuantity}
+                            type="number"
+                            placeholder="Must be Gram or pieces"
+                            readOnly
+                          ></Form.Control>
+                          <Form.Control
+                            id="inp"
+                            onChange={(event) => {
+                              changeQuantity(
+                                event.target.value,
+                                data[0].ingredient_id
+                              );
+                            }}
+                            type="number"
+                            placeholder="Must be Gram or pieces"
+                          ></Form.Control>
+                          <button
+                            className="btn btn-dark"
+                            onClick={() => {
+                              updateQuea(data[0], index);
+                            }}
+                          >
+                            Update
+                          </button>
+                            </div>
                             </td>
                             <td>
                               {data[0].unit === "Kg" ? "Gm" : null}
