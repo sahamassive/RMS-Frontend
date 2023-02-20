@@ -47,6 +47,8 @@
     "react-dom": "^16.9.0",
     "react-dragula": "^1.1.17",
     "react-dropzone": "^10.1.9",
+    "react-google-login": "^5.2.2",
+    "react-google-recaptcha": "^2.1.0",
     "react-i18next": "^11.1.0",
     "react-images": "^1.0.0",
     "react-input-mask": "^3.0.0-alpha.0",
