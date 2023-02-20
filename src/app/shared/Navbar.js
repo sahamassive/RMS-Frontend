@@ -6,6 +6,12 @@ import "./style2.css";
 import { useHistory } from "react-router-dom";
 
 class Navbar extends Component {
+  //profile info
+  profile() {
+    window.location.href = `/user/profile`;
+  }
+  
+  //logout function
   logout() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("loginType");
@@ -235,9 +241,6 @@ class Navbar extends Component {
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="navbar-dropdown preview-list navbar-profile-dropdown-menu">
-                <h6 className="p-3 mb-0">
-                  <Trans>Profile</Trans>
-                </h6>
                 <Dropdown.Divider />
                 <Dropdown.Item
                   href="!#"
@@ -246,12 +249,14 @@ class Navbar extends Component {
                 >
                   <div className="preview-thumbnail">
                     <div className="preview-icon bg-dark rounded-circle">
-                      <i className="mdi mdi-settings text-success"></i>
+                      <i className="bi bi-person-bounding-box"></i>
                     </div>
                   </div>
                   <div className="preview-item-content">
                     <p className="preview-subject mb-1">
-                      <Trans>Settings</Trans>
+                      <Trans>
+                        <button className="btn btn-dark" onClick={this.profile}>Profile</button>
+                      </Trans>
                     </p>
                   </div>
                 </Dropdown.Item>
@@ -269,15 +274,12 @@ class Navbar extends Component {
                   <div className="preview-item-content">
                     <p className="preview-subject mb-1">
                       <Trans>
-                        <button onClick={this.logout}>Log Out</button>
+                        <button className="btn btn-dark" onClick={this.logout}>Log Out</button>
                       </Trans>
                     </p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <p className="p-3 mb-0 text-center">
-                  <Trans>Advanced settings</Trans>
-                </p>
               </Dropdown.Menu>
             </Dropdown>
           </ul>

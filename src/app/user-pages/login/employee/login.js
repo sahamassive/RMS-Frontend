@@ -30,6 +30,7 @@ function Login() {
           if (data.message == "Login") {
             sessionStorage.setItem("loginType", data.type);
             sessionStorage.setItem("token", data.token);
+            sessionStorage.setItem("emp_id", data.emp_id);
             window.location.href = "/dashboard";
           } else {
             sessionStorage.setItem("authenticated", false);
