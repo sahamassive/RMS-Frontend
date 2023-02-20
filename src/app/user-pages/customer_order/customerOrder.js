@@ -26,7 +26,6 @@ function CustomerOrder({}) {
 
 
   const calTotal = () => {
-    // console.log(orderDetails);
 
     let sum = 0;
     let mspDis = 0;
