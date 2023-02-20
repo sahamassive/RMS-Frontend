@@ -11,5 +11,22 @@
 .order-id{
     text-align: center;
     border-bottom: 1px solid rgb(255, 255, 255);
-    padding-bottom: 2p;
+    padding-bottom: 2px;
+}
+.order-id2{
+    text-align: left;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding-bottom: 2px;
+}
+.order_section{
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    margin: 5px;
+    border-radius: 5px;
+}
+.bg-coloring{
+    background-color: cadetblue;
+    color: white;
+    height: 3rem;
 }

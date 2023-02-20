@@ -20,12 +20,13 @@ function Login(props) {
             if (data.message == "success") {
                 sessionStorage.setItem("loginType", data.type);
                 sessionStorage.setItem("token", data.token);
-                sessionStorage.setItem("customer_id", data.customer_id);
+                sessionStorage.setItem("emp_id", data.customer_id);
                 window.location.pathname == '/customer/login' ?
                     window.location.href = "/customer/dashboard" :
                     Swal.fire({
                         title: "Login Successful. You can checkout now...",
                         icon: "success",
+                        timer: 3000,
                         confirmButtonText: "OK",
                     });
                     props.setLoginModalStatus(false)

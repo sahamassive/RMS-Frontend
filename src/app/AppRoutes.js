@@ -189,7 +189,11 @@ const EditTable = lazy(() => import("./user-pages/table/editTable.js"));
 
 const TableType = lazy(() =>import("./user-pages/table/type/newType.js"));
 const TableTypeList = lazy(() =>import("./user-pages/table/type/allTypes.js"));
-const EditTableType = lazy(() =>import("./user-pages/table/type/editTypes"));
+const EditTableType = lazy(() => import("./user-pages/table/type/editTypes"));
+
+
+const Profile = lazy(() => import("./user-pages/profile/profile.js"));
+
 
 class AppRoutes extends Component {
   render() {
@@ -311,7 +315,8 @@ class AppRoutes extends Component {
 
           <Route path="/table/table-type" component={TableType} />
           <Route path="/table/table-type-list" component={TableTypeList} />
-          <Route path="/table/edit-table-type/:id" component={EditTableType} />
+          
+          <Route path="/user/profile" component={Profile} />
 
           <Redirect to="/error-pages/error-404" />
         </Switch>
