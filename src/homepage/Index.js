@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState, createContext } from "react";
 import { useLocation } from "react-router-dom";
-import  Login  from '../app/user-pages/login/customer/login';
+import Login from "../app/user-pages/login/customer/login";
 import "../homepage/assets/css/style.css";
 import { Link } from "react-router-dom";
 import {
@@ -22,7 +22,7 @@ function Index() {
   const [branchEmail, setBranchEmail] = useState("");
   const [branchAddres, setBranchAddress] = useState("");
   const { state } = useLocation();
-  const [orderDetails, setOrderDetails] = useState(state ? state :[]);
+  const [orderDetails, setOrderDetails] = useState(state ? state : []);
 
   const [branchId, setBranchId] = useState("");
   const [category, setCategory] = useState("");
@@ -51,7 +51,6 @@ function Index() {
   const [note, setNote] = useState();
   const [location, setLocation] = useState({});
   const [userCity, setuserCity] = useState();
-  
 
   const insert = async (e) => {
     e.preventDefault();
@@ -359,19 +358,27 @@ function Index() {
                 </a>
               </li>
               <li>
-                {sessionStorage.getItem("loginType")=='customer' ? <Link
-                className="nav-link scrollto"
-                to={{
-                  pathname: "/customer-order",
-                  state: orderDetails,
-                }}
-              >
-                <i className="bi bi-cart4"></i>
-                <span className="cart-number">{orderDetails ? orderDetails.length : 0}</span>
-                </Link> : <Link onClick={LoginModalOpen}> 
-                <i className="bi bi-cart4"></i>
-                  <span className="cart-number">{orderDetails ? orderDetails.length : 0}</span>
-                </Link>}
+                {sessionStorage.getItem("loginType") == "customer" ? (
+                  <Link
+                    className="nav-link scrollto"
+                    to={{
+                      pathname: "/customer-order",
+                      state: orderDetails,
+                    }}
+                  >
+                    <i className="bi bi-cart4"></i>
+                    <span className="cart-number">
+                      {orderDetails ? orderDetails.length : 0}
+                    </span>
+                  </Link>
+                ) : (
+                  <Link onClick={LoginModalOpen}>
+                    <i className="bi bi-cart4"></i>
+                    <span className="cart-number">
+                      {orderDetails ? orderDetails.length : 0}
+                    </span>
+                  </Link>
+                )}
               </li>
             </ul>
             <i className="bi bi-list mobile-nav-toggle"></i>
@@ -931,14 +938,14 @@ function Index() {
                     }}
                     className="form-control"
                   >
-                  <option value="">Select here</option>
-                  {alltable
-                    ? alltable.map((data) => (
-                        <option value={data.table_id}>
-                          {data.table_name}({data.table_type})
-                        </option>
-                      ))
-                    : null}
+                    <option value="">Select here</option>
+                    {alltable
+                      ? alltable.map((data) => (
+                          <option value={data.table_id}>
+                            {data.table_name}({data.table_type})
+                          </option>
+                        ))
+                      : null}
                   </select>
                   <div className="validate"></div>
                 </div>
@@ -1654,20 +1661,20 @@ function Index() {
         </div>
       </Modal>
       <Modal
-      open={loginModalStatus}
-      onClose={LoginModalClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+        open={loginModalStatus}
+        onClose={LoginModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <div className="login_modal">
-        <div className="close-btn-login">
-        <a onClick={LoginModalClose}>
-          <i className="bi bi-x-square"></i>
-        </a>
-      </div>
-          <Login setLoginModalStatus = { setLoginModalStatus } />
-      </div>
-    </Modal>
+          <div className="close-btn-login">
+            <a onClick={LoginModalClose}>
+              <i className="bi bi-x-square"></i>
+            </a>
+          </div>
+          <Login setLoginModalStatus={setLoginModalStatus} />
+        </div>
+      </Modal>
     </div>
   );
 }
