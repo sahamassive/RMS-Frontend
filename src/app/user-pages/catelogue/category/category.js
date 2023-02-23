@@ -2,12 +2,22 @@ import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function Category() {
   const [allData, setAllData] = useState("");
 
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/categories`).then((response) => {
       setAllData(response.data);
       console.log(allData);

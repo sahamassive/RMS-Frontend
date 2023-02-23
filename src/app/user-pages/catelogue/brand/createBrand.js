@@ -1,6 +1,14 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function CreateBrand() {
   const [name, setName] = useState();
@@ -18,6 +26,8 @@ function CreateBrand() {
     formData.append("name", name);
 
     formData.append("image", image);
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     await axios
       .post(`${baseUrl}/api/brand-insert`, formData)
       .then((response) => {

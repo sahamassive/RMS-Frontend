@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
+
+const token = sessionStorage.getItem("token");
 
 function EditItem() {
   const params = useParams();
@@ -9,6 +12,8 @@ function EditItem() {
   const [name, setName] = useState();
 
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .get(`${baseUrl}/api/item-edit/${params.id}`)
       .then((res) => {
@@ -24,6 +29,7 @@ function EditItem() {
 
     const formData = new FormData();
     formData.append("name", name);
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
     axios
       .post(`${baseUrl}/api/item-update/${params.id}`, formData)

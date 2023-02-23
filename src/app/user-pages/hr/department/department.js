@@ -2,7 +2,14 @@ import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
 
 function Department() {
   const [allData, setAllData] = useState("");

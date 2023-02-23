@@ -4,7 +4,7 @@ import profile from "../../../assets/images/profile/profile.jpg";
 import { Link, useLocation } from "react-router-dom";
 import countrydata from "./../Country/Countrydata.json";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
-
+import { check } from "../constant/check";
 
 function EmployeeRegistration() {
   const [accountDetails, setAccountDetails] = useState(true);
@@ -24,7 +24,7 @@ function EmployeeRegistration() {
   const [preview, setPrview] = useState();
   const [address1, setAddress1] = useState();
   const [address2, setAddress2] = useState();
-  
+
   const [zipCode, setZipCode] = useState();
 
   const [password, setPassword] = useState();
@@ -108,65 +108,67 @@ function EmployeeRegistration() {
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
-              <div className="btn-section">
-                <h4 className="card-title">New Employee Registration:</h4>
-                <a className="btn-style btn btn-info" href="/hr/all-employee"><i class="bi bi-card-list"></i>All Employee</a>
-              </div>
-              <div className="two_part">
+            <div className="btn-section">
+              <h4 className="card-title">New Employee Registration:</h4>
+              <a className="btn-style btn btn-info" href="/hr/all-employee">
+                <i class="bi bi-card-list"></i>All Employee
+              </a>
+            </div>
+            <div className="two_part">
               <div className="col-sm-3 background">
-                  <p className="text_style space">
-                    <span className="text_style">
-                      <i className="bi bi-folder2-open icon-space"></i>Account
-                      Setting
-                    </span>
-                    <br></br>Personal Information
+                <p className="text_style space">
+                  <span className="text_style">
+                    <i className="bi bi-folder2-open icon-space"></i>Account
+                    Setting
+                  </span>
+                  <br></br>Personal Information
+                </p>
+                <Link onClick={AccountDetails2}>
+                  <p
+                    className={
+                      accountDetails
+                        ? "btn_style_active icon2"
+                        : "btn_style_inactive icon2"
+                    }
+                  >
+                    <i className="bi bi-person-fill icon-space"></i>Account
+                    Details
                   </p>
-                  <Link onClick={AccountDetails2}>
-                    <p
-                      className={
-                        accountDetails
-                          ? "btn_style_active icon2"
-                          : "btn_style_inactive icon2"
-                      }
-                    >
-                      <i className="bi bi-person-fill icon-space"></i>Account
-                      Details
-                    </p>
-                  </Link>
-                  <Link onClick={AddressView}>
-                    <p
-                      className={
-                        address
-                          ? "btn_style_active icon2"
-                          : "btn_style_inactive icon2"
-                      }
-                    > 
-                      <i className="bi bi-geo-alt-fill icon-space"></i>Address
-                    </p>
-                  </Link>
-                  <Link onClick={Password2}>
-                    <p
-                      className={
-                        passwordView
-                          ? "btn_style_active icon2"
-                          : "btn_style_inactive icon2"
-                      }
-                    >
-                      <i className="bi bi-lock-fill icon-space"></i>Password
-                    </p>
-                  </Link>
-                  <Link onClick={Others2}>
-                    <p
-                      className={
-                        others
-                          ? "btn_style_active icon2"
-                          : "btn_style_inactive icon2"
-                      }
-                    >
-                      <i className="bi bi-motherboard-fill icon-space"></i>
-                      Others
-                    </p>
-                  </Link>
+                </Link>
+                <Link onClick={AddressView}>
+                  <p
+                    className={
+                      address
+                        ? "btn_style_active icon2"
+                        : "btn_style_inactive icon2"
+                    }
+                  >
+                    <i className="bi bi-geo-alt-fill icon-space"></i>Address
+                  </p>
+                </Link>
+                <Link onClick={Password2}>
+                  <p
+                    className={
+                      passwordView
+                        ? "btn_style_active icon2"
+                        : "btn_style_inactive icon2"
+                    }
+                  >
+                    <i className="bi bi-lock-fill icon-space"></i>Password
+                  </p>
+                </Link>
+                <Link onClick={Others2}>
+                  <p
+                    className={
+                      others
+                        ? "btn_style_active icon2"
+                        : "btn_style_inactive icon2"
+                    }
+                  >
+                    <i className="bi bi-motherboard-fill icon-space"></i>
+                    Others
+                  </p>
+                </Link>
               </div>
               <div className="col-sm-9">
                 <Form onSubmit={insert}>
@@ -291,42 +293,49 @@ function EmployeeRegistration() {
                           <Form.Label className="label-style">
                             Select employee type
                           </Form.Label>
-                          { window.location.pathname === '/super-admin/employee/registration' ? (
+                          {window.location.pathname ===
+                          "/super-admin/employee/registration" ? (
                             <select
-                            onChange={(event) => {
-                              setType(event.target.value);
-                            }}
-                          >
-                            <option value="">Select here</option>
+                              onChange={(event) => {
+                                setType(event.target.value);
+                              }}
+                            >
+                              <option value="">Select here</option>
                               <option value="supr-admin">Super Admin</option>
                               <option value="admin">Admin</option>
                               <option value="sub-admin">Sub-Admin</option>
                               <option value="chef">Chef</option>
                               <option value="waiter">Waiter</option>
                               <option value="delivery-men">Delivery Men</option>
-                              <option value="sales & marketing">Sales & Marketing</option>
+                              <option value="sales & marketing">
+                                Sales & Marketing
+                              </option>
                               <option value="manager">Manager</option>
                               <option value="cleaner">Cleaner</option>
-                              </select>
+                            </select>
                           ) : (
                             <select
-                            onChange={(event) => {
-                              setType(event.target.value);
-                            }}
-                          >
-                            <option value="">Select here</option>
+                              onChange={(event) => {
+                                setType(event.target.value);
+                              }}
+                            >
+                              <option value="">Select here</option>
                               <option value="chef">Chef</option>
                               <option value="waiter">Waiter</option>
                               <option value="delivery-men">Delivery Men</option>
-                              <option value="sales & marketing">Sales & Marketing</option>
+                              <option value="sales & marketing">
+                                Sales & Marketing
+                              </option>
                               <option value="manager">Manager</option>
                               <option value="cleaner">Cleaner</option>
-                              </select>
-                            ) }
+                            </select>
+                          )}
                         </div>
                       </div>
                       <p className="btn-style2">
-                        <Link onClick={ AddressView } className="btn btn-info">Next</Link>
+                        <Link onClick={AddressView} className="btn btn-info">
+                          Next
+                        </Link>
                       </p>
                     </div>
                   ) : null}
@@ -448,8 +457,15 @@ function EmployeeRegistration() {
                         </div>
                       </div>
                       <p className="btn-style2">
-                        <button onClick={ AccountDetails2 } className="btn btn-secondary">Previous</button>{" "}
-                        <button onClick={ Password2 } className="btn btn-info">Next</button>
+                        <button
+                          onClick={AccountDetails2}
+                          className="btn btn-secondary"
+                        >
+                          Previous
+                        </button>{" "}
+                        <button onClick={Password2} className="btn btn-info">
+                          Next
+                        </button>
                       </p>
                     </div>
                   ) : null}
@@ -486,8 +502,15 @@ function EmployeeRegistration() {
                         </div>
                       </div>
                       <p className="btn-style2">
-                        <button onClick={ AddressView } className="btn btn-secondary">Previous</button>{" "}
-                        <button onClick={ Others2 } className="btn btn-info">Next</button>
+                        <button
+                          onClick={AddressView}
+                          className="btn btn-secondary"
+                        >
+                          Previous
+                        </button>{" "}
+                        <button onClick={Others2} className="btn btn-info">
+                          Next
+                        </button>
                       </p>
                     </div>
                   ) : null}
@@ -523,19 +546,26 @@ function EmployeeRegistration() {
                           />
                         </div>
                         <p className="btn-style3">
-                        <button onClick={ Password2 } className="btn btn-secondary">Previous</button>{" "}
-                        <button className="btn btn-warning"><i className="bi bi-save-fill"></i>Insert</button>
-                      </p>
-                        <br></br><br></br>
+                          <button
+                            onClick={Password2}
+                            className="btn btn-secondary"
+                          >
+                            Previous
+                          </button>{" "}
+                          <button className="btn btn-warning">
+                            <i className="bi bi-save-fill"></i>Insert
+                          </button>
+                        </p>
+                        <br></br>
+                        <br></br>
                       </div>
                     </div>
                   ) : null}
                 </Form>
               </div>
-              </div>
             </div>
           </div>
-
+        </div>
       </div>
     </div>
   );

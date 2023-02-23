@@ -1,6 +1,14 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function CreateCategory() {
   const [sectionId, setSectionId] = useState();
@@ -18,11 +26,15 @@ function CreateCategory() {
 
   const [section, setSection] = useState();
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setSection(response.data);
     });
   }, []);
   const insert = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .post(`${baseUrl}/api/category-insert`, {
         category_name: categoryName,

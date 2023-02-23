@@ -3,6 +3,9 @@ import $ from "jquery";
 import "datatables.net";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
+
+const token = sessionStorage.getItem("token");
 
 function BasicPrice() {
   const [allData, setAllData] = useState("");
@@ -11,6 +14,8 @@ function BasicPrice() {
     getData();
   }, []);
   const getData = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .get(`${baseUrl}/api/basic-price/${restaurant_id}`)
       .then((response) => {
@@ -19,6 +24,8 @@ function BasicPrice() {
   };
 
   const updatePrice = (id, index) => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .post(`${baseUrl}/api/updatePrice/${id}`, {
         selling_price: price,

@@ -1,11 +1,22 @@
 import React, { Component, useEffect, useState } from "react";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+
+const token = sessionStorage.getItem("token");
 
 function Ingredient() {
   const [name, setName] = useState();
 
   const insert = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .post(`${baseUrl}/api/ingredient-insert`, {
         restaurant_id: restaurant_id,
@@ -19,7 +30,7 @@ function Ingredient() {
         });
       });
   };
-  
+
   return (
     <div>
       <div className="col-lg-12 grid-margin stretch-card">
@@ -27,7 +38,10 @@ function Ingredient() {
           <div className="card-body">
             <div className="btn-section">
               <h4 className="card-title">Create New Ingredeint</h4>
-              <a className="btn-style btn btn-info" href='/inventory/ingredient-list'>
+              <a
+                className="btn-style btn btn-info"
+                href="/inventory/ingredient-list"
+              >
                 <i className="bi bi-list-columns-reverse"></i>All Ingredients
               </a>
             </div>

@@ -3,6 +3,8 @@ import $ from "jquery";
 import "datatables.net";
 import "../style.css";
 import { baseUrl, restaurant_id, axios, Swal } from "../../constant/global";
+import { check } from "../../constant/check";
+
 import { Redirect } from "react-router-dom";
 
 const token = sessionStorage.getItem("token");
@@ -21,6 +23,7 @@ function AllBranch() {
   }, []);
 
   const getData = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/branchs`).then((response) => {
       setAllData(response.data);
     });
@@ -47,7 +50,7 @@ function AllBranch() {
 
   return (
     <div>
-      {loginType == "Chef" || loginType == "Waiter" ? (
+      {loginType == "Chef" || loginType == "Super-Admin" ? (
         <div className="col-lg-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">

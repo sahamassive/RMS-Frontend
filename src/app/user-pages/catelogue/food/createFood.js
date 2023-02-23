@@ -8,6 +8,8 @@ import {
   Swal,
   Form,
 } from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function CreateFood() {
   const [section, setSection] = useState();
@@ -38,21 +40,25 @@ function CreateFood() {
   }, []);
 
   const getCategories = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/categories`).then((response) => {
       setCategory(response.data);
     });
   };
   const getBrand = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/brands`).then((response) => {
       setBrand(response.data);
     });
   };
   const getSection = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setSection(response.data);
     });
   };
   const getItem = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/get-items/${restaurant_id}`).then((response) => {
       setItem(response.data);
     });
@@ -96,6 +102,7 @@ function CreateFood() {
     formData.append("meta_description", metaDes);
     formData.append("meta_keywords", metaKeyword);
     formData.append("image", image);
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     await axios
       .post(`${baseUrl}/api/food-insert`, formData)
       .then((response) => {

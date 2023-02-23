@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function EditBrand() {
   const params = useParams();
@@ -15,6 +23,8 @@ function EditBrand() {
     setPrview(URL.createObjectURL(event.target.files[0]));
   };
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .get(`${baseUrl}/api/brand-edit/${params.id}`)
       .then((res) => {
@@ -34,6 +44,8 @@ function EditBrand() {
     formData.append("name", name);
 
     formData.append("image", image);
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .post(`${baseUrl}/api/brand-update/${params.id}`, formData)
       .then((response) => {

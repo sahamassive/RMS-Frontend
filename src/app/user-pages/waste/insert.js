@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
 
+const token = sessionStorage.getItem("token");
 function Insert() {
     const [foodName, setFoodName] = useState();
     const [type, setType] = useState();
@@ -14,6 +16,7 @@ function Insert() {
     const [branchId, setBranchId] = useState();
 
     const typeFunction = (type) => {
+        axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
         axios.get(`${baseUrl}/api/get-employee/${type}`).then((response) => {
             setAllData(response.data);
             //console.log(response.data);
@@ -21,6 +24,7 @@ function Insert() {
     }
 
     useEffect(() => {
+        axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
         axios
         .get(
             `${baseUrl}/api/quick-foods/${restaurant_id}/${
@@ -44,7 +48,7 @@ function Insert() {
         formData.append("price", price);
         formData.append("type", type);
         formData.append("employee_id", employee);
-
+        axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
         await axios
             .post(`${baseUrl}/api/waste-insert`, formData)
             .then((response) => {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
 
 function CreateBooking() {
   const [bookingDetails, setBookingDetails] = useState(true);

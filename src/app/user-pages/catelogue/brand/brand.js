@@ -9,6 +9,9 @@ import {
   Swal,
   Form,
 } from "../../constant/global";
+import { check } from "../../constant/check";
+
+const token = sessionStorage.getItem("token");
 
 function Brand() {
   const [allData, setAllData] = useState("");
@@ -16,12 +19,16 @@ function Brand() {
     getData();
   }, []);
   const getData = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/brands`).then((response) => {
       setAllData(response.data);
     });
   };
 
   const statusChange = (id) => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/brand-status/${id}`).then((response) => {
       Swal.fire({
         title: response.data.msg,

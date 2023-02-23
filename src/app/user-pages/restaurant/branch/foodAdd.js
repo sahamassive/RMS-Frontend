@@ -9,6 +9,8 @@ import {
   Swal,
   Form,
 } from "../../constant/global";
+import { check } from "../../constant/check";
+
 const branch_id = 3;
 function FoodAdd() {
   const [allData, setAllData] = useState("");
