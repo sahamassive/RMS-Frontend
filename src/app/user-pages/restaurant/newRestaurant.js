@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
+
 import countrydata from "./../Country/Countrydata.json";
+const token = sessionStorage.getItem("token");
 
 function NewRestaurant() {
   const [restaurantName, setRestaurantName] = useState();
@@ -35,6 +38,7 @@ function NewRestaurant() {
     formData.append("meta_keyword", metaKeywords);
     formData.append("image", image);
 
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     await axios
       .post(`${baseUrl}/api/restaurant-insert`, formData)
       .then((response) => {

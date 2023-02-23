@@ -2,7 +2,15 @@ import React, { Component, useEffect, useState } from "react";
 import "../style.css";
 import $ from "jquery";
 import "datatables.net";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function Section() {
   const [allData, setAllData] = useState("");
@@ -10,12 +18,16 @@ function Section() {
     getData();
   }, []);
   const getData = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/sections`).then((response) => {
       setAllData(response.data);
     });
   };
 
   const statusChange = (id) => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/section-status/${id}`).then((response) => {
       alert(response.data.msg);
       getData();

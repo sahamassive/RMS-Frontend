@@ -4,6 +4,7 @@ import { useLocation, Redirect } from "react-router-dom";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import ReactLoading from "react-loading";
+const customerId = sessionStorage.getItem("customer_id");
 
 function CustomerOrder({}) {
   const [allData, setAllData] = useState([]);
@@ -18,15 +19,14 @@ function CustomerOrder({}) {
   const [msp, setMsp] = useState();
   const [disMsp, setDisMsp] = useState();
   const [loading, setLoading] = useState(false);
+  const [deliveryAddress, setDeliveryAddress] = useState();
   const branchId = localStorage.getItem("branchId");
 
   useEffect(() => {
     calTotal();
   }, [quantity, orderDetails, msp]);
 
-
   const calTotal = () => {
-
     let sum = 0;
     let mspDis = 0;
 
@@ -125,7 +125,7 @@ function CustomerOrder({}) {
           branch_id: branchId,
           item: orderDetails ? orderDetails.length : 0,
           total: total,
-          customer_id: sessionStorage.getItem("customer_id"),
+          customer_id: customerId,
           grand_price: grandTotal,
           pickup_method: pickup,
           vat: vat,
@@ -137,13 +137,32 @@ function CustomerOrder({}) {
             icon: "success",
             confirmButtonText: "OK",
           });
-          if (response.data.msg == 'Order Submitted') {
-            setOrderDetails([])
+          if (response.data.msg == "Order Submitted") {
+            setOrderDetails([]);
             window.location.href = "/";
           }
         });
     }
+  };
+  const deliverDetails = (value) => {
+    setPickUp(value);
+    if (value == "home-delivery") {
+      axios
+        .get(`${baseUrl}/api/get-delivery-address/${customerId}`)
+        .then((response) => {
+          setDeliveryAddress(response.data);
+        });
+    } else {
+      setDeliveryAddress();
+    }
+  };
 
+  const changeDeliverryAddress = () => {
+    Swal.fire({
+      title: "Address change",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   };
 
   return (
@@ -160,15 +179,15 @@ function CustomerOrder({}) {
                 <h4 className="card-title">Your Cart Items:</h4>
               </div>
               <div>
-              <Link
-              className="btn btn-outline-success nav-link scrollto right-side2"
-              to={{
-                pathname: "/",
-                state: orderDetails,
-              }}
-            >
-            <i className="bi bi-house-door-fill"></i> Back To Home
-            </Link>
+                <Link
+                  className="btn btn-outline-success nav-link scrollto right-side2"
+                  to={{
+                    pathname: "/",
+                    state: orderDetails,
+                  }}
+                >
+                  <i className="bi bi-house-door-fill"></i> Back To Home
+                </Link>
               </div>
             </div>
             <div className="col-md-12">
@@ -246,7 +265,7 @@ function CustomerOrder({}) {
             </div>
             <div className="col-md-12 two_part ">
               <div className="col-md-4 block_01">
-                <div onChange={(e) => setPickUp(e.target.value)}>
+                <div onChange={(e) => deliverDetails(e.target.value)}>
                   <h4>Shipping Method:</h4>
                   <input
                     type="radio"
@@ -276,6 +295,30 @@ function CustomerOrder({}) {
                     </Form.Label>
                   </div>
                 </div>
+                {deliveryAddress ? (
+                  <div className="two_part  section-border">
+                    <div className="badge">
+                      <Form.Label>Delivery Address:</Form.Label>
+                      <br></br>
+                      <Form.Label>
+                        {deliveryAddress.city},{deliveryAddress.address}
+                      </Form.Label>
+                    </div>
+                    <div className="right-side badge">
+                      <Form.Label>Indication:</Form.Label>
+                      <br></br>
+                      <Form.Label>{deliveryAddress.indication}</Form.Label>
+                    </div>
+                    <div className="change-address">
+                      <button
+                        className="btn btn-warning btn-se"
+                        onClick={changeDeliverryAddress}
+                      >
+                        <i className="bi bi-back"></i>Change Delivery Address
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
               </div>
               <div className="col-md-4 block_01">
                 <h4>Member?</h4>

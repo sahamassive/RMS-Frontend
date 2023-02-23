@@ -1,29 +1,31 @@
-import React, { Component } from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import React, { Component } from "react";
+import { Doughnut } from "react-chartjs-2";
 import Slider from "react-slick";
-import { TodoListComponent } from '../apps/TodoList'
-import { VectorMap } from "react-jvectormap"
-
+import { TodoListComponent } from "../apps/TodoList";
+import { VectorMap } from "react-jvectormap";
+const loginType = sessionStorage.getItem("loginType");
 const mapData = {
-  "BZ": 75.00,
-  "US": 56.25,
-  "AU": 15.45,
-  "GB": 25.00,
-  "RO": 10.25,
-  "GE": 33.25
+  BZ: 75.0,
+  US: 56.25,
+  AU: 15.45,
+  GB: 25.0,
+  RO: 10.25,
+  GE: 33.25,
+};
+if (loginType == "Super-Admin" || loginType == "Admin") {
+} else {
+  window.location.href = "/";
 }
 
 export class Dashboard extends Component {
-
-  transactionHistoryData =  {
-    labels: ["Paypal", "Stripe","Cash"],
-    datasets: [{
+  transactionHistoryData = {
+    labels: ["Paypal", "Stripe", "Cash"],
+    datasets: [
+      {
         data: [55, 25, 20],
-        backgroundColor: [
-          "#111111","#00d25b","#ffab00"
-        ]
-      }
-    ]
+        backgroundColor: ["#111111", "#00d25b", "#ffab00"],
+      },
+    ],
   };
 
   transactionHistoryOptions = {
@@ -33,27 +35,27 @@ export class Dashboard extends Component {
     cutoutPercentage: 70,
     elements: {
       arc: {
-          borderWidth: 0
-      }
-    },      
+        borderWidth: 0,
+      },
+    },
     legend: {
-      display: false
+      display: false,
     },
     tooltips: {
-      enabled: true
-    }
-  }
+      enabled: true,
+    },
+  };
 
   sliderSettings = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
-  }
+    slidesToScroll: 1,
+  };
   toggleProBanner() {
-    document.querySelector('.proBanner').classList.toggle("hide");
+    document.querySelector(".proBanner").classList.toggle("hide");
   }
-  render () {
+  render() {
     return (
       <div></div>
       // <div>
@@ -179,7 +181,7 @@ export class Dashboard extends Component {
       //               <h5 className="font-weight-normal text-whiite text-center mb-2 text-white">1200</h5>
       //               <p className="text-small text-muted text-center mb-0">Total</p>
       //             </div>
-      //           </div>  
+      //           </div>
       //           <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
       //             <div className="text-md-center text-xl-left">
       //               <h6 className="mb-1">Transfer to Paypal</h6>
@@ -723,7 +725,7 @@ export class Dashboard extends Component {
       //       </div>
       //     </div>
       //   </div>
-      // </div> 
+      // </div>
     );
   }
 }

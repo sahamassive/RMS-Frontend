@@ -9,6 +9,9 @@ import {
   Swal,
   Form,
 } from "../../constant/global";
+import { check } from "../../constant/check";
+
+const token = sessionStorage.getItem("token");
 
 function TransferInventory() {
   const singleQueue = [];
@@ -23,6 +26,8 @@ function TransferInventory() {
   const [disabledButton, setDisabledButton] = useState({});
 
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .get(`${baseUrl}/api/restaurant/branchs/${restaurant_id}`)
       .then((response) => {
@@ -31,12 +36,16 @@ function TransferInventory() {
   }, []);
 
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/chefs/${restaurant_id}`).then((response) => {
       setChef(response.data);
     });
   }, []);
 
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/inventories`).then((response) => {
       setInventory(response.data);
     });
@@ -293,35 +302,35 @@ function TransferInventory() {
                           <tr>
                             <td>{index + 1}</td>
                             <td>{data[0].ingredient_name}</td>
-                          <td>
-                            <div className="two_part">
-                            <Form.Control
-                            id="inp"
-                            value={data[0].askQuantity}
-                            type="number"
-                            placeholder="Must be Gram or pieces"
-                            readOnly
-                          ></Form.Control>
-                          <Form.Control
-                            id="inp"
-                            onChange={(event) => {
-                              changeQuantity(
-                                event.target.value,
-                                data[0].ingredient_id
-                              );
-                            }}
-                            type="number"
-                            placeholder="Must be Gram or pieces"
-                          ></Form.Control>
-                          <button
-                            className="btn btn-dark"
-                            onClick={() => {
-                              updateQuea(data[0], index);
-                            }}
-                          >
-                            Update
-                          </button>
-                            </div>
+                            <td>
+                              <div className="two_part">
+                                <Form.Control
+                                  id="inp"
+                                  value={data[0].askQuantity}
+                                  type="number"
+                                  placeholder="Must be Gram or pieces"
+                                  readOnly
+                                ></Form.Control>
+                                <Form.Control
+                                  id="inp"
+                                  onChange={(event) => {
+                                    changeQuantity(
+                                      event.target.value,
+                                      data[0].ingredient_id
+                                    );
+                                  }}
+                                  type="number"
+                                  placeholder="Must be Gram or pieces"
+                                ></Form.Control>
+                                <button
+                                  className="btn btn-dark"
+                                  onClick={() => {
+                                    updateQuea(data[0], index);
+                                  }}
+                                >
+                                  Update
+                                </button>
+                              </div>
                             </td>
                             <td>
                               {data[0].unit === "Kg" ? "Gm" : null}

@@ -3,6 +3,7 @@ import "./style.css";
 import $ from "jquery";
 import "datatables.net";
 import { baseUrl, axios } from "../constant/global";
+import { check } from "../constant/check";
 
 function Booking() {
   const [allData, setAllData] = useState();

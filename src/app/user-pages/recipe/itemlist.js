@@ -3,6 +3,9 @@ import $ from "jquery";
 import "datatables.net";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
+
+const token = sessionStorage.getItem("token");
 
 function ItemList() {
   const [allData, setAllData] = useState("");
@@ -10,12 +13,16 @@ function ItemList() {
     getData();
   }, []);
   const getData = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/items/${restaurant_id}`).then((response) => {
       setAllData(response.data);
     });
   };
 
   const statusChange = (id) => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios.get(`${baseUrl}/api/brand-status/${id}`).then((response) => {
       Swal.fire({
         title: response.data.msg,

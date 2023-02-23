@@ -3,7 +3,7 @@ import $ from "jquery";
 import "datatables.net";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
-
+import { check } from "../constant/check";
 function AllEmployee() {
   const [allData, setAllData] = useState("");
 

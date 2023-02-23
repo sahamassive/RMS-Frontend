@@ -4,9 +4,15 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Spinner from "../app/shared/Spinner";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
-const ChefDashboard = lazy(() => import("../app/user-pages/dashboard/chefDashboard.js"));
-const WaiterDashboard = lazy(() => import("../app/user-pages/dashboard/waiterDashboard.js"));
-const CustomerDashboard = lazy(() => import("../app/user-pages/dashboard/customerDashboard.js"));
+const ChefDashboard = lazy(() =>
+  import("../app/user-pages/dashboard/chefDashboard.js")
+);
+const WaiterDashboard = lazy(() =>
+  import("../app/user-pages/dashboard/waiterDashboard.js")
+);
+const CustomerDashboard = lazy(() =>
+  import("../app/user-pages/dashboard/customerDashboard.js")
+);
 const Homepage = lazy(() => import("../homepage/Index.js"));
 
 const SuperAdmin = lazy(() => import("../app/user-pages/admin/superAdmin.js"));
@@ -79,14 +85,22 @@ const NewWaste = lazy(() => import("../app/user-pages/waste/insert.js"));
 const Waste = lazy(() => import("../app/user-pages/waste/waste.js"));
 const EditWaste = lazy(() => import("../app/user-pages/waste/editWaste.js"));
 
+const NewInventory = lazy(() =>
+  import("../app/user-pages/inventory/inventory/newInventory.js")
+);
+const InventoryList = lazy(() =>
+  import("../app/user-pages/inventory/inventory/inventoryList.js")
+);
+const DistributeInventory = lazy(() =>
+  import("../app/user-pages/inventory/inventory/distributeInventory.js")
+);
+const TransferInventory = lazy(() =>
+  import("../app/user-pages/inventory/inventory/transferInventory.js")
+);
 
-const NewInventory = lazy(() => import("../app/user-pages/inventory/inventory/newInventory.js"));
-const InventoryList = lazy(() => import("../app/user-pages/inventory/inventory/inventoryList.js"));
-const DistributeInventory = lazy(() => import("../app/user-pages/inventory/inventory/distributeInventory.js"));
-const TransferInventory = lazy(() => import("../app/user-pages/inventory/inventory/transferInventory.js"));
-
-const InvoiceList = lazy(() => import("../app/user-pages/inventory/invoice/invoiceList.js"));
-
+const InvoiceList = lazy(() =>
+  import("../app/user-pages/inventory/invoice/invoiceList.js")
+);
 
 const Booking = lazy(() => import("../app/user-pages/booking/booking.js"));
 const CreateBooking = lazy(() =>
@@ -183,17 +197,15 @@ const CustomerRegister = lazy(() =>
   import("./user-pages/login/customer/register.js")
 );
 
-const NewTable = lazy(() =>import("./user-pages/table/newTable.js"));
+const NewTable = lazy(() => import("./user-pages/table/newTable.js"));
 const AllTable = lazy(() => import("./user-pages/table/tableList.js"));
 const EditTable = lazy(() => import("./user-pages/table/editTable.js"));
 
-const TableType = lazy(() =>import("./user-pages/table/type/newType.js"));
-const TableTypeList = lazy(() =>import("./user-pages/table/type/allTypes.js"));
+const TableType = lazy(() => import("./user-pages/table/type/newType.js"));
+const TableTypeList = lazy(() => import("./user-pages/table/type/allTypes.js"));
 const EditTableType = lazy(() => import("./user-pages/table/type/editTypes"));
 
-
 const Profile = lazy(() => import("./user-pages/profile/profile.js"));
-
 
 class AppRoutes extends Component {
   render() {
@@ -203,7 +215,11 @@ class AppRoutes extends Component {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/chef/dashboard" component={ChefDashboard} />
           <Route exact path="/waiter/dashboard" component={WaiterDashboard} />
-          <Route exact path="/customer/dashboard" component={CustomerDashboard} />
+          <Route
+            exact
+            path="/customer/dashboard"
+            component={CustomerDashboard}
+          />
 
           <Route exact path="/" component={Homepage} />
           <Route exact path="/employee/login" component={EmployeeLogin} />
@@ -292,8 +308,14 @@ class AppRoutes extends Component {
           <Route path="/inventory/new-inventory" component={NewInventory} />
           <Route path="/inventory/all-invoice" component={InvoiceList} />
           <Route path="/inventory/all-inventory" component={InventoryList} />
-          <Route path="/inventory/inventory-distribution" component={DistributeInventory} />
-          <Route path="/inventory/inventory-transfer" component={TransferInventory} />
+          <Route
+            path="/inventory/inventory-distribution"
+            component={DistributeInventory}
+          />
+          <Route
+            path="/inventory/inventory-transfer"
+            component={TransferInventory}
+          />
 
           <Route path="/inventory/ingredient" component={Ingredient} />
           <Route path="/inventory/ingredient-list" component={IngredientList} />
@@ -315,7 +337,7 @@ class AppRoutes extends Component {
 
           <Route path="/table/table-type" component={TableType} />
           <Route path="/table/table-type-list" component={TableTypeList} />
-          
+
           <Route path="/user/profile" component={Profile} />
 
           <Redirect to="/error-pages/error-404" />

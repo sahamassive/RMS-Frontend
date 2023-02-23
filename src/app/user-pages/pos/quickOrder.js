@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
 import { ReactCalculator } from "simple-react-calculator";
 import Modal from "@mui/material/Modal";
 import ReactLoading from "react-loading";
@@ -126,7 +127,7 @@ function QuickOrder() {
           branchId ? branchId : restaurant_id
         }`
       )
-      .then((response) => { 
+      .then((response) => {
         setFood(response.data);
         setSearchFood(response.data);
       });
@@ -389,25 +390,25 @@ function QuickOrder() {
                         Enter Member Id
                       </Form.Label>
                       <div className="two_part">
-                      <Form.Control
-                        name="coupon"
-                        type="text"
-                        placeholder="Enter Member Id"
-                        onChange={(event) => {
-                          setMemberId(event.target.value);
-                        }}
-                      />
-                      {loading ? (
-                        <ReactLoading type="cylon" />
-                      ) : (
-                        <button
-                          className="btn btn-primary"
-                          onClick={memberSubmit}
-                        >
-                          Submit
-                        </button>
+                        <Form.Control
+                          name="coupon"
+                          type="text"
+                          placeholder="Enter Member Id"
+                          onChange={(event) => {
+                            setMemberId(event.target.value);
+                          }}
+                        />
+                        {loading ? (
+                          <ReactLoading type="cylon" />
+                        ) : (
+                          <button
+                            className="btn btn-primary"
+                            onClick={memberSubmit}
+                          >
+                            Submit
+                          </button>
                         )}
-                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -452,12 +453,18 @@ function QuickOrder() {
                       <option value="">Select here</option>
                       {waiter
                         ? waiter.map((data) => (
-                          <option value={data.emp_id}>
-                            {data.first_name} {data.last_name} ({waiterOrders ? waiterOrders.map((item) =>
-                              item.waiter_id == data.emp_id ?
-                                `${item.count ? item.count : 0}` : null)
-                              : null})
-                          </option>))
+                            <option value={data.emp_id}>
+                              {data.first_name} {data.last_name} (
+                              {waiterOrders
+                                ? waiterOrders.map((item) =>
+                                    item.waiter_id == data.emp_id
+                                      ? `${item.count ? item.count : 0}`
+                                      : null
+                                  )
+                                : null}
+                              )
+                            </option>
+                          ))
                         : null}
                     </select>
                   </div>

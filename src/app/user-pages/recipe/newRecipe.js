@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { check } from "../constant/check";
+
+const token = sessionStorage.getItem("token");
 
 function NewRecipe() {
   const [inputs, setInputs] = useState([{ value: "" }]);
@@ -102,9 +105,7 @@ function NewRecipe() {
                       <option value="">Select Ingredient</option>
                       {item
                         ? item.map((data) => (
-                            <option value={data.id}>
-                              {data.ingredient}
-                            </option>
+                            <option value={data.id}>{data.ingredient}</option>
                           ))
                         : null}
                     </select>

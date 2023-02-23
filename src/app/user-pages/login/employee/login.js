@@ -1,6 +1,12 @@
 import React, { Component, useState } from "react";
 import "../login.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
 
 function Login() {
   const [type, setType] = useState();
@@ -31,7 +37,13 @@ function Login() {
             sessionStorage.setItem("loginType", data.type);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("emp_id", data.emp_id);
-            window.location.href = "/dashboard";
+            if (type == "Chef") {
+              window.location.href = "/chef/dashboard";
+            } else if (type == "Waiter") {
+              window.location.href = "/waiter/dashboard";
+            } else {
+              window.location.href = "/dashboard";
+            }
           } else {
             sessionStorage.setItem("authenticated", false);
             window.location.href = "/employee/login";
@@ -75,6 +87,8 @@ function Login() {
               <option value="Chef">Chef</option>
               <option value="Waiter">Waiter</option>
               <option value="Manager">Manager</option>
+              <option value="Super-Admin">Super Admin</option>
+              <option value="Admin">Admin</option>
             </select>
             <Form.Control
               name="username"

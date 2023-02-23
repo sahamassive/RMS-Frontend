@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function CreateSection() {
   const [name, setName] = useState();
   const insert = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .post(`${baseUrl}/api/section-insert`, {
         section_name: name,

@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../style.css";
-import { baseUrl, restaurant_id, axios, Swal, Form } from "../../constant/global";
+import {
+  baseUrl,
+  restaurant_id,
+  axios,
+  Swal,
+  Form,
+} from "../../constant/global";
+import { check } from "../../constant/check";
+const token = sessionStorage.getItem("token");
 
 function EditSection() {
   const params = useParams();
@@ -9,6 +17,8 @@ function EditSection() {
   const [name, setName] = useState();
 
   useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .get(`${baseUrl}/api/section-edit/${params.id}`)
 
@@ -22,7 +32,8 @@ function EditSection() {
   }, [params.id]);
 
   const update = () => {
-    console.log(name);
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
     axios
       .post(`${baseUrl}/api/section-update/${params.id}`, {
         section_name: name,
