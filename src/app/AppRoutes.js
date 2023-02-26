@@ -196,6 +196,9 @@ const CustomerLogin = lazy(() =>
 const CustomerRegister = lazy(() =>
   import("./user-pages/login/customer/register.js")
 );
+const CustomerProfile = lazy(() =>
+  import("./user-pages/customer_profile/editProfile.js")
+);
 
 const NewTable = lazy(() => import("./user-pages/table/newTable.js"));
 const AllTable = lazy(() => import("./user-pages/table/tableList.js"));
@@ -206,6 +209,8 @@ const TableTypeList = lazy(() => import("./user-pages/table/type/allTypes.js"));
 const EditTableType = lazy(() => import("./user-pages/table/type/editTypes"));
 
 const Profile = lazy(() => import("./user-pages/profile/profile.js"));
+const EditProfile = lazy(() => import("./user-pages/profile/editProfile.js"));
+const Password = lazy(() => import("./user-pages/profile/changePassword.js"));
 
 class AppRoutes extends Component {
   render() {
@@ -225,6 +230,7 @@ class AppRoutes extends Component {
           <Route exact path="/employee/login" component={EmployeeLogin} />
           <Route exact path="/customer/login" component={CustomerLogin} />
           <Route exact path="/customer/register" component={CustomerRegister} />
+          <Route exact path="/customer/profile" component={CustomerProfile} />
 
           <Route path="/super-admin/super-admin" component={SuperAdmin} />
           <Route path="/super-admin/admin" component={Admin} />
@@ -310,7 +316,7 @@ class AppRoutes extends Component {
           <Route path="/inventory/all-inventory" component={InventoryList} />
           <Route
             path="/inventory/inventory-distribution"
-            component={DistributeInventory}
+            component={TransferInventory}
           />
           <Route
             path="/inventory/inventory-transfer"
@@ -339,6 +345,8 @@ class AppRoutes extends Component {
           <Route path="/table/table-type-list" component={TableTypeList} />
 
           <Route path="/user/profile" component={Profile} />
+          <Route path="/user/edit-profile" component={EditProfile} />
+          <Route path="/user/edit-password" component={Password} />
 
           <Redirect to="/error-pages/error-404" />
         </Switch>

@@ -18,10 +18,13 @@ function ChefDashboard() {
   const [recentId, setRecentId] = useState();
   const [refresh, setRefresh] = useState(true);
   const [attendOrder, setAttendOrder] = useState();
+
   if (loginType == "Super-Admin" || loginType == "Chef") {
-  } else {
+  }
+  else {
     window.location.href = "/";
   }
+
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
