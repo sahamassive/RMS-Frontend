@@ -1813,4 +1813,11 @@ select:focus {
     display: none;
   }
 }
+.footer-logo{
+  width: 2.3rem;
+  padding-bottom: -10px;
+}
+.yellow{
+  color: yellowgreen;
+}
 

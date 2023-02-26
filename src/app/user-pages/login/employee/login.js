@@ -62,8 +62,7 @@ function Login() {
   };
 
   return (
-    <div className="background">
-      <form>
+    <div className="background-log">
         <div className="col-md-12 section-04">
           <div className="col-md-2"></div>
           <div className="col-md-3">
@@ -75,10 +74,8 @@ function Login() {
             <p className="company_name">
               <span className="res">Restaurant</span> FOOD
             </p>
-
-            <Form.Label className="label-style">Select Section</Form.Label>
             <select
-              className="select2"
+              id="field-style-2"
               onChange={(event) => {
                 setType(event.target.value);
               }}
@@ -126,7 +123,6 @@ function Login() {
           </div>
           <div className="col-md-2"></div>
         </div>
-      </form>
     </div>
   );
 }

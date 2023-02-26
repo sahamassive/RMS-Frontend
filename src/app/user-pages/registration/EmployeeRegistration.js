@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import countrydata from "./../Country/Countrydata.json";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { check } from "../constant/check";
+const token = sessionStorage.getItem("token");
 
 function EmployeeRegistration() {
   const [accountDetails, setAccountDetails] = useState(true);
@@ -90,6 +91,7 @@ function EmployeeRegistration() {
     formData.append("salary", salary);
     formData.append("joining", joining);
     if (password == cpassword) {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
       await axios
         .post(`${baseUrl}/api/employee-insert`, formData)
         .then((response) => {
@@ -301,7 +303,7 @@ function EmployeeRegistration() {
                               }}
                             >
                               <option value="">Select here</option>
-                              <option value="supr-admin">Super Admin</option>
+                              <option value="super-admin">Super Admin</option>
                               <option value="admin">Admin</option>
                               <option value="sub-admin">Sub-Admin</option>
                               <option value="chef">Chef</option>

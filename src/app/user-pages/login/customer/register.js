@@ -72,11 +72,7 @@ function Register() {
                   ></img>
                 </div>
                 <div className="login-wrap p-4 p-md-5">
-                  <div className="d-flex">
-                    <div className="w-100">
-                      <h3 className="mb-4">Sign Up</h3>
-                    </div>
-                  </div>
+                <h3 className="sign-in">Sign Up</h3>
 
                   <form action="#" className="signin-form">
                     <Form.Control

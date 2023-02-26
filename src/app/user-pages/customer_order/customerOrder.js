@@ -4,7 +4,9 @@ import { useLocation, Redirect } from "react-router-dom";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import ReactLoading from "react-loading";
+import Modal from "@mui/material/Modal";
 const customerId = sessionStorage.getItem("customer_id");
+const token = sessionStorage.getItem("token");
 
 function CustomerOrder({}) {
   const [allData, setAllData] = useState([]);
@@ -21,6 +23,16 @@ function CustomerOrder({}) {
   const [loading, setLoading] = useState(false);
   const [deliveryAddress, setDeliveryAddress] = useState();
   const branchId = localStorage.getItem("branchId");
+  const [addressModalStatus, setAddressModalStatus] = React.useState(false);
+  const [city, setCity] = useState();
+  const [indication, setIndication] = useState();
+  const [address, setAddress] = useState();
+
+  const AddressModalOpen = () => {
+    setAddressModalStatus(true);
+  };
+
+  const AddressModalClose = () => setAddressModalStatus(false);
 
   useEffect(() => {
     calTotal();
@@ -90,6 +102,7 @@ function CustomerOrder({}) {
   };
   const memberSubmit = () => {
     setLoading(true);
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/get-msp/${memberId}`).then((response) => {
       if (response.data == "not a member") {
         Swal.fire({
@@ -119,6 +132,7 @@ function CustomerOrder({}) {
         confirmButtonText: "OK",
       });
     } else {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
       axios
         .post(`${baseUrl}/api/order-store`, {
           restaurant_id: restaurant_id,
@@ -144,14 +158,19 @@ function CustomerOrder({}) {
         });
     }
   };
+
+  const getAddress = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+    axios
+      .get(`${baseUrl}/api/get-delivery-address/${customerId}`)
+      .then((response) => {
+        setDeliveryAddress(response.data);
+      });
+  }
   const deliverDetails = (value) => {
     setPickUp(value);
     if (value == "home-delivery") {
-      axios
-        .get(`${baseUrl}/api/get-delivery-address/${customerId}`)
-        .then((response) => {
-          setDeliveryAddress(response.data);
-        });
+      getAddress();
     } else {
       setDeliveryAddress();
     }
@@ -163,7 +182,24 @@ function CustomerOrder({}) {
       icon: "success",
       confirmButtonText: "OK",
     });
+    getAddress();
   };
+
+  const Save = (event) => {
+    event.preventDefault();
+
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+    axios
+      .post(`${baseUrl}/api/change-delivery-address/${customerId}`, {
+        'city': city,
+        'indication' : indication,
+        'address': address,
+      })
+      .then((response) => {
+        AddressModalClose();
+        changeDeliverryAddress();
+      })
+  }
 
   return (
     <div>
@@ -208,55 +244,55 @@ function CustomerOrder({}) {
                     <tbody>
                       {orderDetails
                         ? orderDetails.map((data) => (
-                            <tr>
-                              <td>
-                                <img
-                                  className="img-style"
-                                  src={`${baseUrl}/foods/medium/${data[0].image}`}
-                                ></img>
-                              </td>
-                              <td>{data[0].food_name}</td>
-                              <td>{data[0].food_price}</td>
-                              <td>
-                                <button
-                                  className="icon-plus"
-                                  onClick={() => {
-                                    increaseQty(data[0].food_id);
-                                  }}
-                                >
-                                  <i className="bi bi-plus"></i>
-                                </button>
-                                {data[0].qty}
-                                <button
-                                  className="icon-minus"
-                                  onClick={() => {
-                                    descreaseQty(data[0].food_id);
-                                  }}
-                                >
-                                  <i className="bi bi-dash"></i>
-                                </button>
-                              </td>
-                              <td>{data[0].food_price * data[0].qty}</td>
-                              <td>
-                                {msp
-                                  ? ((data[0].food_price * data[0].qty -
-                                      data[0].basic * data[0].qty) /
-                                      100) *
-                                    msp
-                                  : 0}
-                              </td>
-                              <td>
-                                <button
-                                  className="icon-delete"
-                                  onClick={() => {
-                                    removeItem(data[0].food_id);
-                                  }}
-                                >
-                                  <i className="bi bi-x-circle"></i>
-                                </button>
-                              </td>
-                            </tr>
-                          ))
+                          <tr>
+                            <td>
+                              <img
+                                className="img-style"
+                                src={`${baseUrl}/foods/medium/${data[0].image}`}
+                              ></img>
+                            </td>
+                            <td>{data[0].food_name}</td>
+                            <td>{data[0].food_price}</td>
+                            <td>
+                              <button
+                                className="icon-plus"
+                                onClick={() => {
+                                  increaseQty(data[0].food_id);
+                                }}
+                              >
+                                <i className="bi bi-plus"></i>
+                              </button>
+                              {data[0].qty}
+                              <button
+                                className="icon-minus"
+                                onClick={() => {
+                                  descreaseQty(data[0].food_id);
+                                }}
+                              >
+                                <i className="bi bi-dash"></i>
+                              </button>
+                            </td>
+                            <td>{data[0].food_price * data[0].qty}</td>
+                            <td>
+                              {msp
+                                ? ((data[0].food_price * data[0].qty -
+                                  data[0].basic * data[0].qty) /
+                                  100) *
+                                msp
+                                : 0}
+                            </td>
+                            <td>
+                              <button
+                                className="icon-delete"
+                                onClick={() => {
+                                  removeItem(data[0].food_id);
+                                }}
+                              >
+                                <i className="bi bi-x-circle"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        ))
                         : null}
                     </tbody>
                   </table>
@@ -295,30 +331,43 @@ function CustomerOrder({}) {
                     </Form.Label>
                   </div>
                 </div>
-                {deliveryAddress ? (
-                  <div className="two_part  section-border">
-                    <div className="badge">
-                      <Form.Label>Delivery Address:</Form.Label>
-                      <br></br>
-                      <Form.Label>
-                        {deliveryAddress.city},{deliveryAddress.address}
-                      </Form.Label>
+                {pickup == 'home-delivery' ?
+                  deliveryAddress ?
+                    <div className="section-border">
+                      <div className="">
+                        <span className="bg-coloring">Delivery Address:</span>
+                        <p>
+                          <strong>{deliveryAddress.city},{deliveryAddress.address}</strong>
+                        </p>
+                      </div>
+                      <div className="">
+                        <span className="bg-coloring">Indication:</span>
+                        <p><strong>{deliveryAddress.indication}</strong></p>
+                      </div>
+                      <div className="">
+                        <button
+                          className="btn btn-warning btn-se"
+                          onClick={AddressModalOpen}
+                        >
+                          <i className="bi bi-back"></i>Change Delivery Address
+                        </button>
+                      </div>
                     </div>
-                    <div className="right-side badge">
-                      <Form.Label>Indication:</Form.Label>
-                      <br></br>
-                      <Form.Label>{deliveryAddress.indication}</Form.Label>
+                    :
+                    <div className="section-border">
+                      <div className="d-grid gap-2 col-6 mx-auto">
+                        <span className="no-address">No Address Found.</span>
+                        <button
+                          className="btn btn-warning top-space"
+                          onClick={AddressModalOpen}
+                        >
+                          <i className="bi bi-geo-alt-fill"></i>Add Address
+                        </button>
+                        <br></br>
+                      </div>
                     </div>
-                    <div className="change-address">
-                      <button
-                        className="btn btn-warning btn-se"
-                        onClick={changeDeliverryAddress}
-                      >
-                        <i className="bi bi-back"></i>Change Delivery Address
-                      </button>
-                    </div>
-                  </div>
-                ) : null}
+                  : null}
+                
               </div>
               <div className="col-md-4 block_01">
                 <h4>Member?</h4>
@@ -409,6 +458,75 @@ function CustomerOrder({}) {
           </div>
         </div>
       </div>
+      <Modal
+        open={addressModalStatus}
+        onClose={AddressModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="emp-modal">
+          <div className="close-btn">
+            <a onClick={AddressModalClose}>
+              <i className="bi bi-x-square"></i>
+            </a>
+          </div>
+          <div>
+            <br></br>
+            <div className="input_field two_part">
+              <div className="wid">
+                <Form.Label className="label-style">
+                  City Name
+                </Form.Label>
+                <Form.Control
+                  id="field-style"
+                  type="text"
+                  placeholder="City"
+                  onChange={(event) => {
+                    setCity(event.target.value);
+                  }}
+                ></Form.Control>
+              </div>
+              <div className="wid">
+                <Form.Label className="label-style">
+                  any Special Indication
+                </Form.Label>
+                <Form.Control
+                  id="field-style"
+                  type="text"
+                  placeholder="Special Indication"
+                  onChange={(event) => {
+                    setIndication(event.target.value);
+                  }}
+                ></Form.Control>
+              </div>
+            </div>
+            <div className="input_field two_part">
+              <div className="wid">
+                <Form.Label className="label-style">
+                  Address
+                </Form.Label>
+                <Form.Control
+                  id="field-style"
+                  type="text"
+                  placeholder="Address"
+                  onChange={(event) => {
+                    setAddress(event.target.value)
+                  }}
+                ></Form.Control>
+              </div>
+            </div>
+            <div className="d-grid gap-2 col-6 mx-auto">
+              <button
+                className="btn btn-warning top-space"
+                onClick={Save}
+              >
+                <i className="bi bi-save-fill"></i>Save
+              </button>
+              <br></br>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
