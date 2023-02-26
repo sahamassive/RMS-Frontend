@@ -28,7 +28,7 @@ function DistributeInventory() {
 
     axios.get(`${baseUrl}/api/chefs/${restaurant_id}`).then((response) => {
       setChef(response.data);
-      console.log(response.data);
+      //console.log(response.data);
     });
   }, []);
 

@@ -381,7 +381,7 @@ function QuickOrder() {
                 </div>
               </div>
               <div className="section-13 section-border">
-                <div className="block_01 input_field">
+                <div className="block_01 margin-style">
                   <h4>Member?</h4>
                   <p>Enter your member id if you are member.</p>
                   <div className="">
@@ -412,7 +412,8 @@ function QuickOrder() {
                     </div>
                   </div>
                 </div>
-                <div className="input_field two_part">
+                <br></br>
+                <div className="margin-style two_part">
                   <div className="wid">
                     <Form.Label className="label-style">
                       Customer name
@@ -440,7 +441,7 @@ function QuickOrder() {
                     ></input>
                   </div>
                 </div>
-                <div className="input_field two_part ">
+                <div className="margin-style two_part ">
                   <div className="wid">
                     <Form.Label className="label-style">
                       Select waiter

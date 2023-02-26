@@ -63,26 +63,11 @@
     margin-left: 2rem;
 }
 
-.search_box2 {
-    margin-left: 3rem;
-    position: absolute;
-    top: 4rem;
-    background-color: #000000;
-    border-radius: 5px;
-    height: 2.1rem;
-    border: 1px solid #706e6e;
-}
-@media only screen and (max-width: 600px) {
-    .search_box2 {
-        margin-left: 8rem;
-    }
-}
-
 .btn-style2 {
     margin-top: 2rem;
     text-align: right;
     margin-right: 2rem;
-    background-color: #3F3F3F;
+    background-color: #222222;
 }
 .btn-style3{
     margin-top: 2rem;

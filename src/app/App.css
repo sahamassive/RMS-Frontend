@@ -293,3 +293,23 @@ h1{
     color: white;
     height: 3rem;
 }
+
+.search_box2 {
+    margin-left: 3rem;
+    position: absolute;
+    top: 4rem;
+    background-color: #000000;
+    border-radius: 5px;
+    height: 2.1rem;
+    border: 1px solid #706e6e;
+}
+@media only screen and (max-width: 600px) {
+    .search_box2 {
+        margin-left: 8rem;
+    }
+}
+
+.profile2 {
+    width: 6rem;
+    border-radius: 150px;
+}
