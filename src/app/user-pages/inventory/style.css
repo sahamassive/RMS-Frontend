@@ -11,72 +11,10 @@
   border-radius: 5px;
   margin-top: 1.5rem;
 }
-
-.emp-modal{
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  margin-left: 20%;
-  margin-right: 20%;
-  border-radius: 10px;
-  height: 80vh;
-  overflow-y: auto;
-}
-@media(max-width:780px){
-  .emp-modal {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    margin-left: 15%;
-    margin-right: 15%;
-    border-radius: 10px;
-    height: 80vh;
-    overflow-y: auto;
-  }
-}
-@media(max-width:450px){
-  .emp-modal {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    margin-left: 1%;
-    margin-right: 1%;
-    border-radius: 10px;
-    height: 80vh;
-    overflow-y: auto;
-  }
-}
 .table-style5{
   padding-left: 50%;
 }
-.close-btn {
-  position: absolute;
-  right: 21%;
-  top:0;
-  font-size: 2rem;
-  color: rgb(206, 24, 100);
-  background-color: none !important;
-  cursor: pointer !important;
-}
-@media(max-width:780px) and (min-width:449px){
-  .close-btn {
-    position: absolute;
-    right: 16%;
-    top:0;
-    font-size: 2rem;
-    color: rgb(206, 24, 100);
-    background-color: none !important;
-    cursor: pointer !important;
-  }
-}
-@media(max-width:450px){
-  .close-btn {
-    position: absolute;
-    right: 3%;
-    top:0;
-    font-size: 2rem;
-    color: rgb(206, 24, 100);
-    background-color: none !important;
-    cursor: pointer !important;
-  }
-}
+
 .res2 {
   color: red;
   font-style: italic;

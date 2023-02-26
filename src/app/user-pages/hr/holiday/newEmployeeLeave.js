@@ -8,14 +8,17 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+
 function NewEmployeeLeave() {
   const [startingTime, setStartingTime] = useState();
   const [endingTime, setEndingTime] = useState();
   const [reason, setReason] = useState();
   const [employeeId, setEmployeeId] = useState();
   const [allData, setAllData] = useState();
+  const token = sessionStorage.getItem("token");
 
   const typeFunction = (type) => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/get-employee/${type}`).then((response) => {
       setAllData(response.data);
       //console.log(response.data);
@@ -31,6 +34,7 @@ function NewEmployeeLeave() {
     formData.append("start_time", startingTime);
     formData.append("end_time", endingTime);
 
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     await axios
       .post(`${baseUrl}/api/leave-insert`, formData)
       .then((response) => {

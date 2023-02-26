@@ -266,19 +266,16 @@ function Index() {
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
             <button className="branch-style">
-              <i className="bi bi-phone d-flex align-items-center">
-                <span className="branch-style">
-                  <a href={`tel: ${resturant.phone}`}></a>
-                  {resturant.phone}
+                <span className="branch-style active-time">
+                <a href={`tel: ${resturant.phone}`}> <i className="bi bi-phone"></i> {resturant.phone}</a>
                 </span>
-              </i>
             </button>
 
-            <i className="bi bi-clock d-flex align-items-center ms-4">
+            <i className="active-time bi bi-clock d-flex align-items-center ms-4">
               <span className="active-time"> Sat-Fri: 10AM - 11PM</span>
             </i>
           </div>
-          <div>
+          <div className="two_part">
             <button
               className="branch-style"
               onClick={() => {
@@ -286,25 +283,26 @@ function Index() {
               }}
             >
               <i className="bi bi-geo-alt-fill icon-space4"></i>
+              <span className="active-time branch-style"> 
               {resturant.restaurant_name},{" "}
               {branchId ? branchName : resturant.city}
+              </span>
             </button>
+            <a className="branch-style" href="/customer/login">
+            <i className="icon-space4 bi bi-box-arrow-in-right"></i>Login/SignUp
+            </a>
           </div>
         </div>
       </div>
       <header id="header" className="fixed-top d-flex align-items-cente">
         <div className="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
           <div className="dis">
-            <h3 className="logo me-auto me-lg-0">
-              <a href="index.html">
-                <img
-                  src={`${baseUrl}/restaurants/small/${resturant.logo}`}
-                ></img>
-              </a>
-            </h3>
-            <div className="logo me-auto me-lg-0">
+            <div className="me-auto me-lg-0">
+            <img className="footer-logo"
+            src={`${baseUrl}/restaurants/small/${resturant.logo}`}
+          ></img>
               <span className="res"> Restaurent</span>
-              <span className="company_name">FOOD</span>{" "}
+              <span className="company_name">FOOD</span>
             </div>
           </div>
           <nav
@@ -353,12 +351,7 @@ function Index() {
                 </a>
               </li>
               <li>
-                <a className="nav-link scrollto" href="/customer/login">
-                  Login
-                </a>
-              </li>
-              <li>
-                {sessionStorage.getItem("loginType") == "customer" ? (
+                {sessionStorage.getItem("loginType") == "Customer" ? (
                   <Link
                     className="nav-link scrollto"
                     to={{
@@ -1449,21 +1442,18 @@ function Index() {
               <div className="col-lg-3 col-md-6">
                 <div className="footer-info">
                   <div className="dis">
-                    <h3 className="logo me-auto me-lg-0">
-                      <a href="index.html">
-                        <img
-                          src={`${baseUrl}/restaurants/small/${resturant.logo}`}
-                          width="10rem"
-                        ></img>
-                      </a>
-                    </h3>
-                    <div>
-                      <span className="res"> {resturant.restaurant_name}</span>
-                      <span className="company_name">FOOD</span>
-                    </div>
+                    <div className="me-auto me-lg-0">
+                    <a href="index.html">
+                    <img className="footer-logo"
+                      src={`${baseUrl}/restaurants/small/${resturant.logo}`}
+                    ></img>
+                  </a>
+                <span className="res"> Restaurent</span>
+                <span className="company_name">FOOD</span>{" "}
+              </div>
                   </div>
                   <p>
-                    <span className="res"> Main Branch</span>
+                    <span className="yellow">Main Branch</span>
                     <br></br>
                     {resturant.address},<br></br>
                     {resturant.state}, {resturant.city},{resturant.country}
@@ -1547,8 +1537,8 @@ function Index() {
               <div className="col-lg-4 col-md-6 footer-newsletter">
                 <h4>Our Newsletter</h4>
                 <p>
-                  Tamen quem nulla quae legam multos aute sint culpa legam
-                  noster magna
+                  Subscribe for our newsletter. Be updated with our food
+                  and recipes.
                 </p>
                 <form action="" method="post">
                   <input type="email" name="email"></input>
@@ -1560,10 +1550,7 @@ function Index() {
         </div>
         <div className="container">
           <div className="copyright">
-            &copy; Copyright <strong></strong>. All Rights Reserved
-          </div>
-          <div className="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            &copy; Copyright. <strong> All Rights Reserved </strong> <a href="https://www.massivestarstudio.com">MassiveStar Studio Ltd.</a>
           </div>
         </div>
       </div>

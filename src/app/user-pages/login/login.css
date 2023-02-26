@@ -92,7 +92,7 @@
     }
 }
 
-.background {
+.background-log {
     background-color: white;
     padding-top: 7rem;
 }
@@ -118,7 +118,7 @@ input[type=text]:focus,
 input[type=password]:focus {
     outline: 1px solid rgb(141, 113, 22);
     background-color: rgb(255, 255, 255);
-    font-size: 1.3em;
+    font-size: 1em;
 }
 
 .right-pic {
@@ -329,4 +329,14 @@ img {
 .text-left {
     text-align: left ;
 }
+#field-style-2{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    width: 50%;
+    margin-left: 50%;
+    display: flex;
+}
 
+.sign-in{
+    color: rgb(51, 50, 50);
+}

@@ -46,7 +46,7 @@ function Login(props) {
           if (data.message == "success") {
             sessionStorage.setItem("loginType", data.type);
             sessionStorage.setItem("token", data.token);
-            sessionStorage.setItem("customer_id", data.customer_id);
+            sessionStorage.setItem("emp_id", data.customer_id);
             window.location.pathname == "/customer/login"
               ? (window.location.href = "/customer/dashboard")
               : Swal.fire({
@@ -98,27 +98,7 @@ function Login(props) {
                   ></img>
                 </div>
                 <div className="login-wrap p-4 p-md-5">
-                  <div className="d-flex">
-                    <div className="w-100">
-                      <h3 className="mb-4">Sign In</h3>
-                    </div>
-                    <div className="w-100">
-                      <p className="social-media d-flex justify-content-end">
-                        <a
-                          href="#"
-                          className="social-icon d-flex align-items-center justify-content-center"
-                        >
-                          <span className="bi bi-facebook"></span>
-                        </a>
-                        <a
-                          href="#"
-                          className="social-icon d-flex align-items-center justify-content-center"
-                        >
-                          <span className="bi bi-google"></span>
-                        </a>
-                      </p>
-                    </div>
-                  </div>
+                  <h3 className="sign-in">Sign In</h3>
                   <form action="#" className="signin-form">
                     <div className="form-group mb-3">
                       <label className="label" for="name">
@@ -151,7 +131,6 @@ function Login(props) {
                         debug={true}
                       />
                     </div>
-
                     <div className="form-group">
                       <button
                         type="submit"
