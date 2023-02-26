@@ -16,6 +16,7 @@ const token = sessionStorage.getItem("token");
 function TransferInventory() {
   const singleQueue = [];
   const [chef, setChef] = useState();
+  const [chefId, setChefId] = useState();
   const [branchId, setBranchId] = useState();
   const [inventory, setInventory] = useState();
   const [askQuantity, setAskQuantity] = useState();
@@ -24,6 +25,15 @@ function TransferInventory() {
   const [allBranch, setAllBranch] = useState("");
   const [CheckId, setCheckId] = useState();
   const [disabledButton, setDisabledButton] = useState({});
+
+  useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+    axios.get(`${baseUrl}/api/chefs/${restaurant_id}`).then((response) => {
+      setChef(response.data);
+      //console.log(response.data);
+    });
+  }, []);
 
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
@@ -200,22 +210,43 @@ function TransferInventory() {
   const Confirm = async (event) => {
     event.preventDefault();
 
-    axios
-      .post(`${baseUrl}/api/inventory-transfer`, {
-        branchId: branchId,
-        restaurant_id: restaurant_id,
+    if (window.location.pathname == '/inventory/inventory-distribution') {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+      axios
+      .post(`${baseUrl}/api/inventory-distribution`, {
+        chefId: chefId,
         inventoryQueue: inventoryQueue,
       })
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          if (chefId) {
+            setInventoryQueue([]);
+          }
         });
-        if (branchId) {
-          setInventoryQueue([]);
-        }
-      });
+    }
+    if (window.location.pathname == '/inventory/inventory-transfer') {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+      axios
+        .post(`${baseUrl}/api/inventory-transfer`, {
+          branchId: branchId,
+          restaurant_id: restaurant_id,
+          inventoryQueue: inventoryQueue,
+        })
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          if (branchId) {
+            setInventoryQueue([]);
+          }
+        });
+    }
   };
 
   $.DataTable = require("datatables.net");
@@ -244,21 +275,44 @@ function TransferInventory() {
               <div>
                 <div className="input_field two_part">
                   <div className="wid">
-                    <Form.Label className="label-style">
-                      Select Branch...
-                    </Form.Label>
-                    <select
-                      onChange={(event) => {
-                        setBranchId(event.target.value);
-                      }}
-                    >
-                      <option>Select from here...</option>
-                      {allBranch
-                        ? allBranch.map((data) => (
-                            <option value={data.id}>{data.city} Branch</option>
-                          ))
-                        : null}
-                    </select>
+                    
+                    {window.location.pathname == '/inventory/inventory-distribution' ?
+                      (<div>
+                        <Form.Label className="label-style">Select Chef</Form.Label>
+                        <select
+                          onChange={(event) => {
+                            setChefId(event.target.value);
+                          }}
+                        >
+                          <option>Select from here...</option>
+                          {chef
+                            ? chef.map((data) => (
+                                <option value={data.emp_id}>
+                                  {data.emp_id}, {data.first_name} {data.last_name}
+                                </option>
+                              ))
+                            : null}
+                        </select>
+                      </div>) : (<div>
+                        <Form.Label className="label-style">
+                        Select Branch...
+                      </Form.Label>
+                      <select
+                        onChange={(event) => {
+                          setBranchId(event.target.value);
+                        }}
+                      >
+                        <option>Select from here...</option>
+                        {allBranch
+                          ? allBranch.map((data) => (
+                              <option value={data.id}>{data.city} Branch</option>
+                            ))
+                          : null}
+                      </select>
+                      </div>)
+                  }
+
+
                   </div>
                   <div className="wid">
                     <Form.Label className="label-style">Date</Form.Label>
