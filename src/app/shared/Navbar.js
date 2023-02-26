@@ -4,13 +4,32 @@ import { Link } from "react-router-dom";
 import { Trans } from "react-i18next";
 import "./style2.css";
 import { useHistory } from "react-router-dom";
+import { baseUrl, axios } from "../user-pages/constant/global";
+const token = sessionStorage.getItem("token");
+const type = sessionStorage.getItem("loginType");
+const emp_id = sessionStorage.getItem("emp_id");
 
 class Navbar extends Component {
   //profile info
+
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+  }
+  componentDidMount() {
+    // This function will be called once when the component is mounted
+    // It's a good place to make asynchronous requests for data
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+    axios.get(`${baseUrl}/api/profile/${type}/${emp_id}`).then((response) => {
+      this.setState(response.data);
+      console.log(this.state);
+    });
+  }
   profile() {
     window.location.href = `/user/profile`;
   }
-  
+
   //logout function
   logout() {
     sessionStorage.removeItem("token");
@@ -234,7 +253,10 @@ class Navbar extends Component {
                     alt="profile"
                   />
                   <p className="mb-0 d-none d-sm-block navbar-profile-name">
-                    <Trans>Manik Saha</Trans>
+                    <Trans>
+                      {this.state.name} {this.state.first_name}{" "}
+                      {this.state.last_name}
+                    </Trans>
                   </p>
                   <i className="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
@@ -255,7 +277,9 @@ class Navbar extends Component {
                   <div className="preview-item-content">
                     <p className="preview-subject mb-1">
                       <Trans>
-                        <button className="btn btn-dark" onClick={this.profile}>Profile</button>
+                        <button className="btn btn-dark" onClick={this.profile}>
+                          Profile
+                        </button>
                       </Trans>
                     </p>
                   </div>
@@ -274,7 +298,9 @@ class Navbar extends Component {
                   <div className="preview-item-content">
                     <p className="preview-subject mb-1">
                       <Trans>
-                        <button className="btn btn-dark" onClick={this.logout}>Log Out</button>
+                        <button className="btn btn-dark" onClick={this.logout}>
+                          Log Out
+                        </button>
                       </Trans>
                     </p>
                   </div>

@@ -10,6 +10,8 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+import TestTitle from "../../constant/title";
+import PageTitle from "../../constant/title";
 const token = sessionStorage.getItem("token");
 
 function Category() {
@@ -31,6 +33,7 @@ function Category() {
 
   return (
     <div>
+      <PageTitle />
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
