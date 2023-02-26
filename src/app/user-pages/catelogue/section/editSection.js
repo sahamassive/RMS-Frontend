@@ -9,6 +9,7 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+
 const token = sessionStorage.getItem("token");
 
 function EditSection() {
