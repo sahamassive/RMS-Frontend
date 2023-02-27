@@ -6,11 +6,28 @@ import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { check } from "../constant/check";
 function AllEmployee() {
   const [allData, setAllData] = useState("");
+  const [admin, setAdmin] = useState("");
+  const [waiter, setWaiter] = useState("");
+  const [manager, setManager] = useState("");
+  const [deliveryMan, setDeliveryMan] = useState("");
+  const [cleaner, setCleaner] = useState("");
+  const [chef, setChef] = useState("");
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/api/get-all-employee`).then((response) => {
+      setAdmin(response.data.admin);
+      setWaiter(response.data.waiter);
+      setManager(response.data.manager);
+      setDeliveryMan(response.data.delivery_man);
+      setCleaner(response.data.cleaner);
+      setChef(response.data.chef);
+    });
+  }, [])
 
   const getEmployee = (filter) => {
     axios.get(`${baseUrl}/api/get-employee/${filter}`).then((response) => {
       setAllData(response.data);
-      console.log(allData);
+      //console.log(allData);
     });
   };
 
@@ -71,6 +88,51 @@ function AllEmployee() {
               >
                 <i className="bi bi-person-workspace"></i>Cleaner
               </button>
+            </div>
+            <br></br>
+            <div className="card-section">
+              <div className="single-card">
+                Waiters
+                <br></br>
+                <strong>
+                  <i className="bi bi-people-fill"></i> {admin}
+                </strong>
+              </div>
+              <div className="single-card">
+                Chef
+                <br></br>
+                <strong>
+                  <i className="bi bi-people-fill"></i> {chef}
+                </strong>
+              </div>
+              <div className="single-card">
+                Manager
+                <br></br>
+                <strong>
+                  <i className="bi bi-people-fill"></i> {manager}
+                </strong>
+              </div>
+              <div className="single-card">
+                Delivery Man
+                <br></br>
+                <strong>
+                  <i className="bi bi-people-fill"></i> {deliveryMan}
+                </strong>
+              </div>
+              <div className="single-card">
+                Cleaner
+                <br></br>
+                <strong>
+                  <i className="bi bi-people-fill"></i> {cleaner}
+                </strong>
+              </div>
+              <div className="single-card">
+                Waiter
+                <br></br>
+                <strong>
+                  <i className="bi bi-people-fill"></i> {waiter}
+                </strong>
+              </div>
             </div>
             <div className="table-responsive table-style">
               {allData ? (

@@ -563,14 +563,14 @@ function CustomerOrder({}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className="emp-modal">
+        <div className="address_modal">
           <div className="close-btn">
             <a onClick={AddressModalClose}>
               <i className="bi bi-x-square"></i>
             </a>
           </div>
+          <br></br>
           <div>
-            <br></br>
             <div className="input_field two_part">
               <div className="wid">
                 <Form.Label className="label-style">City Name</Form.Label>

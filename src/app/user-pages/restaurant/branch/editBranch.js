@@ -177,7 +177,7 @@ function EditBranch() {
                                             </select>
                                         </div>
                                     </div>
-                                    <div className="input_field">
+                                    <div className="">
                                         <button onClick={update} className="btn btn-warning top-space"><i
                                             className="bi bi-save-fill"></i>Update</button>
                                         <br></br><br></br>

@@ -1,8 +1,9 @@
-.add-btn {
+
+.add-btn{
   margin-left: 2rem;
-  margin-top: 0.3rem;
+  margin-top: .3rem;
 }
-.icon-delete {
+.icon-delete{
   background-color: red;
   color: white;
   font-size: 1.4rem;
@@ -10,7 +11,7 @@
   border-radius: 5px;
   margin-top: 1.5rem;
 }
-.table-style5 {
+.table-style5{
   padding-left: 50%;
 }
 
@@ -18,76 +19,77 @@
   color: red;
   font-style: italic;
   font-size: 1em;
-  font-family: "Monotype Corsiva";
+  font-family: 'Monotype Corsiva';
   background-color: white;
 }
 
 .logo2 {
-  width: 4em;
-  position: inherit;
-  top: 5%;
-  left: 25%;
+  width: 6em;
+  padding-left: 2.5rem;
+  margin-top: 2rem;
 }
 
 .company_name2 {
   font-size: 1.3em;
   color: rgb(179, 179, 14);
-  font-family: "Gill Sans";
+  font-family: 'Gill Sans';
   text-align: center;
-  margin-top: 6rem;
   font-weight: bold;
 }
-.border-box {
-  border: 2px dashed #90aadb;
+.border-box{
+  border: 2px dashed #90AADB;
   height: auto;
   width: auto;
   margin-top: 1.9rem;
-  margin-left: 0.7rem;
-  padding: 0.3rem;
+  margin-left: .7rem;
+  padding: .3rem;
 }
 
-.border-box2 {
-  border: 2px dashed #90aadb;
+.border-box2{
+  border: 2px dashed #90AADB;
   height: auto;
   width: auto;
-  margin-left: 0.7rem;
-  padding: 0.3rem;
+  margin-left: .7rem;
+  padding: .3rem;
 }
 
-.border-box3 {
-  border: 2px dashed #90aadb;
+.border-box3{
+  border: 2px dashed #90AADB;
   width: auto;
-  height: 2.4rem;
-  margin-left: 0.7rem;
-  padding: 0.3rem;
+  height:2.4rem;
+  margin-left: .7rem;
+  padding: .3rem;
 }
 
-.logo-section {
-  padding-left: 2rem;
-}
-.invoice {
-  border: 2px dashed #90aadb;
-  position: inherit;
-  right: 25%;
-  top: 10%;
+.invoice{
+  border: 2px dashed #90AADB;
   padding-right: 6rem;
 }
-.line-style {
-  border: 1.5px solid rgb(0, 0, 0) !important;
-  margin-left: 5%;
-  margin-right: 5%;
+
+.invoice-2{
+  margin-top: 3rem;
 }
-.icon-color {
+
+.line-style{
+border: 1.5px solid rgb(0, 0, 0) !important;
+margin-left: 5%;
+margin-right: 5%;
+}
+
+.icon-color{
   color: rgb(0, 0, 0);
 }
-.position {
-  position: relative;
+
+.position{
+  position:relative;
   right: 0;
 }
-.modal-table {
+
+.modal-table{
   padding: 1rem;
 }
-#inp {
+
+#inp{
   background-color: white;
   color: black;
 }

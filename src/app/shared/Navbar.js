@@ -252,27 +252,19 @@ class Navbar extends Component {
                 className="nav-link cursor-pointer no-caret"
               >
                 <div className="navbar-profile">
-                  {type == "Customer" ? (
+                {type == "Customer" ?
                     <img
                       className="img-xs rounded-circle"
-                      src={
-                        this.state.image
-                          ? `${baseUrl}/customer/small/${this.state.image}`
-                          : null
-                      }
+                      src={this.state.image ? `${baseUrl}/customer/small/${this.state.image}` : null}
                       alt="profile"
-                    />
-                  ) : (
+                  /> 
+                  :
                     <img
-                      className="img-xs rounded-circle"
-                      src={
-                        this.state.image
-                          ? `${baseUrl}/employee/small/${this.state.image}`
-                          : null
-                      }
+                    className="img-xs rounded-circle"
+                      src={this.state.image ? `${baseUrl}/employee/small/${this.state.image}` : null}
                       alt="profile"
-                    />
-                  )}
+                />
+              }
                   <p className="mb-0 d-none d-sm-block navbar-profile-name">
                     <Trans>
                       {this.state.name} {this.state.first_name}{" "}
