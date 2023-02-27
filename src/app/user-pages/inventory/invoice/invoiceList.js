@@ -147,8 +147,8 @@ function InvoiceList() {
         aria-describedby="modal-modal-description"
       >
         <div id="invoiceDetails" className="emp-modal">
-          <div className="btn-section">
-            <div className="logo-section">
+          <div className="section-44">
+            <div className="">
               <img
                 className="logo2"
                 src={require("../../../../assets/images/logo.png")}
@@ -174,14 +174,14 @@ function InvoiceList() {
                 {restaurant ? restaurant.email : null}
               </span>
             </div>
-            <div>
+            <div className="invoice-2">
               <span className="invoice">Invoice</span>
             </div>
           </div>
           <hr className="line-style"></hr>
           {detailsData ? (
             <div>
-              <div className="btn-section">
+              <div className="section-44">
                 <span className="border-box3">Supplier</span>
                 {supplier ? (
                   <div className="border-box2">
