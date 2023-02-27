@@ -16,6 +16,7 @@ class Navbar extends Component {
     super(props);
     this.state = { data: [] };
   }
+
   componentDidMount() {
     // This function will be called once when the component is mounted
     // It's a good place to make asynchronous requests for data
@@ -23,7 +24,6 @@ class Navbar extends Component {
 
     axios.get(`${baseUrl}/api/profile/${type}/${emp_id}`).then((response) => {
       this.setState(response.data);
-      console.log(response.data);
     });
   }
 
@@ -276,27 +276,30 @@ class Navbar extends Component {
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="navbar-dropdown preview-list navbar-profile-dropdown-menu">
-              <Dropdown.Divider />
-              <Dropdown.Item
-              href="!#"
-              onClick={(evt) => evt.preventDefault()}
-              className="preview-item"
-            >
-              <div className="preview-thumbnail">
-                <div className="preview-icon bg-dark rounded-circle">
-                  <i className="bi bi-lock-fill"></i>
-                </div>
-              </div>
-              <div className="preview-item-content">
-                <p className="preview-subject mb-1">
-                  <Trans>
-                    <button className="btn btn-dark" onClick={this.password}>
-                      Change Password
-                    </button>
-                  </Trans>
-                </p>
-              </div>
-            </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  href="!#"
+                  onClick={(evt) => evt.preventDefault()}
+                  className="preview-item"
+                >
+                  <div className="preview-thumbnail">
+                    <div className="preview-icon bg-dark rounded-circle">
+                      <i className="bi bi-lock-fill"></i>
+                    </div>
+                  </div>
+                  <div className="preview-item-content">
+                    <p className="preview-subject mb-1">
+                      <Trans>
+                        <button
+                          className="btn btn-dark"
+                          onClick={this.password}
+                        >
+                          Change Password
+                        </button>
+                      </Trans>
+                    </p>
+                  </div>
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item
                   href="!#"

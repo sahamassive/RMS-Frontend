@@ -307,57 +307,58 @@ h1 {
   gap: .5rem;
 }
 
-@media(max-width:780px) and (min-width:449px){
-    .close-btn {
-        position: absolute;
-        right: 16%;
-        top:0;
-        font-size: 2rem;
-        color: rgb(206, 24, 100);
-        background-color: none !important;
-        cursor: pointer !important;
-    }
+@media (max-width: 780px) and (min-width: 449px) {
+  .close-btn {
+    position: absolute;
+    right: 16%;
+    top: 0;
+    font-size: 2rem;
+    color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
 }
-@media(max-width:450px){
-    .close-btn {
-        position: absolute;
-        right: 3%;
-        top:0;
-        font-size: 2rem;
-        color: rgb(206, 24, 100);
-        background-color: none !important;
-        cursor: pointer !important;
-    }
+@media (max-width: 450px) {
+  .close-btn {
+    position: absolute;
+    right: 3%;
+    top: 0;
+    font-size: 2rem;
+    color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
 }
-#field-style{
-    background-color: white;
-    color: black;
+#field-style {
+  background-color: white;
+  color: black;
 }
-.bg-coloring{
-    background-color: cadetblue;
-    color: white;
-    height: 3rem;
+.bg-coloring {
+  background-color: cadetblue;
+  color: white;
+  height: 3rem;
 }
 
 .search_box2 {
-    margin-left: 3rem;
-    position: absolute;
-    top: 4rem;
-    background-color: #000000;
-    border-radius: 5px;
-    height: 2.1rem;
-    border: 1px solid #706e6e;
+  margin-left: 3rem;
+  position: absolute;
+  top: 4rem;
+  background-color: #000000;
+  border-radius: 5px;
+  height: 2.1rem;
+  border: 1px solid #706e6e;
 }
 @media only screen and (max-width: 600px) {
-    .search_box2 {
-        margin-left: 8rem;
-    }
+  .search_box2 {
+    margin-left: 8rem;
+  }
 }
 
 .profile2 {
-    width: 6rem;
-    border-radius: 150px;
+  width: 6rem;
+  border-radius: 150px;
 }
+
 .card-section{
   display: flex;
   justify-content: flex-start;
@@ -388,5 +389,6 @@ h1 {
   display: flex;
   justify-content: space-around;
 }
+
 
 

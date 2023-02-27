@@ -12,6 +12,7 @@ import {
 } from "../constant/global";
 const token = sessionStorage.getItem("token");
 const loginType = sessionStorage.getItem("loginType");
+const emp_id = sessionStorage.getItem("emp_id");
 function ChefDashboard() {
   const [allData, setAllData] = useState();
   const [recentOrder, setRecentOrder] = useState();
@@ -20,8 +21,7 @@ function ChefDashboard() {
   const [attendOrder, setAttendOrder] = useState();
 
   if (loginType == "Super-Admin" || loginType == "Chef") {
-  }
-  else {
+  } else {
     window.location.href = "/";
   }
 
@@ -39,7 +39,7 @@ function ChefDashboard() {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
     axios
-      .get(`${baseUrl}/api/chef-inventory/C-02034260217/today`)
+      .get(`${baseUrl}/api/chef-inventory/${emp_id}/today`)
       .then((response) => {
         setAllData(response.data);
       });
@@ -50,7 +50,7 @@ function ChefDashboard() {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
     axios
-      .get(`${baseUrl}/api/chef-attend-order/C-02034260217/today`)
+      .get(`${baseUrl}/api/chef-attend-order/${emp_id}/today`)
       .then((response) => {
         setAttendOrder(response.data);
       });
@@ -62,7 +62,7 @@ function ChefDashboard() {
 
     axios
       .get(
-        `${baseUrl}/api/chef-order/C-02034260217/${order_id}/${item_code}/${quantity}`
+        `${baseUrl}/api/chef-order/${emp_id}/${order_id}/${item_code}/${quantity}`
       )
       .then((response) => {
         if (response.data.msg) {
@@ -86,7 +86,7 @@ function ChefDashboard() {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
     axios
-      .get(`${baseUrl}/api/chef-inventory/C-02034260217/${fil}`)
+      .get(`${baseUrl}/api/chef-inventory/${emp_id}/${fil}`)
       .then((response) => {
         setAllData(response.data);
       });
@@ -96,7 +96,7 @@ function ChefDashboard() {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
     axios
-      .get(`${baseUrl}/api/chef-attend-order/C-02034260217/${fil}`)
+      .get(`${baseUrl}/api/chef-attend-order/${emp_id}/${fil}`)
       .then((response) => {
         setAttendOrder(response.data);
       });
@@ -228,15 +228,15 @@ function ChefDashboard() {
               <div className="container">
                 <div className="row">
                   {recentId
-                    ? recentId.map((id) => (
+                    ? recentId.map((item) => (
                         <div className="col col-md-4 section-border">
                           <p className="order-id">
-                            Order ID: <strong>{id.order_id}</strong>
+                            Order ID: <strong>{item.order_id}</strong>
                           </p>
                           <div className="row">
                             {recentOrder
                               ? recentOrder.map((data) =>
-                                  id.order_id == data.order_id ? (
+                                  item.order_id == data.order_id ? (
                                     <div className="col">
                                       <div className="item-border">
                                         <div className="two_part">
@@ -261,7 +261,7 @@ function ChefDashboard() {
                                           className="btn btn-block btn-primary"
                                           onClick={() =>
                                             ConfirmItem(
-                                              id.order_id,
+                                              item.order_id,
                                               data.item_code,
                                               data.quantity
                                             )
