@@ -315,7 +315,7 @@ function EditRestaurant() {
                           ></Form.Control>
                         </Form.Group>
                       </div>
-                      <div className="input_field">
+                      <div className="">
                         <button
                           onClick={update}
                           className="btn btn-warning top-space"

@@ -9,9 +9,11 @@ const token = sessionStorage.getItem("token");
 
 function ItemList() {
   const [allData, setAllData] = useState("");
+  
   useEffect(() => {
     getData();
   }, []);
+
   const getData = () => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 

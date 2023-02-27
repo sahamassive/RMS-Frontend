@@ -259,8 +259,10 @@ class Navbar extends Component {
                       alt="profile"
                   /> 
                   :
-                  <img
-                  src={this.state.image ? `${baseUrl}/employee/small/${this.state.image}` : null }
+                    <img
+                    className="img-xs rounded-circle"
+                      src={this.state.image ? `${baseUrl}/employee/small/${this.state.image}` : null}
+                      alt="profile"
                 />
               }
                   <p className="mb-0 d-none d-sm-block navbar-profile-name">

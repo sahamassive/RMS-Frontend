@@ -24,10 +24,9 @@
 }
 
 .logo2 {
-  width: 4em;
-  position: inherit;
-  top: 5%;
-  left:25%;
+  width: 6em;
+  padding-left: 2.5rem;
+  margin-top: 2rem;
 }
 
 .company_name2 {
@@ -35,7 +34,6 @@
   color: rgb(179, 179, 14);
   font-family: 'Gill Sans';
   text-align: center;
-  margin-top: 6rem;
   font-weight: bold;
 }
 .border-box{
@@ -63,31 +61,34 @@
   padding: .3rem;
 }
 
-.logo-section{
-  padding-left: 2rem;
-}
 .invoice{
   border: 2px dashed #90AADB;
-  position: inherit;
-  right:25%;
-  top:10%;
   padding-right: 6rem;
 }
+
+.invoice-2{
+  margin-top: 3rem;
+}
+
 .line-style{
 border: 1.5px solid rgb(0, 0, 0) !important;
 margin-left: 5%;
 margin-right: 5%;
 }
+
 .icon-color{
   color: rgb(0, 0, 0);
 }
+
 .position{
   position:relative;
   right: 0;
 }
+
 .modal-table{
   padding: 1rem;
 }
+
 #inp{
   background-color: white;
   color: black;

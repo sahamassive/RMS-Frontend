@@ -30,7 +30,7 @@ function ChefDashboard() {
 
     axios.get(`${baseUrl}/api/order/recent-order`).then((response) => {
       setRecentOrder(response.data.data);
-      setRecentId(response.data.id);
+      setRecentId(response.data.recent_id);
     });
     setRefresh(false);
   }, [refresh]);
@@ -136,8 +136,8 @@ function ChefDashboard() {
             </div>
             <div className="col-sm-12 background">
               <br></br>
-              <h4 className="card-title">Running Order:</h4>
-              <div className="two_part">
+              <h4 className="card-title input_field order-id">Running Order:</h4>
+              <div className="two_part input_field">
                 <button
                   onClick={() => {
                     attendOrderFilter("today");
@@ -224,7 +224,7 @@ function ChefDashboard() {
               </div>
             </div>
             <div className="col-sm-12 background">
-              <h4 className="card-title">Pending Order:</h4>
+              <h4 className="card-title input_field order-id">Pending Order:</h4>
               <div className="container">
                 <div className="row">
                   {recentId
@@ -288,8 +288,8 @@ function ChefDashboard() {
             </div>
             <div className="col-sm-12 background">
               <br></br>
-              <h4 className="card-title">Today's taken inventory item:</h4>
-              <div className="two_part">
+              <h4 className="card-title input_field order-id">Today's taken inventory item:</h4>
+              <div className="two_part input_field">
                 <button
                   onClick={() => {
                     filterSet("today");
@@ -384,7 +384,7 @@ function ChefDashboard() {
                             </td>
                           </tr>
                         ))
-                      : null}
+                      : <tr></tr>}
                   </tbody>
                 </table>
                 <br></br>
