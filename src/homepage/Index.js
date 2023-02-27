@@ -22,14 +22,13 @@ function Index() {
   const [branchEmail, setBranchEmail] = useState("");
   const [branchAddres, setBranchAddress] = useState("");
   const { state } = useLocation();
-  const [orderDetails, setOrderDetails] = useState(state ? state : []);
 
   const [branchId, setBranchId] = useState("");
   const [category, setCategory] = useState("");
   const [food, setFood] = useState("");
   const [spfood, setSpFood] = useState("");
   const [singlefood, setSingleFood] = useState("");
-  //const [orderDetails, setOrderDetails] = useState([]);
+  const [orderDetails, setOrderDetails] = useState([]);
   const order = [];
   const [open, setOpen] = React.useState(false);
   const [branchModalStatus, setBranchModalStatus] = React.useState(false);
@@ -51,6 +50,13 @@ function Index() {
   const [note, setNote] = useState();
   const [location, setLocation] = useState({});
   const [userCity, setuserCity] = useState();
+  useEffect(() => {
+    const jsonString = sessionStorage.getItem("orderDetails2");
+    const parsedObject = JSON.parse(jsonString);
+
+    setOrderDetails(parsedObject ? parsedObject : []);
+    sessionStorage.removeItem("orderDetails2");
+  }, []);
 
   const insert = async (e) => {
     e.preventDefault();
@@ -219,7 +225,7 @@ function Index() {
   const selectBranch = (id, city, phone, address, email) => {
     setBranchId(id);
     setBranchName(city);
-    setOrderDetails([]);
+    // setOrderDetails([]);
     setBranchPhone(phone);
     setBranchAddress(address);
     setBranchEmail(email);
@@ -266,9 +272,12 @@ function Index() {
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
             <button className="branch-style">
-                <span className="branch-style active-time">
-                <a href={`tel: ${resturant.phone}`}> <i className="bi bi-phone"></i> {resturant.phone}</a>
-                </span>
+              <span className="branch-style active-time">
+                <a href={`tel: ${resturant.phone}`}>
+                  {" "}
+                  <i className="bi bi-phone"></i> {resturant.phone}
+                </a>
+              </span>
             </button>
 
             <i className="active-time bi bi-clock d-flex align-items-center ms-4">
@@ -283,13 +292,14 @@ function Index() {
               }}
             >
               <i className="bi bi-geo-alt-fill icon-space4"></i>
-              <span className="active-time branch-style"> 
-              {resturant.restaurant_name},{" "}
-              {branchId ? branchName : resturant.city}
+              <span className="active-time branch-style">
+                {resturant.restaurant_name},{" "}
+                {branchId ? branchName : resturant.city}
               </span>
             </button>
             <a className="branch-style" href="/customer/login">
-            <i className="icon-space4 bi bi-box-arrow-in-right"></i>Login/SignUp
+              <i className="icon-space4 bi bi-box-arrow-in-right"></i>
+              Login/SignUp
             </a>
           </div>
         </div>
@@ -298,9 +308,10 @@ function Index() {
         <div className="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
           <div className="dis">
             <div className="me-auto me-lg-0">
-            <img className="footer-logo"
-            src={`${baseUrl}/restaurants/small/${resturant.logo}`}
-          ></img>
+              <img
+                className="footer-logo"
+                src={`${baseUrl}/restaurants/small/${resturant.logo}`}
+              ></img>
               <span className="res"> Restaurent</span>
               <span className="company_name">FOOD</span>
             </div>
@@ -356,9 +367,12 @@ function Index() {
                     className="nav-link scrollto"
                     to={{
                       pathname: "/customer-order",
-                      state: orderDetails,
                     }}
                   >
+                    {sessionStorage.setItem(
+                      "orderDetails",
+                      JSON.stringify(orderDetails)
+                    )}
                     <i className="bi bi-cart4"></i>
                     <span className="cart-number">
                       {orderDetails ? orderDetails.length : 0}
@@ -1443,14 +1457,15 @@ function Index() {
                 <div className="footer-info">
                   <div className="dis">
                     <div className="me-auto me-lg-0">
-                    <a href="index.html">
-                    <img className="footer-logo"
-                      src={`${baseUrl}/restaurants/small/${resturant.logo}`}
-                    ></img>
-                  </a>
-                <span className="res"> Restaurent</span>
-                <span className="company_name">FOOD</span>{" "}
-              </div>
+                      <a href="index.html">
+                        <img
+                          className="footer-logo"
+                          src={`${baseUrl}/restaurants/small/${resturant.logo}`}
+                        ></img>
+                      </a>
+                      <span className="res"> Restaurent</span>
+                      <span className="company_name">FOOD</span>{" "}
+                    </div>
                   </div>
                   <p>
                     <span className="yellow">Main Branch</span>
@@ -1537,8 +1552,8 @@ function Index() {
               <div className="col-lg-4 col-md-6 footer-newsletter">
                 <h4>Our Newsletter</h4>
                 <p>
-                  Subscribe for our newsletter. Be updated with our food
-                  and recipes.
+                  Subscribe for our newsletter. Be updated with our food and
+                  recipes.
                 </p>
                 <form action="" method="post">
                   <input type="email" name="email"></input>
@@ -1550,7 +1565,10 @@ function Index() {
         </div>
         <div className="container">
           <div className="copyright">
-            &copy; Copyright. <strong> All Rights Reserved </strong> <a href="https://www.massivestarstudio.com">MassiveStar Studio Ltd.</a>
+            &copy; Copyright. <strong> All Rights Reserved </strong>{" "}
+            <a href="https://www.massivestarstudio.com">
+              MassiveStar Studio Ltd.
+            </a>
           </div>
         </div>
       </div>

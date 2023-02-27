@@ -11,7 +11,7 @@ const token = sessionStorage.getItem("token");
 function CustomerOrder({}) {
   const [allData, setAllData] = useState([]);
   const { state } = useLocation();
-  const [orderDetails, setOrderDetails] = useState(state);
+
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState();
   const [pickup, setPickUp] = useState();
@@ -27,6 +27,18 @@ function CustomerOrder({}) {
   const [city, setCity] = useState();
   const [indication, setIndication] = useState();
   const [address, setAddress] = useState();
+  const [member, setMember] = useState(false);
+  const [coupon, setCoupon] = useState(false);
+  const [couponNo, setCouponNo] = useState();
+  const [discount, setDiscount] = useState();
+  const [orderDetails, setOrderDetails] = useState([]);
+
+  useEffect(() => {
+    const jsonString = sessionStorage.getItem("orderDetails");
+    const parsedObject = JSON.parse(jsonString);
+
+    setOrderDetails(parsedObject ? parsedObject : []);
+  }, []);
 
   const AddressModalOpen = () => {
     setAddressModalStatus(true);
@@ -36,12 +48,12 @@ function CustomerOrder({}) {
 
   useEffect(() => {
     calTotal();
-  }, [quantity, orderDetails, msp]);
-
+  }, [quantity, orderDetails, msp, discount]);
+  console.log(orderDetails);
   const calTotal = () => {
     let sum = 0;
     let mspDis = 0;
-
+    console.log(orderDetails);
     orderDetails.forEach((element) => {
       sum = sum + element[0].food_price * element[0].qty;
       mspDis = msp
@@ -52,10 +64,16 @@ function CustomerOrder({}) {
             element[0].qty
         : 0;
     });
+
     setTotal(sum);
     setVat((sum * 0.05).toFixed(2));
-    setGrandTotal((sum + sum * 0.05 - mspDis).toFixed(2));
-    setDisMsp(mspDis);
+    setGrandTotal(
+      (discount
+        ? sum + sum * 0.05 - discount
+        : sum + sum * 0.05 - mspDis
+      ).toFixed(2)
+    );
+    setDisMsp(discount ? discount : mspDis);
   };
 
   const removeItem = (id) => {
@@ -123,6 +141,27 @@ function CustomerOrder({}) {
       }
     });
   };
+  const couponSubmit = () => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+    axios
+      .get(`${baseUrl}/api/get-coupon-discount/${couponNo}`)
+      .then((response) => {
+        if (response.data != "Not-Valid") {
+          setDiscount(response.data);
+        }
+
+        Swal.fire({
+          title:
+            response.data == "Not-Valid"
+              ? "Coupon Not Valid"
+              : "You get " + response.data + "Tk. discount",
+          icon: response.data == "Not-Valid" ? "error" : "success",
+          confirmButtonText: "OK",
+        });
+        setLoading(false);
+      });
+  };
+
   const submitOrder = () => {
     // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     if (pickup == null) {
@@ -200,6 +239,20 @@ function CustomerOrder({}) {
         changeDeliverryAddress();
       });
   };
+  const handleClick = () => {
+    sessionStorage.setItem("orderDetails2", JSON.stringify(orderDetails));
+  };
+  const applyDiscount = (value) => {
+    if (value == "member") {
+      setMember(true);
+      setCoupon(false);
+      setDiscount();
+    } else {
+      setCoupon(true);
+      setMember(false);
+      setMsp(0);
+    }
+  };
 
   return (
     <div>
@@ -219,8 +272,8 @@ function CustomerOrder({}) {
                   className="btn btn-outline-success nav-link scrollto right-side2"
                   to={{
                     pathname: "/",
-                    state: orderDetails,
                   }}
+                  onClick={handleClick}
                 >
                   <i className="bi bi-house-door-fill"></i> Back To Home
                 </Link>
@@ -237,6 +290,7 @@ function CustomerOrder({}) {
                         <th>Unit Price</th>
                         <th>Quantity</th>
                         <th>Sub Total</th>
+
                         <th>Discount</th>
                         <th>Action</th>
                       </tr>
@@ -374,34 +428,75 @@ function CustomerOrder({}) {
                 ) : null}
               </div>
               <div className="col-md-4 block_01">
-                <h4>Member?</h4>
-                <p>Enter your member id if you are member.</p>
-                <div className="">
-                  <div className="wid">
-                    <Form.Label className="label-style">
-                      Enter Member Id
-                    </Form.Label>
-                    <Form.Control
-                      name="coupon"
-                      type="text"
-                      placeholder="Enter Member Id"
-                      onChange={(event) => {
-                        setMemberId(event.target.value);
-                      }}
-                    />
-                  </div>
+                <div onChange={(e) => applyDiscount(e.target.value)}>
+                  <h4>Apply Discount:</h4>
+                  <input type="radio" value="member" name="discount" />
+                  Member<br></br>
+                  <input type="radio" value="coupon" name="discount" />
+                  Coupon
+                  <br></br>
                 </div>
-                {loading ? (
-                  <ReactLoading type="cylon" />
-                ) : (
-                  <button
-                    className="btn btn-warning btn-se"
-                    onClick={memberSubmit}
-                  >
-                    <i className="bi bi-back"></i>Submit
-                  </button>
-                )}
+                {member ? (
+                  <div className="">
+                    <h4>Member?</h4>
+                    <p>Enter your member id if you are member.</p>
+                    <div className="wid">
+                      <Form.Label className="label-style">
+                        Enter Member Id
+                      </Form.Label>
+                      <Form.Control
+                        name="coupon"
+                        type="text"
+                        placeholder="Enter Member Id"
+                        onChange={(event) => {
+                          setMemberId(event.target.value);
+                        }}
+                      />
+                    </div>
+                    {loading ? (
+                      <ReactLoading type="cylon" />
+                    ) : (
+                      <button
+                        className="btn btn-warning btn-se"
+                        onClick={memberSubmit}
+                      >
+                        <i className="bi bi-back"></i>Submit
+                      </button>
+                    )}
+                  </div>
+                ) : null}
+
+                {coupon ? (
+                  <div className="">
+                    <h4>Has Discount Coupon?</h4>
+                    <p>Enter Coupon.</p>
+                    <div className="wid">
+                      <Form.Label className="label-style">
+                        Enter Coupon
+                      </Form.Label>
+                      <Form.Control
+                        name="coupon"
+                        type="text"
+                        placeholder="Enter Member Id"
+                        onChange={(event) => {
+                          setCouponNo(event.target.value);
+                        }}
+                      />
+                    </div>
+                    {loading ? (
+                      <ReactLoading type="cylon" />
+                    ) : (
+                      <button
+                        className="btn btn-warning btn-se"
+                        onClick={couponSubmit}
+                      >
+                        <i className="bi bi-back"></i>Submit
+                      </button>
+                    )}
+                  </div>
+                ) : null}
               </div>
+
               {/* <div className="col-md-4 block_01">
                 <h4>Coupon Code</h4>
                 <p>Enter your coupon code if you have one.</p>

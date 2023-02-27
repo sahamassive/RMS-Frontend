@@ -56,14 +56,14 @@ function InvoiceList() {
   }, []);
 
   const printModal = () => {
-    var divContents = document.getElementById("invoiceDetails").innerHTML;
-    var a = window.open("", "", "");
-    a.document.write("<html><head><title>Print Invoice</title>");
-    a.document.write("</head><body>");
-    a.document.write(divContents);
-    a.document.write("</body></html>");
-    a.document.close();
-    a.print();
+    var printContents = document.getElementById("invoiceDetails").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
   };
 
   $.DataTable = require("datatables.net");
