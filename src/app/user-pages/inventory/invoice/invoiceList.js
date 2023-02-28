@@ -61,6 +61,13 @@ function InvoiceList() {
 
     document.body.innerHTML = printContents;
 
+    //hide elements
+    var elements = document.getElementById('close-btn');
+    elements.style.display = 'none';
+
+    var btn = document.getElementById('print-btn');
+    btn.style.display = 'none';
+
     window.print();
 
     document.body.innerHTML = originalContents;
@@ -203,7 +210,7 @@ function InvoiceList() {
                     </span>
                   </div>
                 ) : null}
-                <div className="close-btn">
+                <div id="close-btn" className="close-btn">
                   <a onClick={invoiceModalClose}>
                     <i className="bi bi-x-square"></i>
                   </a>
@@ -231,7 +238,6 @@ function InvoiceList() {
                         <th>Amount</th>
                         <th>Price</th>
                         <th>Date</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -243,14 +249,6 @@ function InvoiceList() {
                           <td>{data.amount}</td>
                           <td>{data.price}</td>
                           <td>{supplier ? supplier.date : null}</td>
-                          <td>
-                            <a
-                              className="btn btn-warning"
-                              href={`/waste/edit-waste/${data.id}`}
-                            >
-                              <i className="bi bi-pencil-square"></i>Edit
-                            </a>
-                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -270,7 +268,7 @@ function InvoiceList() {
             </div>
           ) : null}
           <div className="d-grid gap-2 col-6 mx-auto two_part">
-            <button className="btn btn-dark top-space" onClick={printModal}>
+            <button id="print-btn" className="btn btn-dark top-space" onClick={printModal}>
               <i className="bi bi-save-fill"></i>Print
             </button>
             <br></br>

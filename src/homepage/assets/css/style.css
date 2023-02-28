@@ -1585,7 +1585,6 @@ h2{
 .cart-style {
   border-radius: 15px;
   font-size: 0.8em;
-  margin-left: 1rem;
   margin-top: 0.5rem;
 }
 .details-style {
@@ -1658,8 +1657,6 @@ h2{
 }
 .sec-image{
   width: 100%;
-  padding-left: 2rem;
-  padding-top: 1rem;
 }
 .price {
   font-size: 2em;
@@ -1667,13 +1664,11 @@ h2{
   color: #18d26e;
 }
 .fo-name {
-  font-style: italic;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  text-align: left;
 }
 .close-btn {
   position: absolute;
-  right: 21%;
+  right: 0%;
   top:0;
   font-size: 2rem;
   color: rgb(206, 24, 100) !important;
@@ -1813,11 +1808,24 @@ select:focus {
     display: none;
   }
 }
+
 .footer-logo{
   width: 2.3rem;
   padding-bottom: -10px;
 }
+
 .yellow{
   color: yellowgreen;
 }
 
+.img-xz{
+  width: 1rem;
+}
+
+.drop{
+  padding-top: .5rem;
+}
+
+#index-z{
+  z-index: 100000 !important;
+}
