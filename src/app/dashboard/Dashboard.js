@@ -131,21 +131,21 @@ function Dashboard() {
                 Today Total Sell
                 <br></br>
                 <strong>
-                  <i className="bi bi-cash-stack"></i> {todaySell ? todaySell.total : null} Tk.
+                  <i className="bi bi-cash-stack"></i> {todaySell ? todaySell.total : "0" } Tk.
                 </strong>
               </div>
               <div className="single-card">
                 Today Total Item Sell
                 <br></br>
                 <strong>
-                  <i class="bi bi-clipboard2-data"></i> {todaySell ? todaySell.items : null} items
+                  <i class="bi bi-clipboard2-data"></i> {todaySell ? todaySell.items : '0' } items
                 </strong>
               </div>
               <div className="single-card">
                 Today Total Order
                 <br></br>
                 <strong>
-                  <i class="bi bi-border-style"></i> {todaySell ? todaySell.order_count : null} orders
+                  <i class="bi bi-border-style"></i> {todaySell ? todaySell.order_count : '0' } orders
                 </strong>
               </div>
             </div>

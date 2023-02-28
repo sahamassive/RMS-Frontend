@@ -44,10 +44,11 @@ function Login(props) {
         .post(`${baseUrl}/api/customer/login-dashboard`, formData)
         .then(({ data }) => {
           if (data.message == "success") {
+            props.setProfile(true);
             sessionStorage.setItem("loginType", data.type);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("emp_id", data.customer_id);
-            window.location.pathname == "/customer/login"
+            window.location.pathname == "customer/login"
               ? (window.location.href = "/customer/dashboard")
               : Swal.fire({
                   title: "Login Successful. You can checkout now...",
@@ -55,6 +56,7 @@ function Login(props) {
                   confirmButtonText: "OK",
                 });
             props.setLoginModalStatus(false);
+       
           } else {
             sessionStorage.setItem("authenticated", false);
             window.location.href = "/customer/login";

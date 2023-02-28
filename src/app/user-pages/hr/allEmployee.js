@@ -92,45 +92,38 @@ function AllEmployee() {
             <br></br>
             <div className="card-section">
               <div className="single-card">
-                Waiters
+                Total Waiters
                 <br></br>
                 <strong>
                   <i className="bi bi-people-fill"></i> {admin}
                 </strong>
               </div>
               <div className="single-card">
-                Chef
+              Total Chef
                 <br></br>
                 <strong>
                   <i className="bi bi-people-fill"></i> {chef}
                 </strong>
               </div>
               <div className="single-card">
-                Manager
+              Total Manager
                 <br></br>
                 <strong>
                   <i className="bi bi-people-fill"></i> {manager}
                 </strong>
               </div>
               <div className="single-card">
-                Delivery Man
+              Total Delivery Man
                 <br></br>
                 <strong>
                   <i className="bi bi-people-fill"></i> {deliveryMan}
                 </strong>
               </div>
               <div className="single-card">
-                Cleaner
+              Total Cleaner
                 <br></br>
                 <strong>
                   <i className="bi bi-people-fill"></i> {cleaner}
-                </strong>
-              </div>
-              <div className="single-card">
-                Waiter
-                <br></br>
-                <strong>
-                  <i className="bi bi-people-fill"></i> {waiter}
                 </strong>
               </div>
             </div>
