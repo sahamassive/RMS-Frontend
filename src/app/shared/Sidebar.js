@@ -150,7 +150,7 @@ class Sidebar extends Component {
               </Link>
             </li>
           ) : null}
-          {loginType == "Chef" || loginType == "Super-Admin" ? (
+          {loginType == "Chef" ? (
             <li
               className={
                 this.isPathActive("/chef/dashboard")
@@ -168,7 +168,7 @@ class Sidebar extends Component {
               </Link>
             </li>
           ) : null}
-          {loginType == "Waiter" || loginType == "Super-Admin" ? (
+          {loginType == "Waiter" ? (
             <li
               className={
                 this.isPathActive("/waiter/dashboard")
