@@ -13,12 +13,14 @@ import {
 const token = sessionStorage.getItem("token");
 const loginType = sessionStorage.getItem("loginType");
 const emp_id = sessionStorage.getItem("emp_id");
+
 function ChefDashboard() {
   const [allData, setAllData] = useState();
   const [recentOrder, setRecentOrder] = useState();
   const [recentId, setRecentId] = useState();
   const [refresh, setRefresh] = useState(true);
   const [attendOrder, setAttendOrder] = useState();
+  const [filter, setFilter] = useState('today');
 
   if (loginType == "Super-Admin" || loginType == "Chef") {
   } else {
@@ -27,7 +29,6 @@ function ChefDashboard() {
 
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios.get(`${baseUrl}/api/order/recent-order`).then((response) => {
       setRecentOrder(response.data.data);
       setRecentId(response.data.recent_id);
@@ -37,7 +38,6 @@ function ChefDashboard() {
 
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios
       .get(`${baseUrl}/api/chef-inventory/${emp_id}/today`)
       .then((response) => {
@@ -48,7 +48,6 @@ function ChefDashboard() {
 
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios
       .get(`${baseUrl}/api/chef-attend-order/${emp_id}/today`)
       .then((response) => {
@@ -59,7 +58,6 @@ function ChefDashboard() {
 
   const ConfirmItem = (order_id, item_code, quantity) => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios
       .get(
         `${baseUrl}/api/chef-order/${emp_id}/${order_id}/${item_code}/${quantity}`
@@ -84,17 +82,16 @@ function ChefDashboard() {
 
   const filterSet = (fil) => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios
       .get(`${baseUrl}/api/chef-inventory/${emp_id}/${fil}`)
       .then((response) => {
         setAllData(response.data);
       });
+      setFilter(fil);
   };
 
   const attendOrderFilter = (fil) => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios
       .get(`${baseUrl}/api/chef-attend-order/${emp_id}/${fil}`)
       .then((response) => {
@@ -104,7 +101,6 @@ function ChefDashboard() {
 
   const completeOrder = (order_id, item_code) => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios
       .get(`${baseUrl}/api/chef-attend-order-status/${order_id}/${item_code}`)
       .then((response) => {
@@ -117,10 +113,24 @@ function ChefDashboard() {
     setRefresh(true);
   };
 
-  $.DataTable = require("datatables.net");
-  $(document).ready(function () {
-    $("#chefInventory").DataTable();
-  });
+  const returnInventory = (ingredient_id, inHand) => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+    axios
+      .get(`${baseUrl}/api/chef/return-inventory/${emp_id}/${ingredient_id}/${inHand}`)
+      .then((response) => {
+        Swal.fire({
+          title: response.data.msg,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      })
+      setRefresh(true);
+  }
+
+  // $.DataTable = require("datatables.net");
+  // $(document).ready(function () {
+  //   $("#chefInventory").DataTable();
+  // });
 
   // $(document).ready(function () {
   //     $("#chefAttendedInventory").DataTable();
@@ -187,35 +197,35 @@ function ChefDashboard() {
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
-                  </thead>
+                  </thead>  
                   <tbody>
                     {attendOrder
                       ? attendOrder.map((data, index) => (
-                          <tr>
-                            <td>{index + 1}</td>
-                            <td>{data.kot}</td>
-                            <td>
-                              <img
-                                src={`${baseUrl}/foods/small/${data.image}`}
-                                width="80px"
-                                height="50px"
-                              />
-                            </td>
-                            <td>{data.name}</td>
-                            <td>{data.quantity}</td>
-                            <td>{data.status}</td>
-                            <td>
-                              <button
-                                onClick={() => {
-                                  completeOrder(data.order_id, data.item_code);
-                                }}
-                                className="btn btn-dark"
-                              >
-                                Complete
-                              </button>
-                            </td>
-                          </tr>
-                        ))
+                        <tr>
+                          <td>{index + 1}</td>
+                          <td>{data.kot}</td>
+                          <td>
+                            <img
+                              src={`${baseUrl}/foods/small/${data.image}`}
+                              width="80px"
+                              height="50px"
+                            />
+                          </td>
+                          <td>{data.name}</td>
+                          <td>{data.quantity}</td>
+                          <td>{data.status}</td>
+                          <td>
+                            <button
+                              onClick={() => {
+                                completeOrder(data.order_id, data.item_code);
+                              }}
+                              className="btn btn-dark"
+                            >
+                              Complete
+                            </button>
+                          </td>
+                        </tr>
+                      ))
                       : null}
                   </tbody>
                 </table>
@@ -227,61 +237,61 @@ function ChefDashboard() {
               <h4 className="card-title input_field order-id">Pending Order:</h4>
               <div className="container">
                 <div className="row">
-                  {recentId
+                  {recentId 
                     ? recentId.map((item) => (
-                        <div className="col col-md-4 section-border">
-                          <p className="order-id">
-                            Order ID: <strong>{item.order_id}</strong>
-                          </p>
-                          <div className="row">
-                            {recentOrder
-                              ? recentOrder.map((data) =>
-                                  item.order_id == data.order_id ? (
-                                    <div className="col">
-                                      <div className="item-border">
-                                        <div className="two_part">
-                                          <img
-                                            className="food-image"
-                                            src={`${baseUrl}/foods/small/${data.image}`}
-                                            alt={data.name}
-                                          ></img>
-                                          <p className="img-level cart-height">
-                                            {data.name}
-                                          </p>
-                                        </div>
-                                        <p className="img-level cart-height">
-                                          Quantity:{" "}
-                                          <strong>{data.quantity} </strong>
-                                          <br></br>
-                                          <span>
-                                            Status: {data.order_status}
-                                          </span>
-                                        </p>
-                                        <button
-                                          className="btn btn-block btn-primary"
-                                          onClick={() =>
-                                            ConfirmItem(
-                                              item.order_id,
-                                              data.item_code,
-                                              data.quantity
-                                            )
-                                          }
-                                        >
-                                          <i className="bi bi-check2-square"></i>
-                                          Confirm
-                                        </button>
-                                        <button className="btn btn-block btn-danger">
-                                          <i className="bi bi-x-circle"></i>
-                                          Cancel
-                                        </button>
-                                      </div>
+                      <div className="col col-md-4 section-border">
+                        <p className="order-id">
+                          Order ID: <strong>{item.order_id}</strong>
+                        </p>
+                        <div className="row">
+                          {recentOrder
+                            ? recentOrder.map((data) =>
+                              item.order_id == data.order_id ? (
+                                <div className="col">
+                                  <div className="item-border">
+                                    <div className="two_part">
+                                      <img
+                                        className="food-image"
+                                        src={`${baseUrl}/foods/small/${data.image}`}
+                                        alt={data.name}
+                                      ></img>
+                                      <p className="img-level cart-height">
+                                        {data.name}
+                                      </p>
                                     </div>
-                                  ) : null
-                                )
-                              : null}
-                          </div>
+                                    <p className="img-level cart-height">
+                                      Quantity:{" "}
+                                      <strong>{data.quantity} </strong>
+                                      <br></br>
+                                      <span>
+                                        Status: {data.order_status}
+                                      </span>
+                                    </p>
+                                    <button
+                                      className="btn btn-block btn-primary"
+                                      onClick={() =>
+                                        ConfirmItem(
+                                          item.order_id,
+                                          data.item_code,
+                                          data.quantity
+                                        )
+                                      }
+                                    >
+                                      <i className="bi bi-check2-square"></i>
+                                      Confirm
+                                    </button>
+                                    <button className="btn btn-block btn-danger">
+                                      <i className="bi bi-x-circle"></i>
+                                      Cancel
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : null
+                            )
+                            : null}
                         </div>
-                      ))
+                      </div>
+                    ))
                     : null}
                 </div>
               </div>
@@ -292,7 +302,7 @@ function ChefDashboard() {
               <div className="two_part input_field">
                 <button
                   onClick={() => {
-                    filterSet("today");
+                    filterSet('today');
                   }}
                   className="btn btn-danger"
                 >
@@ -300,7 +310,7 @@ function ChefDashboard() {
                 </button>
                 <button
                   onClick={() => {
-                    filterSet("yesterday");
+                    filterSet('yesterday');
                   }}
                   className="btn btn-warning"
                 >
@@ -308,7 +318,7 @@ function ChefDashboard() {
                 </button>
                 <button
                   onClick={() => {
-                    filterSet("week");
+                    filterSet('week');
                   }}
                   className="btn btn-success"
                 >
@@ -316,7 +326,7 @@ function ChefDashboard() {
                 </button>
                 <button
                   onClick={() => {
-                    filterSet("month");
+                    filterSet('month');
                   }}
                   className="btn btn-warning"
                 >
@@ -332,34 +342,37 @@ function ChefDashboard() {
                   <thead>
                     <tr>
                       <th>SL.</th>
-                      <th>Date</th>
+                      {filter == 'today' ? <th>Date</th> : null}
                       <th>Item Name</th>
                       <th>Total Quantity</th>
                       <th>Used Quantity</th>
-                      <th>In Hand</th>
+                      {filter == 'today' ? <th>In Hand</th> : <th>Return Quantity</th>}
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {allData
                       ? allData.map((data, index) => (
+                        (data.return_quantity == null && filter == 'today') || filter != 'today' ?
                           <tr>
                             <td>{index + 1}</td>
-                            <td>
-                              {new Date(data.created_at).toLocaleString(
-                                "en-US",
-                                { day: "2-digit" }
-                              )}
-                              -
-                              {new Date(data.created_at).toLocaleString(
-                                "en-US",
-                                { month: "long" }
-                              )}
-                              -{new Date(data.created_at).getFullYear()}
-                              <br></br>
-                              {new Date(data.created_at).toLocaleTimeString(
-                                "en-US"
-                              )}
-                            </td>
+                            {filter == 'today' ?
+                              <td>   
+                                {new Date(data.created_at).toLocaleString(
+                                  "en-US",
+                                  { day: "2-digit" }
+                                )}
+                                -
+                                {new Date(data.created_at).toLocaleString(
+                                  "en-US",
+                                  { month: "long" }
+                                )}
+                                -{new Date(data.created_at).getFullYear()}
+                                <br></br>
+                                {new Date(data.created_at).toLocaleTimeString(
+                                  "en-US"
+                                )}
+                              </td> : null}
                             <td>{data.ingredient}</td>
                             <td>
                               {data.quantity}
@@ -369,21 +382,36 @@ function ChefDashboard() {
                               {data.unit === "Gm" ? data.unit : null}
                             </td>
                             <td>
-                              {data.used_quantity}
+                              {data.used_quantity ? data.used_quantity : 0}
                               {data.unit === "Kg" ? "Gm" : null}
                               {data.unit === "L" ? "Gm" : null}
                               {data.unit === "Ps" ? data.unit : null}
                               {data.unit === "Gm" ? data.unit : null}
                             </td>
+                            {filter == 'today' ?
+                              <td>
+                                {data.quantity - data.used_quantity}
+                                {data.unit === "Kg" ? "Gm" : null}
+                                {data.unit === "L" ? "Gm" : null}
+                                {data.unit === "Ps" ? data.unit : null}
+                                {data.unit === "Gm" ? data.unit : null}
+                              </td>
+                              :
+                              <td>{data.return_quantity}</td>
+                            }
                             <td>
-                              {data.quantity - data.used_quantity}
-                              {data.unit === "Kg" ? "Gm" : null}
-                              {data.unit === "L" ? "Gm" : null}
-                              {data.unit === "Ps" ? data.unit : null}
-                              {data.unit === "Gm" ? data.unit : null}
+                              <button
+                                className="btn btn-primary"
+                                onClick={() => {
+                                  returnInventory(data.ingredient_id, data.quantity - data.used_quantity);
+                                }}
+                              >
+                                <i className="bi bi-arrow-90deg-left"></i>Return
+                              </button>
                             </td>
                           </tr>
-                        ))
+                          : null
+                      ))
                       : <tr></tr>}
                   </tbody>
                 </table>
