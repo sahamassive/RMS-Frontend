@@ -113,6 +113,8 @@ function ChefDashboard() {
     setRefresh(true);
   };
 
+
+
   const returnInventory = (ingredient_id, inHand) => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios
@@ -126,6 +128,7 @@ function ChefDashboard() {
       })
       setRefresh(true);
   }
+
 
   // $.DataTable = require("datatables.net");
   // $(document).ready(function () {
@@ -146,7 +149,9 @@ function ChefDashboard() {
             </div>
             <div className="col-sm-12 background">
               <br></br>
-              <h4 className="card-title input_field order-id">Running Order:</h4>
+              <h4 className="card-title input_field order-id">
+                Running Order:
+              </h4>
               <div className="two_part input_field">
                 <button
                   onClick={() => {
@@ -234,7 +239,9 @@ function ChefDashboard() {
               </div>
             </div>
             <div className="col-sm-12 background">
-              <h4 className="card-title input_field order-id">Pending Order:</h4>
+              <h4 className="card-title input_field order-id">
+                Pending Order:
+              </h4>
               <div className="container">
                 <div className="row">
                   {recentId 
@@ -298,7 +305,9 @@ function ChefDashboard() {
             </div>
             <div className="col-sm-12 background">
               <br></br>
-              <h4 className="card-title input_field order-id">Today's taken inventory item:</h4>
+              <h4 className="card-title input_field order-id">
+                Today's taken inventory item:
+              </h4>
               <div className="two_part input_field">
                 <button
                   onClick={() => {
@@ -351,6 +360,7 @@ function ChefDashboard() {
                     </tr>
                   </thead>
                   <tbody>
+
                     {allData
                       ? allData.map((data, index) => (
                         (data.return_quantity == null && filter == 'today') || filter != 'today' ?
@@ -413,6 +423,7 @@ function ChefDashboard() {
                           : null
                       ))
                       : <tr></tr>}
+
                   </tbody>
                 </table>
                 <br></br>

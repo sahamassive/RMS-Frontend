@@ -57,12 +57,17 @@ function Index() {
 
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-    axios.get(`${baseUrl}/api/profile/${sessionStorage.getItem("loginType")}/${sessionStorage.getItem("emp_id")}`).then((response) => {
-      setState(response.data);
-    }); 
-    setProfile(false)
+    axios
+      .get(
+        `${baseUrl}/api/profile/${sessionStorage.getItem(
+          "loginType"
+        )}/${sessionStorage.getItem("emp_id")}`
+      )
+      .then((response) => {
+        setState(response.data);
+      });
+    setProfile(false);
   }, [profile]);
-
 
   useEffect(() => {
     const jsonString = sessionStorage.getItem("orderDetails2");
@@ -122,7 +127,7 @@ function Index() {
         console.log(err);
       });
     setOpen(true);
-    //console.log(singlefood.name);
+    console.log(singlefood.name);
   };
 
   const handleClose = () => setOpen(false);
@@ -165,12 +170,7 @@ function Index() {
         }
       });
     } else {
-      //console.log("Geolocation is not supported by this browser.");
-      Swal.fire({
-        title: "Geolocation is not supported by this browser.",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
+      console.log("Geolocation is not supported by this browser.");
     }
   };
 
@@ -250,8 +250,8 @@ function Index() {
     setBranchModalStatus(false);
     localStorage.setItem("branchId", id);
     setBranchId(id);
-    //console.log(resturant);
-    //console.log(userCity);
+    console.log(resturant);
+    console.log(userCity);
   };
 
   const setMainBranch = () => {
@@ -290,10 +290,10 @@ function Index() {
     sessionStorage.removeItem("loginType");
     sessionStorage.removeItem("customer_id");
     window.location.href = "/";
-  }
-
+  };
   return (
     <div>
+      {console.log(state ? state : "hi")}
       <div id="topbar" className="d-flex align-items-center fixed-top">
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
@@ -305,6 +305,7 @@ function Index() {
                 </a>
               </span>
             </button>
+
             <i className="active-time bi bi-clock d-flex align-items-center ms-4">
               <span className="active-time"> Sat-Fri: 10AM - 11PM</span>
             </i>
@@ -323,20 +324,12 @@ function Index() {
               </span>
             </button>
 
-
             <a
               href="#book-a-table"
               className="book-a-table-btn d-none d-lg-flex branch-style"
             >
               <i className="bi bi-table icon-space4"></i> Book a table
             </a>
-
-
-
-
-
-
-            
           </div>
         </div>
       </div>
@@ -426,28 +419,30 @@ function Index() {
             </ul>
             <i className="bi bi-list mobile-nav-toggle"></i>
           </nav>
-
-
-
-
-          
           {state ? (
             <div class="dropdown index-z2 scrollto d-none d-lg-flex">
-              <a class="branch-style" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                class="branch-style"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 <div className="two_part">
-                  {sessionStorage.getItem("loginType") == "Customer" ?
+                  {sessionStorage.getItem("loginType") == "Customer" ? (
                     <img
                       className="img-xs rounded-circle"
                       src={`${baseUrl}/customer/small/${state.image}`}
                       alt="profile"
                     />
-                    :
+                  ) : (
                     <img
                       className="img-xs rounded-circle"
                       src={`${baseUrl}/employee/small/${state.image}`}
                       alt="profile"
                     />
-                  }
+                  )}
                   <p className="mb-0 d-none d-sm-block navbar-profile-name drop">
                     <Trans>
                       {state.name} {state.first_name}
@@ -458,18 +453,42 @@ function Index() {
                 </div>
               </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a id="index-z" class="dropdown-item" href="/user/edit-password"><i className="bi bi-lock-fill"></i> Change Password</a></li>
-                <li><a class="dropdown-item" href="/user/profile"><i className="bi bi-person-bounding-box"></i> Profile</a></li>
-                <li><button class="dropdown-item" onClick={() => { logout() }}><i className="mdi mdi-logout text-danger"></i> Logout</button></li>
+                <li>
+                  <a
+                    id="index-z"
+                    class="dropdown-item"
+                    href="/user/edit-password"
+                  >
+                    <i className="bi bi-lock-fill"></i> Change Password
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/user/profile">
+                    <i className="bi bi-person-bounding-box"></i> Profile
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    onClick={() => {
+                      logout();
+                    }}
+                  >
+                    <i className="mdi mdi-logout text-danger"></i> Logout
+                  </button>
+                </li>
               </ul>
             </div>
-          ) :
+          ) : (
             <div>
-              <a className="scrollto d-none d-lg-flex  border-class" href="/customer/login">
+              <a
+                className="scrollto d-none d-lg-flex  border-class"
+                href="/customer/login"
+              >
                 Login/SignUp
               </a>
             </div>
-          }
+          )}
         </div>
       </header>
       <section id="hero" className="d-flex align-items-center">
@@ -622,16 +641,16 @@ function Index() {
                   </Link>
                   {category
                     ? category.map((data) => (
-                      <Link
-                        onClick={() => {
-                          foodByCategory(data.id);
-                        }}
-                        data-filter=".filter-starters"
-                        className="space-category btn btn-outline-light"
-                      >
-                        {data.category_name}
-                      </Link>
-                    ))
+                        <Link
+                          onClick={() => {
+                            foodByCategory(data.id);
+                          }}
+                          data-filter=".filter-starters"
+                          className="space-category btn btn-outline-light"
+                        >
+                          {data.category_name}
+                        </Link>
+                      ))
                     : null}
                 </ul>
               </div>
@@ -639,37 +658,37 @@ function Index() {
             <div className="row" data-aos="fade-up" data-aos-delay="200">
               {food
                 ? food.map((data) => (
-                  <div className="col-lg-4 menu-item">
-                    <img
-                      src={`${baseUrl}/foods/small/${data.image}`}
-                      className="menu-img"
-                      alt=""
-                    ></img>
-                    <div className="menu-content">
-                      <a href="#">{data.name}</a>
-                      <span>$ {data.price}</span>
+                    <div className="col-lg-4 menu-item">
+                      <img
+                        src={`${baseUrl}/foods/small/${data.image}`}
+                        className="menu-img"
+                        alt=""
+                      ></img>
+                      <div className="menu-content">
+                        <a href="#">{data.name}</a>
+                        <span>$ {data.price}</span>
+                      </div>
+                      <div className="menu-ingredients">
+                        {data.description.substring(0, 50)}
+                      </div>
+                      <button
+                        className="btn btn-outline-warning cart-style"
+                        onClick={() => {
+                          addTocart(data.id);
+                        }}
+                      >
+                        <i className="bi bi-cart4"></i>Add to Cart
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleOpen(data.id);
+                        }}
+                        className="btn btn-outline-warning details-style"
+                      >
+                        <i className="bi bi-info-square"></i>Details
+                      </button>
                     </div>
-                    <div className="menu-ingredients">
-                      {data.description.substring(0, 50)}
-                    </div>
-                    <button
-                      className="btn btn-outline-warning cart-style"
-                      onClick={() => {
-                        addTocart(data.id);
-                      }}
-                    >
-                      <i className="bi bi-cart4"></i>Add to Cart
-                    </button>
-                    <button
-                      onClick={() => {
-                        handleOpen(data.id);
-                      }}
-                      className="btn btn-outline-warning details-style"
-                    >
-                      <i className="bi bi-info-square"></i>Details
-                    </button>
-                  </div>
-                ))
+                  ))
                 : null}
             </div>
           </div>
@@ -685,18 +704,18 @@ function Index() {
                 <ul className="nav nav-tabs flex-column">
                   {spfood
                     ? spfood.map((data, index) => (
-                      <li className="nav-item">
-                        <a
-                          className={
-                            index == 0 ? "nav-link active show" : "nav-link"
-                          }
-                          data-bs-toggle="tab"
-                          href={`#tab-${index}`}
-                        >
-                          {data.name}
-                        </a>
-                      </li>
-                    ))
+                        <li className="nav-item">
+                          <a
+                            className={
+                              index == 0 ? "nav-link active show" : "nav-link"
+                            }
+                            data-bs-toggle="tab"
+                            href={`#tab-${index}`}
+                          >
+                            {data.name}
+                          </a>
+                        </li>
+                      ))
                     : null}
                 </ul>
               </div>
@@ -704,28 +723,28 @@ function Index() {
                 <div className="tab-content">
                   {spfood
                     ? spfood.map((data, index) => (
-                      <div
-                        className={
-                          index == 0 ? "tab-pane active show" : "tab-pane"
-                        }
-                        id={`tab-${index}`}
-                      >
-                        <div className="row">
-                          <div className="col-lg-8 details order-2 order-lg-1">
-                            <h3>The best food is possible to get</h3>
-                            <p className="fst-italic">{data.description}</p>
-                            <p></p>
-                          </div>
-                          <div className="col-lg-4 text-center order-1 order-lg-2">
-                            <img
-                              src={`${baseUrl}/foods/small/${data.image}`}
-                              alt=""
-                              className="img-fluid"
-                            ></img>
+                        <div
+                          className={
+                            index == 0 ? "tab-pane active show" : "tab-pane"
+                          }
+                          id={`tab-${index}`}
+                        >
+                          <div className="row">
+                            <div className="col-lg-8 details order-2 order-lg-1">
+                              <h3>The best food is possible to get</h3>
+                              <p className="fst-italic">{data.description}</p>
+                              <p></p>
+                            </div>
+                            <div className="col-lg-4 text-center order-1 order-lg-2">
+                              <img
+                                src={`${baseUrl}/foods/small/${data.image}`}
+                                alt=""
+                                className="img-fluid"
+                              ></img>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))
+                      ))
                     : null}
                 </div>
               </div>
@@ -1022,10 +1041,10 @@ function Index() {
                     <option value="">Select here</option>
                     {alltable
                       ? alltable.map((data) => (
-                        <option value={data.table_id}>
-                          {data.table_name}({data.table_type})
-                        </option>
-                      ))
+                          <option value={data.table_id}>
+                            {data.table_name}({data.table_type})
+                          </option>
+                        ))
                       : null}
                   </select>
                   <div className="validate"></div>
@@ -1574,7 +1593,7 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-2 col-md-6 footer-links index-z">
+              <div className="col-lg-2 col-md-6 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
                   <li>
@@ -1669,7 +1688,10 @@ function Index() {
               <div className="fo-name">
                 <h2>{singlefood.name}</h2>
                 <p className="price">{singlefood.price} Tk.</p>
-                <p><span className="company_name">Description: </span>{singlefood.description}</p>
+                <p>
+                  <span className="company_name">Description: </span>
+                  {singlefood.description}
+                </p>
                 <p>sepciality: {singlefood.sepciality}</p>
                 <p>discount: {singlefood.discount}</p>
               </div>
@@ -1716,26 +1738,26 @@ function Index() {
           </div>
           {branch
             ? branch.map((data) => (
-              <div className="section-branch">
-                <button
-                  className="btn-details"
-                  onClick={() =>
-                    selectBranch(
-                      data.id,
-                      data.city,
-                      data.phone,
-                      data.address,
-                      data.email
-                    )
-                  }
-                >
-                  <i className="bi bi-geo-alt-fill icon-space5"></i>
-                  <span className="city-01">{data.city} Branch</span>
-                  <br></br>
-                  <span className="address-01">{data.address}</span>
-                </button>
-              </div>
-            ))
+                <div className="section-branch">
+                  <button
+                    className="btn-details"
+                    onClick={() =>
+                      selectBranch(
+                        data.id,
+                        data.city,
+                        data.phone,
+                        data.address,
+                        data.email
+                      )
+                    }
+                  >
+                    <i className="bi bi-geo-alt-fill icon-space5"></i>
+                    <span className="city-01">{data.city} Branch</span>
+                    <br></br>
+                    <span className="address-01">{data.address}</span>
+                  </button>
+                </div>
+              ))
             : null}
         </div>
       </Modal>
@@ -1751,7 +1773,10 @@ function Index() {
               <i className="bi bi-x-square"></i>
             </a>
           </div>
-          <Login setLoginModalStatus={setLoginModalStatus} setProfile={setProfile} />
+          <Login
+            setLoginModalStatus={setLoginModalStatus}
+            setProfile={setProfile}
+          />
         </div>
       </Modal>
     </div>

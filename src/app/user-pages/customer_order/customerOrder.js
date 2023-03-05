@@ -328,10 +328,12 @@ function CustomerOrder({}) {
                               <td>{data[0].food_price * data[0].qty}</td>
                               <td>
                                 {msp
-                                  ? ((data[0].food_price * data[0].qty -
-                                      data[0].basic * data[0].qty) /
-                                      100) *
-                                    msp
+                                  ? (
+                                      ((data[0].food_price * data[0].qty -
+                                        data[0].basic * data[0].qty) /
+                                        100) *
+                                      msp
+                                    ).toFixed(2)
                                   : 0}
                               </td>
                               <td>
@@ -530,7 +532,7 @@ function CustomerOrder({}) {
                       </tr>
                       <tr>
                         <td>Discount</td>
-                        <td>{disMsp ? disMsp : null}</td>
+                        <td>{disMsp ? disMsp.toFixed(2) : null}</td>
                       </tr>
                       <tr>
                         <td>Service Charge</td>
