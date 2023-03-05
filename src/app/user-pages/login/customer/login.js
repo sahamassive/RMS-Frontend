@@ -8,10 +8,13 @@ import {
   Form,
 } from "../../constant/global";
 import ReCAPTCHA from "react-google-recaptcha";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 function Login(props) {
   const [emailOrPhone, setEmailOrPhone] = useState();
   const [password, setPassword] = useState();
+  const [filter, setFilter] = useState();
 
   const [isVerified, setIsVerified] = useState(false);
 
@@ -31,6 +34,10 @@ function Login(props) {
     });
   };
 
+  const applyFilter = (val) => {
+    setFilter(val);
+  }
+
   const loginCustomer = async (event) => {
     if (isVerified) {
       event.preventDefault();
@@ -48,8 +55,8 @@ function Login(props) {
             sessionStorage.setItem("loginType", data.type);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("emp_id", data.customer_id);
-            window.location.pathname == "customer/login"
-              ? (window.location.href = "/customer/dashboard")
+            window.location.pathname == "/customer/login"
+              ? window.location.href = "/customer/dashboard"
               : Swal.fire({
                   title: "Login Successful. You can checkout now...",
                   icon: "success",
@@ -102,18 +109,42 @@ function Login(props) {
                 <div className="login-wrap p-4 p-md-5">
                   <h3 className="sign-in">Sign In</h3>
                   <form action="#" className="signin-form">
-                    <div className="form-group mb-3">
-                      <label className="label" for="name">
-                        Email/Phone
-                      </label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Email/Username"
-                        onChange={(event) => {
-                          setEmailOrPhone(event.target.value);
-                        }}
-                      ></Form.Control>
+                    <div id="field-style-2" onChange={(e) => applyFilter(e.target.value)}>
+                      <input type="radio" value="email" name="discount" />
+                      <span className="sp">E-mail</span>
+                      <input type="radio" value="phone" name="discount" />
+                      <span className="sp">Phone</span>
                     </div>
+                    {filter == 'phone' ? (
+                      <div className="form-group mb-3">
+                        <label className="label" for="name">
+                          Phone
+                        </label>
+                        <div className="border-22 form-control">
+                          <PhoneInput
+                            id="phone-style"
+                            international
+                            countryCallingCodeEditable={false}
+                            defaultCountry="BD"
+                            onChange={setEmailOrPhone}
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="form-group mb-3">
+                        <label className="label" for="name">
+                          Email
+                        </label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Email/Username"
+                          onChange={(event) => {
+                            setEmailOrPhone(event.target.value);
+                          }}
+                        ></Form.Control>
+                      </div>
+                    )}
+
                     <div className="form-group mb-3">
                       <label className="label" for="password">
                         Password

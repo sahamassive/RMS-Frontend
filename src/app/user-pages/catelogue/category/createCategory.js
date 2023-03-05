@@ -23,8 +23,8 @@ function CreateCategory() {
   const [metaDes, setMetDes] = useState();
   const [metaKeyword, setMetaKeyword] = useState();
   const [image, setImage] = useState();
-
   const [section, setSection] = useState();
+
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
@@ -32,9 +32,9 @@ function CreateCategory() {
       setSection(response.data);
     });
   }, []);
+
   const insert = () => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
     axios
       .post(`${baseUrl}/api/category-insert`, {
         category_name: categoryName,
@@ -57,6 +57,7 @@ function CreateCategory() {
         });
       });
   };
+  
   return (
     <div>
       <div className="col-lg-12 grid-margin stretch-card">
@@ -220,7 +221,7 @@ function CreateCategory() {
                   <div className="section-03">
                     <Form.Group
                       controlId="formFileMultiple"
-                      className="mb-3 search_box2"
+                      className="search_box2"
                     >
                       <Form.Control
                         type="file"
@@ -230,7 +231,7 @@ function CreateCategory() {
                         }
                       />
                     </Form.Group>
-                    <img src={image} width="80px" height="50px" />
+                    <img className="img" src={image} width="80px" height="50px" />
                   </div>
                 </div>
                 <a className="btn btn-success top-space2" onClick={insert}>
