@@ -290,7 +290,6 @@ function CustomerOrder({}) {
                         <th>Unit Price</th>
                         <th>Quantity</th>
                         <th>Sub Total</th>
-
                         <th>Discount</th>
                         <th>Action</th>
                       </tr>

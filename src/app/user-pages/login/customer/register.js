@@ -83,6 +83,7 @@ function Register() {
                         setName(event.target.value);
                       }}
                     />
+                    <div className="border-22 form-control">
                     <PhoneInput
                       id="phone-style"
                       international
@@ -90,7 +91,8 @@ function Register() {
                       defaultCountry="BD"
                       value={phone}
                       onChange={setPhone}
-                    />
+                      />
+                      </div>
                     <Form.Control
                       name="password"
                       type="password"

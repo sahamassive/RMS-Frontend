@@ -39,6 +39,7 @@
   outline: 1px solid rgb(1, 61, 16);
   background-color: white;
   color: black;
+  transform: scale(1.05);
 }
 
 .area:hover {
@@ -90,6 +91,7 @@ select:focus {
   outline: 1px solid rgb(1, 61, 16);
   background-color: white;
   color: black;
+  transform: scale(1.05);
 }
 
 select:hover {
@@ -121,6 +123,7 @@ input[type="number"]:focus {
   background-color: white;
   border-radius: 4px;
   text-align: left;
+  transform: scale(1.05);
 }
 
 input[type="text"]:hover,
@@ -340,18 +343,11 @@ h1 {
 }
 
 .search_box2 {
-  margin-left: 3rem;
   position: absolute;
-  top: 4rem;
   background-color: #000000;
   border-radius: 5px;
   height: 2.1rem;
   border: 1px solid #706e6e;
-}
-@media only screen and (max-width: 600px) {
-  .search_box2 {
-    margin-left: 8rem;
-  }
 }
 
 .profile2 {
