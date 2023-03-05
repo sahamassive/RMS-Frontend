@@ -117,10 +117,10 @@ function ChefDashboard() {
     setRefresh(true);
   };
 
-  $.DataTable = require("datatables.net");
-  $(document).ready(function () {
-    $("#chefInventory").DataTable();
-  });
+  // $.DataTable = require("datatables.net");
+  // $(document).ready(function () {
+  //   $("#chefInventory").DataTable();
+  // });
 
   // $(document).ready(function () {
   //     $("#chefAttendedInventory").DataTable();
@@ -136,7 +136,9 @@ function ChefDashboard() {
             </div>
             <div className="col-sm-12 background">
               <br></br>
-              <h4 className="card-title input_field order-id">Running Order:</h4>
+              <h4 className="card-title input_field order-id">
+                Running Order:
+              </h4>
               <div className="two_part input_field">
                 <button
                   onClick={() => {
@@ -224,7 +226,9 @@ function ChefDashboard() {
               </div>
             </div>
             <div className="col-sm-12 background">
-              <h4 className="card-title input_field order-id">Pending Order:</h4>
+              <h4 className="card-title input_field order-id">
+                Pending Order:
+              </h4>
               <div className="container">
                 <div className="row">
                   {recentId
@@ -288,7 +292,9 @@ function ChefDashboard() {
             </div>
             <div className="col-sm-12 background">
               <br></br>
-              <h4 className="card-title input_field order-id">Today's taken inventory item:</h4>
+              <h4 className="card-title input_field order-id">
+                Today's taken inventory item:
+              </h4>
               <div className="two_part input_field">
                 <button
                   onClick={() => {
@@ -340,51 +346,51 @@ function ChefDashboard() {
                     </tr>
                   </thead>
                   <tbody>
-                    {allData
-                      ? allData.map((data, index) => (
-                          <tr>
-                            <td>{index + 1}</td>
-                            <td>
-                              {new Date(data.created_at).toLocaleString(
-                                "en-US",
-                                { day: "2-digit" }
-                              )}
-                              -
-                              {new Date(data.created_at).toLocaleString(
-                                "en-US",
-                                { month: "long" }
-                              )}
-                              -{new Date(data.created_at).getFullYear()}
-                              <br></br>
-                              {new Date(data.created_at).toLocaleTimeString(
-                                "en-US"
-                              )}
-                            </td>
-                            <td>{data.ingredient}</td>
-                            <td>
-                              {data.quantity}
-                              {data.unit === "Kg" ? "Gm" : null}
-                              {data.unit === "L" ? "Gm" : null}
-                              {data.unit === "Ps" ? data.unit : null}
-                              {data.unit === "Gm" ? data.unit : null}
-                            </td>
-                            <td>
-                              {data.used_quantity}
-                              {data.unit === "Kg" ? "Gm" : null}
-                              {data.unit === "L" ? "Gm" : null}
-                              {data.unit === "Ps" ? data.unit : null}
-                              {data.unit === "Gm" ? data.unit : null}
-                            </td>
-                            <td>
-                              {data.quantity - data.used_quantity}
-                              {data.unit === "Kg" ? "Gm" : null}
-                              {data.unit === "L" ? "Gm" : null}
-                              {data.unit === "Ps" ? data.unit : null}
-                              {data.unit === "Gm" ? data.unit : null}
-                            </td>
-                          </tr>
-                        ))
-                      : <tr></tr>}
+                    {allData ? (
+                      allData.map((data, index) => (
+                        <tr>
+                          <td>{index + 1}</td>
+                          <td>
+                            {new Date(data.created_at).toLocaleString("en-US", {
+                              day: "2-digit",
+                            })}
+                            -
+                            {new Date(data.created_at).toLocaleString("en-US", {
+                              month: "long",
+                            })}
+                            -{new Date(data.created_at).getFullYear()}
+                            <br></br>
+                            {new Date(data.created_at).toLocaleTimeString(
+                              "en-US"
+                            )}
+                          </td>
+                          <td>{data.ingredient}</td>
+                          <td>
+                            {data.quantity}
+                            {data.unit === "Kg" ? "Gm" : null}
+                            {data.unit === "L" ? "Gm" : null}
+                            {data.unit === "Ps" ? data.unit : null}
+                            {data.unit === "Gm" ? data.unit : null}
+                          </td>
+                          <td>
+                            {data.used_quantity}
+                            {data.unit === "Kg" ? "Gm" : null}
+                            {data.unit === "L" ? "Gm" : null}
+                            {data.unit === "Ps" ? data.unit : null}
+                            {data.unit === "Gm" ? data.unit : null}
+                          </td>
+                          <td>
+                            {data.quantity - data.used_quantity}
+                            {data.unit === "Kg" ? "Gm" : null}
+                            {data.unit === "L" ? "Gm" : null}
+                            {data.unit === "Ps" ? data.unit : null}
+                            {data.unit === "Gm" ? data.unit : null}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr></tr>
+                    )}
                   </tbody>
                 </table>
                 <br></br>

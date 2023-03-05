@@ -3,6 +3,7 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 import { Collapse, Dropdown } from "react-bootstrap";
 import { Trans } from "react-i18next";
 import "./style2.css";
+import { slugUrl } from "../user-pages/constant/url";
 const loginType = sessionStorage.getItem("loginType");
 
 class Sidebar extends Component {
@@ -564,7 +565,7 @@ class Sidebar extends Component {
                           }
                           to="/inventory/inventory-distribution"
                         >
-                          <Trans> Inventory Distribution</Trans>
+                          <Trans>Inventory Distribution</Trans>
                         </Link>
                       </li>
                       <li className="nav-item">

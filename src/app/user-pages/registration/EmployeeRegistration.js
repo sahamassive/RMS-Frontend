@@ -73,6 +73,7 @@ function EmployeeRegistration() {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append("restaurant_id", restaurant_id);
     formData.append("image", image);
     formData.append("first_name", fname);
     formData.append("last_name", lname);

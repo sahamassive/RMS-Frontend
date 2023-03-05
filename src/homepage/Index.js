@@ -57,12 +57,17 @@ function Index() {
 
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-    axios.get(`${baseUrl}/api/profile/${sessionStorage.getItem("loginType")}/${sessionStorage.getItem("emp_id")}`).then((response) => {
-      setState(response.data);
-    }); 
-    setProfile(false)
+    axios
+      .get(
+        `${baseUrl}/api/profile/${sessionStorage.getItem(
+          "loginType"
+        )}/${sessionStorage.getItem("emp_id")}`
+      )
+      .then((response) => {
+        setState(response.data);
+      });
+    setProfile(false);
   }, [profile]);
-
 
   useEffect(() => {
     const jsonString = sessionStorage.getItem("orderDetails2");
@@ -285,10 +290,10 @@ function Index() {
     sessionStorage.removeItem("loginType");
     sessionStorage.removeItem("customer_id");
     window.location.href = "/";
-  }
+  };
   return (
     <div>
-      {console.log(state ? state : 'hi')}
+      {console.log(state ? state : "hi")}
       <div id="topbar" className="d-flex align-items-center fixed-top">
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
@@ -318,48 +323,13 @@ function Index() {
                 {branchId ? branchName : resturant.city}
               </span>
             </button>
-            {state ? (
-                  <div class="dropdown index-z">
-                      <a class="branch-style" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  <div className="two_part">
-                      {sessionStorage.getItem("loginType") == "Customer" ?
-                      <img
-                        className="img-xs rounded-circle"
-                        src={`${baseUrl}/customer/small/${state.image}`}
-                        alt="profile"
-                    /> 
-                    :
-                      <img
-                      className="img-xs rounded-circle"
-                        src={`${baseUrl}/employee/small/${state.image}`}
-                        alt="profile"
-                  />
-                  }
-                    <p className="mb-0 d-none d-sm-block navbar-profile-name drop">
-                      <Trans>
-                        {state.name} {state.first_name}
-                        {state.last_name}
-                      </Trans>
-                    </p>
-                    <i className="mdi mdi-menu-down d-none d-sm-block drop"></i>
-                   
-                           </div>
-                      </a>
-                    
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a id="index-z" class="dropdown-item" href="/user/edit-password"><i className="bi bi-lock-fill"></i> Change Password</a></li>
-                        <li><a class="dropdown-item" href="/user/profile"><i className="bi bi-person-bounding-box"></i> Profile</a></li>
-                        <li><button class="dropdown-item" onClick={() => { logout() }}><i className="mdi mdi-logout text-danger"></i> Logout</button></li>
-                      </ul>
-                    </div>
-                  ) :
-              <div>
-                <a className="branch-style" href="/customer/login">
-                <i className="icon-space4 bi bi-box-arrow-in-right"></i>
-                Login/SignUp
-                </a>
-              </div>
-          }
+
+            <a
+              href="#book-a-table"
+              className="book-a-table-btn d-none d-lg-flex branch-style"
+            >
+              <i className="bi bi-table icon-space4"></i> Book a table
+            </a>
           </div>
         </div>
       </div>
@@ -449,12 +419,76 @@ function Index() {
             </ul>
             <i className="bi bi-list mobile-nav-toggle"></i>
           </nav>
-          <a
-            href="#book-a-table"
-            className="book-a-table-btn scrollto d-none d-lg-flex"
-          >
-            Book a table
-          </a>
+          {state ? (
+            <div class="dropdown index-z2 scrollto d-none d-lg-flex">
+              <a
+                class="branch-style"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div className="two_part">
+                  {sessionStorage.getItem("loginType") == "Customer" ? (
+                    <img
+                      className="img-xs rounded-circle"
+                      src={`${baseUrl}/customer/small/${state.image}`}
+                      alt="profile"
+                    />
+                  ) : (
+                    <img
+                      className="img-xs rounded-circle"
+                      src={`${baseUrl}/employee/small/${state.image}`}
+                      alt="profile"
+                    />
+                  )}
+                  <p className="mb-0 d-none d-sm-block navbar-profile-name drop">
+                    <Trans>
+                      {state.name} {state.first_name}
+                      {state.last_name}
+                    </Trans>
+                  </p>
+                  <i className="mdi mdi-menu-down d-none d-sm-block drop"></i>
+                </div>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <a
+                    id="index-z"
+                    class="dropdown-item"
+                    href="/user/edit-password"
+                  >
+                    <i className="bi bi-lock-fill"></i> Change Password
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/user/profile">
+                    <i className="bi bi-person-bounding-box"></i> Profile
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    onClick={() => {
+                      logout();
+                    }}
+                  >
+                    <i className="mdi mdi-logout text-danger"></i> Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <a
+                className="scrollto d-none d-lg-flex  border-class"
+                href="/customer/login"
+              >
+                Login/SignUp
+              </a>
+            </div>
+          )}
         </div>
       </header>
       <section id="hero" className="d-flex align-items-center">
@@ -1647,14 +1681,17 @@ function Index() {
             </div>
             <div className="sec_01 col-md-6">
               <div>
-                <a  className="close-btn" onClick={handleClose}>
+                <a className="close-btn" onClick={handleClose}>
                   <i className="bi bi-x-square"></i>
                 </a>
               </div>
-              <div  className="fo-name">
+              <div className="fo-name">
                 <h2>{singlefood.name}</h2>
                 <p className="price">{singlefood.price} Tk.</p>
-                <p><span className="company_name">Description: </span>{singlefood.description}</p>
+                <p>
+                  <span className="company_name">Description: </span>
+                  {singlefood.description}
+                </p>
                 <p>sepciality: {singlefood.sepciality}</p>
                 <p>discount: {singlefood.discount}</p>
               </div>
@@ -1684,44 +1721,44 @@ function Index() {
         aria-describedby="modal-modal-description"
       >
         <div className="food-details">
-            <div>
-              <h3 className="modal-title">Select Your Nearest Branch</h3>
-              <div className="close-btn">
-                <a onClick={branchClose}>
-                  <i className="bi bi-x-square"></i>
-                </a>
-              </div>
+          <div>
+            <h3 className="modal-title">Select Your Nearest Branch</h3>
+            <div className="close-btn">
+              <a onClick={branchClose}>
+                <i className="bi bi-x-square"></i>
+              </a>
             </div>
-            <div className="section-branch">
-              <button className="btn-details" onClick={() => setMainBranch()}>
-                <i className="bi bi-geo-alt-fill icon-space5"></i>
-                <span className="city-01">GoTo Main Branch</span>
-                <br></br>
-              </button>
-            </div>
-            {branch
-              ? branch.map((data) => (
-                  <div className="section-branch">
-                    <button
-                      className="btn-details"
-                      onClick={() =>
-                        selectBranch(
-                          data.id,
-                          data.city,
-                          data.phone,
-                          data.address,
-                          data.email
-                        )
-                      }
-                    >
-                      <i className="bi bi-geo-alt-fill icon-space5"></i>
-                      <span className="city-01">{data.city} Branch</span>
-                      <br></br>
-                      <span className="address-01">{data.address}</span>
-                    </button>
-                  </div>
-                ))
-              : null}
+          </div>
+          <div className="section-branch">
+            <button className="btn-details" onClick={() => setMainBranch()}>
+              <i className="bi bi-geo-alt-fill icon-space5"></i>
+              <span className="city-01">GoTo Main Branch</span>
+              <br></br>
+            </button>
+          </div>
+          {branch
+            ? branch.map((data) => (
+                <div className="section-branch">
+                  <button
+                    className="btn-details"
+                    onClick={() =>
+                      selectBranch(
+                        data.id,
+                        data.city,
+                        data.phone,
+                        data.address,
+                        data.email
+                      )
+                    }
+                  >
+                    <i className="bi bi-geo-alt-fill icon-space5"></i>
+                    <span className="city-01">{data.city} Branch</span>
+                    <br></br>
+                    <span className="address-01">{data.address}</span>
+                  </button>
+                </div>
+              ))
+            : null}
         </div>
       </Modal>
       <Modal
@@ -1736,7 +1773,10 @@ function Index() {
               <i className="bi bi-x-square"></i>
             </a>
           </div>
-          <Login setLoginModalStatus={setLoginModalStatus} setProfile= {setProfile} />
+          <Login
+            setLoginModalStatus={setLoginModalStatus}
+            setProfile={setProfile}
+          />
         </div>
       </Modal>
     </div>
