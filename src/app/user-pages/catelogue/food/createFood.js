@@ -31,7 +31,8 @@ function CreateFood() {
   const [metaKeyword, setMetaKeyword] = useState();
   const [preview, setPrview] = useState();
   const [image, setImage] = useState();
-
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [previewImages, setPreviewImages] = useState([]);
   useEffect(() => {
     getCategories();
     getBrand();
@@ -66,6 +67,21 @@ function CreateFood() {
   const changeHandler = (event) => {
     setImage(event.target.files[0]);
     setPrview(URL.createObjectURL(event.target.files[0]));
+  };
+  const handleFileInputChange = (e) => {
+    const filesArray = Array.from(e.target.files);
+    setSelectedFiles((prevFiles) => [...prevFiles, ...filesArray]);
+    const newPreviews = [];
+    filesArray.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        newPreviews.push(reader.result);
+        if (newPreviews.length === filesArray.length) {
+          setPreviewImages((prevPreviews) => [...prevPreviews, ...newPreviews]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
   };
 
   const foodSet = (value) => {
@@ -102,6 +118,9 @@ function CreateFood() {
     formData.append("meta_description", metaDes);
     formData.append("meta_keywords", metaKeyword);
     formData.append("image", image);
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formData.append(`images[${i}]`, selectedFiles[i]);
+    }
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     await axios
       .post(`${baseUrl}/api/food-insert`, formData)
@@ -129,7 +148,7 @@ function CreateFood() {
               </div>
               <div className="two_part">
                 <div className="col-sm-3 background">
-                  <label className="logo-label-style">Food Image</label>
+                  <label className="logo-label-style">Display Image</label>
                   <div className="col-sm-6">
                     <Form.Group controlId="formFileMultiple" className="mb-3">
                       <Form.Control
@@ -140,7 +159,32 @@ function CreateFood() {
                     </Form.Group>
                     <img src={preview} width="225rem" />
                   </div>
+                  <div className="col-sm-6">
+                    <label className="logo-label-style">
+                      Multiple Images Add
+                    </label>
+                    <Form.Group controlId="formFileMultiple" className="mb-3">
+                      <Form.Control
+                        type="file"
+                        onChange={handleFileInputChange}
+                        multiple
+                      />
+                    </Form.Group>
+                    <div className="preview-images wid">
+                      {previewImages
+                        ? previewImages.map((image, index) => (
+                            <img
+                              key={index}
+                              src={image}
+                              alt={`Preview ${index}`}
+                              width="40%"
+                            />
+                          ))
+                        : null}
+                    </div>
+                  </div>
                 </div>
+
                 <div className="col-sm-9 background">
                   <div>
                     <div className="input_field two_part">

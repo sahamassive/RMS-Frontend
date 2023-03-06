@@ -10,12 +10,14 @@ import {
   Swal,
   Form,
 } from "../constant/global";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 function CustomerDashboard() {
   const [customersOrders, setCustomerOrders] = useState();
   const [id, setId] = useState();
   const emp_id = sessionStorage.getItem("emp_id");
   const [refresh, setRefresh] = useState(true);
+  const [pendingShifts, setPendingShifts] = useState(0);
 
   useEffect(() => {
     axios.get(`${baseUrl}/api/customer-order/${emp_id}`).then((response) => {
@@ -24,6 +26,10 @@ function CustomerDashboard() {
     });
     setRefresh(false);
   }, [refresh]);
+  const progressBarStyle = {
+    height: "30px",
+    fontSize: "1em",
+  };
 
   return (
     <div>
@@ -48,10 +54,11 @@ function CustomerDashboard() {
                         <thead>
                           <tr className="order-id2 bg-coloring">
                             <th>Image</th>
-                            <th>Food Name</th>
+                            <th style={{ width: "20rem" }}>Food Name</th>
                             <th>Status</th>
-                            <th>Quantity</th>
+                            <th style={{ textAlign: "center" }}>Quantity</th>
                             <th>Price</th>
+                            <th>Review</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -69,37 +76,52 @@ function CustomerDashboard() {
                                     <td>
                                       <span>{data.name}</span>
                                     </td>
-                                    <td>
+                                    <td width={300}>
                                       {data.status == "pending" ? (
-                                        <button
-                                          className="btn btn-primary"
-                                          disabled
-                                        >
-                                          {data.status}
-                                        </button>
+                                        <ProgressBar
+                                          style={progressBarStyle}
+                                          animated
+                                          now={33}
+                                          variant="success"
+                                          label="Processing"
+                                        />
                                       ) : null}
                                       {data.status == "running" ? (
-                                        <button
-                                          className="btn btn-dark"
-                                          disabled
-                                        >
-                                          {data.status}
-                                        </button>
+                                        <ProgressBar
+                                          style={progressBarStyle}
+                                          animated
+                                          variant="warning"
+                                          now={66}
+                                          label="Running"
+                                        />
                                       ) : null}
                                       {data.status == "completed" ? (
-                                        <button
-                                          className="btn btn-danger"
-                                          disabled
-                                        >
-                                          {data.status}
-                                        </button>
+                                        <ProgressBar
+                                          style={progressBarStyle}
+                                          animated
+                                          variant="info"
+                                          label="Completed"
+                                          now={100}
+                                        />
                                       ) : null}
                                     </td>
-                                    <td>
+                                    <td style={{ textAlign: "center" }}>
                                       <span>{data.quantity}</span>
                                     </td>
                                     <td>
-                                      <span>{data.grand_price}(Tk.)</span>
+                                      <span>
+                                        {data.price * data.quantity}(Tk.)
+                                      </span>
+                                    </td>
+                                    <td>
+                                      {" "}
+                                      <a
+                                        className="btn btn-danger"
+                                        href={`/catalogue/food-review/${data.item_code}`}
+                                      >
+                                        <i className="bi bi-pencil-square"></i>
+                                        Review
+                                      </a>
                                     </td>
                                   </tr>
                                 ) : null
@@ -107,6 +129,18 @@ function CustomerDashboard() {
                             : null}
                         </tbody>
                       </table>
+                      <tr>
+                        <th>vat</th>
+                        <td>
+                          <span>{ids.vat}(Tk.)</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Grand Total</th>
+                        <td>
+                          <span>{ids.grand_price}(Tk.)</span>
+                        </td>
+                      </tr>
                     </div>
                   </div>
                 ))
