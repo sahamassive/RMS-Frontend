@@ -325,6 +325,7 @@ img {
     width: 50%;
     margin-left: 50%;
     display: flex;
+    gap: 5%;
 }
 
 .sign-in{
@@ -366,7 +367,3 @@ img {
     width: 100%;
     height: 1rem;
   }
-
-.sp input[type="radio"]{
-    padding-right: 5px;
-}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import "datatables.net";
+import './style.css';
 import { Line, Pie } from "react-chartjs-2";
 import {
   baseUrl,
@@ -264,36 +265,40 @@ function Dashboard() {
                 <h4 className="input_field order-id2 text-color2">
                   Sell Data for per Item:
                 </h4>
+                <div className="two_part">
                 <div className="wid">
-                  <Form.Label className="label-style">Start Date</Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={startDate ? startDate : null}
-                    onChange={(e) => {
-                      setStartDate(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="wid">
-                  <Form.Label className="label-style">End Date</Form.Label>
-                  <Form.Control
-                    type="date"
-                    id="endDate"
-                    value={endDate ? endDate : null}
-                    onChange={(e) => {
-                      setEndDate(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  onClick={() => {
-                    handleFilterSell();
+                <Form.Label className="label-style text-color">Start Date</Form.Label>
+                    <Form.Control
+                      id="field-style"
+                  type="date"
+                  value={startDate ? startDate : null}
+                  onChange={(e) => {
+                    setStartDate(e.target.value);
                   }}
-                >
-                  Submit
-                </button>
+                />
+              </div>
+              <div className="wid">
+                <Form.Label className="label-style text-color">End Date</Form.Label>
+                    <Form.Control
+                    className="white-class"
+                  type="date"
+                  id="endDate"
+                  value={endDate ? endDate : null}
+                  onChange={(e) => {
+                    setEndDate(e.target.value);
+                  }}
+                />
+              </div>
+                  <button
+                    className="btn btn-primary btn-22"
+                type="submit"
+                onClick={() => {
+                  handleFilterSell();
+                }}
+              >
+                Submit
+              </button>
+                </div>
                 <div className="table-responsive">
                   <table id="today-data" className="table-borderless wid">
                     <thead>
@@ -328,33 +333,37 @@ function Dashboard() {
             </div>
             <div className="two_part">
               <div className="background-dashboard wid">
-                <h4 className="input_field order-id2 text-color2">
+                <h4 className="input_field order-id2 btn-222">
                   Inventory Status({dayName})
                 </h4>
+                <div className="two_part">
                 <div className="wid">
-                  <Form.Label className="label-style">Select Chef</Form.Label>
-                  <select
-                    onChange={(event) => {
-                      setChefId(event.target.value);
-                    }}
-                  >
-                    <option>Select from here...</option>
-                    {chef
-                      ? chef.map((data) => (
-                          <option value={data.emp_id}>
-                            {data.emp_id}, {data.first_name} {data.last_name}
-                          </option>
-                        ))
-                      : null}
-                  </select>
+                <Form.Label className="label-style text-color">Select Chef</Form.Label>
+                    <select
+                      id="field-style"
+                  onChange={(event) => {
+                    setChefId(event.target.value);
+                  }}
+                >
+                  <option>Select from here...</option>
+                  {chef
+                    ? chef.map((data) => (
+                        <option value={data.emp_id}>
+                          {data.emp_id}, {data.first_name} {data.last_name}
+                        </option>
+                      ))
+                    : null}
+                </select>
+              </div>
                   <button
-                    type="submit"
-                    onClick={() => {
-                      handleFilterChef();
-                    }}
-                  >
-                    Submit
-                  </button>
+                    className="btn btn-primary btn-22"
+              type="submit"
+              onClick={() => {
+                handleFilterChef();
+              }}
+            >
+              Submit
+            </button>
                 </div>
                 <div className="table-responsive">
                   <table id="today-data" className="table-borderless wid">
@@ -393,36 +402,40 @@ function Dashboard() {
                   Inventory Status({monthName})
                 </h4>
 
+                <div className="two_part">
                 <div className="wid">
-                  <Form.Label className="label-style">Start Date</Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={startDate ? startDate : null}
-                    onChange={(e) => {
-                      setStartDate(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="wid">
-                  <Form.Label className="label-style">End Date</Form.Label>
-                  <Form.Control
-                    type="date"
-                    id="endDate"
-                    value={endDate ? endDate : null}
-                    onChange={(e) => {
-                      setEndDate(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  onClick={() => {
-                    handleFilter();
+                <Form.Label className="label-style text-color">Start Date</Form.Label>
+                    <Form.Control
+                      id="field-style"
+                  type="date"
+                  value={startDate ? startDate : null}
+                  onChange={(e) => {
+                    setStartDate(e.target.value);
                   }}
-                >
-                  Submit
-                </button>
+                />
+              </div>
+              <div className="wid">
+                <Form.Label className="label-style text-color">End Date</Form.Label>
+                    <Form.Control
+                      className="white-class"
+                  type="date"
+                  id="endDate"
+                  value={endDate ? endDate : null}
+                  onChange={(e) => {
+                    setEndDate(e.target.value);
+                  }}
+                />
+              </div>
+                  <button
+                    className="btn btn-primary btn-22"
+                type="submit"
+                onClick={() => {
+                  handleFilter();
+                }}
+              >
+                Submit
+              </button>
+                </div>
 
                 <div className="table-responsive">
                   <table id="today-data" className="table-borderless wid">

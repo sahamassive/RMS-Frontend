@@ -287,10 +287,6 @@ h1 {
     cursor: pointer !important;
   }
 }
-#field-style {
-  background-color: white;
-  color: black;
-}
 .bg-coloring {
   background-color: cadetblue;
   color: white;
@@ -331,10 +327,6 @@ h1 {
     background-color: none !important;
     cursor: pointer !important;
   }
-}
-#field-style {
-  background-color: white;
-  color: black;
 }
 .bg-coloring {
   background-color: cadetblue;

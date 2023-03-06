@@ -50,8 +50,9 @@ function Login(props) {
       await axios
         .post(`${baseUrl}/api/customer/login-dashboard`, formData)
         .then(({ data }) => {
+          
           if (data.message == "success") {
-            props.setProfile(true);
+            console.log(data);
             sessionStorage.setItem("loginType", data.type);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("emp_id", data.customer_id);
@@ -61,9 +62,9 @@ function Login(props) {
                   title: "Login Successful. You can checkout now...",
                   icon: "success",
                   confirmButtonText: "OK",
-                });
+              });
             props.setLoginModalStatus(false);
-       
+            props.setProfile(true);
           } else {
             sessionStorage.setItem("authenticated", false);
             window.location.href = "/customer/login";
@@ -111,15 +112,12 @@ function Login(props) {
                   <form action="#" className="signin-form">
                     <div id="field-style-2" onChange={(e) => applyFilter(e.target.value)}>
                       <input type="radio" value="email" name="discount" />
-                      <span className="sp">E-mail</span>
+                      <span className="text-color">E-mail</span>
                       <input type="radio" value="phone" name="discount" />
-                      <span className="sp">Phone</span>
+                      <span className="text-color">Phone</span>
                     </div>
                     {filter == 'phone' ? (
                       <div className="form-group mb-3">
-                        <label className="label" for="name">
-                          Phone
-                        </label>
                         <div className="border-22 form-control">
                           <PhoneInput
                             id="phone-style"
@@ -132,12 +130,9 @@ function Login(props) {
                       </div>
                     ) : (
                       <div className="form-group mb-3">
-                        <label className="label" for="name">
-                          Email
-                        </label>
                         <Form.Control
                           type="text"
-                          placeholder="Email/Username"
+                          placeholder="Email"
                           onChange={(event) => {
                             setEmailOrPhone(event.target.value);
                           }}
@@ -146,9 +141,6 @@ function Login(props) {
                     )}
 
                     <div className="form-group mb-3">
-                      <label className="label" for="password">
-                        Password
-                      </label>
                       <Form.Control
                         type="password"
                         placeholder="Password"
