@@ -37,6 +37,7 @@ function Index() {
   const [branchModalStatus, setBranchModalStatus] = React.useState(false);
   const [loginModalStatus, setLoginModalStatus] = React.useState(false);
   const [profile, setProfile] = React.useState(true);
+  const [multiple, setMultiple] = useState("");
 
   //booking
   const [bookingDate, setBookingDate] = useState();
@@ -116,12 +117,21 @@ function Index() {
 
   const LoginModalClose = () => setLoginModalStatus(false);
 
-  const handleOpen = (id) => {
+  const handleOpen = (id, item_code) => {
     axios
       .get(`${baseUrl}/api/food-edit/${id}`)
 
       .then((res) => {
         setSingleFood(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get(`${baseUrl}/api/multiple-images/${item_code}`)
+
+      .then((res) => {
+        setMultiple(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -681,7 +691,7 @@ function Index() {
                       </button>
                       <button
                         onClick={() => {
-                          handleOpen(data.id);
+                          handleOpen(data.id, data.item_code);
                         }}
                         className="btn btn-outline-warning details-style"
                       >
@@ -1678,7 +1688,18 @@ function Index() {
                 className="sec-image"
                 src={`${baseUrl}/foods/medium/${singlefood.image}`}
               ></img>
+              <div className="image-preview-column">
+                {multiple
+                  ? multiple.map((data) => (
+                      <img
+                        src={`${baseUrl}/foods/multiple/${data.images}`}
+                        width="100rem"
+                      ></img>
+                    ))
+                  : null}
+              </div>
             </div>
+
             <div className="sec_01 col-md-6">
               <div>
                 <a className="close-btn" onClick={handleClose}>
@@ -1695,6 +1716,7 @@ function Index() {
                 <p>sepciality: {singlefood.sepciality}</p>
                 <p>discount: {singlefood.discount}</p>
               </div>
+
               <button
                 className="btn btn-outline-warning cart-style"
                 onClick={() => {

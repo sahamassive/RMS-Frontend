@@ -1830,3 +1830,11 @@ select:focus {
   position: absolute;
   z-index: 100000 !important;
 }
+.image-preview-column {
+  display: flex;
+
+  gap: 5px;
+  justify-content: flex-start;
+  width: 200;
+  overflow-x: auto;
+}

@@ -1,22 +1,22 @@
-.food-image{
-    width: 40%;
-    height: 40%;
+.food-image {
+  width: 40%;
+  height: 40%;
 }
-.item-border{
-    padding: 2px;
-    margin: 2px;
-    border: .1px solid rgb(94, 94, 94);
-    border-radius: 8PX;
+.item-border {
+  padding: 2px;
+  margin: 2px;
+  border: 0.1px solid rgb(94, 94, 94);
+  border-radius: 8px;
 }
-.order-id{
-    text-align: center;
-    border-bottom: 1px solid rgb(255, 255, 255);
-    padding-bottom: 2px;
+.order-id {
+  text-align: center;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  padding-bottom: 2px;
 }
-.order_section{
-    background-color: white;
-    color: black;
-    padding: 1rem;
-    margin: 5px;
-    border-radius: 5px;
+.order_section {
+  background-color: white;
+  color: black;
+  padding: 1rem;
+  margin: 5px;
+  border-radius: 5px;
 }
