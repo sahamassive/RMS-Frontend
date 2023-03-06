@@ -9,6 +9,7 @@ function AllOrder() {
   const [allData, setAllData] = useState("");
   const [id, setId] = useState();
   const [chef, setChef] = useState();
+  const [assignedChef, setAssignedChef] = useState();
   const [status, setStatus] = useState();
   const allStatus = [
     {
@@ -27,9 +28,10 @@ function AllOrder() {
 
   useEffect(() => {
     axios.get(`${baseUrl}/api/orders`).then((response) => {
-      //console.log(response.data.id);
+      //console.log(response.data.data);
       setAllData(response.data.data);
       setId(response.data.id);
+      setAssignedChef(response.data.chefs);
     });
   }, []);
 
@@ -43,7 +45,8 @@ function AllOrder() {
 
   const getData = () => {
     axios.get(`${baseUrl}/api/orders`).then((response) => {
-      setAllData(response.data);
+      setAllData(response.data.data);
+      setId(response.data.id);
     });
   };
   const statusChange = (id) => {
@@ -61,6 +64,7 @@ function AllOrder() {
   $(document).ready(function () {
     $("#restaurant").DataTable();
   });
+
   return (
     <div>
       <div className="col-lg-12 grid-margin stretch-card">
@@ -106,8 +110,8 @@ function AllOrder() {
                                 </tr>
                               </thead>
                               <tbody>
-                                {allData.map((data, index) =>
-                                  ids.order_id === data.order_id ? (
+                                {allData ? allData.map((data, index) =>
+                                  ids.order_id == data.order_id ? 
                                     <tr>
                                       <td>{data.name}</td>
                                       <td>
@@ -143,10 +147,15 @@ function AllOrder() {
                                           <select id="field-style">
                                             <option>Select Chef...</option>
                                             {chef
-                                              ? chef.map((data) => (
-                                                  <option value={data.emp_id}>
-                                                    {data.first_name}{" "}
-                                                    {data.last_name}
+                                              ? chef.map((c) => (
+                                                <option
+                                                  {...assignedChef ? assignedChef.map((a) =>
+                                                    a.emp_id == c.emp_id && a.order_id == ids.order_id ?
+                                                      'selected' : null
+                                                    ) : null}
+                                                  value={c.emp_id}>
+                                                    {c.first_name}{" "}
+                                                    {c.last_name}
                                                   </option>
                                                 ))
                                               : null}
@@ -158,8 +167,8 @@ function AllOrder() {
                                         </div>
                                       </td>
                                     </tr>
-                                  ) : null
-                                )}
+                                   : null
+                                ) : null}
                               </tbody>
                             </table>
                             <br></br>

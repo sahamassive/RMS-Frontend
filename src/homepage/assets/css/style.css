@@ -1832,9 +1832,17 @@ select:focus {
 }
 .image-preview-column {
   display: flex;
-
   gap: 5px;
   justify-content: flex-start;
   width: 200;
   overflow-x: auto;
+}
+.border-class{
+  border: 1.5px solid rgb(184, 172, 7);
+  padding: .3rem 1.5rem .3rem 1.5rem;
+  border-radius: 30px;
+}
+.border-class:hover{
+  background-color: rgb(184, 172, 7);
+  color: white;
 }

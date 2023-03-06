@@ -247,6 +247,7 @@ function TransferInventory() {
           }
         });
     }
+    setDisabledButton({});
   };
 
   $.DataTable = require("datatables.net");

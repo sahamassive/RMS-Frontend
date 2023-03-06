@@ -182,7 +182,7 @@ class Sidebar extends Component {
                   <i className="bi bi-house-door-fill"></i>
                 </span>
                 <span className="menu-title">
-                  <Trans>Waiter Dashboard</Trans>
+                  <Trans>Dashboard</Trans>
                 </span>
               </Link>
             </li>

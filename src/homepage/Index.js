@@ -137,7 +137,7 @@ function Index() {
         console.log(err);
       });
     setOpen(true);
-    console.log(singlefood.name);
+    //console.log(singlefood.name);
   };
 
   const handleClose = () => setOpen(false);
@@ -260,8 +260,8 @@ function Index() {
     setBranchModalStatus(false);
     localStorage.setItem("branchId", id);
     setBranchId(id);
-    console.log(resturant);
-    console.log(userCity);
+    //console.log(resturant);
+    //console.log(userCity);
   };
 
   const setMainBranch = () => {
@@ -303,7 +303,6 @@ function Index() {
   };
   return (
     <div>
-      {console.log(state ? state : "hi")}
       <div id="topbar" className="d-flex align-items-center fixed-top">
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
@@ -427,12 +426,11 @@ function Index() {
                 )}
               </li>
             </ul>
-            <i className="bi bi-list mobile-nav-toggle"></i>
+            <i className="bi mobile-nav-toggle bi-list"></i>
           </nav>
           {state ? (
-            <div class="dropdown index-z2 scrollto d-none d-lg-flex">
+            <div class="dropdown scrollto d-none d-lg-flex">
               <a
-                class="branch-style"
                 href="#"
                 role="button"
                 id="dropdownMenuLink"
@@ -465,7 +463,6 @@ function Index() {
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li>
                   <a
-                    id="index-z"
                     class="dropdown-item"
                     href="/user/edit-password"
                   >
