@@ -21,8 +21,6 @@ function Login() {
         confirmButtonText: "OK",
       });
     } else {
-      e.preventDefault();
-
       const formData = new FormData();
       formData.append("type", type);
       formData.append("email", email);

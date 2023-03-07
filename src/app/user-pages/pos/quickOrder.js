@@ -459,7 +459,7 @@ function QuickOrder() {
                               {waiterOrders
                                 ? waiterOrders.map((item) =>
                                     item.waiter_id == data.emp_id
-                                      ? `${item.count ? item.count : 0}`
+                                      ? `${item.count ? item.count : '0'}`
                                       : null
                                   )
                                 : null}

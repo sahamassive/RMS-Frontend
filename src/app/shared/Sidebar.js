@@ -133,7 +133,7 @@ class Sidebar extends Component {
           <li className="nav-item nav-category">
             <span className="nav-link">Navigation Options</span>
           </li>
-          {loginType == "customer" ? (
+          {loginType == "Customer" ? (
             <li
               className={
                 this.isPathActive("/customer/dashboard")
@@ -146,7 +146,7 @@ class Sidebar extends Component {
                   <i className="bi bi-house-door-fill"></i>
                 </span>
                 <span className="menu-title">
-                  <Trans>Customer Dashboard</Trans>
+                  <Trans>Dashboard</Trans>
                 </span>
               </Link>
             </li>
@@ -164,7 +164,7 @@ class Sidebar extends Component {
                   <i className="bi bi-house-door-fill"></i>
                 </span>
                 <span className="menu-title">
-                  <Trans>Chef Dashboard</Trans>
+                  <Trans>Dashboard</Trans>
                 </span>
               </Link>
             </li>
