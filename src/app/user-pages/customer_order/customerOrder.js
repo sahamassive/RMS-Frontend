@@ -182,6 +182,7 @@ function CustomerOrder({}) {
           grand_price: grandTotal,
           pickup_method: pickup,
           vat: vat,
+          discount: disMsp,
           details: orderDetails,
         })
         .then((response) => {

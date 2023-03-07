@@ -110,65 +110,73 @@ function AllOrder() {
                                 </tr>
                               </thead>
                               <tbody>
-                                {allData ? allData.map((data, index) =>
-                                  ids.order_id == data.order_id ? 
-                                    <tr>
-                                      <td>{data.name}</td>
-                                      <td>
-                                        <img
-                                          src={`${baseUrl}/foods/small/${data.image}`}
-                                          width="80px"
-                                          height="50px"
-                                        />
-                                      </td>
-                                      <td>{data.quantity}</td>
-                                      <td>
-                                        <div className="two_part">
-                                          <select
-                                            id="field-style"
-                                            onChange={(event) => {
-                                              setStatus(event.target.value);
-                                            }}
-                                          >
-                                            {allStatus.map((item) => (
-                                              <option value={item.status}>
-                                                {item.status}
-                                              </option>
-                                            ))}
-                                          </select>
-                                          <br></br>
-                                          <button className="btn btn-primary btn-sm">
-                                            Confirm
-                                          </button>
-                                        </div>
-                                      </td>
-                                      <td>
-                                        <div className="two_part">
-                                          <select id="field-style">
-                                            <option>Select Chef...</option>
-                                            {chef
-                                              ? chef.map((c) => (
-                                                <option
-                                                  {...assignedChef ? assignedChef.map((a) =>
-                                                    a.emp_id == c.emp_id && a.order_id == ids.order_id ?
-                                                      'selected' : null
-                                                    ) : null}
-                                                  value={c.emp_id}>
-                                                    {c.first_name}{" "}
-                                                    {c.last_name}
+                                {allData
+                                  ? allData.map((data, index) =>
+                                      ids.order_id == data.order_id ? (
+                                        <tr>
+                                          <td>{data.name}</td>
+                                          <td>
+                                            <img
+                                              src={`${baseUrl}/foods/small/${data.image}`}
+                                              width="80px"
+                                              height="50px"
+                                            />
+                                          </td>
+                                          <td>{data.quantity}</td>
+                                          <td>
+                                            <div className="two_part">
+                                              <select
+                                                id="field-style"
+                                                onChange={(event) => {
+                                                  setStatus(event.target.value);
+                                                }}
+                                              >
+                                                {allStatus.map((item) => (
+                                                  <option value={item.status}>
+                                                    {item.status}
                                                   </option>
-                                                ))
-                                              : null}
-                                          </select>
-                                          <br></br>
-                                          <button className="btn btn-warning btn-sm">
-                                            Confirm
-                                          </button>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                   : null
-                                ) : null}
+                                                ))}
+                                              </select>
+                                              <br></br>
+                                              <button className="btn btn-primary btn-sm">
+                                                Confirm
+                                              </button>
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <div className="two_part">
+                                              <select id="field-style">
+                                                <option>Select Chef...</option>
+                                                {chef
+                                                  ? chef.map((c) => (
+                                                      <option
+                                                        selected={assignedChef.map(
+                                                          (a) =>
+                                                            a.emp_id ==
+                                                              c.emp_id &&
+                                                            a.order_id ==
+                                                              ids.order_id
+                                                              ? "selected"
+                                                              : null
+                                                        )}
+                                                        value={c.emp_id}
+                                                      >
+                                                        {c.first_name}
+                                                        {c.last_name}
+                                                      </option>
+                                                    ))
+                                                  : null}
+                                              </select>
+                                              <br></br>
+                                              <button className="btn btn-warning btn-sm">
+                                                Confirm
+                                              </button>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      ) : null
+                                    )
+                                  : null}
                               </tbody>
                             </table>
                             <br></br>

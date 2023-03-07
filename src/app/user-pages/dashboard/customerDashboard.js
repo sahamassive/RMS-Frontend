@@ -11,6 +11,9 @@ import {
   Form,
 } from "../constant/global";
 import ProgressBar from "react-bootstrap/ProgressBar";
+const token = sessionStorage.getItem("token");
+const loginType = sessionStorage.getItem("loginType");
+const emp_id = sessionStorage.getItem("emp_id");
 
 function CustomerDashboard() {
   const [customersOrders, setCustomerOrders] = useState();
@@ -18,6 +21,11 @@ function CustomerDashboard() {
   const emp_id = sessionStorage.getItem("emp_id");
   const [refresh, setRefresh] = useState(true);
   const [pendingShifts, setPendingShifts] = useState(0);
+
+  if (loginType == "Customer") {
+  } else {
+    window.location.href = "/";
+  }
 
   useEffect(() => {
     axios.get(`${baseUrl}/api/customer-order/${emp_id}`).then((response) => {
@@ -129,18 +137,26 @@ function CustomerDashboard() {
                             : null}
                         </tbody>
                       </table>
-                      <tr>
-                        <th>vat</th>
-                        <td>
-                          <span>{ids.vat}(Tk.)</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>Grand Total</th>
-                        <td>
-                          <span>{ids.grand_price}(Tk.)</span>
-                        </td>
-                      </tr>
+                      <table className="tr-section-right">
+                        <tr>
+                          <th>vat</th>
+                          <td>
+                            <span>{ids.vat} (Tk.)</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>discount</th>
+                          <td>
+                            <span>{ids.discount ? ids.discount : 0} (Tk.)</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Grand Total</th>
+                          <td>
+                            <span>{ids.grand_price} (Tk.)</span>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
                   </div>
                 ))

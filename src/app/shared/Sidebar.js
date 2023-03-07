@@ -134,22 +134,59 @@ class Sidebar extends Component {
             <span className="nav-link">Navigation Options</span>
           </li>
           {loginType == "Customer" ? (
-            <li
-              className={
-                this.isPathActive("/customer/dashboard")
-                  ? "nav-item menu-items active"
-                  : "nav-item menu-items"
-              }
-            >
-              <Link className="nav-link" to="/customer/dashboard">
-                <span className="menu-icon">
-                  <i className="bi bi-house-door-fill"></i>
-                </span>
-                <span className="menu-title">
-                  <Trans>Dashboard</Trans>
-                </span>
-              </Link>
-            </li>
+
+            <div>
+              {" "}
+              <li
+                className={
+                  this.isPathActive("/customer/dashboard")
+                    ? "nav-item menu-items active"
+                    : "nav-item menu-items"
+                }
+              >
+                <Link className="nav-link" to="/customer/dashboard">
+                  <span className="menu-icon">
+                    <i className="bi bi-house-door-fill"></i>
+                  </span>
+                  <span className="menu-title">
+                    <Trans>Customer Dashboard</Trans>
+                  </span>
+                </Link>
+              </li>
+              <li
+                className={
+                  this.isPathActive("/customer/order")
+                    ? "nav-item menu-items active"
+                    : "nav-item menu-items"
+                }
+              >
+                <Link className="nav-link" to="/customer/order">
+                  <span className="menu-icon">
+                    <i className="bi bi-house-door-fill"></i>
+                  </span>
+                  <span className="menu-title">
+                    <Trans>My Order</Trans>
+                  </span>
+                </Link>
+              </li>
+              <li
+                className={
+                  this.isPathActive("/customer/review")
+                    ? "nav-item menu-items active"
+                    : "nav-item menu-items"
+                }
+              >
+                <Link className="nav-link" to="/customer/review">
+                  <span className="menu-icon">
+                    <i className="bi bi-house-door-fill"></i>
+                  </span>
+                  <span className="menu-title">
+                    <Trans>My Review</Trans>
+                  </span>
+                </Link>
+              </li>
+            </div>
+
           ) : null}
           {loginType == "Chef" ? (
             <li
