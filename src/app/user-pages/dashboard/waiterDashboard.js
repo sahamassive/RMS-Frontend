@@ -17,10 +17,10 @@ const emp_id = sessionStorage.getItem("emp_id");
 function WaiterDashboard() {
   const [id, setId] = useState();
   const [allData, setAllData] = useState();
-  const [recentOrder, setRecentOrder] = useState();
-  const [recentId, setRecentId] = useState();
   const [refresh, setRefresh] = useState(true);
-  const [attendOrder, setAttendOrder] = useState();
+  const [pending, setPending] = useState();
+  const [running, setRunning] = useState();
+  const [completed, setCompleted] = useState();
 
   if (loginType == "Super-Admin" || loginType == "Waiter") {
   } else {
@@ -33,8 +33,17 @@ function WaiterDashboard() {
     axios.get(`${baseUrl}/api/waiter-with-orders/${emp_id}`).then((response) => {
       setId(response.data.id);
       setAllData(response.data.data);
-      console.log(response.data)
-      console.log(response.data.id)
+    });
+    setRefresh(false);
+  }, [refresh]);
+
+  useEffect(() => {
+    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+    axios.get(`${baseUrl}/api/waiter-with-orders-count/${emp_id}`).then((response) => {
+      setPending(response.data.pending[0].count);
+      setRunning(response.data.running[0].count);
+      setCompleted(response.data.completed[0].count);
     });
     setRefresh(false);
   }, [refresh]);
@@ -54,6 +63,29 @@ function WaiterDashboard() {
               <h4 className="card-title">Dashboard</h4>
             </div>
             <div className="col-ms-12">
+              <div className="card-section">
+              <div className="single-card">
+              Pending Order
+              <br></br>
+              <strong>
+                <i className="bi bi-box-arrow-left"></i> {pending ? pending : 0}
+              </strong>
+                </div>
+            <div className="single-card">
+              Running Order
+              <br></br>
+              <strong>
+                <i className="bi bi-arrow-down-up"></i> {running ? running : 0}
+              </strong>
+                </div>
+                <div className="single-card">
+                Completed Order
+                <br></br>
+                <strong>
+                  <i className="bi bi-hand-thumbs-up-fill"></i> {completed ? completed : 0}
+                </strong>
+                  </div>
+                </div>
             {id ?
                 id.map((ids) => (
                     <div className="order_section background">

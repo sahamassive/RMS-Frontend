@@ -134,6 +134,7 @@ class Sidebar extends Component {
             <span className="nav-link">Navigation Options</span>
           </li>
           {loginType == "Customer" ? (
+
             <div>
               {" "}
               <li
@@ -185,6 +186,7 @@ class Sidebar extends Component {
                 </Link>
               </li>
             </div>
+
           ) : null}
           {loginType == "Chef" ? (
             <li
@@ -199,7 +201,7 @@ class Sidebar extends Component {
                   <i className="bi bi-house-door-fill"></i>
                 </span>
                 <span className="menu-title">
-                  <Trans>Chef Dashboard</Trans>
+                  <Trans>Dashboard</Trans>
                 </span>
               </Link>
             </li>
