@@ -250,7 +250,6 @@ img {
 }
 
 @media (max-width: 991.98px) {
-
     .img,
     .login-wrap {
         width: 100%;
@@ -285,30 +284,6 @@ img {
     color: gray;
 }
 
-.social-media .social-icon {
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid rgba(84, 105, 8, 0.05);
-    font-size: 16px;
-    margin-right: 5px;
-    border-radius: 50%;
-}
-
-.social-media .social-icon span {
-    color: #999999;
-}
-
-.social-media .social-icon:hover,
-.social-media .social-icon:focus {
-    background: #e3b04b;
-}
-
-.social-media .social-icon:hover span,
-.social-media .social-icon:focus span {
-    color: #fff;
-}
 .btn-class{
     font-size: 1.5em;
     height: 3rem;
@@ -333,39 +308,38 @@ img {
 .sign-in{
     color: rgb(51, 50, 50);
 }
-
   
-  .intl-tel-input {
-    display: table-cell;
-  }
-  .intl-tel-input .selected-flag {
-    z-index: 4;
-  }
-  .intl-tel-input .country-list {
-    z-index: 5;
-  }
-  .input-group .intl-tel-input {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 0;
-  }
+.intl-tel-input {
+display: table-cell;
+}
+.intl-tel-input .selected-flag {
+z-index: 4;
+}
+.intl-tel-input .country-list {
+z-index: 5;
+}
+.input-group .intl-tel-input {
+border-top-left-radius: 4px;
+border-top-right-radius: 0;
+border-bottom-left-radius: 4px;
+border-bottom-right-radius: 0;
+}
 
-  .border-22{
-    border: 1px solid rgb(61, 60, 60) !important;
-    background-color: white !important;
-    border-radius: 5px;
-    margin-top: 9px;
-    height: 2.5rem;
+.border-22{
+border: 1px solid rgb(61, 60, 60) !important;
+background-color: white !important;
+border-radius: 5px;
+margin-top: 9px;
+height: 2.5rem;
 
-  }
-  .border-22:focus{
-    border: 1px solid black !important;
-    outline: 1px solid rgb(1, 61, 16);
-    transform: scale(1.05);
-  }
-  .recapcha{
-    margin-bottom: 2px;
-    width: 100%;
-    height: 1rem;
-  }
+}
+.border-22:focus{
+border: 1px solid black !important;
+outline: 1px solid rgb(1, 61, 16);
+transform: scale(1.05);
+}
+.recapcha{
+margin-bottom: 2px;
+width: 100%;
+height: 1rem;
+}

@@ -1765,7 +1765,7 @@ function Index() {
                 What Customer's says about this{" "}
                 <strong>{singlefood.name}</strong>
               </p>
-              <div className="comment-scrollbar">
+              <div className="">
                 <div className="review wid">
                   {review
                     ? review.map((data) => (
@@ -1878,8 +1878,8 @@ function Index() {
             <i className="bi bi-x-square"></i>
           </a>
           </div>
-                    <br></br>
-                    <br></br>
+          <br></br>
+          <br></br>
           <ul onClick={mobileModalClose} className="mobile-nav">
           <li>
             <a className="nav-link scrollto active stl" href="#hero">

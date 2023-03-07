@@ -1542,6 +1542,7 @@ h2 {
   color: white;
   margin-left: 20%;
   margin-right: 20%;
+  height: 75vh;
 }
 .login_modal {
   background-color: rgba(0, 0, 0, 0.1);
@@ -1555,6 +1556,7 @@ h2 {
     color: white;
     margin-left: 15%;
     margin-right: 15%;
+    height: 75vh;
   }
   .login_modal {
     background-color: rgba(0, 0, 0, 0.1);
@@ -1569,6 +1571,7 @@ h2 {
     color: white;
     margin-left: 1%;
     margin-right: 1%;
+    height: 75vh;
   }
   .login_modal {
     background-color: rgba(0, 0, 0, 0.1);
@@ -1582,7 +1585,19 @@ h2 {
   color: white;
   margin-left: 1%;
   margin-right: 1%;
+  height: 75vh;
+  overflow-y: scroll;
 }
+
+.sec_01::-webkit-scrollbar {
+  display: none;
+}
+
+.sec_01{
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
 .sec-image {
   width: 100%;
 }
@@ -1597,7 +1612,7 @@ h2 {
 .close-btn {
   position: absolute;
   right: 0%;
-  top: 0;
+  top: 1%;
   font-size: 2rem;
   color: rgb(206, 24, 100) !important;
   background-color: none !important;
@@ -1769,7 +1784,6 @@ select:focus {
 }
 .image-preview-column {
   display: flex;
-
   justify-content: flex-start;
   width: 200;
   overflow-x: auto;
@@ -1789,42 +1803,43 @@ select:focus {
   color: white;
 }
 
-
 .review-two {
   display: block;
-
   background-color: #222222;
   border-radius: 8px;
   padding: 1rem 1rem 0.5rem 1rem;
 }
+
 .comment-profile {
   margin-top: 0.3rem;
 }
+
 .profile-name {
   color: rgb(196, 184, 8) !important;
 }
+
 .profile-rating {
   display: flex;
   justify-content: space-between;
 }
-.comment-scrollbar {
-  height: 20rem;
-  overflow-y: auto;
-}
+
 .hover-image:hover {
   transform: scale(1.2);
   transition: transform 0.3s ease-in-out;
 }
+
 .multi-image-btn {
   background: transparent;
 }
 
 .mobile_modal{
   background-color: rgba(0, 0, 0, 0.5);
-  margin-left: 70%;
-  width: 30%;
-  min-height: 100vh;
+  margin-left: 50%;
+  width: 50%;
+  height: 100vh;
+  overflow-y: scroll;
 }
+
 .close-btn-mobile{
   position: absolute;
   right: 1%;
@@ -1834,14 +1849,14 @@ select:focus {
   background-color: none !important;
   cursor: pointer !important;
 }
+
 .mobile-nav{
   list-style: none;
   text-align: center;
 }
+
 .stl{
   font-size: 1.5em !important;
   color: yellow;
   font-family: "Gill Sans";
 }
-
-
