@@ -203,6 +203,9 @@ const CustomerProfile = lazy(() =>
 const AllReview = lazy(() =>
   import("./user-pages/customer_profile/allReview.js")
 );
+const AllCustomerOrder = lazy(() =>
+  import("./user-pages/customer_profile/CustomerOrder")
+);
 const NewTable = lazy(() => import("./user-pages/table/newTable.js"));
 const AllTable = lazy(() => import("./user-pages/table/tableList.js"));
 const EditTable = lazy(() => import("./user-pages/table/editTable.js"));
@@ -235,6 +238,7 @@ class AppRoutes extends Component {
           <Route exact path="/customer/register" component={CustomerRegister} />
           <Route exact path="/customer/profile" component={CustomerProfile} />
           <Route exact path="/customer/review" component={AllReview} />
+          <Route exact path="/customer/order" component={AllCustomerOrder} />
           <Route path="/super-admin/super-admin" component={SuperAdmin} />
           <Route path="/super-admin/admin" component={Admin} />
           <Route path="/super-admin/all-admin" component={AllAdmin} />
