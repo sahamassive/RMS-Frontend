@@ -134,7 +134,6 @@ class Sidebar extends Component {
             <span className="nav-link">Navigation Options</span>
           </li>
           {loginType == "Customer" ? (
-
             <div>
               {" "}
               <li
@@ -149,7 +148,7 @@ class Sidebar extends Component {
                     <i className="bi bi-house-door-fill"></i>
                   </span>
                   <span className="menu-title">
-                    <Trans>Customer Dashboard</Trans>
+                    <Trans>My Dashboard</Trans>
                   </span>
                 </Link>
               </li>
@@ -162,10 +161,10 @@ class Sidebar extends Component {
               >
                 <Link className="nav-link" to="/customer/order">
                   <span className="menu-icon">
-                    <i className="bi bi-house-door-fill"></i>
+                    <i className="bi bi-border-style"></i>
                   </span>
                   <span className="menu-title">
-                    <Trans>My Order</Trans>
+                    <Trans>My Orders</Trans>
                   </span>
                 </Link>
               </li>
@@ -178,15 +177,14 @@ class Sidebar extends Component {
               >
                 <Link className="nav-link" to="/customer/review">
                   <span className="menu-icon">
-                    <i className="bi bi-house-door-fill"></i>
+                    <i className="bi bi-bezier"></i>
                   </span>
                   <span className="menu-title">
-                    <Trans>My Review</Trans>
+                    <Trans>My Reviews</Trans>
                   </span>
                 </Link>
               </li>
             </div>
-
           ) : null}
           {loginType == "Chef" ? (
             <li
