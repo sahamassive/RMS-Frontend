@@ -254,6 +254,7 @@ function QuickOrder() {
         grand_price: grandTotal,
         pickup_method: "pos",
         vat: vat,
+        discount: disMsp,
         details: orderDetails,
         customer_name: customerName,
         customer_phone: customerPhone,

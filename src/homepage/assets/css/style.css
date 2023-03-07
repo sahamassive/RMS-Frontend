@@ -1832,17 +1832,51 @@ select:focus {
 }
 .image-preview-column {
   display: flex;
-  gap: 5px;
+
   justify-content: flex-start;
   width: 200;
   overflow-x: auto;
 }
-.border-class{
+.review {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+}
+.border-class {
   border: 1.5px solid rgb(184, 172, 7);
-  padding: .3rem 1.5rem .3rem 1.5rem;
+  padding: 0.3rem 1.5rem 0.3rem 1.5rem;
   border-radius: 30px;
 }
-.border-class:hover{
+.border-class:hover {
   background-color: rgb(184, 172, 7);
   color: white;
+}
+
+.review-two {
+  display: block;
+
+  background-color: #222222;
+  border-radius: 8px;
+  padding: 1rem 1rem 0.5rem 1rem;
+}
+.comment-profile {
+  margin-top: 0.3rem;
+}
+.profile-name {
+  color: rgb(196, 184, 8) !important;
+}
+.profile-rating {
+  display: flex;
+  justify-content: space-between;
+}
+.comment-scrollbar {
+  height: 20rem;
+  overflow-y: auto;
+}
+.hover-image:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out;
+}
+.multi-image-btn {
+  background: transparent;
 }

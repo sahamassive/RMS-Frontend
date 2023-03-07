@@ -12,6 +12,10 @@ import {
   Swal,
   Form,
 } from "../app/user-pages/constant/global";
+import StarRatingComponent from "react-star-rating-component";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
+
 import Modal from "@mui/material/Modal";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -38,6 +42,7 @@ function Index() {
   const [loginModalStatus, setLoginModalStatus] = React.useState(false);
   const [profile, setProfile] = React.useState(true);
   const [multiple, setMultiple] = useState("");
+  const [review, setReview] = useState("");
 
   //booking
   const [bookingDate, setBookingDate] = useState();
@@ -55,6 +60,7 @@ function Index() {
   const [note, setNote] = useState();
   const [location, setLocation] = useState({});
   const [userCity, setuserCity] = useState();
+  const [multiSingleImage, setMultiSingleImage] = useState();
 
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
@@ -103,7 +109,9 @@ function Index() {
         });
       });
   };
-
+  const multipleFoodImage = (imageName) => {
+    setMultiSingleImage(imageName);
+  };
   const branchOpen = () => {
     getBranch();
     setBranchModalStatus(true);
@@ -131,7 +139,8 @@ function Index() {
       .get(`${baseUrl}/api/multiple-images/${item_code}`)
 
       .then((res) => {
-        setMultiple(res.data);
+        setMultiple(res.data.food);
+        setReview(res.data.reviews);
       })
       .catch((err) => {
         console.log(err);
@@ -140,7 +149,10 @@ function Index() {
     //console.log(singlefood.name);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setMultiSingleImage();
+  };
 
   useEffect(() => {
     getFood();
@@ -246,7 +258,7 @@ function Index() {
       });
   };
   const getspFood = () => {
-    axios.get(`${baseUrl}/api/sp-foods`).then((response) => {
+    axios.get(`${baseUrl}/api/sp-foods/${restaurant_id}`).then((response) => {
       setSpFood(response.data);
     });
   };
@@ -462,10 +474,7 @@ function Index() {
               </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="/user/edit-password"
-                  >
+                  <a class="dropdown-item" href="/user/edit-password">
                     <i className="bi bi-lock-fill"></i> Change Password
                   </a>
                 </li>
@@ -1683,15 +1692,27 @@ function Index() {
             <div className="col-md-6">
               <img
                 className="sec-image"
-                src={`${baseUrl}/foods/medium/${singlefood.image}`}
+                src={
+                  multiSingleImage
+                    ? `${baseUrl}/foods/multiple/${multiSingleImage}`
+                    : `${baseUrl}/foods/medium/${singlefood.image}`
+                }
               ></img>
               <div className="image-preview-column">
                 {multiple
                   ? multiple.map((data) => (
-                      <img
-                        src={`${baseUrl}/foods/multiple/${data.images}`}
-                        width="100rem"
-                      ></img>
+                      <button
+                        onClick={() => {
+                          multipleFoodImage(data.images);
+                        }}
+                        className="multi-image-btn"
+                      >
+                        <img
+                          className="hover-image"
+                          src={`${baseUrl}/foods/multiple/${data.images}`}
+                          width="100rem"
+                        ></img>
+                      </button>
                     ))
                   : null}
               </div>
@@ -1729,6 +1750,44 @@ function Index() {
                 Close
               </button>
               <br></br>
+              <br></br>
+
+              <p>
+                What Customer's says about this{" "}
+                <strong>{singlefood.name}</strong>
+              </p>
+              <div className="comment-scrollbar">
+                <div className="review wid">
+                  {review
+                    ? review.map((data) => (
+                        <div className="wid two_part">
+                          <div>
+                            <img
+                              className="img-xs rounded-circle comment-profile"
+                              src={`${baseUrl}/customer/small/${data.image}`}
+                            ></img>
+                          </div>
+
+                          <div className="wid review-two">
+                            <div className="profile-rating">
+                              <p>
+                                <strong className="profile-name">
+                                  {" "}
+                                  {data.name}
+                                </strong>
+                              </p>
+                              <div>
+                                <i className="bi bi-star-fill company_name"></i>{" "}
+                                <span>{data.rating}/5</span>
+                              </div>
+                            </div>
+                            <p>{data.comment}</p>
+                          </div>
+                        </div>
+                      ))
+                    : null}
+                </div>
+              </div>
             </div>
           </div>
         </div>
