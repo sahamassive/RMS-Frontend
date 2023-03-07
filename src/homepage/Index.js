@@ -36,6 +36,7 @@ function Index() {
   const [open, setOpen] = React.useState(false);
   const [branchModalStatus, setBranchModalStatus] = React.useState(false);
   const [loginModalStatus, setLoginModalStatus] = React.useState(false);
+  const [mobileModalStatus, setMobileModalStatus] = React.useState(false);
   const [profile, setProfile] = React.useState(true);
   const [multiple, setMultiple] = useState("");
 
@@ -115,7 +116,13 @@ function Index() {
     setLoginModalStatus(true);
   };
 
-  const LoginModalClose = () => setLoginModalStatus(false);
+  const LoginModalClose = () => setMobileModalStatus(false);
+
+  const mobileModalOpen = () => {
+    setMobileModalStatus(true);
+  };
+
+  const mobileModalClose = () => setMobileModalStatus(false);
 
   const handleOpen = (id, item_code) => {
     axios
@@ -426,10 +433,10 @@ function Index() {
                 )}
               </li>
             </ul>
-            <i className="bi mobile-nav-toggle bi-list"></i>
           </nav>
+          <button className="mobile-nav-toggle" onClick={mobileModalOpen}><i className="bi bi-list"></i></button>
           {state ? (
-            <div class="dropdown scrollto d-none d-lg-flex">
+            <div className="dropdown scrollto d-none d-lg-flex">
               <a
                 href="#"
                 role="button"
@@ -460,23 +467,23 @@ function Index() {
                   <i className="mdi mdi-menu-down d-none d-sm-block drop"></i>
                 </div>
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li>
                   <a
-                    class="dropdown-item"
+                    className="dropdown-item"
                     href="/user/edit-password"
                   >
                     <i className="bi bi-lock-fill"></i> Change Password
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/user/profile">
+                  <a className="dropdown-item" href="/user/profile">
                     <i className="bi bi-person-bounding-box"></i> Profile
                   </a>
                 </li>
                 <li>
                   <button
-                    class="dropdown-item"
+                    className="dropdown-item"
                     onClick={() => {
                       logout();
                     }}
@@ -1798,6 +1805,90 @@ function Index() {
           />
         </div>
       </Modal>
+      <Modal
+      open={mobileModalStatus}
+      onClose={mobileModalClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <div className="mobile_modal">
+        <div className="close-btn-mobile">
+          <a onClick={mobileModalClose}>
+            <i className="bi bi-x-square"></i>
+          </a>
+          </div>
+                    <br></br>
+                    <br></br>
+          <ul onClick={mobileModalClose} className="mobile-nav">
+          <li>
+            <a className="nav-link scrollto active stl" href="#hero">
+            <i className="bi bi-house-door-fill stl"></i> Home
+            </a>
+          </li>
+          <li>
+            <a className="nav-link scrollto stl" href="#about">
+            <i className="bi bi-file-earmark-spreadsheet-fill stl"></i> About
+            </a>
+          </li>
+          <li>
+            <a className="nav-link scrollto stl" href="#menu">
+            <i className="bi bi-list-columns-reverse stl"></i> Menu
+            </a>
+          </li>
+          <li>
+            <a className="nav-link scrollto stl" href="#specials">
+            <i className="bi bi-stoplights-fill stl"></i> Specials
+            </a>
+          </li>
+          <li>
+            <a className="nav-link scrollto stl" href="#events">
+            <i className="bi bi-calendar-event stl"></i> Events
+            </a>
+          </li>
+          <li>
+            <a className="nav-link scrollto stl" href="#chefs">
+            <i className="bi bi-people stl"></i> Chefs
+            </a>
+          </li>
+          <li>
+            <a className="nav-link scrollto stl" href="#gallery">
+            <i className="bi bi-grid-3x3-gap stl"></i> Gallery
+            </a>
+          </li>
+          <li>
+            <a className="nav-link scrollto stl" href="#contact">
+            <i className="bi bi-person-rolodex stl"></i> Contact
+            </a>
+          </li>
+          <li>
+            {sessionStorage.getItem("loginType") == "Customer" ? (
+              <Link
+                className="nav-link scrollto"
+                to={{
+                  pathname: "/customer-order",
+                }}
+              >
+                {sessionStorage.setItem(
+                  "orderDetails",
+                  JSON.stringify(orderDetails)
+                )}
+                <i className="bi bi-cart4 stl"></i><span className="stl"> Cart</span>
+                <span className="cart-number">
+                  {orderDetails ? orderDetails.length : 0}
+                </span>
+              </Link>
+            ) : (
+              <Link onClick={LoginModalOpen}>
+                <i className="bi bi-cart4 stl"></i><span className="stl"> Cart</span>
+                <span className="cart-number">
+                  {orderDetails ? orderDetails.length : 0}
+                </span>
+              </Link>
+            )}
+          </li>
+        </ul>
+      </div>
+    </Modal>
     </div>
   );
 }

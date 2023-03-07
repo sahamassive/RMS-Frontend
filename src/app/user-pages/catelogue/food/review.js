@@ -85,63 +85,68 @@ function Review() {
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
-            <div className="btn-section">
-              {food ? (
-                <div>
-                  <h4 className="card-title"> {food.name}</h4>
-
-                  <img src={`${baseUrl}/foods/small/${food.image}`} />
-                </div>
-              ) : null}
-              <h4 className="card-title">Give Your Star</h4>
-
+            <div className="two_part">
               <div>
-                <StarRatingComponent
-                  name="rating"
-                  value={rating}
-                  onStarClick={onStarClick}
-                  starCount={5}
-                  starColor="#ffb400"
-                  emptyStarColor="#ddd"
-                  renderStarIcon={(index, value) => {
-                    return (
-                      <span>
-                        {index <= value ? (
-                          <FontAwesomeIcon icon={faStar} />
-                        ) : (
-                          <FontAwesomeIcon icon={faStar} className="far" />
-                        )}
-                      </span>
-                    );
-                  }}
-                  renderStarIconHalf={() => {
-                    return (
-                      <span>
-                        <FontAwesomeIcon icon={faStarHalf} />
-                      </span>
-                    );
-                  }}
-                  starDimension="180px" // Set the star size to 40px
-                />
+                {food ? (
+                  <div>
+                    <h4 className="card-title"> {food.name}</h4>
+
+                    <img src={`${baseUrl}/foods/small/${food.image}`} />
+                  </div>
+                ) : null}
               </div>
-              <br></br>
+              <div className="section-444 wid">
+                  <Form.Label className="label-style">Give Your Star</Form.Label>
+                  <br></br>
+                <StarRatingComponent
+                    name="rating"
+                    value={rating}
+                    onStarClick={onStarClick}
+                    starCount={5}
+                    starColor="#ffb400"
+                    emptyStarColor="#ddd"
+                    renderStarIcon={(index, value) => {
+                      return (
+                        <span>
+                          {index <= value ? (
+                            <FontAwesomeIcon icon={faStar} />
+                          ) : (
+                            <FontAwesomeIcon icon={faStar} className="far" />
+                          )}
+                        </span>
+                      );
+                    }}
+                    renderStarIconHalf={() => {
+                      return (
+                        <span>
+                          <FontAwesomeIcon icon={faStarHalf} />
+                        </span>
+                      );
+                    }}
+                    starDimension="180px" // Set the star size to 40px
+                />
+                <br></br>
+                <div className="wid">
+                <Form.Label className="label-style">Comment</Form.Label>
+                <Form.Control
+                  className="area"
+                  as="textarea"
+                  placeholder="Write Something..."
+                  rows={6}
+                  onChange={(event) => {
+                    setComment(event.target.value);
+                  }}
+                  ></Form.Control>
+                  <br></br>
+                  <button
+                  className="btn btn-warning"
+                  onClick={submitReview}
+                >
+                  <i className="bi bi-save-fill"></i>Submit Review
+                </button>
+                </div>
+              </div>
             </div>
-            <Form.Label className="label-style">Comment</Form.Label>
-            <Form.Control
-              className="area"
-              as="textarea"
-              placeholder="Write Something..."
-              rows={6}
-              onChange={(event) => {
-                setComment(event.target.value);
-              }}
-            ></Form.Control>
-            <button
-              className="btn btn-warning top-space"
-              onClick={submitReview}
-            >
-              <i className="bi bi-save-fill"></i>Submit Review
-            </button>
           </div>
         </div>
       </div>

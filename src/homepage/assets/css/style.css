@@ -306,7 +306,7 @@ h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #fff;
+  background: transparent;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -317,85 +317,14 @@ h6 {
 @media (max-width: 991px) {
   .mobile-nav-toggle {
     display: block;
+    position: absolute;
+    right: 2rem;
   }
 
   .navbar ul {
     display: none;
   }
 }
-.navbar-mobile {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
-  transition: 0.3s;
-  z-index: 999;
-}
-.navbar-mobile .mobile-nav-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-.navbar-mobile ul {
-  display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  padding: 10px 0;
-  border-radius: 6px;
-  background-color: #fff;
-  overflow-y: auto;
-  transition: 0.3s;
-}
-.navbar-mobile a,
-.navbar-mobile a:focus {
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #1a1814;
-}
-.navbar-mobile a:hover,
-.navbar-mobile .active,
-.navbar-mobile li:hover > a {
-  color: #cda45e;
-}
-.navbar-mobile .getstarted,
-.navbar-mobile .getstarted:focus {
-  margin: 15px;
-}
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-.navbar-mobile .dropdown ul li {
-  min-width: 200px;
-}
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
-}
-.navbar-mobile .dropdown ul a:hover,
-.navbar-mobile .dropdown ul .active:hover,
-.navbar-mobile .dropdown ul li:hover > a {
-  color: #cda45e;
-}
-.navbar-mobile .dropdown > .dropdown-active {
-  display: block;
-}
-
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -1547,7 +1476,6 @@ section {
   font-size: 1.5rem;
 }
 .company_name {
-  font-size: 1.3em;
   color: yellow;
   font-family: "Gill Sans";
   text-align: center;
@@ -1691,6 +1619,15 @@ h2 {
     top: 0;
     font-size: 2rem;
     color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
+  .close-btn-login {
+    position: absolute;
+    right: 11%;
+    top: 2%;
+    font-size: 2rem;
+    color: rgb(192, 13, 13);
     background-color: none !important;
     cursor: pointer !important;
   }
@@ -1846,3 +1783,28 @@ select:focus {
   background-color: rgb(184, 172, 7);
   color: white;
 }
+.mobile_modal{
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-left: 70%;
+  width: 30%;
+  min-height: 100vh;
+}
+.close-btn-mobile{
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  font-size: 2rem;
+  color: rgb(206, 24, 100) !important;
+  background-color: none !important;
+  cursor: pointer !important;
+}
+.mobile-nav{
+  list-style: none;
+  text-align: center;
+}
+.stl{
+  font-size: 1.5em !important;
+  color: yellow;
+  font-family: "Gill Sans";
+}
+

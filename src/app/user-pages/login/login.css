@@ -134,7 +134,9 @@ input[type=password]:focus {
 
 @media (max-width: 750px) {
     .right-pic-2 {
-        display: none;
+        display: block !important;
+        height:100%;
+        width: 100%;
     }
 }
 
