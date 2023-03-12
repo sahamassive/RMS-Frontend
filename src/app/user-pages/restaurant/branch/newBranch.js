@@ -94,7 +94,7 @@ function NewBranch() {
                               setRestaurantID(event.target.value);
                             }}
                           >
-                            <option value="">Select Section</option>
+                            <option value="">Select from here...</option>
                             {restaurantName
                               ? restaurantName.map((data) => (
                                   <option value={data.restaurant_id}>

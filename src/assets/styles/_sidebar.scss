@@ -1,7 +1,7 @@
 /* Sidebar */
 
 .sidebar {
-  min-height: calc(100vh - #{$navbar-height});
+  min-height: 100vh;
   background: $sidebar-bg;
   border-radius:25px;
   font-weight: normal;
@@ -22,10 +22,11 @@
     -ms-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
     background: rgb(0, 0, 0);
     width: 16rem;
-    height: $navbar-height;
+    height: 5rem;
     border-radius: 25px;
     margin-left: .78rem;
     margin-top: .75rem;
+    padding-top: -10px;
     @media (max-width: 991px) {
       width: 55px;
     }

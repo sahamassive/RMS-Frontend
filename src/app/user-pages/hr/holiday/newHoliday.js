@@ -49,7 +49,7 @@ function NewHoliday() {
                     <Form.Label className="label-style">
                       Select holiday type
                     </Form.Label>
-                    <select className="search_box2">
+                    <select>
                       <option value="">Select from here</option>
                       <option value="chef">Govt. Holiday</option>
                       <option value="chef">Company Holiday</option>
