@@ -9,7 +9,7 @@ import {
 } from "../../constant/global";
 import countrydata from "../../Country/Countrydata.json";
 import { check } from "../../constant/check";
-
+import { useValidation } from "../../constant/useValidation";
 function NewBranch() {
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantID, setRestaurantID] = useState();
@@ -20,6 +20,16 @@ function NewBranch() {
   const [selectedCity, setSelectedCity] = useState("");
   const [address, setAddress] = useState();
 
+  const { values, handleChange, errors, validate } = useValidation({
+    select: "",
+    email: "",
+    phone: "",
+    address: "",
+    country: "",
+    state: "",
+    city: "",
+  });
+
   useEffect(() => {
     axios.get(`${baseUrl}/api/restaurants`).then((response) => {
       setRestaurantName(response.data);
@@ -27,28 +37,32 @@ function NewBranch() {
   }, []);
 
   const insert = async (e) => {
-    e.preventDefault();
     //validate
+    e.preventDefault();
 
-    const formData = new FormData();
+    const isValid = validate();
 
-    formData.append("restaurant_id", restaurantID);
-    formData.append("phone", phoneNumber);
-    formData.append("email", email);
-    formData.append("country", selectedCountry);
-    formData.append("city", selectedCity);
-    formData.append("state", selectedState);
-    formData.append("address", address);
+    if (isValid) {
+      const formData = new FormData();
 
-    await axios
-      .post(`${baseUrl}/api/branch-insert`, formData)
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
+      formData.append("restaurant_id", restaurantID);
+      formData.append("phone", phoneNumber);
+      formData.append("email", email);
+      formData.append("country", selectedCountry);
+      formData.append("city", selectedCity);
+      formData.append("state", selectedState);
+      formData.append("address", address);
+
+      await axios
+        .post(`${baseUrl}/api/branch-insert`, formData)
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         });
-      });
+    }
   };
   return (
     <div>
@@ -74,6 +88,8 @@ function NewBranch() {
                           </Form.Label>
                           <select
                             className="select2"
+                            name="select"
+                            onBlur={handleChange}
                             onChange={(event) => {
                               setRestaurantID(event.target.value);
                             }}
@@ -87,6 +103,9 @@ function NewBranch() {
                                 ))
                               : null}
                           </select>
+                          {errors.select && (
+                            <span className="error">{errors.select}</span>
+                          )}
                         </div>
                         <div className="wid">
                           <Form.Label className="label-style">
@@ -94,11 +113,16 @@ function NewBranch() {
                           </Form.Label>
                           <Form.Control
                             type="text"
+                            name="phone"
+                            onBlur={handleChange}
                             placeholder="Contact no."
                             onChange={(event) => {
                               setPhoneNumber(event.target.value);
                             }}
                           ></Form.Control>
+                          {errors.phone && (
+                            <span className="error">{errors.phone}</span>
+                          )}
                         </div>
                         <div className="wid">
                           <Form.Label className="label-style">
@@ -107,10 +131,15 @@ function NewBranch() {
                           <Form.Control
                             type="email"
                             placeholder="E-mail"
+                            name="email"
+                            onBlur={handleChange}
                             onChange={(event) => {
                               setEmail(event.target.value);
                             }}
                           ></Form.Control>
+                          {errors.email && (
+                            <span className="error">{errors.email}</span>
+                          )}
                         </div>
                       </div>
                       <div className="input_field">
@@ -119,10 +148,15 @@ function NewBranch() {
                           type="text"
                           placeholder="Address"
                           value={address}
+                          onBlur={handleChange}
+                          name="address"
                           onChange={(event) => {
                             setAddress(event.target.value);
                           }}
                         ></Form.Control>
+                        {errors.address && (
+                          <span className="error">{errors.address}</span>
+                        )}
                       </div>
                       <div className="input_field two_part">
                         <div className="wid">
@@ -131,6 +165,8 @@ function NewBranch() {
                           </Form.Label>
                           <select
                             value={selectedCountry}
+                            name="country"
+                            onBlur={handleChange}
                             onChange={(event) =>
                               setSelectedCountry(event.target.value)
                             }
@@ -142,6 +178,9 @@ function NewBranch() {
                               </option>
                             ))}
                           </select>
+                          {errors.country && (
+                            <span className="error">{errors.address}</span>
+                          )}
                         </div>
                         <div className="wid">
                           <Form.Label className="label-style">
@@ -149,6 +188,8 @@ function NewBranch() {
                           </Form.Label>
                           <select
                             value={selectedState}
+                            onBlur={handleChange}
+                            name="state"
                             onChange={(event) =>
                               setSelectedState(event.target.value)
                             }
@@ -166,6 +207,9 @@ function NewBranch() {
                                   </option>
                                 ))}
                           </select>
+                          {errors.state && (
+                            <span className="error">{errors.state}</span>
+                          )}
                         </div>
                         <div className="wid">
                           <Form.Label className="label-style">
@@ -173,7 +217,9 @@ function NewBranch() {
                           </Form.Label>
                           <select
                             id="city"
+                            name="city"
                             value={selectedCity}
+                            onBlur={handleChange}
                             onChange={(event) =>
                               setSelectedCity(event.target.value)
                             }
@@ -194,6 +240,9 @@ function NewBranch() {
                                   </option>
                                 ))}
                           </select>
+                          {errors.city && (
+                            <span className="error">{errors.city}</span>
+                          )}
                         </div>
                       </div>
                       <div className="input_field">

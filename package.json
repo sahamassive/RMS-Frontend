@@ -76,7 +76,8 @@
     "sweetalert2": "^11.6.16",
     "sweetalert2-react": "^0.8.3",
     "ti-icons": "^0.1.2",
-    "typicons.font": "^2.0.9"
+    "typicons.font": "^2.0.9",
+    "validator": "^13.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
