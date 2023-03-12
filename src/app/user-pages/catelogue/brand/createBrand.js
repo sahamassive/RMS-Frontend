@@ -60,14 +60,14 @@ function CreateBrand() {
                 }}
               ></Form.Control>
               <lavel className="label-style">Brand LOGO</lavel>
-              <div className=" section-03 ">
+              <div className="section-03 wid">
                 <Form.Group
                   controlId="formFileMultiple"
                   className="mb-3 search_box2"
                 >
-                  <Form.Control type="file" onChange={changeHandler} />
+                  <Form.Control className="search_box2" type="file" onChange={changeHandler} />
                 </Form.Group>
-                <img src={preview} width="80px" height="50px" />
+                <img className="img" src={preview} width="80px" height="50px" />
               </div>
               <button className="btn btn-warning top-space2">
                 <i className="bi bi-save-fill"></i>Insert
