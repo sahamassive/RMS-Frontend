@@ -8,23 +8,37 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+import { useValidation } from "../../constant/useValidation"; 
+
 function NewDepartment() {
   const [departmentName, setDepartmentName] = useState();
   const [description, setDescription] = useState();
 
+  const { values, handleChange, errors, validate } = useValidation({
+    department: "",
+    description: "",
+  });
+
   const insert = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
 
-    formData.append("name", departmentName);
+    const isValid = validate();
+    
+    if (isValid) {
+      const formData = new FormData();
+      formData.append("name", departmentName);
+      formData.append("description", description);
 
-    formData.append("description", description);
-    await axios
-      .post(`${baseUrl}/api/department-insert`, formData)
-      .then((response) => {
-        alert(response.data.msg);
-        console.log(response);
-      });
+      await axios
+        .post(`${baseUrl}/api/department-insert`, formData)
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        });
+    }
   };
 
   return (
@@ -48,11 +62,16 @@ function NewDepartment() {
                       </Form.Label>
                       <Form.Control
                         type="text"
+                        name="department"
+                        onBlur={handleChange}
                         placeholder="Department name"
                         onChange={(event) => {
                           setDepartmentName(event.target.value);
                         }}
                       ></Form.Control>
+                      {errors.department && (
+                        <span className="error">{errors.department}</span>
+                      )}
                     </div>
                   </div>
                   <div className="input_field">
@@ -61,6 +80,8 @@ function NewDepartment() {
                         Description
                       </Form.Label>
                       <Form.Control
+                        name="description"
+                        onBlur={handleChange}
                         className="area"
                         as="textarea"
                         placeholder="Description"
@@ -69,6 +90,9 @@ function NewDepartment() {
                           setDescription(event.target.value);
                         }}
                       ></Form.Control>
+                      {errors.description && (
+                        <span className="error">{errors.description}</span>
+                      )}
                     </Form.Group>
                   </div>
                   <button className="btn btn-success top-space2">

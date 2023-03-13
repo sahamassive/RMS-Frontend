@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { useValidation } from "../constant/useValidation"; 
 import { check } from "../constant/check";
 
 function NewTable() {
@@ -8,6 +9,12 @@ function NewTable() {
   const [seat, setSeat] = useState();
   const [type, setType] = useState();
   const [allTableTypes, setAllTableTypes] = useState();
+
+  const { values, handleChange, errors, validate } = useValidation({
+    table: "",
+    type: "",
+    number: "",
+  });
 
   useEffect(() => {
     axios
@@ -21,20 +28,24 @@ function NewTable() {
   const Insert = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData();
-    formData.append("restaurant_id", restaurant_id);
-    formData.append("branch_id", "1");
-    formData.append("table_name", tableName);
-    formData.append("table_type", type);
-    formData.append("seat", seat);
-
-    axios.post(`${baseUrl}/api/table-insert`, formData).then((response) => {
-      Swal.fire({
-        title: response.data.msg,
-        icon: "success",
-        confirmButtonText: "OK",
+    const isValid = validate();
+    
+    if (isValid) { 
+      const formData = new FormData();
+      formData.append("restaurant_id", restaurant_id);
+      formData.append("branch_id", "1");
+      formData.append("table_name", tableName);
+      formData.append("table_type", type);
+      formData.append("seat", seat);
+  
+      axios.post(`${baseUrl}/api/table-insert`, formData).then((response) => {
+        Swal.fire({
+          title: response.data.msg,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
       });
-    });
+    }
   };
 
   return (
@@ -58,8 +69,13 @@ function NewTable() {
                         setTablename(event.target.value);
                       }}
                       type="text"
+                      name="table"
+                      onBlur={handleChange}
                       placeholder="Table Name"
                     ></Form.Control>
+                    {errors.table && (
+                      <span className="error">{errors.table}</span>
+                    )}
                   </div>
                   <div className="wid">
                     <Form.Label className="label-style">
@@ -70,14 +86,21 @@ function NewTable() {
                         setSeat(event.target.value);
                       }}
                       type="number"
+                      name='number'
+                      onBlur={handleChange}
                       placeholder="Number of Seat"
                     ></Form.Control>
+                    {errors.number && (
+                      <span className="error">{errors.number}</span>
+                    )}
                   </div>
                 </div>
                 <div className="input_field two_part">
                   <div className="wid">
                     <Form.Label className="label-style">Type</Form.Label>
                     <select
+                    name='type'
+                    onBlur={handleChange}
                       onChange={(event) => {
                         setType(event.target.value);
                       }}
@@ -91,12 +114,16 @@ function NewTable() {
                           )
                         : null}
                     </select>
+                    {errors.type && (
+                      <span className="error">{errors.type}</span>
+                    )}
                   </div>
                 </div>
                 <button className="btn btn-warning top-space" onClick={Insert}>
                   <i className="bi bi-save-fill"></i>Insert
                 </button>
-                <br></br> <br></br>
+                <br></br>
+                <br></br>
               </div>
             </div>
           </div>

@@ -212,25 +212,59 @@ function TransferInventory() {
 
     if (window.location.pathname == '/inventory/inventory-distribution') {
       axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-      axios
-      .post(`${baseUrl}/api/inventory-distribution`, {
-        chefId: chefId,
-        inventoryQueue: inventoryQueue,
-      })
-        .then((response) => {
-          Swal.fire({
-            title: response.data.msg,
-            icon: "success",
-            confirmButtonText: "OK",
-          });
-          if (chefId) {
-            setInventoryQueue([]);
-          }
+
+      if (chefId == null) { 
+        console.log(inventoryQueue);
+        Swal.fire({
+          title: "Please select Chef First",
+          icon: "error",
+          confirmButtonText: "OK",
         });
+      }
+      else if (inventoryQueue == '') {
+        Swal.fire({
+          title: "Please select some item First",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+      else {
+        axios
+        .post(`${baseUrl}/api/inventory-distribution`, {
+          chefId: chefId,
+          inventoryQueue: inventoryQueue,
+        })
+          .then((response) => {
+            Swal.fire({
+              title: response.data.msg,
+              icon: "success",
+              confirmButtonText: "OK",
+            });
+            if (chefId) {
+              setInventoryQueue([]);
+            }
+          });
+      }
     }
     if (window.location.pathname == '/inventory/inventory-transfer') {
       axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-      axios
+
+      if (branchId == null) { 
+        Swal.fire({
+          title: "Please select Branch First",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+      else if (inventoryQueue == '') {
+        Swal.fire({
+          title: "Please select some item First",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+      else {
+        axios
         .post(`${baseUrl}/api/inventory-transfer`, {
           branchId: branchId,
           restaurant_id: restaurant_id,
@@ -246,6 +280,7 @@ function TransferInventory() {
             setInventoryQueue([]);
           }
         });
+      }
     }
     setDisabledButton({});
   };

@@ -1611,7 +1611,7 @@ h2 {
 }
 .close-btn {
   position: absolute;
-  right: 0%;
+  right: 20%;
   top: 1%;
   font-size: 2rem;
   color: rgb(206, 24, 100) !important;
@@ -1696,8 +1696,11 @@ select:focus {
 .section-branch {
   background-color: rgba(0, 0, 0, 0.6);
   border-style: none;
+  height: auto;
 }
 .btn-details {
+  border:none;
+  height: auto;
   width: 60%;
   padding: 3%;
   margin-left: 20%;

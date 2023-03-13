@@ -53,7 +53,7 @@ function Dashboard() {
     axios
       .get(`${baseUrl}/api/trending-order/${restaurant_id}`)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         setTrend(response.data);
       });
   }, []);
@@ -61,7 +61,7 @@ function Dashboard() {
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     axios.get(`${baseUrl}/api/today-data/${restaurant_id}`).then((response) => {
-      console.log(response.data.today_items);
+      //console.log(response.data.today_items);
       setTodaySell(response.data.today_sell);
       setTodayItems(response.data.today_items);
       setTodayIngredient(response.data.today_ingredient);
@@ -78,7 +78,7 @@ function Dashboard() {
   }, []);
   const handleFilter = () => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-    console.log(startDate);
+    //console.log(startDate);
 
     axios
       .get(
@@ -86,7 +86,7 @@ function Dashboard() {
       )
       .then((response) => {
         //console.log(response.data.today_items);
-        console.log(response.data);
+        //console.log(response.data);
 
         setMonthIngredient(response.data);
       });
@@ -112,7 +112,7 @@ function Dashboard() {
       )
       .then((response) => {
         //console.log(response.data.today_items);
-        console.log(response.data);
+        //console.log(response.data);
 
         setTodayItems(response.data);
       });

@@ -12,6 +12,7 @@ import {
 import { check } from "../../constant/check";
 
 const branch_id = 3;
+
 function FoodAdd() {
   const [allData, setAllData] = useState("");
   const [branch, setBranch] = useState("");
@@ -78,7 +79,15 @@ function FoodAdd() {
         confirmButtonText: "OK",
       });
     }
-    axios
+    else if (details == '') {
+      Swal.fire({
+        title: `Please select some items to submit`,
+        icon: "info",
+        confirmButtonText: "OK",
+      });
+    }
+    else {
+      axios
       .post(`${baseUrl}/api/branch-food-add`, {
         restaurant_id: restaurant_id,
         branch_id: branchId,
@@ -94,6 +103,7 @@ function FoodAdd() {
         getBranch();
         setDetails([]);
       });
+    }
   };
 
   $.DataTable = require("datatables.net");

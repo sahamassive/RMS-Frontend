@@ -124,7 +124,7 @@ function Index() {
     setLoginModalStatus(true);
   };
 
-  const LoginModalClose = () => setMobileModalStatus(false);
+  const LoginModalClose = () => setLoginModalStatus(false);
 
   const mobileModalOpen = () => {
     setMobileModalStatus(true);

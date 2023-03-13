@@ -3,6 +3,9 @@ import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import profile from "../../../assets/images/profile/profile.jpg";
 import countrydata from "./../Country/Countrydata.json";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { useValidation } from "../constant/useValidation"; 
 
 function EditProfile() {
     const type = sessionStorage.getItem("loginType");
@@ -20,6 +23,7 @@ function EditProfile() {
     const [selectedCountry, setSelectedCountry] = useState("");
     const [selectedState, setSelectedState] = useState("");
     const [selectedCity, setSelectedCity] = useState("");
+
 
     if (type) {
         
@@ -60,6 +64,7 @@ function EditProfile() {
 
     const Update = (event) => { 
         event.preventDefault();
+
         axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
         const formData = new FormData();
@@ -165,14 +170,16 @@ function EditProfile() {
                                         <Form.Label className="label-style">
                                             Contact no.
                                         </Form.Label>
-                                        <Form.Control
-                                            value={phone}
-                                            type="text"
-                                            placeholder="Phone"
-                                            onChange={(event) => {
-                                                setPhone(event.target.value);
-                                            }}
-                                        />
+                                        <div className="border-23 form-control">
+                                            <PhoneInput
+                                       
+                                          id="phone-in"
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        defaultCountry="BD"
+                                        onChange={setPhone}
+                                      />
+                                    </div>
                                     </div>
                                 </div>
                             </div>

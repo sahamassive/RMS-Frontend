@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { check } from "../constant/check";
+import { useValidation } from "../constant/useValidation"; 
 
 const token = sessionStorage.getItem("token");
 function Insert() {
@@ -14,6 +15,15 @@ function Insert() {
     const [allData, setAllData] = useState();
     const [food, setFood] = useState();
     const [branchId, setBranchId] = useState();
+
+    const { values, handleChange, errors, validate } = useValidation({
+        food: "",
+        reason: "",
+        amount: "",
+        price: "",
+        type: "",
+        employee: "",
+      });
 
     const typeFunction = (type) => {
         axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
@@ -40,24 +50,28 @@ function Insert() {
     const Insert = async (e) => { 
         e.preventDefault();
 
-        const formData = new FormData();
+        const isValid = validate();
 
-        formData.append("food_id", foodName);
-        formData.append("reason", reason);
-        formData.append("amount", amount);
-        formData.append("price", price);
-        formData.append("type", type);
-        formData.append("employee_id", employee);
-        axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-        await axios
-            .post(`${baseUrl}/api/waste-insert`, formData)
-            .then((response) => {
-                Swal.fire({
-                    title: response.data.msg,
-                    icon: 'success',
-                    confirmButtonText: "OK"
+        if (isValid) { 
+            const formData = new FormData();
+
+            formData.append("food_id", foodName);
+            formData.append("reason", reason);
+            formData.append("amount", amount);
+            formData.append("price", price);
+            formData.append("type", type);
+            formData.append("employee_id", employee);
+            axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+            await axios
+                .post(`${baseUrl}/api/waste-insert`, formData)
+                .then((response) => {
+                    Swal.fire({
+                        title: response.data.msg,
+                        icon: 'success',
+                        confirmButtonText: "OK"
+                    })
                 })
-            })
+        }
     }
     return (
         <div>
@@ -75,6 +89,8 @@ function Insert() {
                                     <div className="wid">
                                         <Form.Label className="label-style">Food name</Form.Label>
                                         <select
+                                            name='food'
+                                            onBlur={handleChange}
                                             onChange={(event) => {
                                                 setFoodName(event.target.value)
                                             }}
@@ -89,44 +105,64 @@ function Insert() {
                                                     ) : null
                                             }
                                         </select>
+                                        {errors.food && (
+                                            <span className="error">{errors.food}</span>
+                                          )}
                                     </div>
                                     <div className="wid">
                                         <Form.Label className="label-style">Reason</Form.Label>
                                         <Form.Control
                                             type="text"
+                                            name='reason'
+                                            onBlur={handleChange}
                                             placeholder="Reason"
                                             onChange={(event) => {
                                                 setReason(event.target.value)
                                             }}
                                         ></Form.Control>
+                                        {errors.reason && (
+                                            <span className="error">{errors.reason}</span>
+                                          )}
                                     </div>
                                 </div>
                                 <div className='input_field two_part'>
                                     <div className="wid">
                                         <Form.Label className="label-style">Amount</Form.Label>
                                         <Form.Control
+                                            name='amount'
+                                            onBlur={handleChange}
                                             type="number"
                                             placeholder="Amount"
                                             onChange={(event) => {
                                                 setAmount(event.target.value)
                                             }}
                                         ></Form.Control>
+                                        {errors.amount && (
+                                            <span className="error">{errors.amount}</span>
+                                          )}
                                     </div>
                                     <div className="wid">
                                         <Form.Label className="label-style">Price</Form.Label>
                                         <Form.Control
+                                            name='price'
+                                            onBlur={handleChange}
                                             type="number"
                                             placeholder="Price"
                                             onChange={(event) => {
                                                 setPrice(event.target.value)
                                             }}
                                         ></Form.Control>
+                                        {errors.price && (
+                                            <span className="error">{errors.price}</span>
+                                          )}
                                     </div>
                                 </div>
                                 <div className='input_field two_part'>
                                     <div className="wid">
                                         <Form.Label className="label-style">Select employee type</Form.Label>
                                         <select
+                                            name='type'
+                                            onBlur={handleChange}
                                             onChange={(event) => {
                                                 setType(event.target.value)
                                                 setEmployee("");
@@ -141,10 +177,15 @@ function Insert() {
                                             <option value="manager">Manager</option>
                                             <option value="cleaner">Cleaner</option>
                                         </select>
+                                        {errors.type && (
+                                            <span className="error">{errors.type}</span>
+                                          )}
                                     </div>
                                     <div className='wid'>
                                         <Form.Label className="label-style">Select employee</Form.Label>
                                         <select
+                                            name='employee'
+                                            onBlur={handleChange}
                                             onChange={(event) => {
                                                 setEmployee(event.target.value)
                                             }}
@@ -157,6 +198,9 @@ function Insert() {
                                                 )
                                             : null}
                                         </select>
+                                        {errors.employee && (
+                                            <span className="error">{errors.employee}</span>
+                                          )}
                                     </div>   
                                 </div>
                                 <button onClick={ Insert } className="btn btn-warning top-space"><i

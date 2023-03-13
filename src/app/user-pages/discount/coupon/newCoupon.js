@@ -8,6 +8,7 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+import { useValidation } from "../../constant/useValidation"; 
 const token = sessionStorage.getItem("token");
 
 function NewCoupon() {
@@ -20,9 +21,22 @@ function NewCoupon() {
   const [endingTime, setEndingTime] = useState();
   const [branchId, setBranchId] = useState();
 
+  const { values, handleChange, errors, validate } = useValidation({
+    coupon: "",
+    number: "",
+    user: "",
+    startDate: "",
+    startTime: "",
+    endDate: "",
+    endTime: "",
+  });
+
   const Insert = async (event) => {
     event.preventDefault();
 
+    const isValid = validate();
+
+    if (isValid) { 
     const formData = new FormData();
 
     formData.append("coupon_code", couponCode);
@@ -44,7 +58,8 @@ function NewCoupon() {
           icon: "success",
           confirmButtonText: "OK",
         });
-      });
+      }); 
+    }
   };
 
   return (
@@ -72,8 +87,13 @@ function NewCoupon() {
                       setCouponCode(event.target.value);
                     }}
                     type="text"
+                    name="coupon"
+                    onBlur={handleChange}
                     placeholder="coupon/voucher/promo code..."
                   ></Form.Control>
+                  {errors.coupon && (
+                    <span className="error">{errors.coupon}</span>
+                  )}
                 </div>
                 <div className="wid">
                   <Form.Label className="label-style">
@@ -83,9 +103,14 @@ function NewCoupon() {
                     onChange={(event) => {
                       setDiscountAmount(event.target.value);
                     }}
+                    name="number"
+                    onBlur={handleChange}
                     type="number"
                     placeholder="Discount Amount"
                   ></Form.Control>
+                  {errors.number && (
+                    <span className="error">{errors.number}</span>
+                  )}
                 </div>
                 <div className="wid">
                   <Form.Label className="label-style">
@@ -95,9 +120,14 @@ function NewCoupon() {
                     onChange={(event) => {
                       setQuantity(event.target.value);
                     }}
+                    name="user"
+                    onBlur={handleChange}
                     type="number"
                     placeholder="How many users can use this coupon"
                   ></Form.Control>
+                  {errors.user && (
+                    <span className="error">{errors.user}</span>
+                  )}
                 </div>
               </div>
               <div className="input_field two_part">
@@ -105,21 +135,31 @@ function NewCoupon() {
                   <Form.Label className="label-style">Starting Date</Form.Label>
                   <Form.Control
                     type="date"
+                    name="startDate"
+                    onBlur={handleChange}
                     placeholder="coupon/voucher/promo code..."
                     onChange={(event) => {
                       setStartingDate(event.target.value);
                     }}
                   ></Form.Control>
+                  {errors.startDate && (
+                    <span className="error">{errors.startDate}</span>
+                  )}
                 </div>
                 <div className="wid">
                   <Form.Label className="label-style">Starting time</Form.Label>
                   <Form.Control
                     type="time"
+                    name="startTime"
+                    onBlur={handleChange}
                     placeholder="coupon/voucher/promo code..."
                     onChange={(event) => {
                       setStartingTime(event.target.value);
                     }}
                   ></Form.Control>
+                  {errors.startTime && (
+                    <span className="error">{errors.startTime}</span>
+                  )}
                 </div>
               </div>
               <div className="input_field two_part">
@@ -127,21 +167,31 @@ function NewCoupon() {
                   <Form.Label className="label-style">Ending Date</Form.Label>
                   <Form.Control
                     type="date"
+                    name="endDate"
+                    onBlur={handleChange}
                     placeholder="coupon/voucher/promo code..."
                     onChange={(event) => {
                       setEndingDate(event.target.value);
                     }}
                   ></Form.Control>
+                  {errors.endDate && (
+                    <span className="error">{errors.endDate}</span>
+                  )}
                 </div>
                 <div className="wid">
                   <Form.Label className="label-style">Ending time</Form.Label>
                   <Form.Control
                     type="time"
+                    name="endTime"
+                    onBlur={handleChange}
                     placeholder="coupon/voucher/promo code..."
                     onChange={(event) => {
                       setEndingTime(event.target.value);
                     }}
                   ></Form.Control>
+                  {errors.endTime && (
+                    <span className="error">{errors.endTime}</span>
+                  )}
                 </div>
               </div>
               <button onClick={Insert} className="btn btn-warning top-space">

@@ -11,21 +11,20 @@ export const useValidation = (initialState) => {
     // Validate each input field
     for (const [key, value] of Object.entries(values)) {
       if (!value) {
-        newErrors[key] = "Field is required";
+        newErrors[key] = `${key} Field is required`;
       } else if (
         key === "name" &&
         !validator.isAlpha(value, "en-US", { ignore: "s" })
       ) {
         newErrors[key] =
-          "Invalid  name. Name contains only alphabetic characters";
+          "Invalid name. Name contains only alphabetic characters";
       } else if (key === "email" && !validator.isEmail(value)) {
         newErrors[key] = "Email is not valid";
       } else if (key === "password" && !validator.isStrongPassword(value)) {
         newErrors[key] =
           "Password is not strong enough.passowrd should contain : minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1";
-      } else if (key === "phone" && !validator.isMobilePhone(value)) {
-        newErrors[key] = "Mobile number is not valid";
-      } else if (key === "number" && !validator.isNumeric(value)) {
+      }
+      else if (key === "number" && !validator.isNumeric(value)) {
         newErrors[key] = "Field should conatain only number";
       }
     }
