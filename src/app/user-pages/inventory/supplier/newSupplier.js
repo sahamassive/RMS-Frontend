@@ -7,6 +7,9 @@ import {
   Swal,
   Form,
 } from "../../constant/global";
+import { useValidation } from "../../constant/useValidation";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import { check } from "../../constant/check";
 
 const token = sessionStorage.getItem("token");
@@ -18,28 +21,39 @@ function NewSupplier() {
   const [phone, setPhone] = useState();
   const [address, setAddress] = useState();
 
+  const { values, handleChange, errors, validate } = useValidation({
+    company: "",
+    market: "",
+    phone: "",
+    address: "",
+  });
+
   const Insert = async (event) => {
     event.preventDefault();
 
-    const formdata = new FormData();
-    formdata.append("restaurant_id", restaurant_id);
-    formdata.append("supplier_name", supplierName);
-    formdata.append("market_name", marketName);
-    formdata.append("email", email);
-    formdata.append("phone", phone);
-    formdata.append("address", address);
+    const isValid = validate();
 
-    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-
-    await axios
-      .post(`${baseUrl}/api/supplier-insert`, formdata)
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
+    if (isValid) {
+      const formdata = new FormData();
+      formdata.append("restaurant_id", restaurant_id);
+      formdata.append("supplier_name", supplierName);
+      formdata.append("market_name", marketName);
+      formdata.append("email", email);
+      formdata.append("phone", phone);
+      formdata.append("address", address);
+  
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+  
+      await axios
+        .post(`${baseUrl}/api/supplier-insert`, formdata)
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         });
-      });
+    }
   };
   return (
     <div>
@@ -67,8 +81,13 @@ function NewSupplier() {
                         setSupplierName(event.target.value);
                       }}
                       type="text"
+                      name="company"
+                      onBlur={handleChange}
                       placeholder="Supplier name /Company name"
                     ></Form.Control>
+                    {errors.company && (
+                      <span className="error">{errors.company}</span>
+                    )}
                   </div>
                   <div className="wid">
                     <Form.Label className="label-style">
@@ -78,9 +97,14 @@ function NewSupplier() {
                       onChange={(event) => {
                         setMarketName(event.target.value);
                       }}
+                      name="market"
+                      onBlur={handleChange}
                       type="text"
                       placeholder="Market/Bazar name"
                     ></Form.Control>
+                    {errors.market && (
+                      <span className="error">{errors.market}</span>
+                    )}
                   </div>
                 </div>
                 <div className="input_field two_part">
@@ -100,13 +124,20 @@ function NewSupplier() {
                     <Form.Label className="label-style">
                       Phone number
                     </Form.Label>
-                    <Form.Control
-                      onChange={(event) => {
-                        setPhone(event.target.value);
-                      }}
-                      type="text"
-                      placeholder="Phone"
-                    ></Form.Control>
+                    <div className="border-23 form-control">
+                      <PhoneInput
+                        name="phone"
+                        onBlur={handleChange}
+                      id="phone-in"
+                      international
+                      countryCallingCodeEditable={false}
+                      defaultCountry="BD"
+                      onChange={setPhone}
+                      />
+                    </div>
+                    {errors.phone && (
+                      <span className="error">{errors.phone}</span>
+                    )}
                   </div>
                 </div>
                 <div className="input_field">
@@ -117,10 +148,15 @@ function NewSupplier() {
                         setAddress(event.target.value);
                       }}
                       className="area"
+                      name="address"
+                      onBlur={handleChange}
                       as="textarea"
                       placeholder="Address"
                       rows={3}
                     ></Form.Control>
+                    {errors.address && (
+                      <span className="error">{errors.address}</span>
+                    )}
                   </Form.Group>
                 </div>
                 <button className="btn btn-warning top-space" onClick={Insert}>

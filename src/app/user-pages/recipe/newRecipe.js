@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { useValidation } from "../constant/useValidation";
 import { check } from "../constant/check";
 
 const token = sessionStorage.getItem("token");
@@ -10,6 +11,13 @@ function NewRecipe() {
   const [quantity, setQuantity] = useState([{ qty_value: "" }]);
   const [item, setItem] = useState();
   const [recipeItem, setRecipeItem] = useState();
+
+  const { values, handleChange, errors, validate } = useValidation({
+    name: "",
+    ingredient: "",
+    number: "",
+  });
+
   useEffect(() => {
     axios
       .get(`${baseUrl}/api/ingredient-list/${restaurant_id}`)
@@ -18,8 +26,13 @@ function NewRecipe() {
       });
   }, []);
 
-  const insert = () => {
-    axios
+  const insert = (event) => {
+    event.preventDefault();
+
+    const isValid = validate();
+
+    if (isValid) {
+      axios
       .post(`${baseUrl}/api/recipe-insert`, {
         restaurant_id: restaurant_id,
         ingredient_id: inputs,
@@ -33,6 +46,7 @@ function NewRecipe() {
           confirmButtonText: "OK",
         });
       });
+    }
   };
   const handleInputChange = (index, event) => {
     const values = [...inputs];
@@ -83,11 +97,16 @@ function NewRecipe() {
                   <Form.Label className="label-style">Item Name</Form.Label>
                   <Form.Control
                     type="text"
+                    name="name"
+                    onBlur={handleChange}
                     placeholder="Item Name"
                     onChange={(event) => {
                       setRecipeItem(event.target.value);
                     }}
                   ></Form.Control>
+                  {errors.name && (
+                    <span className="error">{errors.name}</span>
+                  )}
                 </div>
               </div>
               {inputs.map((input, index) => (
@@ -98,7 +117,9 @@ function NewRecipe() {
                     </Form.Label>
 
                     <select
-                      className="select2 wid"
+                      className="wid"
+                      name="ingredient"
+                      onBlur={handleChange}
                       value={input.value}
                       onChange={(event) => handleInputChange(index, event)}
                     >
@@ -109,6 +130,9 @@ function NewRecipe() {
                           ))
                         : null}
                     </select>
+                    {errors.ingredient && (
+                      <span className="error">{errors.ingredient}</span>
+                    )}
                   </div>
                   <div className="wid">
                     <Form.Label className="label-style">
@@ -117,9 +141,14 @@ function NewRecipe() {
                     <input
                       className="form-control"
                       type="number"
+                      name="number"
+                      onBlur={handleChange}
                       value={quantity.qty_value}
                       onChange={(event) => handleInputChangeQty(index, event)}
                     />
+                    {errors.number && (
+                      <span className="error">{errors.number}</span>
+                    )}
                   </div>
                   <div>
                     <button

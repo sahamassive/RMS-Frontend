@@ -8,6 +8,7 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+import { useValidation } from "../../constant/useValidation";
 const token = sessionStorage.getItem("token");
 
 function CreateCategory() {
@@ -25,6 +26,11 @@ function CreateCategory() {
   const [image, setImage] = useState();
   const [section, setSection] = useState();
 
+  const { values, handleChange, errors, validate } = useValidation({
+    name: "",
+    section: "",
+  });
+
   useEffect(() => {
     axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
@@ -33,29 +39,30 @@ function CreateCategory() {
     });
   }, []);
 
-  const insert = () => {
-    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-    axios
-      .post(`${baseUrl}/api/category-insert`, {
-        category_name: categoryName,
-        parent_id: categoryId,
-        section_id: sectionId,
-        category_image: image,
-        category_discount: discount,
-        description: description,
-        url: url,
-        meta_title: metaTitle,
-        meta_description: metaDes,
-        meta_keywords: metaKeyword,
-        status: status,
-      })
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
+  const insert = (event) => {
+    event.preventDefault();
+
+    const isValid = validate();
+
+    if (isValid) {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+      axios
+        .post(`${baseUrl}/api/category-insert`, {
+          category_name: categoryName,
+          section_id: sectionId,
+          description: description,
+          meta_title: metaTitle,
+          meta_description: metaDes,
+          meta_keywords: metaKeyword,
+        })
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         });
-      });
+    }
   };
   
   return (
@@ -72,11 +79,30 @@ function CreateCategory() {
             <div className="col-sm-12 background">
               <div>
                 <div className="input_field two_part">
+                <div className="wid">
+                <Form.Label className="label-style">
+                  Category name
+                </Form.Label>
+                    <Form.Control
+                      name="name"
+                      onBlur={handleChange}
+                  type="text"
+                  placeholder="Category name"
+                  onChange={(event) => {
+                    setCategoryName(event.target.value);
+                  }}
+                    ></Form.Control>
+                    {errors.name && (
+                      <span className="error">{errors.name}</span>
+                    )}
+              </div>
                   <div className="wid">
                     <Form.Label className="label-style">
                       Select Section
                     </Form.Label>
                     <select
+                      name="section"
+                      onBlur={handleChange}
                       onChange={(event) => {
                         setSectionId(event.target.value);
                       }}
@@ -88,70 +114,9 @@ function CreateCategory() {
                           ))
                         : null}
                     </select>
-                  </div>
-                  <div className="wid">
-                    <Form.Label className="label-style">
-                      Select category
-                    </Form.Label>
-                    <select
-                      onChange={(event) => {
-                        setCategoryId(event.target.value);
-                      }}
-                    >
-                      <option value="">Select category</option>
-                      <option value="1">Clothing</option>
-                      <option value="2">Accessories</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="input_field two_part">
-                  <div className="wid">
-                    <Form.Label className="label-style">
-                      Category name
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Category name"
-                      onChange={(event) => {
-                        setCategoryName(event.target.value);
-                      }}
-                    ></Form.Control>
-                  </div>
-                  <div className="wid">
-                    <Form.Label className="label-style">Discount(%)</Form.Label>
-                    <Form.Control
-                      type="number"
-                      placeholder="Discount ( % )"
-                      onChange={(event) => {
-                        setDiscount(event.target.value);
-                      }}
-                    ></Form.Control>
-                  </div>
-                </div>
-                <div className="input_field two_part">
-                  <div className="wid">
-                    <Form.Label className="label-style">
-                      Select Status
-                    </Form.Label>
-                    <select
-                      onChange={(event) => {
-                        setStatus(event.target.value);
-                      }}
-                    >
-                      <option value="">Select Status</option>
-                      <option value="1">Active</option>
-                      <option value="0">Not active</option>
-                    </select>
-                  </div>
-                  <div className="wid">
-                    <Form.Label className="label-style">URL</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="URL"
-                      onChange={(event) => {
-                        setUrl(event.target.value);
-                      }}
-                    ></Form.Control>
+                    {errors.section && (
+                      <span className="error">{errors.section}</span>
+                    )}
                   </div>
                 </div>
                 <div className="input_field">
@@ -213,26 +178,6 @@ function CreateCategory() {
                       }}
                     ></Form.Control>
                   </Form.Group>
-                </div>
-                <div className="input_field">
-                  <Form.Label className="label-style">
-                    Category image
-                  </Form.Label>
-                  <div className="section-03">
-                    <Form.Group
-                      controlId="formFileMultiple"
-                      className="search_box2"
-                    >
-                      <Form.Control
-                        type="file"
-                        name="file"
-                        onChange={(e) =>
-                          setImage(URL.revokeObjectURL(e.target.files[0]))
-                        }
-                      />
-                    </Form.Group>
-                    <img className="img" src={image} width="80px" height="50px" />
-                  </div>
                 </div>
                 <a className="btn btn-success top-space2" onClick={insert}>
                   <i className="bi bi-save-fill"></i>Insert

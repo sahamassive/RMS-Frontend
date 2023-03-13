@@ -8,6 +8,7 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+import { useValidation } from "../../constant/useValidation";
 
 const token = sessionStorage.getItem("token");
 
@@ -22,6 +23,12 @@ function NewInventory() {
   const [amount, setAmount] = useState([{ value: "" }]);
   const [price, setPrice] = useState([{ value: "" }]);
   const [totalPrice, setTotalPrice] = useState();
+
+  const { values, handleChange, errors, validate } = useValidation({
+    supplier: "",
+    date: "",
+    number: '',
+  });
 
   const generateID = (p) => {
     let x =
@@ -126,27 +133,32 @@ function NewInventory() {
 
   const Insert = async (event) => {
     event.preventDefault();
-    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
-    await axios
-      .post(`${baseUrl}/api/invoice-insert`, {
-        restaurant_id: restaurant_id,
-        supplier_id: supplierId,
-        date: date,
-        invoice_id: invoiceId,
-        ingredient_id: ingredientId,
-        total_price: totalPrice,
-        amount: amount,
-        unit: unit,
-        price: price,
-      })
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
+    const isValid = validate();
+
+    if (isValid) { 
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+      await axios
+        .post(`${baseUrl}/api/invoice-insert`, {
+          restaurant_id: restaurant_id,
+          supplier_id: supplierId,
+          date: date,
+          invoice_id: invoiceId,
+          ingredient_id: ingredientId,
+          total_price: totalPrice,
+          amount: amount,
+          unit: unit,
+          price: price,
+        })
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         });
-      });
+    }
   };
   return (
     <div>
@@ -173,6 +185,8 @@ function NewInventory() {
                       Supplier name/Company name
                     </Form.Label>
                     <select
+                      name="supplier"
+                      onBlur={handleChange}
                       onChange={(event) => {
                         setSupplierId(event.target.value);
                       }}
@@ -186,15 +200,23 @@ function NewInventory() {
                           ))
                         : null}
                     </select>
+                    {errors.supplier && (
+                      <span className="error">{errors.supplier}</span>
+                    )}
                   </div>
                   <div className="wid">
                     <Form.Label className="label-style">Date</Form.Label>
                     <Form.Control
+                      name="date"
+                      onBlur={handleChange}
                       type="date"
                       onChange={(event) => {
                         generateID(event.target.value);
                       }}
                     ></Form.Control>
+                    {errors.date && (
+                      <span className="error">{errors.date}</span>
+                    )}
                   </div>
                 </div>
                 <div className="input_field two_part">
@@ -267,8 +289,13 @@ function NewInventory() {
                           addAmount(event, index);
                         }}
                         type="text"
+                        name="number"
+                        onBlur={handleChange}
                         placeholder="Quantity"
                       ></Form.Control>
+                      {errors.number && (
+                        <span className="error">{errors.number}</span>
+                      )}
                     </div>
                     <div className="wid">
                       <Form.Label className="label-style">Price</Form.Label>
@@ -277,8 +304,13 @@ function NewInventory() {
                           addPrice(event, index);
                         }}
                         type="number"
+                        name="number"
+                        onBlur={handleChange}
                         placeholder="Price"
                       ></Form.Control>
+                      {errors.number && (
+                        <span className="error">{errors.number}</span>
+                      )}
                     </div>
                     <div>
                       <button

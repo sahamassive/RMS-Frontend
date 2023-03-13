@@ -36,23 +36,6 @@ function NewRestaurant() {
   const insert = async (e) => {
     e.preventDefault();
 
-    //validate
-    // const newErrors = {};
-    // const mobileNoRegex = /^\d{10}$/;
-    // if (validator.isEmpty(restaurantName)) {
-    //   newErrors.restaurantName = "Name is required";
-    // }
-    // if (!validator.isMobilePhone(phoneNumber)) {
-    //   newErrors.phoneNumber = "";
-    // }
-    // if (!validator.isEmail(email)) {
-    //   newErrors.email = "Invalid email address";
-    // }
-
-    // if (Object.keys(newErrors).length > 0) {
-    //   setErrors(newErrors);
-    // } else {
-
     const isValid = validate();
 
     if (isValid) {

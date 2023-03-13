@@ -8,27 +8,37 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+import { useValidation } from "../../constant/useValidation";
 
 const token = sessionStorage.getItem("token");
 
 function Ingredient() {
   const [name, setName] = useState();
 
-  const insert = () => {
-    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+  const { values, handleChange, errors, validate } = useValidation({
+    name: "",
+  });
 
-    axios
-      .post(`${baseUrl}/api/ingredient-insert`, {
-        restaurant_id: restaurant_id,
-        ingredient: name,
-      })
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
-        });
-      });
+  const insert = (event) => {
+    event.preventDefault();
+
+    const isValid = validate();
+
+    if (isValid) {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+      axios
+        .post(`${baseUrl}/api/ingredient-insert`, {
+          restaurant_id: restaurant_id,
+          ingredient: name,
+        })
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        }); 
+    }
   };
 
   return (
@@ -53,12 +63,17 @@ function Ingredient() {
                       Ingredient name
                     </Form.Label>
                     <Form.Control
+                      name="name"
+                      onBlur={handleChange}
                       type="text"
                       placeholder="Ingredient Name"
                       onChange={(event) => {
                         setName(event.target.value);
                       }}
                     ></Form.Control>
+                    {errors.name && (
+                      <span className="error">{errors.name}</span>
+                    )}
                   </div>
                 </div>
                 <a className="btn btn-primary top-space" onClick={insert}>

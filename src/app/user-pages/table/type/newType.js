@@ -8,12 +8,22 @@ import {
   Form,
 } from "../../constant/global";
 import { check } from "../../constant/check";
+import { useValidation } from "../../constant/useValidation"; 
 
 function NewTableType() {
   const [type, setType] = useState();
 
-  const insert = () => {
-    axios
+  const { values, handleChange, errors, validate } = useValidation({
+    type: "",
+  });
+
+  const insert = (event) => {
+    event.preventDefault();
+
+    const isValid = validate();
+
+    if (isValid) { 
+      axios
       .post(`${baseUrl}/api/table-type-insert`, {
         type: type,
         restaurant_id: restaurant_id,
@@ -25,6 +35,7 @@ function NewTableType() {
           confirmButtonText: "OK",
         });
       });
+    }
   };
 
   return (
@@ -48,18 +59,24 @@ function NewTableType() {
                     <Form.Label className="label-style">Table Type</Form.Label>
                     <Form.Control
                       type="text"
+                      name='type'
+                      onBlur={handleChange}
                       placeholder="Table type"
                       onChange={(event) => {
                         setType(event.target.value);
                       }}
                     ></Form.Control>
+                    {errors.type && (
+                      <span className="error">{errors.type}</span>
+                    )}
                   </div>
                 </div>
                 <a className="btn btn-primary top-space" onClick={insert}>
                   <i className="bi bi-save-fill"></i>Insert
                 </a>
                 <br></br>
-                <br></br> <br></br>
+                <br></br>
+                <br></br>
               </div>
             </div>
           </div>

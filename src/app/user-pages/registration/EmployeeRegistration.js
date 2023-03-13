@@ -5,6 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 import countrydata from "./../Country/Countrydata.json";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
 import { check } from "../constant/check";
+import { useValidation } from "../constant/useValidation";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 const token = sessionStorage.getItem("token");
 
 function EmployeeRegistration() {
@@ -36,74 +39,101 @@ function EmployeeRegistration() {
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
+  const { values, handleChange, errors, validate } = useValidation({
+ 
+  });
+
   const changeHandler = (event) => {
     setImage(event.target.files[0]);
     setPrview(URL.createObjectURL(event.target.files[0]));
   };
 
   const AccountDetails2 = () => {
-    setAccountDetails(true);
-    setAddress(false);
-    setOthers(false);
-    setPassword(false);
+    const { values, handleChange, errors, validate } = useValidation({
+      name: "",
+      email: "",
+      phone: "",
+      nid: "",
+      gender: "",
+      type: "",
+    });
+    const isValid = validate();
+    if (isValid) {
+      setAccountDetails(true);
+      setAddress(false);
+      setOthers(false);
+      setPassword(false);
+      //setAddress(true);
+    }
   };
 
   const AddressView = () => {
-    setAccountDetails(false);
-    setAddress(true);
-    setPasswordView(false);
-    setOthers(false);
+    //if (isValid || address) {
+      setAccountDetails(false);
+      setAddress(true);
+      setPasswordView(false);
+      setOthers(false);
+      //setPasswordView(true);
+    //}
   };
 
   const Password2 = () => {
-    setPasswordView(true);
-    setAddress(false);
-    setOthers(false);
-    setAccountDetails(false);
+    //if (isValid || passwordView) {
+      setPasswordView(true);
+      setAddress(false);
+      setOthers(false);
+      setAccountDetails(false);
+    //}
   };
 
   const Others2 = () => {
-    setOthers(true);
-    setAddress(false);
-    setPasswordView(false);
-    setAccountDetails(false);
+    //if (isValid) {
+      setOthers(true);
+      setAddress(false);
+      setPasswordView(false);
+      setAccountDetails(false);
+    //}
   };
 
   const insert = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("restaurant_id", restaurant_id);
-    formData.append("image", image);
-    formData.append("first_name", fname);
-    formData.append("last_name", lname);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("nid", nid);
-    formData.append("gender", gender);
-    formData.append("dob", dob);
-    formData.append("type", type);
-    formData.append("address1", address1);
-    formData.append("country", selectedCountry);
-    formData.append("city", selectedCity);
-    formData.append("state", selectedState);
-    formData.append("zipCode", zipCode);
-    formData.append("password", password);
-    formData.append("salary", salary);
-    formData.append("joining", joining);
-    if (password == cpassword) {
-      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-      await axios
-        .post(`${baseUrl}/api/employee-insert`, formData)
-        .then((response) => {
-          Swal.fire({
-            title: response.data.msg,
-            icon: "success",
-            confirmButtonText: "OK",
+    const isValid = validate();
+
+    if (isValid) {
+      const formData = new FormData();
+      formData.append("restaurant_id", restaurant_id);
+      formData.append("image", image);
+      formData.append("first_name", fname);
+      formData.append("last_name", lname);
+      formData.append("email", email);
+      formData.append("phone", phone);
+      formData.append("nid", nid);
+      formData.append("gender", gender);
+      formData.append("dob", dob);
+      formData.append("type", type);
+      formData.append("address1", address1);
+      formData.append("country", selectedCountry);
+      formData.append("city", selectedCity);
+      formData.append("state", selectedState);
+      formData.append("zipCode", zipCode);
+      formData.append("password", password);
+      formData.append("salary", salary);
+      formData.append("joining", joining);
+      if (password == cpassword) {
+        axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+        await axios
+          .post(`${baseUrl}/api/employee-insert`, formData)
+          .then((response) => {
+            Swal.fire({
+              title: response.data.msg,
+              icon: "success",
+              confirmButtonText: "OK",
+            });
           });
-        });
-    } else {
-      alert(`password doesn't match`);
+      } else {
+        alert(`password doesn't match`);
+      }
     }
   };
   return (
@@ -203,12 +233,18 @@ function EmployeeRegistration() {
                             First name
                           </Form.Label>
                           <Form.Control
+                            name="fname"
                             type="text"
+                            value={fname ? fname : null}
+                            onBlur={handleChange}
                             placeholder="First name"
                             onChange={(event) => {
                               setFname(event.target.value);
                             }}
                           />
+                          {errors.name && (
+                            <span className="error">{errors.name}</span>
+                          )}
                         </div>
                         <div className="wid">
                           <Form.Label className="label-style">
@@ -216,6 +252,7 @@ function EmployeeRegistration() {
                           </Form.Label>
                           <Form.Control
                             type="text"
+                            value={lname ? lname : null}
                             placeholder="Last name"
                             onChange={(event) => {
                               setLname(event.target.value);
@@ -230,11 +267,17 @@ function EmployeeRegistration() {
                           </Form.Label>
                           <Form.Control
                             type="email"
+                            name="email"
+                            value={email ? email : null}
                             placeholder="E-mail"
+                            onBlur={handleChange}
                             onChange={(event) => {
                               setEmail(event.target.value);
                             }}
                           />
+                          {errors.email && (
+                            <span className="error">{errors.email}</span>
+                          )}
                         </div>
                       </div>
                       <div className="input_field two_part">
@@ -242,23 +285,37 @@ function EmployeeRegistration() {
                           <Form.Label className="label-style">
                             Contact no.
                           </Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="Phone"
-                            onChange={(event) => {
-                              setPhone(event.target.value);
-                            }}
-                          />
+                          <div className="border-23 form-control">
+                            <PhoneInput
+                              value={phone? phone : null}
+                            name="phone"
+                            onBlur={handleChange}
+                            id="phone-in"
+                            international
+                            countryCallingCodeEditable={false}
+                            defaultCountry="BD"
+                            onChange={setPhone}
+                        />
+                        </div>
+                          {errors.phone && (
+                            <span className="error">{errors.phone}</span>
+                          )}
                         </div>
                         <div className="wid">
                           <Form.Label className="label-style">NID</Form.Label>
                           <Form.Control
+                            name="nid"
+                            value={nid ? nid : null}
                             type="number"
+                            onBlur={handleChange}
                             placeholder="NID"
                             onChange={(event) => {
                               setNid(event.target.value);
                             }}
                           />
+                          {errors.nid && (
+                            <span className="error">{errors.nid}</span>
+                          )}
                         </div>
                       </div>
                       <div className="input_field two_part">
@@ -267,6 +324,9 @@ function EmployeeRegistration() {
                             Select gender
                           </Form.Label>
                           <select
+                            name="gender"
+                            value={gender ? gender : null}
+                            onBlur={handleChange}
                             onChange={(event) => {
                               setGender(event.target.value);
                             }}
@@ -275,6 +335,9 @@ function EmployeeRegistration() {
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                           </select>
+                          {errors.gender && (
+                            <span className="error">{errors.gender}</span>
+                          )}
                         </div>
                         <div className="wid">
                           <Form.Label className="label-style">
@@ -282,6 +345,7 @@ function EmployeeRegistration() {
                           </Form.Label>
                           <Form.Control
                             name="birth"
+                            value={dob ? dob : null}
                             id="birth"
                             type="date"
                             placeholder="Date Of birth"
@@ -298,8 +362,11 @@ function EmployeeRegistration() {
                           </Form.Label>
                           {window.location.pathname ===
                           "/super-admin/employee/registration" ? (
-                            <select
-                              onChange={(event) => {
+                              <select
+                                name="type"
+                                value={type ? type : null}
+                                onBlur={handleChange}
+                                onChange={(event) => {
                                 setType(event.target.value);
                               }}
                             >
@@ -315,9 +382,12 @@ function EmployeeRegistration() {
                               </option>
                               <option value="manager">Manager</option>
                               <option value="cleaner">Cleaner</option>
-                            </select>
+                              </select>
                           ) : (
-                            <select
+                              <select
+                              value={type ? type : null}
+                              name="type"
+                              onBlur={handleChange}
                               onChange={(event) => {
                                 setType(event.target.value);
                               }}
@@ -332,6 +402,9 @@ function EmployeeRegistration() {
                               <option value="manager">Manager</option>
                               <option value="cleaner">Cleaner</option>
                             </select>
+                          )}
+                          {errors.type && (
+                            <span className="error">{errors.type}</span>
                           )}
                         </div>
                       </div>
@@ -350,14 +423,19 @@ function EmployeeRegistration() {
                             Address line 1
                           </Form.Label>
                           <Form.Control
+                            value={ address1 ? address1 : null}
                             className="wid"
                             name="address1"
                             type="text"
+                            onBlur={handleChange}
                             placeholder="Address line 1"
                             onChange={(event) => {
                               setAddress1(event.target.value);
                             }}
                           />
+                          {errors.address1 && (
+                            <span className="error">{errors.address1}</span>
+                          )}
                         </div>
                       </div>
                       <div className="input_field">
@@ -366,6 +444,7 @@ function EmployeeRegistration() {
                             Address line 2
                           </Form.Label>
                           <Form.Control
+                          value={ address2 ? address2 : null}
                             className="wid"
                             name="address2"
                             type="text"
@@ -451,6 +530,7 @@ function EmployeeRegistration() {
                             ZIP code
                           </Form.Label>
                           <Form.Control
+                            value={zipCode ? zipCode : null}
                             type="number"
                             placeholder="Zip Code"
                             onChange={(event) => {
@@ -482,11 +562,15 @@ function EmployeeRegistration() {
                           <Form.Control
                             name="password"
                             type="password"
+                            onBlur={handleChange}
                             placeholder="Password"
                             onChange={(event) => {
                               setPassword(event.target.value);
                             }}
                           />
+                          {errors.password && (
+                            <span className="error">{errors.password}</span>
+                          )}
                         </div>
                       </div>
                       <div className="input_field">
@@ -495,13 +579,17 @@ function EmployeeRegistration() {
                             Confirm Password
                           </Form.Label>
                           <Form.Control
-                            name="cpassword"
+                            name="password"
                             type="password"
+                            onBlur={handleChange}
                             placeholder="Confirm Password"
                             onChange={(event) => {
                               setCpassword(event.target.value);
                             }}
                           />
+                          {errors.password && (
+                            <span className="error">{errors.password}</span>
+                          )}
                         </div>
                       </div>
                       <p className="btn-style2">
@@ -525,13 +613,18 @@ function EmployeeRegistration() {
                             Salary
                           </Form.Label>
                           <Form.Control
+                            value={salary ? salary : null}
                             name="salary"
                             type="number"
                             placeholder="Salary"
+                            onBlur={handleChange}
                             onChange={(event) => {
                               setSalary(event.target.value);
                             }}
                           />
+                          {errors.salary && (
+                            <span className="error">{errors.salary}</span>
+                          )}
                         </div>
                       </div>
                       <div className="input_field">
@@ -540,6 +633,7 @@ function EmployeeRegistration() {
                             Date Of joining
                           </Form.Label>
                           <Form.Control
+                            value={joining ? joining : null }
                             name="joining"
                             type="date"
                             placeholder="Date Of joining"

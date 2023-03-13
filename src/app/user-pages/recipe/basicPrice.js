@@ -24,22 +24,45 @@ function BasicPrice() {
   };
 
   const updatePrice = (id, index) => {
-    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+    if (price > allData[index].basic_price) {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
-    axios
-      .post(`${baseUrl}/api/updatePrice/${id}`, {
-        selling_price: price,
-        basic_price: allData[index].basic_price,
-      })
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
+      axios
+        .post(`${baseUrl}/api/updatePrice/${id}`, {
+          selling_price: price,
+          basic_price: allData[index].basic_price,
+        })
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          setPrice("");
+          getData();
         });
-        setPrice("");
-        getData();
+    }
+    else if (price == '') {
+      Swal.fire({
+        title: 'Please provide a price first',
+        icon: "error",
+        confirmButtonText: "OK",
       });
+    }
+    else if (price <= 0) {
+      Swal.fire({
+        title: 'Selling Price must be greater 0',
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+    else if (price < allData[index].basic_price) {
+      Swal.fire({
+        title: 'Selling Price must be greater than Basic Price',
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
   };
 
   $.DataTable = require("datatables.net");
@@ -56,9 +79,9 @@ function BasicPrice() {
               <h4 className="card-title">Food Price Set</h4>
               <a
                 className="btn-style btn btn-info"
-                href="/catalogue/create-brand"
+                href="/item/list"
               >
-                <i className="bi bi-plus-square"></i>New Brand
+                <i className="bi bi-plus-square"></i>item List
               </a>
             </div>
             <div className="table-responsive">

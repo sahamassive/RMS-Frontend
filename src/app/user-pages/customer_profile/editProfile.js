@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import "./style.css";
 import { baseUrl, restaurant_id, axios, Swal, Form } from "../constant/global";
+import { useValidation } from "../constant/useValidation";
 import profile from "../../../assets/images/profile/profile.jpg";
 import countrydata from "./../Country/Countrydata.json";
 
@@ -42,27 +43,41 @@ function EditProfile() {
         });
     }, []);
 
+    const { values, handleChange, errors, validate } = useValidation({
+        name: "",
+        email: email ? email : "",
+        phone: "",
+        address: "",
+        image: "",
+        delivery: "",
+      });
+
     const Update = (event) => { 
         event.preventDefault();
-        axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
-        const formData = new FormData();
-        formData.append("image", image);
-        formData.append("name", name);
-        formData.append("email", email);
-        formData.append("phone", phone);
-        formData.append("address", address);
-        formData.append("delivery_address", deliveryAddress);
+        const isValid = validate();
 
-        axios
-            .post(`${baseUrl}/api/edit-customer-profile/${type}/${emp_id}`, formData)
-            .then((response) => { 
-                Swal.fire({
-                    title: response.data.msg,
-                    icon: "success",
-                    confirmButtonText: "OK",
-                });
-            })
+        if (isValid) {
+            axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+            const formData = new FormData();
+            formData.append("image", image);
+            formData.append("name", name);
+            formData.append("email", email);
+            formData.append("phone", phone);
+            formData.append("address", address);
+            formData.append("delivery_address", deliveryAddress);
+    
+            axios
+                .post(`${baseUrl}/api/edit-customer-profile/${type}/${emp_id}`, formData)
+                .then((response) => { 
+                    Swal.fire({
+                        title: response.data.msg,
+                        icon: "success",
+                        confirmButtonText: "OK",
+                    });
+                })  
+        }
     }
     
     return (
@@ -88,14 +103,19 @@ function EditProfile() {
                                     <div>
                                         <Form.Group
                                             controlId="formFileMultiple"
-                                            className="mb-3 search_box2"
+                                            className="search_box2"
                                         >
                                             <Form.Control
+                                            name="image"
+                                            onChangeCapture={handleChange}
                                                 type="file"
                                                 onChange={changeHandler}
                                                 multiple
                                             />
                                         </Form.Group>
+                                        {errors.image && (
+                                            <span className="error">{errors.image}</span>
+                                          )}
                                     </div>
                                 </div>
                                 <div className="input_field two_part">
@@ -104,6 +124,8 @@ function EditProfile() {
                                             Full name
                                         </Form.Label>
                                         <Form.Control
+                                            name="name"
+                                            onBlur={handleChange}
                                             value={name}
                                             type="text"
                                             placeholder="Full name"
@@ -111,6 +133,9 @@ function EditProfile() {
                                                 setname(event.target.value);
                                             }}
                                         />
+                                        {errors.name && (
+                                            <span className="error">{errors.name}</span>
+                                          )}
                                     </div>
                                 </div>
                                 <div className="input_field two_part">
@@ -119,6 +144,8 @@ function EditProfile() {
                                             E-mail
                                         </Form.Label>
                                         <Form.Control
+                                            name="email"
+                                            onBlur={handleChange}
                                             value={email}
                                             type="email"
                                             placeholder="E-mail"
@@ -126,12 +153,17 @@ function EditProfile() {
                                                 setEmail(event.target.value);
                                             }}
                                         />
+                                        {errors.email && (
+                                            <span className="error">{errors.email}</span>
+                                          )}
                                     </div>
                                     <div className="wid">
                                         <Form.Label className="label-style">
                                             Contact no.
                                         </Form.Label>
                                         <Form.Control
+                                            name="phone"
+                                            onBlur={handleChange}
                                             value={phone}
                                             type="text"
                                             placeholder="Phone"
@@ -139,6 +171,9 @@ function EditProfile() {
                                                 setPhone(event.target.value);
                                             }}
                                         />
+                                        {errors.phone && (
+                                            <span className="error">{errors.phone}</span>
+                                          )}
                                     </div>
                                 </div>
                             </div>
@@ -152,12 +187,16 @@ function EditProfile() {
                                             value={address}
                                             className="wid"
                                             name="address"
+                                            onBlur={handleChange}
                                             type="text"
                                             placeholder="Address"
                                             onChange={(event) => {
                                                 setAddress(event.target.value);
                                             }}
                                         />
+                                        {errors.address && (
+                                            <span className="error">{errors.address}</span>
+                                          )}
                                     </div>
                                 </div>
                                 <div className="input_field">
@@ -168,13 +207,17 @@ function EditProfile() {
                                         <Form.Control
                                             value={deliveryAddress}
                                             className="wid"
-                                            name="Delivery address"
+                                            name="delivery"
+                                            onBlur={handleChange}
                                             type="text"
                                             placeholder="Address"
                                             onChange={(event) => {
                                                 setDeliveryAddress(event.target.value);
                                             }}
                                         />
+                                        {errors.delivery && (
+                                            <span className="error">{errors.delivery}</span>
+                                          )}
                                     </div>
                                 </div>
                             </div>

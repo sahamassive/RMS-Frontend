@@ -8,6 +8,7 @@ import {
   Swal,
   Form,
 } from "../../constant/global";
+import { useValidation } from "../../constant/useValidation";
 import { check } from "../../constant/check";
 const token = sessionStorage.getItem("token");
 
@@ -33,6 +34,17 @@ function CreateFood() {
   const [image, setImage] = useState();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
+
+
+  const { values, handleChange, errors, validate } = useValidation({
+    food: "",
+    section: "",
+    category: "",
+    brand: "",
+    recipe: "",
+    image: "",
+  });
+
   useEffect(() => {
     getCategories();
     getBrand();
@@ -97,41 +109,46 @@ function CreateFood() {
 
   const insert = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("restaurant_id", restaurant_id);
 
-    formData.append("item_code", itemCode);
+    const isValid = validate();
 
-    formData.append("category_id", categoryId);
-    formData.append("brand_id", brandId);
-
-    formData.append("section_id", sectionId);
-
-    formData.append("name", fooName);
-
-    formData.append("description", description);
-
-    formData.append("speciality", speciality);
-    formData.append("basic_price", basicPrice);
-    formData.append("price", price);
-    formData.append("meta_title", metaTag);
-    formData.append("meta_description", metaDes);
-    formData.append("meta_keywords", metaKeyword);
-    formData.append("image", image);
-    for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append(`images[${i}]`, selectedFiles[i]);
+    if (isValid) {
+      const formData = new FormData();
+      formData.append("restaurant_id", restaurant_id);
+  
+      formData.append("item_code", itemCode);
+  
+      formData.append("category_id", categoryId);
+      formData.append("brand_id", brandId);
+  
+      formData.append("section_id", sectionId);
+  
+      formData.append("name", fooName);
+  
+      formData.append("description", description);
+  
+      formData.append("speciality", speciality);
+      formData.append("basic_price", basicPrice);
+      formData.append("price", price);
+      formData.append("meta_title", metaTag);
+      formData.append("meta_description", metaDes);
+      formData.append("meta_keywords", metaKeyword);
+      formData.append("image", image);
+      for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append(`images[${i}]`, selectedFiles[i]);
+      }
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+      await axios
+        .post(`${baseUrl}/api/food-insert`, formData)
+        .then((response) => {
+          Swal.fire({
+            title: response.data.msg,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          console.log(response);
+        }); 
     }
-    axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-    await axios
-      .post(`${baseUrl}/api/food-insert`, formData)
-      .then((response) => {
-        Swal.fire({
-          title: response.data.msg,
-          icon: "success",
-          confirmButtonText: "OK",
-        });
-        console.log(response);
-      });
   };
 
   return (
@@ -152,10 +169,15 @@ function CreateFood() {
                   <div className="col-sm-6">
                     <Form.Group controlId="formFileMultiple" className="mb-3">
                       <Form.Control
+                        name="image"
+                        onChangeCapture={handleChange}
                         type="file"
                         onChange={changeHandler}
                         multiple
                       />
+                      {errors.image && (
+                        <span className="error">{errors.image}</span>
+                      )}
                     </Form.Group>
                     <img src={preview} width="225rem" />
                   </div>
@@ -193,6 +215,8 @@ function CreateFood() {
                           Select Food
                         </Form.Label>
                         <select
+                          name="food"
+                          onBlur={handleChange}
                           className="select2"
                           onChange={(event) => {
                             foodSet(event.target.value);
@@ -207,6 +231,9 @@ function CreateFood() {
                               ))
                             : null}
                         </select>
+                        {errors.food && (
+                          <span className="error">{errors.food}</span>
+                        )}
                       </div>
                       <div className="wid">
                         <Form.Label className="label-style">
@@ -266,6 +293,8 @@ function CreateFood() {
                         Select Section
                       </Form.Label>
                       <select
+                        name="section"
+                        onBlur={handleChange}
                         className="select2"
                         onChange={(event) => {
                           setSectionId(event.target.value);
@@ -278,6 +307,9 @@ function CreateFood() {
                             ))
                           : null}
                       </select>
+                      {errors.section && (
+                        <span className="error">{errors.section}</span>
+                      )}
                     </div>
 
                     <div className="wid">
@@ -285,6 +317,8 @@ function CreateFood() {
                         Select Category
                       </Form.Label>
                       <select
+                        name="category"
+                        onBlur={handleChange}
                         className="select2"
                         onChange={(event) => {
                           setCategoryId(event.target.value);
@@ -299,6 +333,9 @@ function CreateFood() {
                             ))
                           : null}
                       </select>
+                      {errors.category && (
+                        <span className="error">{errors.category}</span>
+                      )}
                     </div>
 
                     <div className="wid">
@@ -306,6 +343,8 @@ function CreateFood() {
                         Select Brand
                       </Form.Label>
                       <select
+                        name="brand"
+                        onBlur={handleChange}
                         className="select2"
                         onChange={(event) => {
                           setBrandId(event.target.value);
@@ -318,6 +357,9 @@ function CreateFood() {
                             ))
                           : null}
                       </select>
+                      {errors.brand && (
+                        <span className="error">{errors.brand}</span>
+                      )}
                     </div>
                   </div>
                   <div className="input_field">
