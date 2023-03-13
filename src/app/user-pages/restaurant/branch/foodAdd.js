@@ -22,7 +22,7 @@ function FoodAdd() {
   useEffect(() => {
     getData();
     getBranch();
-  }, []);
+  }, [branchId]);
 
   const addTocart = (id) => {
     if (details.find((data) => data[0].food_id == id)) {
@@ -37,7 +37,7 @@ function FoodAdd() {
           addFood.push({
             food_id: val.id,
             name: val.name,
-            image: val.image
+            image: val.image,
           });
 
           setDetails((state) => [...state, addFood]);
@@ -52,10 +52,8 @@ function FoodAdd() {
   };
 
   const removecart = (id) => {
-    setDetails((current) =>
-      current.filter((data) => data[0].food_id !== id)
-    );
-  }
+    setDetails((current) => current.filter((data) => data[0].food_id !== id));
+  };
 
   const getData = () => {
     axios
@@ -110,74 +108,81 @@ function FoodAdd() {
             </div>
             <div className="">
               <div className="background">
-              <div className="input_field two_part">
-              <div className="wid">
-                <Form.Label className="label-style">Select Branch</Form.Label>
-                <select
-                  onChange={(event) => {
-                    setBranchId(event.target.value);
-                  }}
+                <div className="input_field two_part">
+                  <div className="wid">
+                    <Form.Label className="label-style">
+                      Select Branch
+                    </Form.Label>
+                    <select
+                      onChange={(event) => {
+                        setBranchId(event.target.value);
+                      }}
                     >
-                      <option value = "">Select Branch...</option>
-                  {branch
-                    ? branch.map((data) => (
-                      <option value={data.id}>{data.city}</option>
-                    ))
-                    : null}
-                </select>
+                      <option value="">Select Branch...</option>
+                      {branch
+                        ? branch.map((data) => (
+                            <option value={data.id}>{data.city}</option>
+                          ))
+                        : null}
+                    </select>
                   </div>
-              <div className="wid">
-              </div>
+                  <div className="wid"></div>
                 </div>
                 <div className="input_field">
-                {details ? (
-                  <table className="table table-striped table-style">
-                    <thead>
-                      <tr>
-                        <th>item Name</th>
-                        <th>Image</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {details.map((data) => (
+                  {details ? (
+                    <table className="table table-striped table-style">
+                      <thead>
                         <tr>
-                          <td>{data[0].name}</td>
-                          <td>
-                            <img
-                              src={`${baseUrl}/foods/small/${data[0].image}`}
-                              width="80px"
-                              height="50px"
-                            />
-                          </td>
-
-                          <td>
-                            <button
-                              className="btn btn-danger cart-style"
-                              onClick={() => {
-                                removecart(data[0].food_id);
-                              }}
-                            >
-                              <i className="bi bi-x-square"></i>Cancel
-                            </button>
-                          </td>
+                          <th>item Name</th>
+                          <th>Image</th>
+                          <th>Action</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {details.map((data) => (
+                          <tr>
+                            <td>{data[0].name}</td>
+                            <td>
+                              <img
+                                src={`${baseUrl}/foods/small/${data[0].image}`}
+                                width="80px"
+                                height="50px"
+                              />
+                            </td>
+
+                            <td>
+                              <button
+                                className="btn btn-danger cart-style"
+                                onClick={() => {
+                                  removecart(data[0].food_id);
+                                }}
+                              >
+                                <i className="bi bi-x-square"></i>Cancel
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   ) : null}
                   <div className="d-grid gap-2 col-6 mx-auto">
-                  <button className="btn btn-primary top-space" onClick={foodSubmit}>
-                    <i className="bi bi-check-square-fill"></i>Confirm
-                  </button>
-                  <br></br>
-                </div>
+                    <button
+                      className="btn btn-primary top-space"
+                      onClick={foodSubmit}
+                    >
+                      <i className="bi bi-check-square-fill"></i>Confirm
+                    </button>
+                    <br></br>
+                  </div>
                 </div>
               </div>
               <br></br>
               <div className="table-responsive">
                 {allData ? (
-                  <table id="example" className="table table-striped table-style">
+                  <table
+                    id="example"
+                    className="table table-striped table-style"
+                  >
                     <thead>
                       <tr>
                         <th>item Name</th>
