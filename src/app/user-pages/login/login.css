@@ -305,6 +305,12 @@ img {
     gap: 5%;
 }
 
+@media(max-width:550px){
+    #field-style-2{
+        width: 70%;
+    }
+}
+
 .sign-in{
     color: rgb(51, 50, 50);
 }

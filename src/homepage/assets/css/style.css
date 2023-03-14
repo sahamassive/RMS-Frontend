@@ -1550,6 +1550,7 @@ h2 {
   margin-left: 10%;
   margin-right: 10%;
 }
+
 @media (max-width: 780px) {
   .food-details {
     background-color: rgba(0, 0, 0, 0.7);
@@ -1576,8 +1577,8 @@ h2 {
   .login_modal {
     background-color: rgba(0, 0, 0, 0.1);
     color: white;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 }
 .sec_01 {
@@ -1654,6 +1655,15 @@ h2 {
     top: 0;
     font-size: 2rem;
     color: rgb(206, 24, 100);
+    background-color: none !important;
+    cursor: pointer !important;
+  }
+  .close-btn-login {
+    position: absolute;
+    right: 0%;
+    top: 2.5%;
+    font-size: 2rem;
+    color: rgb(192, 13, 13);
     background-color: none !important;
     cursor: pointer !important;
   }
@@ -1862,4 +1872,27 @@ select:focus {
   font-size: 1.5em !important;
   color: yellow;
   font-family: "Gill Sans";
+}
+
+.mobile-view{
+  display: none;
+}
+
+@media(max-width:991px){
+  .mobile-view{
+    display: block;
+  }
+
+  .view-style{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .none{
+    display: none;
+  }
+  .mobile-view-button{
+    position: absolute;
+    right: 1rem;
+  }
 }
