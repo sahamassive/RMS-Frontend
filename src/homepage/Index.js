@@ -323,9 +323,9 @@ function Index() {
   return (
     <div>
       <div id="topbar" className="d-flex align-items-center fixed-top">
-        <div className="container d-flex justify-content-center justify-content-md-between">
+        <div className="container d-flex justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
-            <button className="branch-style">
+            <button className="branch-style none">
               <span className="branch-style active-time">
                 <a href={`tel: ${resturant.phone}`}>
                   {" "}
@@ -334,19 +334,19 @@ function Index() {
               </span>
             </button>
 
-            <i className="active-time bi bi-clock d-flex align-items-center ms-4">
-              <span className="active-time"> Sat-Fri: 10AM - 11PM</span>
+            <i className="bi bi-clock align-items-center ms-4 none">
+              <span className="none"> Sat-Fri: 10AM - 11PM</span>
             </i>
           </div>
-          <div className="two_part">
+          <div className="two_part none">
             <button
-              className="branch-style"
+              className="branch-style none"
               onClick={() => {
                 branchOpen();
               }}
             >
-              <i className="bi bi-geo-alt-fill icon-space4"></i>
-              <span className="active-time branch-style">
+              <i className="bi bi-geo-alt-fill icon-space4 none"></i>
+              <span className="active-time branch-style none">
                 {resturant.restaurant_name},{" "}
                 {branchId ? branchName : resturant.city}
               </span>
@@ -358,6 +358,93 @@ function Index() {
             >
               <i className="bi bi-table icon-space4"></i> Book a table
             </a>
+          </div>
+          <div className="mobile-view">
+            <div className="view-style">
+              <div className="mobile-view-button">
+              <button
+              className="branch-style"
+              onClick={() => {
+                branchOpen();
+              }}
+            >
+              <i className="bi bi-geo-alt-fill icon-space4"></i>
+              <span className="active-time branch-style">
+                {resturant.restaurant_name},{" "}
+                {branchId ? branchName : resturant.city}
+              </span>
+            </button>
+              </div>
+            <div>
+            {state ? (
+              <div className="dropdown scrollto">
+                    <a
+                  href="#"
+                  role="button"
+                  id="dropdownMenuLink"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <div className="two_part">
+                    {sessionStorage.getItem("loginType") == "Customer" ? (
+                      <img
+                        className="img-xs rounded-circle"
+                        src={`${baseUrl}/customer/small/${state.image}`}
+                        alt="profile"
+                      />
+                    ) : (
+                      <img
+                        className="img-xs rounded-circle"
+                        src={`${baseUrl}/employee/small/${state.image}`}
+                        alt="profile"
+                      />
+                    )}
+                    <p className="mb-0 d-none d-sm-block navbar-profile-name drop">
+                      <Trans>
+                        {state.name} {state.first_name}
+                        {state.last_name}
+                      </Trans>
+                    </p>
+                    <i className="mdi mdi-menu-down d-none d-sm-block drop"></i>
+                  </div>
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li>
+  
+                    <a class="dropdown-item" href="/user/edit-password">
+  
+                      <i className="bi bi-lock-fill"></i> Change Password
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="/user/profile">
+                      <i className="bi bi-person-bounding-box"></i> Profile
+                    </a>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => {
+                        logout();
+                      }}
+                    >
+                      <i className="mdi mdi-logout text-danger"></i> Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <div className="branch-style">
+                <a
+                  className="mobile-view-login"
+                  href="/customer/login"
+                >
+                <i class="bi bi-box-arrow-in-right icon-space4"></i>  Login/SignUp
+                </a>
+              </div>
+            )}
+            </div>
+            </div>
           </div>
         </div>
       </div>

@@ -278,29 +278,29 @@ function QuickOrder() {
         <div className="card">
           <div className="card-body">
             <h4 className="card-title">Quick Order:</h4>
-            <div className="two_part">
-              <a href="/dashboard" className="btn btn-primary">
+            <div className="card_section">
+              <a href="/dashboard" className="btn btn-primary mr-1 mb-1">
                 <i className="bi bi-house-door-fill"></i>Dashboard
               </a>
-              <a href="" className="btn btn-info">
+              <a href="" className="btn btn-info mr-1 mb-1">
                 <i className="bi bi-view-list"></i>All Order
               </a>
-              <a href="" className="btn btn-danger">
+              <a href="" className="btn btn-danger mr-1 mb-1">
                 <i className="bi bi-plus-square"></i>New Order
               </a>
-              <a href="" className="btn btn-warning">
+              <a href="" className="btn btn-warning mr-1 mb-1">
                 <i className="bi bi-arrow-left-right"></i>OnGoing Order
               </a>
-              <a href="" className="btn btn-success">
+              <a href="" className="btn btn-success mr-1 mb-1">
                 <i className="bi bi-question-square-fill"></i>Kitchen Status
               </a>
-              <a href="" className="btn btn-warning">
+              <a href="" className="btn btn-warning mr-1 mb-1">
                 <i className="bi bi-arrow-90deg-up"></i>Online Order
               </a>
-              <a href="" className="btn btn-success">
+              <a href="" className="btn btn-success mr-1 mb-1">
                 <i className="bi bi-qr-code"></i>QR Order
               </a>
-              <a href="" className="btn btn-danger">
+              <a href="" className="btn btn-danger mr-1 mb-1">
                 <i className="bi bi-x-square-fill"></i>Cancel Order
               </a>
               <a href="" className="btn btn-info">
