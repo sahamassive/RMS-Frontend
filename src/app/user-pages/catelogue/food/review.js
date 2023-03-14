@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 
 import StarRatingComponent from "react-star-rating-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 
 import "../style.css";
@@ -96,54 +97,51 @@ function Review() {
                 ) : null}
               </div>
               <div className="section-444 wid">
-                  <Form.Label className="label-style">Give Your Star</Form.Label>
-                  <br></br>
+                <Form.Label className="label-style">Give Your Star</Form.Label>
+                <br></br>
                 <StarRatingComponent
-                    name="rating"
-                    value={rating}
-                    onStarClick={onStarClick}
-                    starCount={5}
-                    starColor="#ffb400"
-                    emptyStarColor="#ddd"
-                    renderStarIcon={(index, value) => {
-                      return (
-                        <span>
-                          {index <= value ? (
-                            <FontAwesomeIcon icon={faStar} />
-                          ) : (
-                            <FontAwesomeIcon icon={faStar} className="far" />
-                          )}
-                        </span>
-                      );
-                    }}
-                    renderStarIconHalf={() => {
-                      return (
-                        <span>
-                          <FontAwesomeIcon icon={faStarHalf} />
-                        </span>
-                      );
-                    }}
-                    starDimension="180px" // Set the star size to 40px
+                  name="rating"
+                  value={rating}
+                  onStarClick={onStarClick}
+                  starCount={5}
+                  starColor="#ffb400"
+                  emptyStarColor="#ddd"
+                  renderStarIcon={(index, value) => {
+                    return (
+                      <span>
+                        {index <= value ? (
+                          <FontAwesomeIcon icon={faStar} />
+                        ) : (
+                          <FontAwesomeIcon icon={faStar} className="far" />
+                        )}
+                      </span>
+                    );
+                  }}
+                  renderStarIconHalf={() => {
+                    return (
+                      <span>
+                        <FontAwesomeIcon icon={faStarHalf} />
+                      </span>
+                    );
+                  }}
+                  starDimension="180px" // Set the star size to 40px
                 />
                 <br></br>
                 <div className="wid">
-                <Form.Label className="label-style">Comment</Form.Label>
-                <Form.Control
-                  className="area"
-                  as="textarea"
-                  placeholder="Write Something..."
-                  rows={6}
-                  onChange={(event) => {
-                    setComment(event.target.value);
-                  }}
+                  <Form.Label className="label-style">Comment</Form.Label>
+                  <Form.Control
+                    className="area"
+                    as="textarea"
+                    placeholder="Write Something..."
+                    rows={6}
+                    onChange={(event) => {
+                      setComment(event.target.value);
+                    }}
                   ></Form.Control>
                   <br></br>
-                  <button
-                  className="btn btn-warning"
-                  onClick={submitReview}
-                >
-                  <i className="bi bi-save-fill"></i>Submit Review
-                </button>
+                  <button className="btn btn-warning" onClick={submitReview}>
+                    <i className="bi bi-save-fill"></i>Submit Review
+                  </button>
                 </div>
               </div>
             </div>
